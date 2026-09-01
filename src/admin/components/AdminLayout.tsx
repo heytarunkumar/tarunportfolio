@@ -12,11 +12,13 @@ const adminNavItems = [
   { name: 'EXPERIENCE', path: '/admin/experience', icon: '📅' },
   { name: 'RESEARCH', path: '/admin/research', icon: '📑' },
   { name: 'WRITING', path: '/admin/writing', icon: '✍️' },
+  { name: 'MEDIA LIBRARY', path: '/admin/media', icon: '🖼️' },
   { name: 'NAVIGATION', path: '/admin/navigation', icon: '🧭' },
   { name: 'SEO SETTINGS', path: '/admin/seo', icon: '🔍' },
   { name: 'DESIGN & MOTION', path: '/admin/design', icon: '🎨' },
   { name: 'CONTACT & INBOX', path: '/admin/contact', icon: '📬' },
   { name: 'RESUME ASSETS', path: '/admin/resume', icon: '💼' },
+  { name: 'SYSTEM SETTINGS', path: '/admin/settings', icon: '⚙️' },
 ];
 
 export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {

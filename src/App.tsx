@@ -27,11 +27,13 @@ import { AdminLabManager } from './admin/pages/AdminLabManager';
 import { AdminExperienceManager } from './admin/pages/AdminExperienceManager';
 import { AdminResearchManager } from './admin/pages/AdminResearchManager';
 import { AdminWritingManager } from './admin/pages/AdminWritingManager';
+import { AdminMediaPage } from './admin/pages/AdminMediaPage';
 import { AdminNavManager } from './admin/pages/AdminNavManager';
 import { AdminSeoManager } from './admin/pages/AdminSeoManager';
 import { AdminDesignManager } from './admin/pages/AdminDesignManager';
 import { AdminContactManager } from './admin/pages/AdminContactManager';
 import { AdminResumeManager } from './admin/pages/AdminResumeManager';
+import { AdminSettingsPage } from './admin/pages/AdminSettingsPage';
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -72,11 +74,13 @@ function App() {
             <Route path="/admin/experience" element={<ProtectedRoute><AdminLayout><AdminExperienceManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/research" element={<ProtectedRoute><AdminLayout><AdminResearchManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/writing" element={<ProtectedRoute><AdminLayout><AdminWritingManager /></AdminLayout></ProtectedRoute>} />
+            <Route path="/admin/media" element={<ProtectedRoute><AdminLayout><AdminMediaPage /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/navigation" element={<ProtectedRoute><AdminLayout><AdminNavManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/seo" element={<ProtectedRoute><AdminLayout><AdminSeoManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/design" element={<ProtectedRoute><AdminLayout><AdminDesignManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/contact" element={<ProtectedRoute><AdminLayout><AdminContactManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/resume" element={<ProtectedRoute><AdminLayout><AdminResumeManager /></AdminLayout></ProtectedRoute>} />
+            <Route path="/admin/settings" element={<ProtectedRoute><AdminLayout><AdminSettingsPage /></AdminLayout></ProtectedRoute>} />
           </Routes>
         </Router>
       </PortfolioProvider>
