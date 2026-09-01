@@ -50,5 +50,5 @@ export const profileData: Profile = {
     x: "https://x.com/heytarunkumar",
     medium: "https://medium.com/@heytarunkumar",
   },
-  resumeUrl: "/resume/tarun-kumar-resume.pdf",
+  resumeUrl: "/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf",
 };
