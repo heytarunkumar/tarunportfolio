@@ -29,17 +29,17 @@ export const AdminMailPage: React.FC = () => {
   useEffect(() => {
     const code = searchParams.get('code');
     if (code) {
-      // Process authorization code
-      GmailService.updateAccount({ connected: true });
-      setAccount(GmailService.getAccount());
-      setSavedMessage(`Google OAuth 2.0 authorization successful for ${TARGET_GMAIL_ACCOUNT}!`);
-      
-      // Clean query string
-      searchParams.delete('code');
-      searchParams.delete('state');
-      setSearchParams(searchParams);
+      (async () => {
+        await GmailService.exchangeAuthCode(code);
+        setAccount(GmailService.getAccount());
+        setSavedMessage(`Google OAuth 2.0 authorization successful for ${TARGET_GMAIL_ACCOUNT}!`);
+        
+        searchParams.delete('code');
+        searchParams.delete('state');
+        setSearchParams(searchParams);
 
-      setTimeout(() => setSavedMessage(''), 4000);
+        setTimeout(() => setSavedMessage(''), 4000);
+      })();
     }
   }, [searchParams, setSearchParams]);
 

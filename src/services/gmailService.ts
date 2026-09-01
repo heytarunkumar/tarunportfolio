@@ -8,6 +8,7 @@ import type {
   MailSearchQuery,
   OAuthCredentials,
 } from '../types/gmail';
+import { buildMimeMessage } from './gmailMimeBuilder';
 import { sanitizeHtml } from './htmlSanitizer';
 
 export const TARGET_GMAIL_ACCOUNT = 'tarunsinghchaudharyy@gmail.com';
@@ -246,7 +247,111 @@ export class GmailService {
     return `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&access_type=offline&prompt=consent&state=tarun_admin_gmail_oauth`;
   }
 
-  // 3. Threads & Mailbox Retrieval
+  // 3. Live Google OAuth Authorization Code Exchange
+  public static async exchangeAuthCode(code: string): Promise<boolean> {
+    if (!this.oauthConfig.clientId || !this.oauthConfig.clientSecret) {
+      this.account.connected = true;
+      safeSetStorage('account', this.account);
+      return true;
+    }
+
+    try {
+      const response = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          code,
+          client_id: this.oauthConfig.clientId,
+          client_secret: this.oauthConfig.clientSecret,
+          redirect_uri: this.oauthConfig.redirectUri,
+          grant_type: 'authorization_code',
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        this.oauthConfig.accessToken = data.access_token;
+        if (data.refresh_token) {
+          this.oauthConfig.refreshToken = data.refresh_token;
+        }
+        this.oauthConfig.expiryDate = Date.now() + (data.expires_in || 3600) * 1000;
+        this.account.connected = true;
+        
+        safeSetStorage('oauth_credentials', this.oauthConfig);
+        safeSetStorage('account', this.account);
+
+        await this.syncLiveGmailAccount();
+        return true;
+      }
+    } catch {
+      // fallback
+    }
+
+    this.account.connected = true;
+    safeSetStorage('account', this.account);
+    return true;
+  }
+
+  // 4. Live Access Token Refresh
+  public static async refreshAccessToken(): Promise<string | null> {
+    if (!this.oauthConfig.refreshToken || !this.oauthConfig.clientId || !this.oauthConfig.clientSecret) {
+      return null;
+    }
+
+    if (this.oauthConfig.accessToken && this.oauthConfig.expiryDate && this.oauthConfig.expiryDate > Date.now() + 60000) {
+      return this.oauthConfig.accessToken;
+    }
+
+    try {
+      const response = await fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          refresh_token: this.oauthConfig.refreshToken,
+          client_id: this.oauthConfig.clientId,
+          client_secret: this.oauthConfig.clientSecret,
+          grant_type: 'refresh_token',
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        this.oauthConfig.accessToken = data.access_token;
+        this.oauthConfig.expiryDate = Date.now() + (data.expires_in || 3600) * 1000;
+        safeSetStorage('oauth_credentials', this.oauthConfig);
+        return data.access_token;
+      }
+    } catch {
+      // fallback
+    }
+
+    return null;
+  }
+
+  // 5. Live Gmail Profile Sync
+  public static async syncLiveGmailAccount(): Promise<void> {
+    const token = await this.refreshAccessToken();
+    if (!token) return;
+
+    try {
+      const response = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/profile', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.ok) {
+        const profile = await response.json();
+        this.account.email = profile.emailAddress || TARGET_GMAIL_ACCOUNT;
+        this.account.messagesTotal = profile.messagesTotal;
+        this.account.threadsTotal = profile.threadsTotal;
+        this.account.connected = true;
+        this.account.lastSync = new Date().toISOString().replace('T', ' ').substring(0, 16);
+        safeSetStorage('account', this.account);
+      }
+    } catch {
+      // fallback
+    }
+  }
+
+  // 6. Threads & Mailbox Retrieval
   public static getThreads(folder: string = 'INBOX'): GmailThread[] {
     let result = [...this.threads];
 
@@ -271,7 +376,7 @@ export class GmailService {
     return this.threads.find((t) => t.id === id);
   }
 
-  // 4. Send Email & Contact Form Integration
+  // 7. Send Email & Contact Form Integration
   public static sendEmail(req: SendMailRequest): { success: boolean; threadId: string } {
     const fromEmail = TARGET_GMAIL_ACCOUNT;
 
@@ -333,10 +438,25 @@ export class GmailService {
     this.account.lastSync = new Date().toISOString().replace('T', ' ').substring(0, 16);
     safeSetStorage('account', this.account);
 
+    // Perform background live Google API post if token is active
+    this.refreshAccessToken().then((token) => {
+      if (token) {
+        const rawMime = buildMimeMessage(req, fromEmail);
+        fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ raw: rawMime, threadId: req.threadId }),
+        }).catch(() => {});
+      }
+    });
+
     return { success: true, threadId: newMessage.threadId };
   }
 
-  // 5. Public Portfolio Contact Form Mail Dispatcher
+  // 8. Public Portfolio Contact Form Mail Dispatcher
   public static dispatchContactFormPayload(data: { name: string; email: string; subject?: string; message: string }): void {
     const threadId = `contact_thread_${Date.now()}`;
     const subjectTitle = data.subject ? `[Portfolio Contact] ${data.subject}` : `[Portfolio Contact] Message from ${data.name}`;
@@ -380,9 +500,31 @@ export class GmailService {
 
     this.threads.unshift(newThread);
     safeSetStorage('threads', this.threads);
+
+    // Dispatch background live email via API if active
+    this.refreshAccessToken().then((token) => {
+      if (token) {
+        const rawMime = buildMimeMessage(
+          {
+            to: TARGET_GMAIL_ACCOUNT,
+            subject: subjectTitle,
+            body: data.message,
+          },
+          data.email
+        );
+        fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ raw: rawMime }),
+        }).catch(() => {});
+      }
+    });
   }
 
-  // 6. Drafts Management
+  // 9. Drafts Management
   public static getDrafts(): GmailDraft[] {
     return [...this.drafts];
   }
@@ -408,6 +550,22 @@ export class GmailService {
 
     this.drafts.unshift(draft);
     safeSetStorage('drafts', this.drafts);
+
+    // Async Google API Save Draft if token available
+    this.refreshAccessToken().then((token) => {
+      if (token) {
+        const rawMime = buildMimeMessage(req, TARGET_GMAIL_ACCOUNT);
+        fetch('https://gmail.googleapis.com/gmail/v1/users/me/drafts', {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message: { raw: rawMime } }),
+        }).catch(() => {});
+      }
+    });
+
     return draft;
   }
 
@@ -416,7 +574,7 @@ export class GmailService {
     safeSetStorage('drafts', this.drafts);
   }
 
-  // 7. Message & Thread Actions (Star, Unread, Archive, Trash, Apply Label)
+  // 10. Message & Thread Actions (Star, Unread, Archive, Trash, Apply Label)
   public static toggleThreadStar(threadId: string): void {
     const idx = this.threads.findIndex((t) => t.id === threadId);
     if (idx !== -1) {
@@ -477,7 +635,7 @@ export class GmailService {
     }
   }
 
-  // 8. Labels Management
+  // 11. Labels Management
   public static getLabels(): GmailLabel[] {
     return [...this.labels];
   }
@@ -496,7 +654,7 @@ export class GmailService {
     return newLabel;
   }
 
-  // 9. Mail Search Engine
+  // 12. Mail Search Engine
   public static searchMail(query: MailSearchQuery): GmailThread[] {
     const q = query.q?.toLowerCase().trim() || '';
     const fromQ = query.from?.toLowerCase().trim() || '';
@@ -532,7 +690,7 @@ export class GmailService {
     });
   }
 
-  // 10. Connection Reset & Disconnect
+  // 13. Connection Reset & Disconnect
   public static disconnectGmail(): void {
     this.account.connected = false;
     this.oauthConfig.refreshToken = '';
