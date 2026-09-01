@@ -4,57 +4,69 @@ import { profileData } from '../../data/profile';
 
 export const ResumeSection: React.FC = () => {
   return (
-    <section 
-      id="resume" 
-      className="relative w-full py-24 px-6 sm:px-12 lg:px-20 bg-[#05060A] text-[#F1F5F9] font-sans border-t border-white/5"
+    <section
+      id="resume"
+      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-20 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+      <div className="max-w-5xl mx-auto w-full relative z-10">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="glass-card p-10 sm:p-14 rounded-3xl relative overflow-hidden text-center"
+          transition={{ duration: 0.8 }}
+          className="relative p-8 sm:p-14 rounded-sm border border-[#8C6D4F]/50 bg-[#0E0C0A] text-center shadow-[0_25px_70px_rgba(0,0,0,0.98)] overflow-hidden"
         >
-          <div className="glow-orb-cyan top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          {/* Top Gold Edge */}
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
-          <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-            <span className="text-xs font-mono font-semibold uppercase text-cyan-400 tracking-widest">
-              08 // COMPLETE TECHNICAL PROFILE
-            </span>
+          <span
+            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37] block mb-3"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            THE COMPLETE PROFILE
+          </span>
 
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight font-heading">
-              Ready to review full qualifications?
-            </h2>
+          <h2
+            className="text-4xl sm:text-5xl md:text-6xl tracking-tight uppercase text-white mb-4"
+            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+          >
+            WANT THE COMPLETE TECHNICAL PICTURE?
+          </h2>
 
-            <p className="text-base text-slate-300 font-normal leading-relaxed">
-              Download the official technical resume detailing core Python development capabilities, active cloud infrastructure tracks, and research accomplishments.
-            </p>
+          <p
+            className="text-xs sm:text-sm font-light text-[#A8988B] max-w-xl mx-auto mb-8 leading-relaxed"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            Download my technical resume to review detailed software engineering competencies, architecture projects, academic background, and technical toolsets.
+          </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-5 pt-4">
-              <a
-                href={profileData.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary px-8 py-4 text-sm font-semibold flex items-center space-x-2"
-              >
-                <span>View Full Resume</span>
-                <span className="text-base">↗</span>
-              </a>
+          <div
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            {/* View Resume Button */}
+            <a
+              href={profileData.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black text-xs font-semibold tracking-[0.24em] uppercase transition-all duration-300 hover:bg-[#E2C054] shadow-[0_0_20px_rgba(212,175,55,0.25)]"
+            >
+              <span>VIEW RESUME</span>
+              <span className="text-xs">↗</span>
+            </a>
 
-              <a
-                href={profileData.resumeUrl}
-                download="tarun-kumar-resume.pdf"
-                className="btn-secondary px-8 py-4 text-sm font-medium flex items-center space-x-2"
-              >
-                <span>Download PDF</span>
-                <span className="text-base">↓</span>
-              </a>
-            </div>
+            {/* Download Resume Button */}
+            <a
+              href={profileData.resumeUrl}
+              download
+              className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#120F0C] text-[#EAD8C7] hover:text-[#FFF5EB] text-xs font-medium tracking-[0.24em] uppercase transition-all duration-300"
+            >
+              <span>DOWNLOAD RESUME</span>
+              <span className="text-xs">↓</span>
+            </a>
           </div>
-        </motion.div>
 
+        </motion.div>
       </div>
     </section>
   );

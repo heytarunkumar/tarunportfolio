@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { profileData } from '../../data/profile';
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#work' },
-  { name: 'Lab', href: '#lab' },
-  { name: 'Research', href: '#research' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Writing', href: '#writing' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'ABOUT', href: '#about' },
+  { name: 'SKILLS', href: '#skills' },
+  { name: 'PROJECTS', href: '#work' },
+  { name: 'ENGINEERING LAB', href: '#lab' },
+  { name: 'RESEARCH', href: '#research' },
+  { name: 'EXPERIENCE', href: '#experience' },
+  { name: 'WRITING', href: '#writing' },
+  { name: 'CONTACT', href: '#contact' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -20,8 +20,9 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 40);
 
+      // Determine active section
       const sections = navItems.map((item) => item.href.replace('#', ''));
       const scrollPosition = window.scrollY + 200;
 
@@ -42,6 +43,7 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
@@ -56,33 +58,27 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#05060A]/85 backdrop-blur-xl border-b border-white/10 py-3.5 shadow-2xl shadow-black/50'
+          ? 'bg-black/90 backdrop-blur-md border-b border-[#8C6D4F]/30 py-3.5 shadow-2xl'
           : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-between">
         
-        {/* Brand Logo Badge */}
+        {/* Brand Identity */}
         <a
           href="#"
-          className="group flex items-center space-x-3 text-sm font-bold tracking-tight text-white focus:outline-none"
+          className="group flex items-center space-x-2 text-xs sm:text-sm font-semibold tracking-[0.3em] uppercase text-[#EAD8C7] hover:text-[#D4AF37] transition-colors focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500/20 to-indigo-500/20 border border-cyan-500/30 group-hover:border-cyan-400 transition-colors">
-            <span className="font-mono text-cyan-400 font-bold text-base">TK</span>
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#05060A] animate-pulse" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors">
-              {profileData.name}
-            </span>
-            <span className="text-[10px] font-mono text-slate-400 hidden sm:block">
-              Python · Cloud &amp; DevOps
-            </span>
-          </div>
+          <span className="w-2 h-2 rounded-full bg-[#D4AF37] group-hover:animate-ping" />
+          <span>{profileData.name}</span>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-1 p-1.5 rounded-full bg-slate-900/60 border border-white/10 backdrop-blur-md">
+        <nav
+          className="hidden xl:flex items-center space-x-6 text-[10.5px] tracking-[0.24em] font-light uppercase text-[#C4B5A5]"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
           {navItems.map((item) => {
             const sectionId = item.href.replace('#', '');
             const isActive = activeSection === sectionId;
@@ -91,37 +87,41 @@ export const Navbar: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className={`relative px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-                  isActive
-                    ? 'text-cyan-300 bg-cyan-500/10 border border-cyan-500/30 shadow-[0_0_12px_rgba(56,189,248,0.2)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                className={`relative group py-1 transition-colors duration-300 focus:outline-none focus:text-[#D4AF37] ${
+                  isActive ? 'text-[#D4AF37] font-medium' : 'hover:text-[#FFF5EB]'
                 }`}
               >
                 {item.name}
+                <span
+                  className={`absolute bottom-0 left-0 h-[1px] bg-[#D4AF37] transition-all duration-300 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
               </a>
             );
           })}
         </nav>
 
         {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-4">
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 hover:scale-[1.02] transition-all"
+            className="hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.22em] font-medium uppercase py-2 px-4 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#120F0C]/80 text-[#EAD8C7] hover:text-[#FFF5EB] transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.1)] focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            <span>Let&apos;s Connect</span>
-            <span>↗</span>
+            <span>LET&apos;S CONNECT</span>
+            <span className="text-xs">↗</span>
           </a>
 
-          {/* Hamburger Mobile Toggle */}
+          {/* Hamburger Mobile Button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
-            className="lg:hidden p-2.5 rounded-lg bg-slate-900 border border-white/10 text-slate-300 hover:text-white"
+            className="xl:hidden p-2 text-[#EAD8C7] hover:text-[#D4AF37] focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
           >
-            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
                 <path
                   fillRule="evenodd"
@@ -139,36 +139,38 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Overlay Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden bg-[#0A0D14]/95 border-b border-white/10 px-6 pt-4 pb-8 space-y-3 backdrop-blur-2xl shadow-2xl"
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="xl:hidden bg-[#0A0806] border-b border-[#8C6D4F]/40 px-6 pt-4 pb-8 space-y-4 shadow-2xl"
           >
-            <div className="flex flex-col space-y-2 pt-2">
+            <div className="flex flex-col space-y-3 pt-2">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-sm font-medium text-slate-300 hover:text-cyan-400 py-2 border-b border-white/5"
+                  className="text-xs tracking-[0.25em] font-medium uppercase text-[#C4B5A5] hover:text-[#D4AF37] py-2 border-b border-[#8C6D4F]/15"
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   {item.name}
                 </a>
               ))}
             </div>
 
-            <div className="pt-3">
+            <div className="pt-4">
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center space-x-2 text-xs font-semibold py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg"
+                className="w-full inline-flex items-center justify-center space-x-2 text-xs tracking-[0.22em] font-medium uppercase py-3 border border-[#8C6D4F] bg-[#120F0C] text-[#EAD8C7] hover:border-[#D4AF37]"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                <span>Let&apos;s Connect ↗</span>
+                <span>LET&apos;S CONNECT ↗</span>
               </a>
             </div>
           </motion.div>
