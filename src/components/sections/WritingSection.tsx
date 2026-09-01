@@ -4,7 +4,7 @@ import { usePortfolio } from '../../context/PortfolioContext';
 
 export const WritingSection: React.FC = () => {
   const { articles: contextArticles } = usePortfolio();
-  const articlesData = contextArticles || [];
+  const articlesData = (contextArticles || []).filter((a) => a.visible !== false);
 
   return (
     <section

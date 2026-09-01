@@ -15,7 +15,12 @@ export const ResearchSection: React.FC = () => {
     explainabilityApproach: 'Quantifying feature contributions to generate model interpretability plots.',
     focus: 'Explainable Healthcare Predictive Analytics',
     paperUrl: 'https://github.com/heytarunkumar',
+    visible: true,
   };
+
+  if (researchData && (researchData as any).visible === false) {
+    return null;
+  }
 
   return (
     <section

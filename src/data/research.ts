@@ -11,6 +11,7 @@ export interface ResearchProject {
   status: string;
   paperUrl?: string;
   githubUrl?: string;
+  visible?: boolean;
 }
 
 export const researchData: ResearchProject = {

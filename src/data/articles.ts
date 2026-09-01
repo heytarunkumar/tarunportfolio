@@ -8,6 +8,7 @@ export interface Article {
   readTime: string;
   mediumUrl: string;
   tags: string[];
+  visible?: boolean;
 }
 
 export const articlesData: Article[] = [
