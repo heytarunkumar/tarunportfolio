@@ -61,6 +61,7 @@ export interface PortfolioContextType {
   addProject: (project: Project) => void;
   updateProject: (slug: string, updated: Partial<Project>) => void;
   deleteProject: (slug: string) => void;
+  updateProjectsOrder: (projects: Project[]) => void;
 
   skills: SkillGroup[];
   updateSkills: (groups: SkillGroup[]) => void;
@@ -209,9 +210,21 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const deleteProject = (slug: string) => {
     setProjects((prev) => {
       const next = prev.filter((p) => p.slug !== slug);
-      safeSetStorage('projects', next);
-      return next;
+      // Re-serialize numbers automatically
+      const serialized = next.map((p, idx) => ({ ...p, number: String(idx + 1).padStart(2, '0') }));
+      safeSetStorage('projects', serialized);
+      return serialized;
     });
+  };
+
+  const updateProjectsOrder = (reordered: Project[]) => {
+    // Re-serialize numbers automatically: "01", "02", "03"...
+    const serialized = reordered.map((proj, idx) => ({
+      ...proj,
+      number: String(idx + 1).padStart(2, '0'),
+    }));
+    setProjects(serialized);
+    safeSetStorage('projects', serialized);
   };
 
   const updateSkills = (groups: SkillGroup[]) => {
@@ -310,6 +323,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         addProject,
         updateProject,
         deleteProject,
+        updateProjectsOrder,
         skills,
         updateSkills,
         labTracks,
