@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GmailService } from '../../../services/gmailService';
 import type { SendMailRequest } from '../../../types/gmail';
 
 interface MailComposeModalProps {
@@ -157,7 +158,29 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
 
           {/* Subject */}
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">SUBJECT LINE *</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-[#8C6D4F] uppercase">SUBJECT LINE *</label>
+              
+              {/* Quick Template Picker */}
+              <div className="flex items-center space-x-2">
+                <span className="text-[10px] text-[#8C6D4F]">QUICK TEMPLATE:</span>
+                <select
+                  onChange={(e) => {
+                    const tpl = GmailService.getTemplates().find((t) => t.id === e.target.value);
+                    if (tpl) {
+                      if (tpl.subject) setSubject(tpl.subject);
+                      setBody((prev) => (prev ? prev + '\n\n' + tpl.body : tpl.body));
+                    }
+                  }}
+                  className="bg-[#120F0C] border border-[#8C6D4F]/30 text-[#D4AF37] text-[10px] p-1 rounded-sm outline-none font-bold"
+                >
+                  <option value="">-- Insert Template --</option>
+                  {GmailService.getTemplates().map((t) => (
+                    <option key={t.id} value={t.id}>{t.title}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
             <input
               type="text"
               required
@@ -170,7 +193,23 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
 
           {/* Body Payload */}
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">MESSAGE PAYLOAD (HTML / TEXT) *</label>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-[#8C6D4F] uppercase">MESSAGE PAYLOAD (HTML / TEXT) *</label>
+
+              {/* Append Signature */}
+              <button
+                type="button"
+                onClick={() => {
+                  const defaultSig = GmailService.getSignatures().find((s) => s.isDefault) || GmailService.getSignatures()[0];
+                  if (defaultSig) {
+                    setBody((prev) => prev + '\n\n' + defaultSig.contentHtml);
+                  }
+                }}
+                className="text-[10px] text-[#D4AF37] hover:underline font-bold"
+              >
+                + INSERT OUTLOOK SIGNATURE
+              </button>
+            </div>
             <textarea
               required
               rows={8}

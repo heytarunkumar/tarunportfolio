@@ -7,6 +7,10 @@ import type {
   SendMailRequest,
   MailSearchQuery,
   OAuthCredentials,
+  OutlookRule,
+  OutlookSignature,
+  OutlookTemplate,
+  OutlookAutoResponderConfig,
 } from '../types/gmail';
 import { buildMimeMessage } from './gmailMimeBuilder';
 import { sanitizeHtml } from './htmlSanitizer';
@@ -725,7 +729,127 @@ export class GmailService {
     });
   }
 
-  // 13. Connection Reset & Disconnect
+  // 13. Outlook Rules, Signatures, Templates, & Auto-Responder
+  private static rules: OutlookRule[] = safeGetStorage('outlook_rules', [
+    {
+      id: 'rule_1',
+      name: 'Auto-Categorize Portfolio Contacts',
+      condition: 'subject',
+      match: '[Portfolio Contact]',
+      action: 'category',
+      targetValue: 'Client Inquiry',
+      enabled: true,
+    },
+    {
+      id: 'rule_2',
+      name: 'Flag Recruiter Opportunities',
+      condition: 'body',
+      match: 'opportunity',
+      action: 'flag',
+      targetValue: 'true',
+      enabled: true,
+    },
+  ]);
+
+  private static signatures: OutlookSignature[] = safeGetStorage('outlook_signatures', [
+    {
+      id: 'sig_1',
+      name: 'Official Executive Signature',
+      isDefault: true,
+      contentHtml: '<div style="font-family: monospace; font-size: 13px; color: #111; border-left: 2px solid #D4AF37; padding-left: 10px; margin-top: 15px;"><p style="margin: 0; font-weight: bold; color: #8C6D4F;">TARUN KUMAR</p><p style="margin: 2px 0 0 0; color: #555;">Senior Full-Stack &amp; Python Cloud Architect</p><p style="margin: 4px 0 0 0;"><a href="https://heytarunkumar.vercel.app" style="color: #D4AF37; text-decoration: none;">heytarunkumar.vercel.app</a> | tarunsinghchaudharyy@gmail.com</p></div>',
+    },
+  ]);
+
+  private static templates: OutlookTemplate[] = safeGetStorage('outlook_templates', [
+    {
+      id: 'tpl_1',
+      title: 'Portfolio Inquiry Thank You',
+      subject: 'Re: Portfolio Contact Inquiry',
+      body: 'Hi,\n\nThank you for reaching out through my portfolio website. I have received your enquiry and will get back to you shortly.\n\nBest regards,\nTarun Kumar',
+    },
+    {
+      id: 'tpl_2',
+      title: 'Consulting Rate Card & Availability',
+      subject: 'Re: Consulting & Microservices Architecture Inquiry',
+      body: 'Hi,\n\nThanks for your interest in contracting my services for your cloud microservices architecture. I am currently open for strategic code audits and FastAPI/Python API design.\n\nBest regards,\nTarun Kumar',
+    },
+  ]);
+
+  private static autoResponder: OutlookAutoResponderConfig = safeGetStorage('outlook_auto_responder', {
+    enabled: false,
+    subject: 'Out of Office — Portfolio Contact Received',
+    message: 'Thank you for reaching out via my portfolio. I am currently out of office and will review your email within 24 hours.',
+  });
+
+  public static getRules(): OutlookRule[] {
+    return [...this.rules];
+  }
+
+  public static addRule(rule: Omit<OutlookRule, 'id'>): OutlookRule {
+    const newRule: OutlookRule = { ...rule, id: `rule_${Date.now()}` };
+    this.rules.push(newRule);
+    safeSetStorage('outlook_rules', this.rules);
+    return newRule;
+  }
+
+  public static toggleRule(ruleId: string): void {
+    const idx = this.rules.findIndex((r) => r.id === ruleId);
+    if (idx !== -1) {
+      this.rules[idx].enabled = !this.rules[idx].enabled;
+      safeSetStorage('outlook_rules', this.rules);
+    }
+  }
+
+  public static deleteRule(ruleId: string): void {
+    this.rules = this.rules.filter((r) => r.id !== ruleId);
+    safeSetStorage('outlook_rules', this.rules);
+  }
+
+  public static getSignatures(): OutlookSignature[] {
+    return [...this.signatures];
+  }
+
+  public static saveSignature(sig: Omit<OutlookSignature, 'id'>): OutlookSignature {
+    const newSig: OutlookSignature = { ...sig, id: `sig_${Date.now()}` };
+    if (newSig.isDefault) {
+      this.signatures.forEach((s) => (s.isDefault = false));
+    }
+    this.signatures.push(newSig);
+    safeSetStorage('outlook_signatures', this.signatures);
+    return newSig;
+  }
+
+  public static deleteSignature(id: string): void {
+    this.signatures = this.signatures.filter((s) => s.id !== id);
+    safeSetStorage('outlook_signatures', this.signatures);
+  }
+
+  public static getTemplates(): OutlookTemplate[] {
+    return [...this.templates];
+  }
+
+  public static saveTemplate(tpl: Omit<OutlookTemplate, 'id'>): OutlookTemplate {
+    const newTpl: OutlookTemplate = { ...tpl, id: `tpl_${Date.now()}` };
+    this.templates.push(newTpl);
+    safeSetStorage('outlook_templates', this.templates);
+    return newTpl;
+  }
+
+  public static deleteTemplate(id: string): void {
+    this.templates = this.templates.filter((t) => t.id !== id);
+    safeSetStorage('outlook_templates', this.templates);
+  }
+
+  public static getAutoResponder(): OutlookAutoResponderConfig {
+    return { ...this.autoResponder };
+  }
+
+  public static saveAutoResponder(config: OutlookAutoResponderConfig): void {
+    this.autoResponder = { ...config };
+    safeSetStorage('outlook_auto_responder', this.autoResponder);
+  }
+
+  // 14. Connection Reset & Disconnect
   public static disconnectGmail(): void {
     this.account.connected = false;
     this.oauthConfig.refreshToken = '';

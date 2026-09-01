@@ -9,6 +9,7 @@ import { MailMessageList } from '../components/mail/MailMessageList';
 import { MailThreadDetail } from '../components/mail/MailThreadDetail';
 import { MailComposeModal } from '../components/mail/MailComposeModal';
 import { MailSettingsPanel } from '../components/mail/MailSettingsPanel';
+import { OutlookPowerToolsModal } from '../components/mail/OutlookPowerToolsModal';
 
 export const AdminMailPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,6 +19,7 @@ export const AdminMailPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(null);
   const [isComposeOpen, setIsComposeOpen] = useState<boolean>(false);
+  const [isPowerToolsOpen, setIsPowerToolsOpen] = useState<boolean>(false);
 
   // Mail Data State
   const [account, setAccount] = useState<GmailAccount>(() => GmailService.getAccount());
@@ -157,6 +159,7 @@ export const AdminMailPage: React.FC = () => {
       {/* Top Microsoft Outlook Command Ribbon */}
       <OutlookCommandRibbon
         onOpenCompose={() => setIsComposeOpen(true)}
+        onOpenPowerTools={() => setIsPowerToolsOpen(true)}
         selectedThreadId={selectedThreadId}
         onArchive={handleArchive}
         onTrash={handleTrash}
@@ -244,6 +247,12 @@ export const AdminMailPage: React.FC = () => {
         onClose={() => setIsComposeOpen(false)}
         onSend={handleSendMail}
         onSaveDraft={handleSaveDraft}
+      />
+
+      {/* Outlook Power Tools Modal */}
+      <OutlookPowerToolsModal
+        isOpen={isPowerToolsOpen}
+        onClose={() => setIsPowerToolsOpen(false)}
       />
 
     </div>

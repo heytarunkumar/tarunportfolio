@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 interface OutlookCommandRibbonProps {
   onOpenCompose: () => void;
+  onOpenPowerTools: () => void;
   selectedThreadId: string | null;
   onArchive: (id: string) => void;
   onTrash: (id: string) => void;
@@ -18,6 +19,7 @@ interface OutlookCommandRibbonProps {
 
 export const OutlookCommandRibbon: React.FC<OutlookCommandRibbonProps> = ({
   onOpenCompose,
+  onOpenPowerTools,
   selectedThreadId,
   onArchive,
   onTrash,
@@ -164,8 +166,18 @@ export const OutlookCommandRibbon: React.FC<OutlookCommandRibbonProps> = ({
 
       </div>
 
-      {/* Right Sync Refresh Status */}
+      {/* Right Sync Refresh & Power Tools Status */}
       <div className="flex items-center space-x-2">
+        <button
+          type="button"
+          onClick={onOpenPowerTools}
+          className="px-3 py-1.5 bg-[#1E1914] border border-[#D4AF37]/50 text-[#D4AF37] font-bold rounded-sm hover:bg-[#D4AF37] hover:text-black flex items-center space-x-1 transition-colors"
+          title="Outlook Rules, Signatures, Templates & Auto-Responder"
+        >
+          <span>⚡</span>
+          <span>Rules &amp; Power Tools</span>
+        </button>
+
         <button
           type="button"
           onClick={onRefresh}

@@ -142,3 +142,33 @@ export interface OAuthCredentials {
   accessToken?: string;
   expiryDate?: number;
 }
+
+export interface OutlookRule {
+  id: string;
+  name: string;
+  condition: 'from' | 'subject' | 'body';
+  match: string;
+  action: 'category' | 'label' | 'star' | 'flag' | 'archive';
+  targetValue: string;
+  enabled: boolean;
+}
+
+export interface OutlookSignature {
+  id: string;
+  name: string;
+  isDefault: boolean;
+  contentHtml: string;
+}
+
+export interface OutlookTemplate {
+  id: string;
+  title: string;
+  subject: string;
+  body: string;
+}
+
+export interface OutlookAutoResponderConfig {
+  enabled: boolean;
+  subject: string;
+  message: string;
+}
