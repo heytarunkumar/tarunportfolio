@@ -11,6 +11,7 @@ export interface LabTrack {
   status: 'Learning' | 'Building' | 'Applied' | 'Completed';
   githubUrl?: string;
   demoUrl?: string;
+  visible?: boolean;
 }
 
 export const engineeringLabTracks: LabTrack[] = [

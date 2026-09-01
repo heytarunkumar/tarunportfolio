@@ -11,7 +11,7 @@ const statusBadgeStyles: Record<string, string> = {
 
 export const EngineeringLabSection: React.FC = () => {
   const { labTracks } = usePortfolio();
-  const tracks = labTracks && labTracks.length > 0 ? labTracks : [];
+  const tracks = (labTracks && labTracks.length > 0 ? labTracks : []).filter((t) => t.visible !== false);
   const [activeTrackState, setActiveTrackState] = useState<any>(null);
 
   const activeTrack = activeTrackState || tracks[0] || {
