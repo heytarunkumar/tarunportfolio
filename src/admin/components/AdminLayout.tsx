@@ -1,9 +1,6 @@
 import React from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { usePortfolio } from '../../context/PortfolioContext';
-
-import { GmailService } from '../../services/gmailService';
 
 const adminNavItems = [
   { name: 'DASHBOARD', path: '/admin/dashboard', icon: '📊' },
@@ -15,23 +12,16 @@ const adminNavItems = [
   { name: 'RESEARCH', path: '/admin/research', icon: '📑' },
   { name: 'WRITING', path: '/admin/writing', icon: '✍️' },
   { name: 'MEDIA LIBRARY', path: '/admin/media', icon: '🖼️' },
-  { name: 'Mail Center', path: '/admin/mail', icon: '✉️' },
   { name: 'NAVIGATION', path: '/admin/navigation', icon: '🧭' },
   { name: 'SEO SETTINGS', path: '/admin/seo', icon: '🔍' },
   { name: 'DESIGN & MOTION', path: '/admin/design', icon: '🎨' },
-  { name: 'CONTACT & INBOX', path: '/admin/contact', icon: '📬' },
   { name: 'RESUME ASSETS', path: '/admin/resume', icon: '💼' },
   { name: 'SYSTEM SETTINGS', path: '/admin/settings', icon: '⚙️' },
 ];
 
 export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { username, logout } = useAuth();
-  const { contact } = usePortfolio();
   const navigate = useNavigate();
-
-  const unreadMessages = contact.inboxMessages.filter((m) => !m.read).length;
-  const gmailAccount = GmailService.getAccount();
-  const unreadGmailCount = gmailAccount.unreadCount || 0;
 
   const handleLogout = () => {
     logout();
@@ -73,25 +63,8 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
               >
                 <div className="flex items-center space-x-2.5">
                   <span>{item.icon}</span>
-                  <div>
-                    <span className="tracking-wider block">{item.name}</span>
-                    {item.name === 'Mail Center' && (
-                      <span className="text-[9px] text-[#8C6D4F] font-mono block -mt-0.5">
-                        Connected to Gmail
-                      </span>
-                    )}
-                  </div>
+                  <span className="tracking-wider block">{item.name}</span>
                 </div>
-                {item.name === 'Mail Center' && unreadGmailCount > 0 && (
-                  <span className="px-1.5 py-0.5 text-[9px] bg-amber-500 text-black font-bold rounded-full">
-                    {unreadGmailCount}
-                  </span>
-                )}
-                {item.name === 'CONTACT & INBOX' && unreadMessages > 0 && (
-                  <span className="px-1.5 py-0.5 text-[9px] bg-red-600 text-white rounded-full font-bold">
-                    {unreadMessages}
-                  </span>
-                )}
               </NavLink>
             ))}
           </nav>

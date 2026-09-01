@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
-import { GmailService } from '../services/gmailService';
-import { SupabaseMailService } from '../services/supabaseMailService';
 
 export const ContactSection: React.FC = () => {
   const { profile, contact, addMessage } = usePortfolio();
@@ -34,14 +32,7 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to Serverless API (/api/contact), FormSubmit, and Web3Forms Backup Relay
     try {
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      }).catch(() => {});
-
       const params = new URLSearchParams();
       params.append('name', formData.name);
       params.append('email', formData.email);
@@ -52,53 +43,27 @@ export const ContactSection: React.FC = () => {
       params.append('_template', 'table');
       params.append('_captcha', 'false');
 
-      fetch('https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com', {
+      const response = await fetch('https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
         body: params.toString(),
-      }).catch(() => {});
+      });
 
-      // Web3Forms Instant Direct Relay to tarunsinghchaudharyy@gmail.com
-      const web3Data = new FormData();
-      web3Data.append('access_key', '02d99d14-3676-4d10-8b65-983df49c5e31');
-      web3Data.append('name', formData.name);
-      web3Data.append('email', formData.email);
-      web3Data.append('subject', formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`);
-      web3Data.append('message', formData.message);
-      web3Data.append('from_name', `${formData.name} (Portfolio Inquiry)`);
-
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: web3Data,
-      }).catch(() => {});
+      if (!response.ok) {
+        throw new Error('FormSubmit delivery failed');
+      }
     } catch {
-      // Ignore API fetch error
+      // Fallback response handling
     }
 
-    setTimeout(() => {
-      addMessage({
-        name: formData.name,
-        email: formData.email,
-        message: `${formData.subject ? `[${formData.subject}] ` : ''}${formData.message}`,
-      });
-      
-      GmailService.dispatchContactFormPayload({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-      });
+    addMessage({
+      name: formData.name,
+      email: formData.email,
+      message: `${formData.subject ? `[${formData.subject}] ` : ''}${formData.message}`,
+    });
 
-      SupabaseMailService.saveContactQuery({
-        name: formData.name,
-        email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-      });
-
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 800);
+    setStatus('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
