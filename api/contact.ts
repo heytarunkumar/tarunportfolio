@@ -48,18 +48,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       ]);
     }
 
-    // 2. Dispatch Live Email to tarunsinghchaudharyy@gmail.com via Web3Forms Failsafe Relay
+    // 2. Dispatch Live Email to tarunsinghchaudharyy@gmail.com via FormSubmit Direct Relay
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      await fetch(`https://formsubmit.co/ajax/${TARGET_GMAIL_ACCOUNT}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: JSON.stringify({
-          access_key: 'b1a20d43-207d-4b8a-9a99-f472289f6681', // Fallback public portfolio access key
-          name,
-          email,
-          to: TARGET_GMAIL_ACCOUNT,
-          subject: subjectTitle,
-          message: `NEW PORTFOLIO CONTACT INQUIRY\n\nSender: ${name} <${email}>\nDate: ${new Date().toUTCString()}\n\nMessage:\n${message}`,
+          _subject: subjectTitle,
+          _template: 'table',
+          _replyto: email,
+          name: name,
+          email: email,
+          subject: subject || 'Portfolio Contact Inquiry',
+          message: message,
         }),
       });
     } catch {

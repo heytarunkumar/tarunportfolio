@@ -100,18 +100,26 @@ export const AdminMailPage: React.FC = () => {
     }
   }, [currentFolder, searchQuery, selectedThreadId]);
 
-  // Real-time Event Listener for Public Contact Form submissions
+  // Real-time Event Listener & Auto Polling for Public Contact Form submissions & Supabase DB
   useEffect(() => {
+    refreshMailbox();
+
     const handleUpdate = () => {
-      setAccount(GmailService.getAccount());
-      setThreads(GmailService.getThreads(currentFolder));
+      refreshMailbox();
     };
 
     window.addEventListener('portfolio_mail_updated', handleUpdate);
     window.addEventListener('storage', handleUpdate);
+
+    // Auto-poll Supabase cloud database every 10 seconds
+    const interval = setInterval(() => {
+      refreshMailbox();
+    }, 10000);
+
     return () => {
       window.removeEventListener('portfolio_mail_updated', handleUpdate);
       window.removeEventListener('storage', handleUpdate);
+      clearInterval(interval);
     };
   }, [currentFolder]);
 

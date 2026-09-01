@@ -34,12 +34,25 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to Serverless API (/api/contact), Supabase Database & Mail Center
+    // Transmit to Serverless API (/api/contact) & FormSubmit Direct Gmail Relay
     try {
       fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
+      }).catch(() => {});
+
+      fetch('https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`,
+          _replyto: formData.email,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
       }).catch(() => {});
     } catch {
       // Ignore API fetch error
