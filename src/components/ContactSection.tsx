@@ -34,7 +34,17 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to Supabase Central Database, PortfolioContext Inbox & Gmail Service Target Mailbox
+    // Transmit to Serverless API (/api/contact), Supabase Database & Mail Center
+    try {
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      }).catch(() => {});
+    } catch {
+      // Ignore API fetch error
+    }
+
     setTimeout(() => {
       addMessage({
         name: formData.name,
