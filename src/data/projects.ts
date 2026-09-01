@@ -12,6 +12,7 @@ export interface Project {
   demo?: string;
   featured: boolean;
   status: 'completed' | 'building' | 'learning';
+  visible?: boolean;
 }
 
 export const projectsData: Project[] = [

@@ -17,6 +17,7 @@ export const AdminProjectManager: React.FC = () => {
   const [technologies, setTechnologies] = useState('');
   const [github, setGithub] = useState('');
   const [status, setStatus] = useState<'completed' | 'building' | 'learning'>('completed');
+  const [visible, setVisible] = useState<boolean>(true);
 
   const startEdit = (proj: Project) => {
     setEditingSlug(proj.slug);
@@ -29,6 +30,7 @@ export const AdminProjectManager: React.FC = () => {
     setTechnologies(proj.technologies.join(', '));
     setGithub(proj.github || '');
     setStatus(proj.status);
+    setVisible(proj.visible !== false);
   };
 
   const resetForm = () => {
@@ -42,6 +44,7 @@ export const AdminProjectManager: React.FC = () => {
     setTechnologies('');
     setGithub('');
     setStatus('completed');
+    setVisible(true);
   };
 
   const handleSave = (e: React.FormEvent) => {
@@ -65,6 +68,7 @@ export const AdminProjectManager: React.FC = () => {
       github: github || undefined,
       featured: true,
       status,
+      visible,
     };
 
     if (editingSlug) {
@@ -76,6 +80,17 @@ export const AdminProjectManager: React.FC = () => {
     }
 
     resetForm();
+    setTimeout(() => setSavedMessage(''), 3000);
+  };
+
+  const toggleVisibility = (slugToToggle: string) => {
+    const updated = projects.map((p) =>
+      p.slug === slugToToggle ? { ...p, visible: p.visible === false ? true : false } : p
+    );
+    updateProjectsOrder(updated);
+    const targetProject = projects.find((p) => p.slug === slugToToggle);
+    const isNowVisible = targetProject?.visible === false;
+    setSavedMessage(`Project "${targetProject?.title || slugToToggle}" visibility set to ${isNowVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}.`);
     setTimeout(() => setSavedMessage(''), 3000);
   };
 
@@ -121,11 +136,11 @@ export const AdminProjectManager: React.FC = () => {
             PROJECT CATALOG &amp; SERIALIZATION MANAGER
           </h1>
           <p className="text-xs text-[#A8988B] mt-1 font-mono">
-            Add, edit, delete, and reorder/serialize featured portfolio projects. Order changes reflect instantly on the public website.
+            Add, edit, delete, reorder, and toggle visibility for portfolio projects.
           </p>
         </div>
         <span className="text-xs font-mono text-[#D4AF37] px-3 py-1 border border-[#D4AF37]/40 bg-[#1E1914] rounded-sm self-start sm:self-auto">
-          {projects.length} PROJECTS CATALOGED
+          {projects.length} TOTAL / {projects.filter((p) => p.visible !== false).length} VISIBLE ON PUBLIC SITE
         </span>
       </div>
 
@@ -180,7 +195,7 @@ export const AdminProjectManager: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
                 CATEGORY *
@@ -210,6 +225,25 @@ export const AdminProjectManager: React.FC = () => {
                 <option value="building">Building (Active)</option>
                 <option value="learning">Learning (Lab)</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
+                PUBLIC WEBSITE VISIBILITY
+              </label>
+              <div
+                onClick={() => setVisible(!visible)}
+                className={`p-3 border rounded-sm cursor-pointer flex items-center justify-between font-mono select-none transition-colors ${
+                  visible
+                    ? 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300'
+                    : 'border-amber-500/50 bg-amber-950/30 text-amber-300'
+                }`}
+              >
+                <span>{visible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}</span>
+                <span className="text-[10px] uppercase font-bold">
+                  {visible ? '[ PUBLIC ]' : '[ DRAFT / HIDDEN ]'}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -301,102 +335,126 @@ export const AdminProjectManager: React.FC = () => {
         </form>
       </div>
 
-      {/* Existing Projects List with Ordering & Serialization Controls */}
+      {/* Existing Projects List with Ordering & Visibility Controls */}
       <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#8C6D4F]/20 pb-3 gap-2">
           <h2 className="text-lg font-mono text-white tracking-wider uppercase">
             CATALOGED PROJECTS &amp; SERIAL SEQUENCE ({projects.length})
           </h2>
           <span className="text-xs font-mono text-[#8C6D4F]">
-            Use ↑ / ↓ or Position Selectors to reorder display sequence
+            Use VISIBLE 👁 / HIDDEN 🙈 buttons or ▲ / ▼ arrows to configure public display
           </span>
         </div>
 
         <div className="space-y-3 font-mono text-xs">
-          {projects.map((proj, idx) => (
-            <div
-              key={proj.slug || idx}
-              className="p-4 bg-[#120F0C] border border-[#8C6D4F]/20 rounded-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 group hover:border-[#D4AF37]/50 transition-colors"
-            >
-              <div className="flex items-start space-x-3">
-                
-                {/* Serial Order Controls (Up / Down / Position) */}
-                <div className="flex flex-col items-center space-y-1 bg-[#0A0806] p-2 border border-[#8C6D4F]/30 rounded-sm shrink-0">
-                  <button
-                    type="button"
-                    disabled={idx === 0}
-                    onClick={() => handleMoveUp(idx)}
-                    title="Move Project Up"
-                    className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
-                  >
-                    ▲
-                  </button>
-                  <span className="text-[11px] font-bold text-[#F7E7C4]">
-                    #{proj.number || String(idx + 1).padStart(2, '0')}
-                  </span>
-                  <button
-                    type="button"
-                    disabled={idx === projects.length - 1}
-                    onClick={() => handleMoveDown(idx)}
-                    title="Move Project Down"
-                    className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
-                  >
-                    ▼
-                  </button>
-                </div>
+          {projects.map((proj, idx) => {
+            const isVisible = proj.visible !== false;
 
-                <div>
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="text-white font-bold tracking-wider text-sm">{proj.title}</span>
-                    <span className="text-[9px] px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
-                      {proj.status}
+            return (
+              <div
+                key={proj.slug || idx}
+                className={`p-4 border rounded-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 group transition-colors ${
+                  isVisible
+                    ? 'bg-[#120F0C] border-[#8C6D4F]/20 hover:border-[#D4AF37]/50'
+                    : 'bg-[#0E0B08] border-amber-900/40 opacity-75'
+                }`}
+              >
+                <div className="flex items-start space-x-3">
+                  
+                  {/* Serial Order Controls */}
+                  <div className="flex flex-col items-center space-y-1 bg-[#0A0806] p-2 border border-[#8C6D4F]/30 rounded-sm shrink-0">
+                    <button
+                      type="button"
+                      disabled={idx === 0}
+                      onClick={() => handleMoveUp(idx)}
+                      title="Move Project Up"
+                      className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
+                    >
+                      ▲
+                    </button>
+                    <span className="text-[11px] font-bold text-[#F7E7C4]">
+                      #{proj.number || String(idx + 1).padStart(2, '0')}
                     </span>
-                    <span className="text-[9px] px-2 py-0.5 border border-[#8C6D4F]/40 bg-[#16120E] text-[#D4AF37] rounded-sm uppercase">
-                      {proj.category}
+                    <button
+                      type="button"
+                      disabled={idx === projects.length - 1}
+                      onClick={() => handleMoveDown(idx)}
+                      title="Move Project Down"
+                      className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
+                    >
+                      ▼
+                    </button>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="text-white font-bold tracking-wider text-sm">{proj.title}</span>
+                      
+                      {/* Visibility Badge Toggle Button */}
+                      <button
+                        type="button"
+                        onClick={() => toggleVisibility(proj.slug)}
+                        title="Click to toggle visibility on public portfolio website"
+                        className={`text-[9px] font-mono px-2 py-0.5 border rounded-sm uppercase transition-all ${
+                          isVisible
+                            ? 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60'
+                            : 'border-amber-500/50 bg-amber-950/40 text-amber-300 hover:bg-amber-900/60'
+                        }`}
+                      >
+                        {isVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}
+                      </button>
+
+                      <span className="text-[9px] px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
+                        {proj.status}
+                      </span>
+                      <span className="text-[9px] px-2 py-0.5 border border-[#8C6D4F]/40 bg-[#16120E] text-[#D4AF37] rounded-sm uppercase">
+                        {proj.category}
+                      </span>
+                    </div>
+
+                    <p className="text-[11px] text-[#A8988B] line-clamp-1 mb-1">
+                      {proj.description}
+                    </p>
+                    <span className="text-[10px] text-[#8C6D4F] block">
+                      Tech: {(proj.technologies || []).join(', ')}
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#A8988B] line-clamp-1 mb-1">
-                    {proj.description}
-                  </p>
-                  <span className="text-[10px] text-[#8C6D4F] block">
-                    Tech: {(proj.technologies || []).join(', ')}
-                  </span>
+
                 </div>
 
-              </div>
+                {/* Action Controls & Position Selector */}
+                <div className="flex items-center space-x-2 shrink-0 self-end lg:self-auto">
+                  <select
+                    value={idx}
+                    onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
+                    title="Change Serial Position"
+                    className="bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] text-xs px-2 py-1.5 rounded-sm outline-none hover:border-[#D4AF37]"
+                  >
+                    {projects.map((_, posIdx) => (
+                      <option key={posIdx} value={posIdx}>
+                        Position #{String(posIdx + 1).padStart(2, '0')}
+                      </option>
+                    ))}
+                  </select>
 
-              {/* Action Controls & Position Selector */}
-              <div className="flex items-center space-x-2 shrink-0 self-end lg:self-auto">
-                <select
-                  value={idx}
-                  onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
-                  title="Change Serial Position"
-                  className="bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] text-xs px-2 py-1.5 rounded-sm outline-none hover:border-[#D4AF37]"
-                >
-                  {projects.map((_, posIdx) => (
-                    <option key={posIdx} value={posIdx}>
-                      Position #{String(posIdx + 1).padStart(2, '0')}
-                    </option>
-                  ))}
-                </select>
-
-                <button
-                  type="button"
-                  onClick={() => startEdit(proj)}
-                  className="px-3 py-1.5 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37] hover:border-[#D4AF37]"
-                >
-                  EDIT
-                </button>
-                <button
-                  type="button"
-                  onClick={() => deleteProject(proj.slug)}
-                  className="px-3 py-1.5 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40"
-                >
-                  DELETE
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => startEdit(proj)}
+                    className="px-3 py-1.5 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37] hover:border-[#D4AF37]"
+                  >
+                    EDIT
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => deleteProject(proj.slug)}
+                    className="px-3 py-1.5 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40"
+                  >
+                    DELETE
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

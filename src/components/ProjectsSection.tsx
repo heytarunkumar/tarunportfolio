@@ -10,7 +10,7 @@ export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
 
-  const projectsData = contextProjects || [];
+  const projectsData = (contextProjects || []).filter((p) => p.visible !== false);
 
   const filteredProjects = selectedCategory === 'ALL'
     ? projectsData
