@@ -43,14 +43,16 @@ export const HeroSection: React.FC = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
+    if (typeof window !== 'undefined') {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      setPrefersReducedMotion(mediaQuery.matches);
 
-    if (!mediaQuery.matches) {
-      const interval = setInterval(() => {
-        setRoleIndex((prev) => (prev + 1) % heroRoles.length);
-      }, 3000);
-      return () => clearInterval(interval);
+      if (!mediaQuery.matches) {
+        const interval = setInterval(() => {
+          setRoleIndex((prev) => (prev + 1) % heroRoles.length);
+        }, 3000);
+        return () => clearInterval(interval);
+      }
     }
   }, []);
 
