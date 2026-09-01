@@ -99,6 +99,21 @@ export const AdminMailPage: React.FC = () => {
     }
   }, [currentFolder, searchQuery, selectedThreadId]);
 
+  // Real-time Event Listener for Public Contact Form submissions
+  useEffect(() => {
+    const handleUpdate = () => {
+      setAccount(GmailService.getAccount());
+      setThreads(GmailService.getThreads(currentFolder));
+    };
+
+    window.addEventListener('portfolio_mail_updated', handleUpdate);
+    window.addEventListener('storage', handleUpdate);
+    return () => {
+      window.removeEventListener('portfolio_mail_updated', handleUpdate);
+      window.removeEventListener('storage', handleUpdate);
+    };
+  }, [currentFolder]);
+
   const refreshMailbox = () => {
     setAccount(GmailService.getAccount());
     setLabels(GmailService.getLabels());

@@ -523,6 +523,11 @@ export class GmailService {
     this.threads.unshift(newThread);
     safeSetStorage('threads', this.threads);
 
+    // Notify active Mail Center UI tabs
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('portfolio_mail_updated'));
+    }
+
     // Dispatch background live email via API if active
     this.refreshAccessToken().then((token) => {
       if (token) {
@@ -530,9 +535,15 @@ export class GmailService {
           {
             to: TARGET_GMAIL_ACCOUNT,
             subject: subjectTitle,
-            body: data.message,
+            body: `<div style="font-family: sans-serif; padding: 12px; border: 1px solid #D4AF37; border-radius: 4px;">
+              <h3 style="color: #D4AF37; margin-top: 0;">NEW PORTFOLIO CONTACT FORM ENQUIRY</h3>
+              <p><strong>From:</strong> ${data.name} &lt;${data.email}&gt;</p>
+              <p><strong>Subject:</strong> ${data.subject || 'Portfolio Inquiry'}</p>
+              <hr style="border: none; border-top: 1px solid #ccc; margin: 12px 0;" />
+              <p style="white-space: pre-wrap; font-size: 14px;">${data.message}</p>
+            </div>`,
           },
-          data.email
+          TARGET_GMAIL_ACCOUNT
         );
         fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
           method: 'POST',
