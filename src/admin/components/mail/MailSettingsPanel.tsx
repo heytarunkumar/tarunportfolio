@@ -36,6 +36,14 @@ export const MailSettingsPanel: React.FC<MailSettingsPanelProps> = ({
 
   const authUrl = GmailService.getGoogleAuthUrl();
 
+  const handleConnectClick = (e: React.MouseEvent) => {
+    if (!clientId.trim() || clientId.includes('YOUR_GOOGLE_CLIENT_ID')) {
+      e.preventDefault();
+      setSavedMessage('⚠️ Please paste your Google Client ID in the form below and click "SAVE OAUTH CREDENTIALS" first!');
+      setTimeout(() => setSavedMessage(''), 5000);
+    }
+  };
+
   return (
     <div className="flex-1 bg-[#050403] p-6 sm:p-10 overflow-y-auto space-y-8 font-mono text-xs text-[#E8DFD8]">
       
@@ -71,9 +79,9 @@ export const MailSettingsPanel: React.FC<MailSettingsPanelProps> = ({
       </div>
 
       {savedMessage && (
-        <div className="p-4 border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm flex items-center justify-between animate-fadeIn">
-          <span>✓ {savedMessage}</span>
-          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
+        <div className="p-4 border border-amber-500/50 bg-amber-950/40 text-amber-200 text-xs font-mono rounded-sm flex items-center justify-between animate-fadeIn">
+          <span>{savedMessage}</span>
+          <button onClick={() => setSavedMessage('')} className="text-amber-300 font-bold hover:underline">
             DISMISS
           </button>
         </div>
@@ -108,6 +116,7 @@ export const MailSettingsPanel: React.FC<MailSettingsPanelProps> = ({
         <div className="flex flex-wrap items-center gap-3 pt-2">
           <a
             href={authUrl}
+            onClick={handleConnectClick}
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054] inline-flex items-center space-x-2"
