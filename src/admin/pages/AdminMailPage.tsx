@@ -20,6 +20,37 @@ export const AdminMailPage: React.FC = () => {
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(null);
   const [isComposeOpen, setIsComposeOpen] = useState<boolean>(false);
   const [isPowerToolsOpen, setIsPowerToolsOpen] = useState<boolean>(false);
+  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
+  // Keyboard Shortcuts Listener (c=Compose, r=Reply, f=Flag, e=Archive, d=Delete, s=Star)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeTag = document.activeElement?.tagName.toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea' || isComposeOpen || isPowerToolsOpen) {
+        return;
+      }
+
+      if (e.key === 'c' || e.key === 'n') {
+        e.preventDefault();
+        setIsComposeOpen(true);
+      } else if (e.key === 'f' && selectedThreadId) {
+        e.preventDefault();
+        handleToggleFlag(selectedThreadId);
+      } else if (e.key === 's' && selectedThreadId) {
+        e.preventDefault();
+        handleToggleStar(selectedThreadId);
+      } else if ((e.key === 'e' || e.key === 'y') && selectedThreadId) {
+        e.preventDefault();
+        handleArchive(selectedThreadId);
+      } else if ((e.key === 'd' || e.key === 'Delete') && selectedThreadId) {
+        e.preventDefault();
+        handleTrash(selectedThreadId);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedThreadId, isComposeOpen, isPowerToolsOpen]);
 
   // Mail Data State
   const [account, setAccount] = useState<GmailAccount>(() => GmailService.getAccount());
@@ -203,15 +234,17 @@ export const AdminMailPage: React.FC = () => {
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         
         {/* Pane 1: Left Navigation Sidebar */}
-        <MailFolderSidebar
-          currentFolder={currentFolder}
-          onSelectFolder={handleSelectFolder}
-          onOpenCompose={() => setIsComposeOpen(true)}
-          labels={labels}
-          unreadCount={account.unreadCount || 0}
-          draftsCount={drafts.length}
-          isConnected={isConnected}
-        />
+        {!isFullscreen && (
+          <MailFolderSidebar
+            currentFolder={currentFolder}
+            onSelectFolder={handleSelectFolder}
+            onOpenCompose={() => setIsComposeOpen(true)}
+            labels={labels}
+            unreadCount={account.unreadCount || 0}
+            draftsCount={drafts.length}
+            isConnected={isConnected}
+          />
+        )}
 
         {/* Settings Route View vs Main Mailbox Views */}
         {currentFolder === 'SETTINGS' ? (
@@ -227,21 +260,23 @@ export const AdminMailPage: React.FC = () => {
         ) : (
           <>
             {/* Pane 2: Middle Conversation List */}
-            <MailMessageList
-              threads={threads}
-              selectedThreadId={selectedThreadId}
-              onSelectThread={(id) => setSelectedThreadId(id)}
-              onToggleStar={handleToggleStar}
-              onTogglePin={handleTogglePin}
-              onToggleFlag={handleToggleFlag}
-              onArchive={handleArchive}
-              onTrash={handleTrash}
-              onEmptyTrash={handleEmptyTrash}
-              onRefresh={refreshMailbox}
-              searchQuery={searchQuery}
-              onSearchChange={(q) => setSearchQuery(q)}
-              currentFolder={currentFolder}
-            />
+            {!isFullscreen && (
+              <MailMessageList
+                threads={threads}
+                selectedThreadId={selectedThreadId}
+                onSelectThread={(id) => setSelectedThreadId(id)}
+                onToggleStar={handleToggleStar}
+                onTogglePin={handleTogglePin}
+                onToggleFlag={handleToggleFlag}
+                onArchive={handleArchive}
+                onTrash={handleTrash}
+                onEmptyTrash={handleEmptyTrash}
+                onRefresh={refreshMailbox}
+                searchQuery={searchQuery}
+                onSearchChange={(q) => setSearchQuery(q)}
+                currentFolder={currentFolder}
+              />
+            )}
 
             {/* Pane 3: Right Thread Detail & Reading Viewport */}
             <MailThreadDetail
@@ -253,6 +288,8 @@ export const AdminMailPage: React.FC = () => {
               onRestore={handleRestore}
               onSendReply={handleSendMail}
               onClose={() => setSelectedThreadId(null)}
+              isFullscreen={isFullscreen}
+              onToggleFullscreen={() => setIsFullscreen(!isFullscreen)}
             />
           </>
         )}

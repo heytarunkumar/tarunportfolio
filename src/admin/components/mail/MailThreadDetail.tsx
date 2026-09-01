@@ -12,6 +12,8 @@ interface MailThreadDetailProps {
   onRestore?: (threadId: string) => void;
   onSendReply: (req: SendMailRequest) => void;
   onClose?: () => void;
+  isFullscreen?: boolean;
+  onToggleFullscreen?: () => void;
 }
 
 export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
@@ -23,11 +25,23 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
   onRestore,
   onSendReply,
   onClose,
+  isFullscreen = false,
+  onToggleFullscreen,
 }) => {
   const [replyMode, setReplyMode] = useState<'reply' | 'replyAll' | 'forward' | null>(null);
   const [replyBody, setReplyBody] = useState('');
   const [replyTo, setReplyTo] = useState('');
   const [replySubject, setReplySubject] = useState('');
+  const [copyToast, setCopyToast] = useState(false);
+
+  const handleCopyDetails = () => {
+    if (!thread) return;
+    const firstMsg = thread.messages[0];
+    const text = `Subject: ${thread.subject}\nFrom: ${firstMsg?.from?.name} <${firstMsg?.from?.email}>\nDate: ${firstMsg?.dateStr}\nSnippet: ${thread.snippet}`;
+    navigator.clipboard.writeText(text);
+    setCopyToast(true);
+    setTimeout(() => setCopyToast(false), 2500);
+  };
 
   if (!thread) {
     return (
@@ -100,6 +114,26 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
         </div>
 
         <div className="flex items-center space-x-2 shrink-0">
+          <button
+            type="button"
+            onClick={handleCopyDetails}
+            className="px-3 py-1 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] hover:text-white rounded-sm text-[10px] uppercase font-bold"
+            title="Copy Thread Details to Clipboard"
+          >
+            {copyToast ? '✓ COPIED' : '📋 COPY INFO'}
+          </button>
+
+          {onToggleFullscreen && (
+            <button
+              type="button"
+              onClick={onToggleFullscreen}
+              className="px-3 py-1 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#D4AF37] hover:border-[#D4AF37] rounded-sm text-[10px] uppercase font-bold hidden md:block"
+              title="Toggle Fullscreen Reading View"
+            >
+              {isFullscreen ? '🗗 SPLIT VIEW' : '⛶ FULLSCREEN'}
+            </button>
+          )}
+
           <button
             type="button"
             onClick={() => window.print()}

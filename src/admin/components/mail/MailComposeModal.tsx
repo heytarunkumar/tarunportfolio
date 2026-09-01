@@ -28,6 +28,27 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
   const [subject, setSubject] = useState(initialSubject);
   const [body, setBody] = useState(initialBody);
   const [attachments, setAttachments] = useState<{ filename: string; mimeType: string; dataUrl: string }[]>([]);
+  const [autosaveTime, setAutosaveTime] = useState<string | null>(null);
+
+  // Draft Autosave Effect (Runs every 8 seconds if body or subject typed)
+  React.useEffect(() => {
+    if (!isOpen) return;
+    if (!subject.trim() && !body.trim()) return;
+
+    const timer = setTimeout(() => {
+      onSaveDraft({
+        to: to.trim(),
+        cc: cc.trim() || undefined,
+        bcc: bcc.trim() || undefined,
+        subject: subject.trim() || '(No Subject)',
+        body,
+        attachments: attachments.length > 0 ? attachments : undefined,
+      });
+      setAutosaveTime(new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+    }, 8000);
+
+    return () => clearTimeout(timer);
+  }, [isOpen, to, cc, bcc, subject, body, attachments, onSaveDraft]);
 
   if (!isOpen) return null;
 
@@ -257,18 +278,25 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
             <div className="flex items-center space-x-3">
               <button
                 type="submit"
-                className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+                className="px-6 py-2.5 bg-[#D4AF37] text-black font-bold uppercase tracking-wider hover:bg-[#E2C054] shadow-[0_0_15px_rgba(212,175,55,0.2)]"
               >
-                SEND EMAIL 🚀
+                SEND MAIL 🚀
               </button>
 
               <button
                 type="button"
                 onClick={handleDraftSubmit}
-                className="px-4 py-3 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#D4AF37] uppercase tracking-wider hover:border-[#D4AF37]"
+                className="px-4 py-2.5 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#D4AF37] font-bold uppercase hover:border-[#D4AF37]"
               >
                 SAVE DRAFT 📝
               </button>
+
+              {autosaveTime && (
+                <span className="text-[10px] text-emerald-400 font-mono flex items-center space-x-1">
+                  <span>✓</span>
+                  <span>Autosaved at {autosaveTime}</span>
+                </span>
+              )}
             </div>
 
             <button
