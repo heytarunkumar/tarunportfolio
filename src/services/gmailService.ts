@@ -351,11 +351,17 @@ export class GmailService {
     }
   }
 
-  // 6. Threads & Mailbox Retrieval
-  public static getThreads(folder: string = 'INBOX'): GmailThread[] {
+  public static getThreads(folder: string = 'PORTFOLIO_INBOX'): GmailThread[] {
     let result = [...this.threads];
 
-    if (folder === 'INBOX') {
+    if (folder === 'PORTFOLIO_INBOX') {
+      result = result.filter((t) =>
+        t.labelIds?.includes('Label_Projects') ||
+        t.labelIds?.includes('INBOX') ||
+        t.subject?.toLowerCase().includes('portfolio') ||
+        t.subject?.toLowerCase().includes('contact')
+      );
+    } else if (folder === 'INBOX') {
       result = result.filter((t) => t.labelIds?.includes('INBOX'));
     } else if (folder === 'STARRED') {
       result = result.filter((t) => t.starred || t.labelIds?.includes('STARRED'));

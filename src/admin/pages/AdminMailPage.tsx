@@ -13,14 +13,14 @@ export const AdminMailPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Navigation & View State
-  const [currentFolder, setCurrentFolder] = useState<string>('INBOX');
+  const [currentFolder, setCurrentFolder] = useState<string>('PORTFOLIO_INBOX');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(null);
   const [isComposeOpen, setIsComposeOpen] = useState<boolean>(false);
 
   // Mail Data State
   const [account, setAccount] = useState<GmailAccount>(() => GmailService.getAccount());
-  const [threads, setThreads] = useState<GmailThread[]>(() => GmailService.getThreads('INBOX'));
+  const [threads, setThreads] = useState<GmailThread[]>(() => GmailService.getThreads('PORTFOLIO_INBOX'));
   const [labels, setLabels] = useState(() => GmailService.getLabels());
   const [drafts, setDrafts] = useState(() => GmailService.getDrafts());
   const [savedMessage, setSavedMessage] = useState<string>('');

@@ -22,7 +22,8 @@ export const MailFolderSidebar: React.FC<MailFolderSidebarProps> = ({
   isConnected,
 }) => {
   const folders = [
-    { id: 'INBOX', name: 'Inbox', icon: '📥', badge: unreadCount > 0 ? unreadCount : null },
+    { id: 'PORTFOLIO_INBOX', name: 'Portfolio Enquiries', icon: '📬', badge: unreadCount > 0 ? unreadCount : null },
+    { id: 'INBOX', name: 'All Gmail Inbox', icon: '📥', badge: null },
     { id: 'STARRED', name: 'Starred', icon: '⭐', badge: null },
     { id: 'SENT', name: 'Sent Mail', icon: '📤', badge: null },
     { id: 'DRAFTS', name: 'Drafts', icon: '📝', badge: draftsCount > 0 ? draftsCount : null },

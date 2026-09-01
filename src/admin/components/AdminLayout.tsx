@@ -15,7 +15,7 @@ const adminNavItems = [
   { name: 'RESEARCH', path: '/admin/research', icon: '📑' },
   { name: 'WRITING', path: '/admin/writing', icon: '✍️' },
   { name: 'MEDIA LIBRARY', path: '/admin/media', icon: '🖼️' },
-  { name: 'GMAIL MAIL CENTER', path: '/admin/mail', icon: '✉️' },
+  { name: 'Mail Center', path: '/admin/mail', icon: '✉️' },
   { name: 'NAVIGATION', path: '/admin/navigation', icon: '🧭' },
   { name: 'SEO SETTINGS', path: '/admin/seo', icon: '🔍' },
   { name: 'DESIGN & MOTION', path: '/admin/design', icon: '🎨' },
@@ -73,9 +73,16 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
               >
                 <div className="flex items-center space-x-2.5">
                   <span>{item.icon}</span>
-                  <span className="tracking-wider">{item.name}</span>
+                  <div>
+                    <span className="tracking-wider block">{item.name}</span>
+                    {item.name === 'Mail Center' && (
+                      <span className="text-[9px] text-[#8C6D4F] font-mono block -mt-0.5">
+                        Connected to Gmail
+                      </span>
+                    )}
+                  </div>
                 </div>
-                {item.name === 'GMAIL MAIL CENTER' && unreadGmailCount > 0 && (
+                {item.name === 'Mail Center' && unreadGmailCount > 0 && (
                   <span className="px-1.5 py-0.5 text-[9px] bg-amber-500 text-black font-bold rounded-full">
                     {unreadGmailCount}
                   </span>
