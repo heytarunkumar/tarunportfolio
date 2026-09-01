@@ -33,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = (password: string, user: string): boolean => {
     // Session token validation (accepts configured admin credentials)
-    if (password === 'admin123' || password.length >= 6) {
+    if (password === 'Admin.Tarun@2026' || password.length >= 8) {
       const sessionData = {
         token: `token_${Date.now()}_${Math.random().toString(36).substring(2)}`,
         username: user || 'heytarunkumar',
