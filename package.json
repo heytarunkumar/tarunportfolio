@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.112.4",
     "framer-motion": "^12.4.7",
     "lenis": "1.1.18",
     "react": "^19.0.0",

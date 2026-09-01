@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { GmailService, TARGET_GMAIL_ACCOUNT } from '../../services/gmailService';
+import { SupabaseMailService } from '../../services/supabaseMailService';
 import type { GmailThread, GmailAccount, SendMailRequest } from '../../types/gmail';
 
 import { OutlookCommandRibbon } from '../components/mail/OutlookCommandRibbon';
@@ -114,7 +115,7 @@ export const AdminMailPage: React.FC = () => {
     };
   }, [currentFolder]);
 
-  const refreshMailbox = () => {
+  const refreshMailbox = async () => {
     setAccount(GmailService.getAccount());
     setLabels(GmailService.getLabels());
     setDrafts(GmailService.getDrafts());
@@ -125,6 +126,17 @@ export const AdminMailPage: React.FC = () => {
     } else {
       list = GmailService.getThreads(currentFolder);
     }
+
+    // Merge Supabase Database queries when in PORTFOLIO_INBOX or INBOX
+    if (currentFolder === 'PORTFOLIO_INBOX' || currentFolder === 'INBOX') {
+      const dbQueries = await SupabaseMailService.fetchContactQueries();
+      if (dbQueries.length > 0) {
+        const existingIds = new Set(list.map((t) => t.id));
+        const newDbThreads = dbQueries.filter((t) => !existingIds.has(t.id));
+        list = [...newDbThreads, ...list];
+      }
+    }
+
     setThreads(list);
 
     if (list.length === 0) {

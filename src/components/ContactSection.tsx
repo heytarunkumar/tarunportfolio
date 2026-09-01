@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
 import { GmailService } from '../services/gmailService';
+import { SupabaseMailService } from '../services/supabaseMailService';
 
 export const ContactSection: React.FC = () => {
   const { profile, contact, addMessage } = usePortfolio();
@@ -16,6 +17,7 @@ export const ContactSection: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
 
     // Client-side validation
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
@@ -32,7 +34,7 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to PortfolioContext Inbox & Gmail Service Target Mailbox
+    // Transmit to Supabase Central Database, PortfolioContext Inbox & Gmail Service Target Mailbox
     setTimeout(() => {
       addMessage({
         name: formData.name,
@@ -41,6 +43,13 @@ export const ContactSection: React.FC = () => {
       });
       
       GmailService.dispatchContactFormPayload({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
+      SupabaseMailService.saveContactQuery({
         name: formData.name,
         email: formData.email,
         subject: formData.subject,
