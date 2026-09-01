@@ -42,17 +42,20 @@ export const ContactSection: React.FC = () => {
         body: JSON.stringify(formData),
       }).catch(() => {});
 
+      const params = new URLSearchParams();
+      params.append('name', formData.name);
+      params.append('email', formData.email);
+      params.append('subject', formData.subject || 'Portfolio Inquiry');
+      params.append('message', formData.message);
+      params.append('_subject', formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`);
+      params.append('_replyto', formData.email);
+      params.append('_template', 'table');
+      params.append('_captcha', 'false');
+
       fetch('https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`,
-          _replyto: formData.email,
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
+        body: params.toString(),
       }).catch(() => {});
     } catch {
       // Ignore API fetch error

@@ -50,21 +50,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // 2. Dispatch Live Email to tarunsinghchaudharyy@gmail.com via FormSubmit Direct Relay
     try {
+      const params = new URLSearchParams();
+      params.append('name', name);
+      params.append('email', email);
+      params.append('subject', subject || 'Portfolio Inquiry');
+      params.append('message', message);
+      params.append('_subject', subjectTitle);
+      params.append('_replyto', email);
+      params.append('_template', 'table');
+      params.append('_captcha', 'false');
+
       await fetch(`https://formsubmit.co/ajax/${TARGET_GMAIL_ACCOUNT}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
           'Accept': 'application/json',
         },
-        body: JSON.stringify({
-          _subject: subjectTitle,
-          _template: 'table',
-          _replyto: email,
-          name: name,
-          email: email,
-          subject: subject || 'Portfolio Contact Inquiry',
-          message: message,
-        }),
+        body: params.toString(),
       });
     } catch {
       // Ignore background email relay error
