@@ -10,6 +10,7 @@ interface MailMessageListProps {
   onToggleFlag: (threadId: string) => void;
   onArchive: (threadId: string) => void;
   onTrash: (threadId: string) => void;
+  onEmptyTrash?: () => void;
   onRefresh: () => void;
   searchQuery: string;
   onSearchChange: (q: string) => void;
@@ -25,6 +26,7 @@ export const MailMessageList: React.FC<MailMessageListProps> = ({
   onToggleFlag,
   onArchive,
   onTrash,
+  onEmptyTrash,
   onRefresh,
   searchQuery,
   onSearchChange,
@@ -163,14 +165,26 @@ export const MailMessageList: React.FC<MailMessageListProps> = ({
                 </button>
               </>
             ) : (
-              <button
-                onClick={onRefresh}
-                className="px-2 py-1 bg-[#120F0C] border border-[#8C6D4F]/30 text-[#C4B5A5] text-[10px] hover:text-white rounded-sm flex items-center space-x-1"
-                title="Refresh Mailbox"
-              >
-                <span>🔄</span>
-                <span>SYNC</span>
-              </button>
+              <div className="flex items-center space-x-1">
+                {currentFolder === 'TRASH' && displayThreads.length > 0 && onEmptyTrash && (
+                  <button
+                    onClick={onEmptyTrash}
+                    className="px-2 py-1 bg-red-950/40 border border-red-500/50 text-red-300 text-[10px] hover:bg-red-900 rounded-sm font-bold"
+                    title="Permanently empty all items in trash"
+                  >
+                    🗑️ EMPTY TRASH
+                  </button>
+                )}
+
+                <button
+                  onClick={onRefresh}
+                  className="px-2 py-1 bg-[#120F0C] border border-[#8C6D4F]/30 text-[#C4B5A5] text-[10px] hover:text-white rounded-sm flex items-center space-x-1"
+                  title="Refresh Mailbox"
+                >
+                  <span>🔄</span>
+                  <span>SYNC</span>
+                </button>
+              </div>
             )}
           </div>
         </div>

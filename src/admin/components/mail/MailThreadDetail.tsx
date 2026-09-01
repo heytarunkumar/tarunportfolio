@@ -9,6 +9,7 @@ interface MailThreadDetailProps {
   onToggleUnread: (threadId: string) => void;
   onArchive: (threadId: string) => void;
   onTrash: (threadId: string) => void;
+  onRestore?: (threadId: string) => void;
   onSendReply: (req: SendMailRequest) => void;
   onClose?: () => void;
 }
@@ -19,6 +20,7 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
   onToggleUnread,
   onArchive,
   onTrash,
+  onRestore,
   onSendReply,
   onClose,
 }) => {
@@ -123,13 +125,23 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
             📥 ARCHIVE
           </button>
 
-          <button
-            type="button"
-            onClick={() => onTrash(thread.id)}
-            className="px-3 py-1 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40 rounded-sm text-[10px] uppercase font-bold"
-          >
-            🗑️ TRASH
-          </button>
+          {thread.labelIds?.includes('TRASH') && onRestore ? (
+            <button
+              type="button"
+              onClick={() => onRestore(thread.id)}
+              className="px-3 py-1 border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/50 rounded-sm text-[10px] uppercase font-bold"
+            >
+              ↩️ RESTORE TO INBOX
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onTrash(thread.id)}
+              className="px-3 py-1 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40 rounded-sm text-[10px] uppercase font-bold"
+            >
+              🗑️ TRASH
+            </button>
+          )}
 
           {onClose && (
             <button

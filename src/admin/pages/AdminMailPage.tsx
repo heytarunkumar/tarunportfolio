@@ -129,6 +129,21 @@ export const AdminMailPage: React.FC = () => {
     setTimeout(() => setSavedMessage(''), 2500);
   };
 
+  const handleEmptyTrash = () => {
+    GmailService.emptyTrash();
+    setSelectedThreadId(null);
+    refreshMailbox();
+    setSavedMessage('All items permanently deleted from Trash.');
+    setTimeout(() => setSavedMessage(''), 2500);
+  };
+
+  const handleRestore = (threadId: string) => {
+    GmailService.restoreFromTrash(threadId);
+    refreshMailbox();
+    setSavedMessage('Conversation restored back to Inbox.');
+    setTimeout(() => setSavedMessage(''), 2500);
+  };
+
   const handleSendMail = (req: SendMailRequest) => {
     GmailService.sendEmail(req);
     refreshMailbox();
@@ -221,6 +236,7 @@ export const AdminMailPage: React.FC = () => {
               onToggleFlag={handleToggleFlag}
               onArchive={handleArchive}
               onTrash={handleTrash}
+              onEmptyTrash={handleEmptyTrash}
               onRefresh={refreshMailbox}
               searchQuery={searchQuery}
               onSearchChange={(q) => setSearchQuery(q)}
@@ -234,6 +250,7 @@ export const AdminMailPage: React.FC = () => {
               onToggleUnread={handleToggleUnread}
               onArchive={handleArchive}
               onTrash={handleTrash}
+              onRestore={handleRestore}
               onSendReply={handleSendMail}
               onClose={() => setSelectedThreadId(null)}
             />

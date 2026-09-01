@@ -651,7 +651,30 @@ export class GmailService {
   public static trashThread(threadId: string): void {
     const idx = this.threads.findIndex((t) => t.id === threadId);
     if (idx !== -1) {
-      this.threads[idx].labelIds = ['TRASH'];
+      if (this.threads[idx].labelIds?.includes('TRASH')) {
+        // Permanently delete if already in Trash
+        this.threads.splice(idx, 1);
+      } else {
+        this.threads[idx].labelIds = ['TRASH'];
+      }
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static permanentlyDeleteThread(threadId: string): void {
+    this.threads = this.threads.filter((t) => t.id !== threadId);
+    safeSetStorage('threads', this.threads);
+  }
+
+  public static emptyTrash(): void {
+    this.threads = this.threads.filter((t) => !t.labelIds?.includes('TRASH'));
+    safeSetStorage('threads', this.threads);
+  }
+
+  public static restoreFromTrash(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].labelIds = ['INBOX'];
       safeSetStorage('threads', this.threads);
     }
   }
