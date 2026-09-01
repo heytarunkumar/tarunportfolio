@@ -209,6 +209,7 @@ export class GmailService {
 
   // 1. Account & Connection Status
   public static getAccount(): GmailAccount {
+    this.threads = safeGetStorage('threads', initialThreads);
     const unread = this.threads.filter((t) => t.unread && t.labelIds?.includes('INBOX')).length;
     this.account.unreadCount = unread;
     this.account.messagesTotal = this.threads.reduce((acc, t) => acc + t.messages.length, 0);
@@ -332,7 +333,7 @@ export class GmailService {
     return null;
   }
 
-  // 5. Live Gmail Profile Sync
+  // 5. Live Gmail Profile & Message Sync
   public static async syncLiveGmailAccount(): Promise<void> {
     const token = await this.refreshAccessToken();
     if (!token) return;
@@ -350,12 +351,72 @@ export class GmailService {
         this.account.lastSync = new Date().toISOString().replace('T', ' ').substring(0, 16);
         safeSetStorage('account', this.account);
       }
+
+      // Fetch live messages from Gmail REST API
+      const msgRes = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=15', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (msgRes.ok) {
+        const msgData = await msgRes.json();
+        const msgList: { id: string; threadId: string }[] = msgData.messages || [];
+
+        for (const item of msgList.slice(0, 10)) {
+          if (!this.threads.some((t) => t.id === item.threadId || t.messages.some((m) => m.id === item.id))) {
+            const detailRes = await fetch(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${item.id}`, {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            if (detailRes.ok) {
+              const detail = await detailRes.json();
+              const headers: { name: string; value: string }[] = detail.payload?.headers || [];
+              const getHeader = (name: string) => headers.find((h) => h.name.toLowerCase() === name.toLowerCase())?.value || '';
+
+              const fromVal = getHeader('From');
+              const toVal = getHeader('To');
+              const subjectVal = getHeader('Subject') || '(No Subject)';
+              const dateVal = getHeader('Date') || new Date().toLocaleString();
+
+              const liveMsg: GmailMessage = {
+                id: detail.id,
+                threadId: detail.threadId,
+                labelIds: detail.labelIds || ['INBOX'],
+                snippet: detail.snippet || '',
+                internalDate: detail.internalDate || Date.now().toString(),
+                starred: detail.labelIds?.includes('STARRED') || false,
+                unread: detail.labelIds?.includes('UNREAD') || false,
+                from: { name: fromVal.split('<')[0].replace(/"/g, '').trim() || fromVal, email: fromVal.includes('<') ? fromVal.split('<')[1].replace('>', '').trim() : fromVal },
+                to: toVal,
+                subject: subjectVal,
+                dateStr: dateVal,
+                bodyText: detail.snippet || '',
+                bodyHtml: `<p>${detail.snippet || ''}</p>`,
+              };
+
+              const liveThread: GmailThread = {
+                id: detail.threadId,
+                subject: subjectVal,
+                snippet: detail.snippet || '',
+                lastMessageDate: new Date(parseInt(detail.internalDate || '0')).toISOString().replace('T', ' ').substring(0, 16),
+                unread: liveMsg.unread,
+                starred: liveMsg.starred,
+                labelIds: detail.labelIds || ['INBOX'],
+                participants: [liveMsg.from],
+                messages: [liveMsg],
+              };
+
+              this.threads.unshift(liveThread);
+            }
+          }
+        }
+        safeSetStorage('threads', this.threads);
+      }
     } catch {
       // fallback
     }
   }
 
   public static getThreads(folder: string = 'PORTFOLIO_INBOX'): GmailThread[] {
+    this.threads = safeGetStorage('threads', initialThreads);
     let result = [...this.threads];
 
     if (folder === 'PORTFOLIO_INBOX') {
