@@ -7,6 +7,14 @@ import { researchData as initialResearch, type ResearchProject } from '../data/r
 import { experienceData as initialExperience, type ExperienceItem } from '../data/experience';
 import { articlesData as initialArticles, type Article } from '../data/articles';
 
+export interface CustomMetaTag {
+  id: string;
+  nameProperty: 'name' | 'property';
+  key: string;
+  content: string;
+  enabled: boolean;
+}
+
 export interface SeoSettings {
   siteTitle: string;
   metaDescription: string;
@@ -15,9 +23,13 @@ export interface SeoSettings {
   ogTitle: string;
   ogDescription: string;
   ogImage: string;
+  ogType?: string;
   twitterCard: string;
+  twitterCreator?: string;
   robotsIndex: boolean;
   sitemapEnabled: boolean;
+  structuredDataEnabled?: boolean;
+  customMetaTags?: CustomMetaTag[];
 }
 
 export interface DesignSettings {
@@ -135,9 +147,17 @@ const initialSeo: SeoSettings = {
   ogTitle: 'Tarun Kumar — Python Developer | Cloud & DevOps Engineer',
   ogDescription: 'Python-focused developer building backend services, APIs, automation workflows, and cloud solutions.',
   ogImage: 'https://heytarunkumar.vercel.app/og-image.png',
+  ogType: 'website',
   twitterCard: 'summary_large_image',
+  twitterCreator: '@heytarunkumar',
   robotsIndex: true,
   sitemapEnabled: true,
+  structuredDataEnabled: true,
+  customMetaTags: [
+    { id: 'meta-1', nameProperty: 'name', key: 'author', content: 'Tarun Kumar', enabled: true },
+    { id: 'meta-2', nameProperty: 'name', key: 'theme-color', content: '#0A0806', enabled: true },
+    { id: 'meta-3', nameProperty: 'name', key: 'geo.region', content: 'IN', enabled: true },
+  ],
 };
 
 const initialDesign: DesignSettings = {
