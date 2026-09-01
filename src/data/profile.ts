@@ -42,7 +42,7 @@ export const profileData: Profile = {
     "A Python-focused developer building backend applications, REST APIs, automation workflows, and cloud-based solutions while progressively developing practical hands-on expertise in modern DevOps and infrastructure engineering.",
   bio:
     "I specialize in architecting scalable Python services, reliable REST APIs, automated backend workflows, and cloud solutions. I am actively expanding my hands-on technical stack into container orchestration, Infrastructure as Code, CI/CD pipelines, and cloud systems engineering, with machine learning and generative AI as complementary specializations.",
-  location: "India",
+  location: "India · Open to Remote",
   email: "imtarunchaudharyy@gmail.com",
   socials: {
     github: "https://github.com/heytarunkumar",

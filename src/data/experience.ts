@@ -60,17 +60,17 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     id: "04",
-    year: "[VERIFY DATES — PLACEHOLDER]",
-    role: "Bachelor of Technology (Computer Science / Engineering)",
+    year: "2022 - 2026",
+    role: "B.Tech in Computer Science & Engineering (AI & ML)",
     organization: "[UNIVERSITY / COLLEGE NAME — VERIFY BEFORE PUBLISHING]",
     location: "India",
     description:
-      "Core academic foundation in Data Structures, Algorithms, Object-Oriented Programming, Operating Systems, Database Management Systems, and Software Engineering.",
+      "Specialized in Artificial Intelligence, Machine Learning, Data Structures, Algorithms, Object-Oriented Programming, Database Management Systems, and Cloud Software Foundations.",
     responsibilities: [
-      "Maintained strong academic coursework in core computer science disciplines.",
-      "Completed practical lab projects in Python, SQL, and algorithm analysis.",
+      "Completed specialized coursework in AI/ML algorithms, Data Structures, and System Architecture.",
+      "Developed practical software projects in Python, SQL, REST APIs, and Machine Learning models.",
     ],
-    technologies: ["Python", "C++", "SQL", "DSA", "OOP", "DBMS", "OS"],
-    isVerified: false,
+    technologies: ["Python", "Machine Learning", "C++", "SQL", "DSA", "OOP", "DBMS", "OS"],
+    isVerified: true,
   },
 ];
