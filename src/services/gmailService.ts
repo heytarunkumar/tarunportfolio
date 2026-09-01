@@ -489,12 +489,12 @@ export class GmailService {
       subject: subjectTitle,
       dateStr: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
       bodyText: data.message,
-      bodyHtml: `<div style="font-family: monospace; color: #111;">
-        <h3 style="color: #8C6D4F; margin-bottom: 8px;">PORTFOLIO CONTACT FORM PAYLOAD</h3>
-        <p><strong>Sender:</strong> ${data.name} &lt;${data.email}&gt;</p>
-        <p><strong>Date:</strong> ${new Date().toUTCString()}</p>
-        <hr style="border: none; border-top: 1px solid #ccc; margin: 12px 0;" />
-        <p style="white-space: pre-wrap; font-size: 14px;">${data.message}</p>
+      bodyHtml: `<div style="font-family: monospace; color: #E8DFD8; background-color: #0F0C09; padding: 16px; border: 1px solid rgba(140, 109, 79, 0.4); border-radius: 4px;">
+        <h3 style="color: #D4AF37; margin: 0 0 12px 0; font-size: 14px; text-transform: uppercase; border-b: 1px solid rgba(140, 109, 79, 0.3); padding-bottom: 8px;">PORTFOLIO CONTACT FORM PAYLOAD</h3>
+        <p style="margin: 4px 0;"><strong style="color: #C4B5A5;">Sender:</strong> <span style="color: #FFFFFF;">${data.name}</span> &lt;<a href="mailto:${data.email}" style="color: #D4AF37; text-decoration: underline;">${data.email}</a>&gt;</p>
+        <p style="margin: 4px 0;"><strong style="color: #C4B5A5;">Date:</strong> <span style="color: #A8988B;">${new Date().toUTCString()}</span></p>
+        <hr style="border: none; border-top: 1px solid rgba(140, 109, 79, 0.3); margin: 12px 0;" />
+        <p style="white-space: pre-wrap; font-size: 13px; color: #FFFFFF; font-family: sans-serif; line-height: 1.6; margin: 0;">${data.message}</p>
       </div>`,
     };
 

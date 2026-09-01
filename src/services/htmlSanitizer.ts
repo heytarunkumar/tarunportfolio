@@ -27,5 +27,8 @@ export function sanitizeHtml(html: string): string {
     return `${match} target="_blank" rel="noopener noreferrer" `;
   });
 
+  // 5. Replace dark/black text inline colors for high contrast in dark mode
+  clean = clean.replace(/color:\s*(?:#111111|#111|#000000|#000|#222222|#222|#333333|#333|#1a1a1a|#0f0f0f|black|darkslate[a-z]*)\b;?/gi, 'color: #E8DFD8;');
+
   return clean;
 }
