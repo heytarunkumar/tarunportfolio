@@ -199,7 +199,7 @@ export class GmailService {
   private static oauthConfig: OAuthCredentials = safeGetStorage('oauth_credentials', {
     clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
     clientSecret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET || '',
-    redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI || `${typeof window !== 'undefined' ? window.location.origin : ''}/admin/mail/settings`,
+    redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI || `${typeof window !== 'undefined' ? window.location.origin : 'https://heytarunkumar.vercel.app'}/admin/mail/settings`,
     refreshToken: import.meta.env.VITE_GMAIL_REFRESH_TOKEN || '',
   });
 
