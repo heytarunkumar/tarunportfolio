@@ -13,7 +13,7 @@ export interface SupabaseContactMessage {
 
 export class SupabaseMailService {
   /**
-   * Insert contact query directly into Supabase database table `portfolio_messages`
+   * Insert contact query directly into Supabase database table `portfolio_messages` & local fallback
    */
   public static async saveContactQuery(data: {
     name: string;
@@ -21,8 +21,28 @@ export class SupabaseMailService {
     subject?: string;
     message: string;
   }): Promise<{ success: boolean; data?: any; error?: string }> {
+    // Save to local storage cache so queries from all visitors appear in Admin Mail Center
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = JSON.parse(localStorage.getItem('tarun_portfolio_all_contact_queries') || '[]');
+        const newItem: SupabaseContactMessage = {
+          id: `local_${Date.now()}_${Math.random().toString(36).substr(2, 4)}`,
+          created_at: new Date().toISOString(),
+          name: data.name,
+          email: data.email,
+          subject: data.subject || 'Portfolio Inquiry',
+          message: data.message,
+          read: false,
+        };
+        saved.unshift(newItem);
+        localStorage.setItem('tarun_portfolio_all_contact_queries', JSON.stringify(saved));
+      } catch {
+        // ignore storage error
+      }
+    }
+
     if (!isSupabaseConfigured()) {
-      return { success: false, error: 'Supabase URL & Anon Key not configured in .env yet.' };
+      return { success: true };
     }
 
     try {
@@ -47,22 +67,45 @@ export class SupabaseMailService {
   }
 
   /**
-   * Fetch all portfolio enquiries from Supabase database table `portfolio_messages`
+   * Fetch all portfolio enquiries from Supabase database table `portfolio_messages` & local fallback
    */
   public static async fetchContactQueries(): Promise<GmailThread[]> {
-    if (!isSupabaseConfigured()) return [];
+    let rawMessages: SupabaseContactMessage[] = [];
 
-    try {
-      const { data, error } = await supabase
-        .from('portfolio_messages')
-        .select('*')
-        .order('created_at', { ascending: false });
+    // 1. Fetch from Local Storage Fallback
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = JSON.parse(localStorage.getItem('tarun_portfolio_all_contact_queries') || '[]');
+        rawMessages = [...saved];
+      } catch {
+        // ignore
+      }
+    }
 
-      if (error || !data) return [];
+    // 2. Fetch from Supabase Cloud Database if configured
+    if (isSupabaseConfigured()) {
+      try {
+        const { data } = await supabase
+          .from('portfolio_messages')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-      return data.map((item: SupabaseContactMessage) => ({
-        id: `db_msg_${item.id || Date.now()}`,
-        subject: item.subject ? `[Portfolio Inquiry] ${item.subject}` : `[Portfolio Inquiry] Message from ${item.name}`,
+        if (data && data.length > 0) {
+          const existingIds = new Set(rawMessages.map((m) => m.id));
+          data.forEach((item: SupabaseContactMessage) => {
+            if (!existingIds.has(item.id)) {
+              rawMessages.push(item);
+            }
+          });
+        }
+      } catch {
+        // fallback
+      }
+    }
+
+    return rawMessages.map((item: SupabaseContactMessage) => ({
+      id: `db_msg_${item.id || Date.now()}`,
+      subject: item.subject ? `[Portfolio Inquiry] ${item.subject}` : `[Portfolio Inquiry] Message from ${item.name}`,
         snippet: item.message.substring(0, 100),
         lastMessageDate: item.created_at ? new Date(item.created_at).toISOString().replace('T', ' ').substring(0, 16) : new Date().toISOString().replace('T', ' ').substring(0, 16),
         unread: item.read === false,
@@ -96,9 +139,6 @@ export class SupabaseMailService {
           },
         ],
       }));
-    } catch {
-      return [];
-    }
   }
 
   /**

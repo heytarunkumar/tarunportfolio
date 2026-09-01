@@ -34,7 +34,7 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to Serverless API (/api/contact) & FormSubmit Direct Gmail Relay
+    // Transmit to Serverless API (/api/contact), FormSubmit, and Web3Forms Backup Relay
     try {
       fetch('/api/contact', {
         method: 'POST',
@@ -56,6 +56,20 @@ export const ContactSection: React.FC = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
         body: params.toString(),
+      }).catch(() => {});
+
+      // Web3Forms Instant Direct Relay to tarunsinghchaudharyy@gmail.com
+      const web3Data = new FormData();
+      web3Data.append('access_key', '02d99d14-3676-4d10-8b65-983df49c5e31');
+      web3Data.append('name', formData.name);
+      web3Data.append('email', formData.email);
+      web3Data.append('subject', formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`);
+      web3Data.append('message', formData.message);
+      web3Data.append('from_name', `${formData.name} (Portfolio Inquiry)`);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: web3Data,
       }).catch(() => {});
     } catch {
       // Ignore API fetch error
