@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { profileData } from '../../data/profile';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const Footer: React.FC = () => {
+  const { profile } = usePortfolio();
+
   return (
     <footer className="w-full bg-[#050403] border-t border-[#8C6D4F]/20 text-[#E8DFD8] py-12 px-6 sm:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -14,10 +16,10 @@ export const Footer: React.FC = () => {
             className="text-sm font-semibold tracking-[0.3em] uppercase text-white block mb-1 hover:text-[#D4AF37] transition-colors"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            {profileData.name}
+            {profile?.name || 'TARUN KUMAR'}
           </Link>
           <span className="text-xs font-mono text-[#8C6D4F]">
-            {profileData.title}
+            {profile?.title || 'Python Developer | Cloud & DevOps Engineer'}
           </span>
         </div>
 
@@ -50,7 +52,7 @@ export const Footer: React.FC = () => {
         <div className="text-center md:text-right text-xs font-mono text-[#8C6D4F]">
           <div className="flex justify-center md:justify-end gap-4 mb-2 text-[#C4B5A5]">
             <a
-              href={profileData.socials.github}
+              href={profile?.socials?.github || 'https://github.com/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"
@@ -58,7 +60,7 @@ export const Footer: React.FC = () => {
               GITHUB ↗
             </a>
             <a
-              href={profileData.socials.linkedin}
+              href={profile?.socials?.linkedin || 'https://linkedin.com/in/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"
@@ -66,7 +68,7 @@ export const Footer: React.FC = () => {
               LINKEDIN ↗
             </a>
             <a
-              href={profileData.socials.x}
+              href={profile?.socials?.x || 'https://x.com/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"
@@ -74,7 +76,7 @@ export const Footer: React.FC = () => {
               X ↗
             </a>
           </div>
-          © {new Date().getFullYear()} TARUN KUMAR
+          © {new Date().getFullYear()} {profile?.name || 'TARUN KUMAR'}
         </div>
 
       </div>

@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { profileData } from '../../data/profile';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const ResumeSection: React.FC = () => {
+  const { profile } = usePortfolio();
+  const resumeUrl = profile?.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf';
+
   return (
     <section
       id="resume"
@@ -46,7 +49,7 @@ export const ResumeSection: React.FC = () => {
           >
             {/* View Resume Button */}
             <a
-              href={profileData.resumeUrl}
+              href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black text-xs font-semibold tracking-[0.24em] uppercase transition-all duration-300 hover:bg-[#E2C054] shadow-[0_0_20px_rgba(212,175,55,0.25)]"
@@ -57,7 +60,7 @@ export const ResumeSection: React.FC = () => {
 
             {/* Download Resume Button */}
             <a
-              href={profileData.resumeUrl}
+              href={resumeUrl}
               download
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#120F0C] text-[#EAD8C7] hover:text-[#FFF5EB] text-xs font-medium tracking-[0.24em] uppercase transition-all duration-300"
             >

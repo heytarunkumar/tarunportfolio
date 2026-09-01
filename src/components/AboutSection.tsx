@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { profileData } from '../data/profile';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -28,6 +28,8 @@ const fadeUpVariants: Variants = {
 };
 
 export const AboutSection: React.FC = () => {
+  const { profile } = usePortfolio();
+
   return (
     <section 
       id="about" 
@@ -88,9 +90,9 @@ export const AboutSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-8 max-w-xl"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I am <span className="text-[#F3DBB3] font-medium">{profileData.name}</span>, a software developer specializing in Python backend systems, REST APIs, automation workflows, and cloud-based architecture.
+              I am <span className="text-[#F3DBB3] font-medium">{profile?.name || 'Tarun Kumar'}</span>, a software developer specializing in Python backend systems, REST APIs, automation workflows, and cloud-based architecture.
               <br /><br />
-              My software engineering philosophy is grounded in clean code principles, system reliability, and continuous learning. Today, I build Python applications and API microservices while actively expanding my hands-on technical capabilities into containerization (Docker), CI/CD pipelines (GitHub Actions), cloud infrastructure (AWS), and Infrastructure as Code (Terraform).
+              {profile?.narrative || 'My software engineering philosophy is grounded in clean code principles, system reliability, and continuous learning.'}
             </motion.p>
 
             {/* Core Competency Pillars Grid */}
@@ -103,7 +105,7 @@ export const AboutSection: React.FC = () => {
                   01 // BACKEND & APIS
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Python, Flask, OOP & REST API Design
+                  Python, Flask, OOP &amp; REST API Design
                 </p>
               </div>
 
@@ -112,7 +114,7 @@ export const AboutSection: React.FC = () => {
                   02 // CLOUD & DEVOPS
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Linux, Docker, AWS & CI/CD Pipelines
+                  Linux, Docker, AWS &amp; CI/CD Pipelines
                 </p>
               </div>
 
@@ -121,7 +123,7 @@ export const AboutSection: React.FC = () => {
                   03 // AI & AUTOMATION
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Machine Learning & Streamlit Apps
+                  Machine Learning &amp; Streamlit Apps
                 </p>
               </div>
             </motion.div>

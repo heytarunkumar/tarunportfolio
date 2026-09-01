@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projectsData, type Project } from '../data/projects';
+import { usePortfolio } from '../context/PortfolioContext';
+import { type Project } from '../data/projects';
 
 const categories = ['ALL', 'Python / Backend', 'DevOps', 'Cloud', 'AI / ML'] as const;
 
 export const ProjectsSection: React.FC = () => {
+  const { projects: contextProjects } = usePortfolio();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [expandedSlug, setExpandedSlug] = useState<string | null>(null);
+
+  const projectsData = contextProjects || [];
 
   const filteredProjects = selectedCategory === 'ALL'
     ? projectsData

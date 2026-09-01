@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { articlesData } from '../../data/articles';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const WritingSection: React.FC = () => {
+  const { articles: contextArticles } = usePortfolio();
+  const articlesData = contextArticles || [];
+
   return (
     <section
       id="writing"
@@ -53,7 +56,7 @@ export const WritingSection: React.FC = () => {
           </div>
 
           <a
-            href="https://medium.com/@tarunkumar-dev"
+            href="https://medium.com/@heytarunkumar"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-xs font-mono text-[#D4AF37] hover:underline mt-4 md:mt-0"
@@ -67,7 +70,7 @@ export const WritingSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {articlesData.map((article) => (
             <motion.a
-              key={article.id}
+              key={article.id || article.title}
               href={article.mediumUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -105,7 +108,7 @@ export const WritingSection: React.FC = () => {
 
               <div className="pt-4 border-t border-[#8C6D4F]/20 flex items-center justify-between">
                 <div className="flex flex-wrap gap-1.5">
-                  {article.tags.map((tag) => (
+                  {(article.tags || []).map((tag) => (
                     <span
                       key={tag}
                       className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#171310] text-[#C4B5A5]"

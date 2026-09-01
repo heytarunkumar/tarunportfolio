@@ -1,23 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { profileData } from '../../data/profile';
-
-const navItems = [
-  { name: 'HOME', path: '/' },
-  { name: 'ABOUT', path: '/about' },
-  { name: 'PROJECTS', path: '/projects' },
-  { name: 'ENGINEERING LAB', path: '/lab' },
-  { name: 'RESEARCH', path: '/research' },
-  { name: 'EXPERIENCE', path: '/experience' },
-  { name: 'CONTACT', path: '/contact' },
-];
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const Navbar: React.FC = () => {
+  const { profile, navigation } = usePortfolio();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
     };
@@ -28,6 +20,7 @@ export const Navbar: React.FC = () => {
 
   // Close mobile menu on Escape key
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileMenuOpen) {
         setMobileMenuOpen(false);
@@ -36,6 +29,18 @@ export const Navbar: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
+
+  const activeNavItems = navigation
+    ? [...navigation].filter((item) => item.visible).sort((a, b) => a.order - b.order)
+    : [
+        { id: '1', name: 'HOME', path: '/', visible: true, order: 1 },
+        { id: '2', name: 'ABOUT', path: '/about', visible: true, order: 2 },
+        { id: '3', name: 'PROJECTS', path: '/projects', visible: true, order: 3 },
+        { id: '4', name: 'ENGINEERING LAB', path: '/lab', visible: true, order: 4 },
+        { id: '5', name: 'RESEARCH', path: '/research', visible: true, order: 5 },
+        { id: '6', name: 'EXPERIENCE', path: '/experience', visible: true, order: 6 },
+        { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
+      ];
 
   return (
     <header
@@ -54,7 +59,7 @@ export const Navbar: React.FC = () => {
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           <span className="w-2 h-2 rounded-full bg-[#D4AF37] group-hover:animate-ping" />
-          <span>{profileData.name}</span>
+          <span>{profile?.name || 'TARUN KUMAR'}</span>
         </Link>
 
         {/* Desktop Navigation Links */}
@@ -62,9 +67,9 @@ export const Navbar: React.FC = () => {
           className="hidden xl:flex items-center space-x-6 text-[10.5px] tracking-[0.24em] font-light uppercase text-[#C4B5A5]"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          {navItems.map((item) => (
+          {activeNavItems.map((item) => (
             <NavLink
-              key={item.name}
+              key={item.id || item.name}
               to={item.path}
               className={({ isActive }) =>
                 `relative group py-1 transition-colors duration-300 focus:outline-none focus:text-[#D4AF37] ${
@@ -134,9 +139,9 @@ export const Navbar: React.FC = () => {
             className="xl:hidden bg-[#0A0806] border-b border-[#8C6D4F]/40 px-6 pt-4 pb-8 space-y-4 shadow-2xl"
           >
             <div className="flex flex-col space-y-3 pt-2">
-              {navItems.map((item) => (
+              {activeNavItems.map((item) => (
                 <NavLink
-                  key={item.name}
+                  key={item.id || item.name}
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>

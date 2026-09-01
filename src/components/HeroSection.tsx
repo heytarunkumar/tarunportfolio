@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { profileData } from '../data/profile';
+import { usePortfolio } from '../context/PortfolioContext';
 import { Navbar } from './layout/Navbar';
 
 const heroRoles = [
@@ -38,6 +38,7 @@ const fadeUpVariants: Variants = {
 };
 
 export const HeroSection: React.FC = () => {
+  const { profile } = usePortfolio();
   const [roleIndex, setRoleIndex] = useState(0);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -58,7 +59,7 @@ export const HeroSection: React.FC = () => {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText(profileData.email);
+      await navigator.clipboard.writeText(profile.email);
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2500);
     } catch {
@@ -161,7 +162,7 @@ export const HeroSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14px] font-light text-[#A8988B] leading-[1.8] tracking-wide max-w-xl mb-8"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              {profileData.narrative}
+              {profile.narrative}
             </motion.p>
 
             {/* CTA Action Buttons with Morphing Button State */}
@@ -179,7 +180,7 @@ export const HeroSection: React.FC = () => {
               </a>
 
               <a
-                href={profileData.resumeUrl}
+                href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#120F0C]/90 text-[#EAD8C7] hover:text-[#FFF5EB] text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300"

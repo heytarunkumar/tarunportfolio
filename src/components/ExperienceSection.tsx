@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { experienceData } from '../data/experience';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export const ExperienceSection: React.FC = () => {
+  const { experience: contextExperience } = usePortfolio();
+  const experienceData = contextExperience || [];
   const containerRef = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -83,7 +85,7 @@ export const ExperienceSection: React.FC = () => {
 
               return (
                 <motion.div
-                  key={item.id}
+                  key={item.id || idx}
                   initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
@@ -158,7 +160,7 @@ export const ExperienceSection: React.FC = () => {
                           <span className="text-[9.5px] font-mono text-[#8C6D4F] uppercase block mb-1">
                             KEY RESPONSIBILITIES &amp; SCOPE:
                           </span>
-                          {item.responsibilities.map((resp, i) => (
+                          {(item.responsibilities || []).map((resp, i) => (
                             <p key={i} className="text-xs text-[#C4B5A5] font-light flex items-start space-x-2">
                               <span className="text-[#D4AF37]">›</span>
                               <span>{resp}</span>
@@ -169,7 +171,7 @@ export const ExperienceSection: React.FC = () => {
                     </AnimatePresence>
 
                     <div className="flex flex-wrap gap-1.5">
-                      {item.technologies.map((t) => (
+                      {(item.technologies || []).map((t) => (
                         <span
                           key={t}
                           className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#120F0C] text-[#C4B5A5]"

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { skillsData, type SkillItem, type SkillCategory } from '../data/skills';
-import { projectsData } from '../data/projects';
+import { usePortfolio } from '../context/PortfolioContext';
+import type { SkillItem, SkillCategory } from '../data/skills';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -29,8 +29,12 @@ const cardVariants: Variants = {
 };
 
 export const SkillsSection: React.FC = () => {
+  const { skills: contextSkills, projects: contextProjects } = usePortfolio();
   const [activeCategory, setActiveCategory] = useState<'all' | SkillCategory>('all');
   const [selectedSkill, setSelectedSkill] = useState<SkillItem | null>(null);
+
+  const skillsData = contextSkills || [];
+  const projectsData = contextProjects || [];
 
   // Flatten all skills for quick lookup
   const allSkills = skillsData.flatMap((group) => group.skills);

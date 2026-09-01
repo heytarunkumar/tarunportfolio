@@ -1,8 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { researchData } from '../../data/research';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const ResearchSection: React.FC = () => {
+  const { research: contextResearch } = usePortfolio();
+  const researchData = contextResearch || {
+    title: 'AI-HealthGuard',
+    subtitle: 'Explainable AI for Cardiovascular Risk Prediction',
+    authors: ['Tarun Kumar'],
+    status: 'Research Manuscript',
+    abstract: 'A machine learning system applying SHAP feature attribution to heart disease prediction datasets.',
+    methodology: ['Random Forest & XGBoost classifiers', 'SHAP explainer values'],
+    technologies: ['Python', 'Scikit-Learn', 'SHAP', 'Streamlit'],
+    explainabilityApproach: 'Quantifying feature contributions to generate model interpretability plots.',
+    focus: 'Explainable Healthcare Predictive Analytics',
+    paperUrl: 'https://github.com/heytarunkumar',
+  };
+
   return (
     <section
       id="research"
@@ -83,7 +97,7 @@ export const ResearchSection: React.FC = () => {
                 </h3>
 
                 <p className="text-xs font-mono text-[#D4AF37] mb-4">
-                  AUTHORS: {researchData.authors.join(' · ')}
+                  AUTHORS: {(researchData.authors || []).join(' · ')}
                 </p>
 
                 <p
@@ -100,7 +114,7 @@ export const ResearchSection: React.FC = () => {
                   // METHODOLOGY & TECHNICAL FOCUS
                 </span>
                 <div className="space-y-2">
-                  {researchData.methodology.map((item, idx) => (
+                  {(researchData.methodology || []).map((item, idx) => (
                     <div key={idx} className="flex items-start space-x-2 text-xs text-[#B3A497]">
                       <span className="text-[#D4AF37] font-bold">›</span>
                       <span>{item}</span>
@@ -111,7 +125,7 @@ export const ResearchSection: React.FC = () => {
 
               {/* Technologies */}
               <div className="flex flex-wrap gap-2 pt-4 border-t border-[#8C6D4F]/25">
-                {researchData.technologies.map((t) => (
+                {(researchData.technologies || []).map((t) => (
                   <span
                     key={t}
                     className="px-3 py-1 text-[10px] font-mono uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#16120E] text-[#E8D7C5]"

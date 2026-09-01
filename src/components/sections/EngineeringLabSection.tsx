@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { engineeringLabTracks, type LabTrack } from '../../data/engineeringLab';
+import { usePortfolio } from '../../context/PortfolioContext';
 
-const statusBadgeStyles: Record<LabTrack['status'], string> = {
+const statusBadgeStyles: Record<string, string> = {
   Completed: 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300',
   Applied: 'border-amber-500/50 bg-amber-950/30 text-amber-300',
   Building: 'border-sky-500/50 bg-sky-950/30 text-sky-300',
@@ -10,7 +10,21 @@ const statusBadgeStyles: Record<LabTrack['status'], string> = {
 };
 
 export const EngineeringLabSection: React.FC = () => {
-  const [activeTrack, setActiveTrack] = useState<LabTrack>(engineeringLabTracks[0]);
+  const { labTracks } = usePortfolio();
+  const tracks = labTracks && labTracks.length > 0 ? labTracks : [];
+  const [activeTrackState, setActiveTrackState] = useState<any>(null);
+
+  const activeTrack = activeTrackState || tracks[0] || {
+    id: 'track-1',
+    nodeNumber: '01',
+    title: 'Python Backend Fundamentals',
+    category: 'Backend Architecture',
+    status: 'Completed',
+    summary: 'Core Python OOP & API development',
+    evidence: ['Python 3.12', 'Flask REST API'],
+    nextObjective: 'Cloud integration',
+    repositoryUrl: 'https://github.com/heytarunkumar',
+  };
 
   return (
     <section
@@ -79,19 +93,19 @@ export const EngineeringLabSection: React.FC = () => {
         >
           <div className="flex items-center space-x-3 min-w-max text-xs font-mono">
             <span className="text-[#D4AF37] font-bold uppercase tracking-wider">ROADMAP:</span>
-            {engineeringLabTracks.map((item, idx) => (
+            {tracks.map((item, idx) => (
               <React.Fragment key={item.id}>
                 <button
-                  onClick={() => setActiveTrack(item)}
+                  onClick={() => setActiveTrackState(item)}
                   className={`px-3 py-1 rounded-sm border transition-all ${
                     activeTrack.id === item.id
                       ? 'border-[#D4AF37] bg-[#1E1914] text-[#F7E7C4] shadow-[0_0_10px_rgba(212,175,55,0.2)]'
                       : 'border-[#8C6D4F]/30 bg-[#120F0C] text-[#A8988B] hover:border-[#8C6D4F]'
                   }`}
                 >
-                  {item.stepNumber}. {item.category.split(' ')[0]}
+                  {item.stepNumber || idx + 1}. {(item.category || '').split(' ')[0]}
                 </button>
-                {idx < engineeringLabTracks.length - 1 && (
+                {idx < tracks.length - 1 && (
                   <span className="text-[#8C6D4F]">↓</span>
                 )}
               </React.Fragment>
@@ -104,12 +118,12 @@ export const EngineeringLabSection: React.FC = () => {
           
           {/* Left Column: Track Navigation List (5 Cols) */}
           <div className="lg:col-span-5 space-y-3">
-            {engineeringLabTracks.map((track) => {
+            {tracks.map((track, idx) => {
               const isSelected = activeTrack.id === track.id;
               return (
                 <div
-                  key={track.id}
-                  onClick={() => setActiveTrack(track)}
+                  key={track.id || idx}
+                  onClick={() => setActiveTrackState(track)}
                   className={`p-4 rounded-sm border cursor-pointer transition-all duration-300 ${
                     isSelected
                       ? 'border-[#D4AF37] bg-[#14100D] shadow-[0_0_20px_rgba(212,175,55,0.15)]'
@@ -118,11 +132,11 @@ export const EngineeringLabSection: React.FC = () => {
                 >
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="text-[10px] font-mono text-[#D4AF37]">
-                      STEP {track.stepNumber} // {track.category}
+                      STEP {track.stepNumber || idx + 1} // {track.category}
                     </span>
                     <span
                       className={`text-[9px] font-mono px-2 py-0.5 rounded-sm border uppercase ${
-                        statusBadgeStyles[track.status]
+                        statusBadgeStyles[track.status] || statusBadgeStyles.Building
                       }`}
                     >
                       {track.status}

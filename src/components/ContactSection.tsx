@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { profileData } from '../data/profile';
+import { usePortfolio } from '../context/PortfolioContext';
 
 export const ContactSection: React.FC = () => {
+  const { profile, contact, addMessage } = usePortfolio();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,12 +31,22 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Simulate backend transmission / contact API call
+    // Transmit to PortfolioContext Inbox
     setTimeout(() => {
+      addMessage({
+        name: formData.name,
+        email: formData.email,
+        message: `${formData.subject ? `[${formData.subject}] ` : ''}${formData.message}`,
+      });
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1200);
+    }, 800);
   };
+
+  const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
+  const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/heytarunkumar';
+  const githubUrl = profile?.socials?.github || 'https://github.com/heytarunkumar';
+  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@heytarunkumar';
 
   return (
     <section
@@ -103,14 +114,14 @@ export const ContactSection: React.FC = () => {
               </span>
               <div className="flex flex-col space-y-2">
                 <a
-                  href={`mailto:${profileData.email}`}
+                  href={`mailto:${contactEmail}`}
                   className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors flex items-center space-x-2"
                 >
                   <span className="text-[#D4AF37]">EMAIL:</span>
-                  <span>{profileData.email}</span>
+                  <span>{contactEmail}</span>
                 </a>
                 <a
-                  href={profileData.socials.linkedin}
+                  href={linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
@@ -118,7 +129,7 @@ export const ContactSection: React.FC = () => {
                   LINKEDIN ↗
                 </a>
                 <a
-                  href={profileData.socials.github}
+                  href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
@@ -126,7 +137,7 @@ export const ContactSection: React.FC = () => {
                   GITHUB ↗
                 </a>
                 <a
-                  href={profileData.socials.medium}
+                  href={mediumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
@@ -157,7 +168,7 @@ export const ContactSection: React.FC = () => {
                   TRANSMISSION DELIVERED
                 </h3>
                 <p className="text-xs text-[#A8988B] font-light max-w-sm mx-auto" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                  Thank you. Your message payload has been dispatched. I will review and respond shortly.
+                  {contact?.successMessage || 'Thank you. Your message payload has been dispatched. Tarun will review and respond shortly.'}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
