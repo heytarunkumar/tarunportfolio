@@ -16,6 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [username, setUsername] = useState<string | null>(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     try {
       const savedAuth = localStorage.getItem(AUTH_STORAGE_KEY);
       if (savedAuth) {
@@ -38,7 +39,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         username: user || 'heytarunkumar',
         loginTime: new Date().toISOString(),
       };
-      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(sessionData));
+      if (typeof window !== 'undefined') {
+        try {
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(sessionData));
+        } catch {
+          // Ignore
+        }
+      }
       setIsAuthenticated(true);
       setUsername(sessionData.username);
       return true;
@@ -47,7 +54,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = () => {
-    localStorage.removeItem(AUTH_STORAGE_KEY);
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.removeItem(AUTH_STORAGE_KEY);
+      } catch {
+        // Ignore
+      }
+    }
     setIsAuthenticated(false);
     setUsername(null);
   };

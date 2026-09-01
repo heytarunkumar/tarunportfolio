@@ -94,6 +94,27 @@ export interface PortfolioContextType {
 
 const STORAGE_PREFIX = 'tarun_portfolio_cms_';
 
+const safeGetStorage = <T,>(key: string, fallback: T): T => {
+  if (typeof window === 'undefined') return fallback;
+  try {
+    const saved = localStorage.getItem(STORAGE_PREFIX + key);
+    if (!saved) return fallback;
+    const parsed = JSON.parse(saved);
+    return parsed ?? fallback;
+  } catch {
+    return fallback;
+  }
+};
+
+const safeSetStorage = <T,>(key: string, data: T): void => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(data));
+  } catch {
+    // Fail gracefully
+  }
+};
+
 const initialNav: NavItemSetting[] = [
   { id: '1', name: 'HOME', path: '/', visible: true, order: 1 },
   { id: '2', name: 'ABOUT', path: '/about', visible: true, order: 2 },
@@ -148,110 +169,23 @@ const initialContact: ContactSettings = {
 const PortfolioContext = createContext<PortfolioContextType | undefined>(undefined);
 
 export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [profile, setProfile] = useState<Profile>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'profile');
-      return saved ? JSON.parse(saved) : initialProfile;
-    } catch {
-      return initialProfile;
-    }
-  });
-
-  const [projects, setProjects] = useState<Project[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'projects');
-      return saved ? JSON.parse(saved) : initialProjects;
-    } catch {
-      return initialProjects;
-    }
-  });
-
-  const [skills, setSkills] = useState<SkillGroup[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'skills');
-      return saved ? JSON.parse(saved) : initialSkills;
-    } catch {
-      return initialSkills;
-    }
-  });
-
-  const [labTracks, setLabTracks] = useState<LabTrack[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'lab');
-      return saved ? JSON.parse(saved) : initialLab;
-    } catch {
-      return initialLab;
-    }
-  });
-
-  const [experience, setExperience] = useState<ExperienceItem[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'experience');
-      return saved ? JSON.parse(saved) : initialExperience;
-    } catch {
-      return initialExperience;
-    }
-  });
-
-  const [research, setResearch] = useState<ResearchProject>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'research');
-      return saved ? JSON.parse(saved) : initialResearch;
-    } catch {
-      return initialResearch;
-    }
-  });
-
-  const [articles, setArticles] = useState<Article[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'articles');
-      return saved ? JSON.parse(saved) : initialArticles;
-    } catch {
-      return initialArticles;
-    }
-  });
-
-  const [navigation, setNavigation] = useState<NavItemSetting[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'navigation');
-      return saved ? JSON.parse(saved) : initialNav;
-    } catch {
-      return initialNav;
-    }
-  });
-
-  const [seo, setSeo] = useState<SeoSettings>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'seo');
-      return saved ? JSON.parse(saved) : initialSeo;
-    } catch {
-      return initialSeo;
-    }
-  });
-
-  const [design, setDesign] = useState<DesignSettings>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'design');
-      return saved ? JSON.parse(saved) : initialDesign;
-    } catch {
-      return initialDesign;
-    }
-  });
-
-  const [contact, setContact] = useState<ContactSettings>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_PREFIX + 'contact');
-      return saved ? JSON.parse(saved) : initialContact;
-    } catch {
-      return initialContact;
-    }
-  });
+  const [profile, setProfile] = useState<Profile>(() => safeGetStorage('profile', initialProfile));
+  const [projects, setProjects] = useState<Project[]>(() => safeGetStorage('projects', initialProjects));
+  const [skills, setSkills] = useState<SkillGroup[]>(() => safeGetStorage('skills', initialSkills));
+  const [labTracks, setLabTracks] = useState<LabTrack[]>(() => safeGetStorage('lab', initialLab));
+  const [experience, setExperience] = useState<ExperienceItem[]>(() => safeGetStorage('experience', initialExperience));
+  const [research, setResearch] = useState<ResearchProject>(() => safeGetStorage('research', initialResearch));
+  const [articles, setArticles] = useState<Article[]>(() => safeGetStorage('articles', initialArticles));
+  const [navigation, setNavigation] = useState<NavItemSetting[]>(() => safeGetStorage('navigation', initialNav));
+  const [seo, setSeo] = useState<SeoSettings>(() => safeGetStorage('seo', initialSeo));
+  const [design, setDesign] = useState<DesignSettings>(() => safeGetStorage('design', initialDesign));
+  const [contact, setContact] = useState<ContactSettings>(() => safeGetStorage('contact', initialContact));
 
   // Save changes to LocalStorage
   const updateProfile = (updated: Partial<Profile>) => {
     setProfile((prev) => {
       const next = { ...prev, ...updated };
-      localStorage.setItem(STORAGE_PREFIX + 'profile', JSON.stringify(next));
+      safeSetStorage('profile', next);
       return next;
     });
   };
@@ -259,7 +193,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const addProject = (project: Project) => {
     setProjects((prev) => {
       const next = [project, ...prev];
-      localStorage.setItem(STORAGE_PREFIX + 'projects', JSON.stringify(next));
+      safeSetStorage('projects', next);
       return next;
     });
   };
@@ -267,7 +201,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const updateProject = (slug: string, updated: Partial<Project>) => {
     setProjects((prev) => {
       const next = prev.map((p) => (p.slug === slug ? { ...p, ...updated } : p));
-      localStorage.setItem(STORAGE_PREFIX + 'projects', JSON.stringify(next));
+      safeSetStorage('projects', next);
       return next;
     });
   };
@@ -275,48 +209,48 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const deleteProject = (slug: string) => {
     setProjects((prev) => {
       const next = prev.filter((p) => p.slug !== slug);
-      localStorage.setItem(STORAGE_PREFIX + 'projects', JSON.stringify(next));
+      safeSetStorage('projects', next);
       return next;
     });
   };
 
   const updateSkills = (groups: SkillGroup[]) => {
     setSkills(groups);
-    localStorage.setItem(STORAGE_PREFIX + 'skills', JSON.stringify(groups));
+    safeSetStorage('skills', groups);
   };
 
   const updateLabTracks = (tracks: LabTrack[]) => {
     setLabTracks(tracks);
-    localStorage.setItem(STORAGE_PREFIX + 'lab', JSON.stringify(tracks));
+    safeSetStorage('lab', tracks);
   };
 
   const updateExperience = (items: ExperienceItem[]) => {
     setExperience(items);
-    localStorage.setItem(STORAGE_PREFIX + 'experience', JSON.stringify(items));
+    safeSetStorage('experience', items);
   };
 
   const updateResearch = (updated: Partial<ResearchProject>) => {
     setResearch((prev) => {
       const next = { ...prev, ...updated };
-      localStorage.setItem(STORAGE_PREFIX + 'research', JSON.stringify(next));
+      safeSetStorage('research', next);
       return next;
     });
   };
 
   const updateArticles = (art: Article[]) => {
     setArticles(art);
-    localStorage.setItem(STORAGE_PREFIX + 'articles', JSON.stringify(art));
+    safeSetStorage('articles', art);
   };
 
   const updateNavigation = (nav: NavItemSetting[]) => {
     setNavigation(nav);
-    localStorage.setItem(STORAGE_PREFIX + 'navigation', JSON.stringify(nav));
+    safeSetStorage('navigation', nav);
   };
 
   const updateSeo = (updated: Partial<SeoSettings>) => {
     setSeo((prev) => {
       const next = { ...prev, ...updated };
-      localStorage.setItem(STORAGE_PREFIX + 'seo', JSON.stringify(next));
+      safeSetStorage('seo', next);
       return next;
     });
   };
@@ -324,7 +258,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const updateDesign = (updated: Partial<DesignSettings>) => {
     setDesign((prev) => {
       const next = { ...prev, ...updated };
-      localStorage.setItem(STORAGE_PREFIX + 'design', JSON.stringify(next));
+      safeSetStorage('design', next);
       return next;
     });
   };
@@ -332,7 +266,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const updateContact = (updated: Partial<ContactSettings>) => {
     setContact((prev) => {
       const next = { ...prev, ...updated };
-      localStorage.setItem(STORAGE_PREFIX + 'contact', JSON.stringify(next));
+      safeSetStorage('contact', next);
       return next;
     });
   };
@@ -351,7 +285,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         ...prev,
         inboxMessages: [newMsg, ...prev.inboxMessages],
       };
-      localStorage.setItem(STORAGE_PREFIX + 'contact', JSON.stringify(next));
+      safeSetStorage('contact', next);
       return next;
     });
   };
@@ -362,7 +296,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         ...prev,
         inboxMessages: prev.inboxMessages.map((m) => (m.id === id ? { ...m, read: true } : m)),
       };
-      localStorage.setItem(STORAGE_PREFIX + 'contact', JSON.stringify(next));
+      safeSetStorage('contact', next);
       return next;
     });
   };
