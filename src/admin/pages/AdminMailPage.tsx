@@ -140,7 +140,10 @@ export const AdminMailPage: React.FC = () => {
       const dbQueries = await SupabaseMailService.fetchContactQueries();
       if (dbQueries.length > 0) {
         const existingIds = new Set(list.map((t) => t.id));
-        const newDbThreads = dbQueries.filter((t) => !existingIds.has(t.id));
+        const existingSnippets = new Set(list.map((t) => t.snippet?.trim()));
+        const newDbThreads = dbQueries.filter(
+          (t) => !existingIds.has(t.id) && !existingSnippets.has(t.snippet?.trim())
+        );
         list = [...newDbThreads, ...list];
       }
     }
