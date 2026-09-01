@@ -6,9 +6,15 @@ export const AdminSkillManager: React.FC = () => {
   const { skills, updateSkills } = usePortfolio();
   const [savedMessage, setSavedMessage] = useState('');
   
-  // Independent input state per group index
+  // Independent input state per group index for adding new skills
   const [newSkillNames, setNewSkillNames] = useState<Record<number, string>>({});
   const [newSkillCategories, setNewSkillCategories] = useState<Record<number, SkillCategory>>({});
+
+  // Active editing state for modifying existing skills
+  const [editingSkillId, setEditingSkillId] = useState<string | null>(null);
+  const [editName, setEditName] = useState('');
+  const [editCategory, setEditCategory] = useState<SkillCategory>('building');
+  const [editDescription, setEditDescription] = useState('');
 
   const handleNameChange = (groupIdx: number, value: string) => {
     setNewSkillNames((prev) => ({ ...prev, [groupIdx]: value }));
@@ -40,6 +46,43 @@ export const AdminSkillManager: React.FC = () => {
     setTimeout(() => setSavedMessage(''), 3000);
   };
 
+  const startEditSkill = (tech: SkillItem) => {
+    setEditingSkillId(tech.id);
+    setEditName(tech.name);
+    setEditCategory(tech.category);
+    setEditDescription(tech.description || `Technological competence in ${tech.name}.`);
+  };
+
+  const cancelEditSkill = () => {
+    setEditingSkillId(null);
+    setEditName('');
+    setEditCategory('building');
+    setEditDescription('');
+  };
+
+  const handleSaveSkill = (groupIdx: number, skillId: string) => {
+    if (!editName.trim()) return;
+
+    const nextSkills = JSON.parse(JSON.stringify(skills));
+    const targetSkill = nextSkills[groupIdx].skills.find((s: SkillItem) => s.id === skillId);
+    if (targetSkill) {
+      targetSkill.name = editName.trim();
+      targetSkill.category = editCategory;
+      targetSkill.status =
+        editCategory === 'core'
+          ? 'Production Ready'
+          : editCategory === 'building'
+          ? 'Currently Building'
+          : 'Applied in Projects';
+      targetSkill.description = editDescription.trim() || `Technological competence in ${editName.trim()}.`;
+
+      updateSkills(nextSkills);
+      setEditingSkillId(null);
+      setSavedMessage(`Updated skill details for "${editName.trim()}"!`);
+      setTimeout(() => setSavedMessage(''), 3000);
+    }
+  };
+
   const handleUpdateSkillCategory = (
     groupIdx: number,
     skillId: string,
@@ -66,6 +109,7 @@ export const AdminSkillManager: React.FC = () => {
     const targetSkillName = nextSkills[groupIdx].skills.find((s: SkillItem) => s.id === skillId)?.name;
     nextSkills[groupIdx].skills = nextSkills[groupIdx].skills.filter((s: SkillItem) => s.id !== skillId);
     updateSkills(nextSkills);
+    if (editingSkillId === skillId) setEditingSkillId(null);
     setSavedMessage(`Deleted "${targetSkillName || skillId}".`);
     setTimeout(() => setSavedMessage(''), 3000);
   };
@@ -99,7 +143,7 @@ export const AdminSkillManager: React.FC = () => {
             SKILLS &amp; ECOSYSTEM MANAGER
           </h1>
           <p className="text-xs text-[#A8988B] mt-1 font-mono">
-            Independently manage each skill category: CORE (Production Ready), BUILDING (Currently Building), or APPLIED (Projects).
+            Modify skill names, descriptions, competency levels (CORE, BUILDING, APPLIED), or delete skills.
           </p>
         </div>
       </div>
@@ -128,38 +172,135 @@ export const AdminSkillManager: React.FC = () => {
 
           {/* Skill Items List */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {group.skills.map((tech) => (
-              <div
-                key={tech.id}
-                className="p-3 border border-[#8C6D4F]/30 bg-[#120F0C] text-xs font-mono text-[#E8DFD8] flex items-center justify-between gap-2 rounded-sm group hover:border-[#D4AF37]/50 transition-colors"
-              >
-                <div className="flex items-center space-x-2 truncate">
-                  <span className="text-white font-bold truncate">{tech.name}</span>
-                </div>
+            {group.skills.map((tech) => {
+              const isEditing = editingSkillId === tech.id;
 
-                <div className="flex items-center space-x-1.5 shrink-0">
-                  {/* Per-Skill Category Selector */}
-                  <select
-                    value={tech.category}
-                    onChange={(e) => handleUpdateSkillCategory(groupIdx, tech.id, e.target.value as SkillCategory)}
-                    className={`text-[9.5px] font-mono px-1.5 py-1 rounded-sm border outline-none cursor-pointer uppercase ${getCategoryBadgeStyle(tech.category)}`}
+              if (isEditing) {
+                return (
+                  <div
+                    key={tech.id}
+                    className="p-3.5 border border-[#D4AF37] bg-[#17130F] text-xs font-mono text-[#E8DFD8] rounded-sm space-y-3 col-span-1 md:col-span-2 lg:col-span-3 shadow-[0_0_15px_rgba(212,175,55,0.15)]"
                   >
-                    <option value="core" className="bg-[#0A0806] text-[#F7E7C4]">CORE</option>
-                    <option value="building" className="bg-[#0A0806] text-amber-300">BUILDING</option>
-                    <option value="applied" className="bg-[#0A0806] text-emerald-300">APPLIED</option>
-                  </select>
+                    <div className="flex items-center justify-between border-b border-[#8C6D4F]/30 pb-2">
+                      <span className="text-[#D4AF37] font-bold uppercase tracking-wider">
+                        EDIT SKILL: {tech.name}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={cancelEditSkill}
+                        className="text-xs text-[#8C6D4F] hover:text-white"
+                      >
+                        ✕ CANCEL
+                      </button>
+                    </div>
 
-                  <button
-                    type="button"
-                    onClick={() => handleDeleteSkill(groupIdx, tech.id)}
-                    title={`Delete ${tech.name}`}
-                    className="p-1 text-red-400 hover:text-red-300 hover:bg-red-950/40 rounded-sm text-xs font-bold"
-                  >
-                    ×
-                  </button>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="sm:col-span-2">
+                        <label className="block text-[9.5px] text-[#8C6D4F] uppercase mb-1">
+                          SKILL NAME *
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          value={editName}
+                          onChange={(e) => setEditName(e.target.value)}
+                          className="w-full bg-[#0A0806] border border-[#8C6D4F]/40 focus:border-[#D4AF37] text-white p-2 rounded-sm outline-none"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-[9.5px] text-[#8C6D4F] uppercase mb-1">
+                          COMPETENCY LEVEL *
+                        </label>
+                        <select
+                          value={editCategory}
+                          onChange={(e) => setEditCategory(e.target.value as SkillCategory)}
+                          className="w-full bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] p-2 rounded-sm outline-none"
+                        >
+                          <option value="core">CORE (Production Ready)</option>
+                          <option value="building">BUILDING (Currently Building)</option>
+                          <option value="applied">APPLIED (In Projects)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-[9.5px] text-[#8C6D4F] uppercase mb-1">
+                        DESCRIPTION / CONTEXT NOTE
+                      </label>
+                      <input
+                        type="text"
+                        value={editDescription}
+                        onChange={(e) => setEditDescription(e.target.value)}
+                        placeholder="Brief technical detail or experience context..."
+                        className="w-full bg-[#0A0806] border border-[#8C6D4F]/40 focus:border-[#D4AF37] text-white p-2 rounded-sm outline-none"
+                      />
+                    </div>
+
+                    <div className="flex items-center space-x-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => handleSaveSkill(groupIdx, tech.id)}
+                        className="px-4 py-2 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase hover:bg-[#E2C054]"
+                      >
+                        SAVE CHANGES ↗
+                      </button>
+                      <button
+                        type="button"
+                        onClick={cancelEditSkill}
+                        className="px-3 py-2 border border-[#8C6D4F]/30 bg-[#120F0C] text-[#C4B5A5] uppercase hover:text-white"
+                      >
+                        CANCEL
+                      </button>
+                    </div>
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={tech.id}
+                  className="p-3 border border-[#8C6D4F]/30 bg-[#120F0C] text-xs font-mono text-[#E8DFD8] flex items-center justify-between gap-2 rounded-sm group hover:border-[#D4AF37]/50 transition-colors"
+                >
+                  <div className="flex items-center space-x-2 truncate">
+                    <span className="text-white font-bold truncate">{tech.name}</span>
+                  </div>
+
+                  <div className="flex items-center space-x-1.5 shrink-0">
+                    {/* Per-Skill Category Selector */}
+                    <select
+                      value={tech.category}
+                      onChange={(e) => handleUpdateSkillCategory(groupIdx, tech.id, e.target.value as SkillCategory)}
+                      className={`text-[9.5px] font-mono px-1.5 py-1 rounded-sm border outline-none cursor-pointer uppercase ${getCategoryBadgeStyle(tech.category)}`}
+                    >
+                      <option value="core" className="bg-[#0A0806] text-[#F7E7C4]">CORE</option>
+                      <option value="building" className="bg-[#0A0806] text-amber-300">BUILDING</option>
+                      <option value="applied" className="bg-[#0A0806] text-emerald-300">APPLIED</option>
+                    </select>
+
+                    {/* Edit Skill Button */}
+                    <button
+                      type="button"
+                      onClick={() => startEditSkill(tech)}
+                      title={`Edit ${tech.name}`}
+                      className="px-1.5 py-0.5 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37] hover:border-[#D4AF37] rounded-sm text-[10px]"
+                    >
+                      EDIT ✏️
+                    </button>
+
+                    {/* Delete Skill Button */}
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteSkill(groupIdx, tech.id)}
+                      title={`Delete ${tech.name}`}
+                      className="px-1.5 py-0.5 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40 rounded-sm text-[10px] font-bold"
+                    >
+                      DELETE 🗑️
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Quick Add Skill Form for this specific group */}
