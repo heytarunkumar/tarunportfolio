@@ -8,6 +8,7 @@ export interface ExperienceItem {
   responsibilities: string[];
   technologies: string[];
   isVerified: boolean;
+  visible?: boolean;
 }
 
 export const experienceData: ExperienceItem[] = [

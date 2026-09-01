@@ -4,7 +4,7 @@ import { usePortfolio } from '../context/PortfolioContext';
 
 export const ExperienceSection: React.FC = () => {
   const { experience: contextExperience } = usePortfolio();
-  const experienceData = contextExperience || [];
+  const experienceData = (contextExperience || []).filter((item) => item.visible !== false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
