@@ -1,8 +1,17 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { profileData } from '../data/profile';
 import { Navbar } from './layout/Navbar';
+
+const heroRoles = [
+  'PYTHON DEVELOPER',
+  'BACKEND ARCHITECT',
+  'AUTOMATION ENGINEER',
+  'CLOUD & DEVOPS',
+  'CONTAINER SPECIALIST',
+  'AI & ML INTEGRATOR',
+];
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -29,6 +38,32 @@ const fadeUpVariants: Variants = {
 };
 
 export const HeroSection: React.FC = () => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    if (!mediaQuery.matches) {
+      const interval = setInterval(() => {
+        setRoleIndex((prev) => (prev + 1) % heroRoles.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, []);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(profileData.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2500);
+    } catch {
+      // Fallback
+    }
+  };
+
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black">
       
@@ -71,18 +106,38 @@ export const HeroSection: React.FC = () => {
               </span>
             </motion.div>
 
-            {/* Massive Display Title */}
+            {/* Massive Display Title with Functional Hero Morphing */}
             <motion.div variants={fadeUpVariants} className="relative mb-4 select-none">
               <h1
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.8rem] xl:text-[7.4rem] tracking-tight uppercase leading-[0.83]"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.6rem] xl:text-[7.2rem] tracking-tight uppercase leading-[0.83]"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
                   TARUN KUMAR
                 </span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                  PYTHON DEVELOPER
-                </span>
+                
+                {/* Hero Role Morphing Surface */}
+                <div className="h-[1.1em] overflow-hidden relative">
+                  {prefersReducedMotion ? (
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
+                      PYTHON DEVELOPER
+                    </span>
+                  ) : (
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={heroRoles[roleIndex]}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -30 }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]"
+                      >
+                        {heroRoles[roleIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  )}
+                </div>
+
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410]">
                   CLOUD &amp; DEVOPS
                 </span>
@@ -107,7 +162,7 @@ export const HeroSection: React.FC = () => {
               {profileData.narrative}
             </motion.p>
 
-            {/* CTA Action Buttons */}
+            {/* CTA Action Buttons with Morphing Button State */}
             <motion.div
               variants={fadeUpVariants}
               className="flex flex-wrap items-center gap-4 sm:gap-6"
@@ -131,12 +186,18 @@ export const HeroSection: React.FC = () => {
                 <span className="text-xs">↓</span>
               </a>
 
-              <a
-                href="#contact"
-                className="inline-flex items-center space-x-2 text-[11px] font-medium tracking-[0.24em] uppercase text-[#D4AF37] hover:underline py-3.5"
+              {/* Morphing Copy Email Button */}
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className={`inline-flex items-center space-x-2 px-5 py-3.5 border text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300 ${
+                  copiedEmail
+                    ? 'border-emerald-500 bg-emerald-950/40 text-emerald-300'
+                    : 'border-[#8C6D4F]/40 hover:border-[#D4AF37] bg-[#0A0806] text-[#D4AF37]'
+                }`}
               >
-                <span>LET&apos;S CONNECT ↗</span>
-              </a>
+                <span>{copiedEmail ? 'EMAIL COPIED ✓' : 'COPY EMAIL'}</span>
+              </button>
             </motion.div>
           </motion.div>
 
