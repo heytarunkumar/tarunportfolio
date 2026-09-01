@@ -3,7 +3,19 @@ import { Link } from 'react-router-dom';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 export const Footer: React.FC = () => {
-  const { profile } = usePortfolio();
+  const { profile, navigation } = usePortfolio();
+
+  const activeNavItems = navigation
+    ? [...navigation].filter((item) => item.visible).sort((a, b) => a.order - b.order)
+    : [
+        { id: '1', name: 'HOME', path: '/', visible: true, order: 1 },
+        { id: '2', name: 'ABOUT', path: '/about', visible: true, order: 2 },
+        { id: '3', name: 'PROJECTS', path: '/projects', visible: true, order: 3 },
+        { id: '4', name: 'ENGINEERING LAB', path: '/lab', visible: true, order: 4 },
+        { id: '5', name: 'RESEARCH', path: '/research', visible: true, order: 5 },
+        { id: '6', name: 'EXPERIENCE', path: '/experience', visible: true, order: 6 },
+        { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
+      ];
 
   return (
     <footer className="w-full bg-[#050403] border-t border-[#8C6D4F]/20 text-[#E8DFD8] py-12 px-6 sm:px-12 lg:px-20">
@@ -25,27 +37,11 @@ export const Footer: React.FC = () => {
 
         {/* Center Quick Page Links */}
         <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#C4B5A5]">
-          <Link to="/" className="hover:text-[#D4AF37] transition-colors">
-            HOME
-          </Link>
-          <Link to="/about" className="hover:text-[#D4AF37] transition-colors">
-            ABOUT
-          </Link>
-          <Link to="/projects" className="hover:text-[#D4AF37] transition-colors">
-            PROJECTS
-          </Link>
-          <Link to="/lab" className="hover:text-[#D4AF37] transition-colors">
-            ENGINEERING LAB
-          </Link>
-          <Link to="/research" className="hover:text-[#D4AF37] transition-colors">
-            RESEARCH
-          </Link>
-          <Link to="/experience" className="hover:text-[#D4AF37] transition-colors">
-            EXPERIENCE
-          </Link>
-          <Link to="/contact" className="hover:text-[#D4AF37] transition-colors">
-            CONTACT
-          </Link>
+          {activeNavItems.map((item) => (
+            <Link key={item.id} to={item.path} className="hover:text-[#D4AF37] transition-colors uppercase">
+              {item.name}
+            </Link>
+          ))}
         </div>
 
         {/* Right Social & Copyright */}
