@@ -13,7 +13,8 @@
     "framer-motion": "^12.4.7",
     "lenis": "1.1.18",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.18.3"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

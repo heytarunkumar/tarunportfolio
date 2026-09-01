@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { profileData } from '../../data/profile';
 
 export const Footer: React.FC = () => {
@@ -8,63 +9,71 @@ export const Footer: React.FC = () => {
         
         {/* Left Identity */}
         <div className="text-center md:text-left">
-          <span
-            className="text-sm font-semibold tracking-[0.3em] uppercase text-white block mb-1"
+          <Link
+            to="/"
+            className="text-sm font-semibold tracking-[0.3em] uppercase text-white block mb-1 hover:text-[#D4AF37] transition-colors"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             {profileData.name}
-          </span>
+          </Link>
           <span className="text-xs font-mono text-[#8C6D4F]">
             {profileData.title}
           </span>
         </div>
 
-        {/* Center Social Links */}
-        <div
-          className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#C4B5A5]"
-        >
-          <a
-            href={profileData.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            GITHUB ↗
-          </a>
-          <a
-            href={profileData.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            LINKEDIN ↗
-          </a>
-          <a
-            href={profileData.socials.x}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            X ↗
-          </a>
-          <a
-            href={profileData.socials.medium}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            MEDIUM ↗
-          </a>
-          <a
-            href={`mailto:${profileData.email}`}
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            EMAIL ↗
-          </a>
+        {/* Center Quick Page Links */}
+        <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#C4B5A5]">
+          <Link to="/" className="hover:text-[#D4AF37] transition-colors">
+            HOME
+          </Link>
+          <Link to="/about" className="hover:text-[#D4AF37] transition-colors">
+            ABOUT
+          </Link>
+          <Link to="/projects" className="hover:text-[#D4AF37] transition-colors">
+            PROJECTS
+          </Link>
+          <Link to="/lab" className="hover:text-[#D4AF37] transition-colors">
+            ENGINEERING LAB
+          </Link>
+          <Link to="/research" className="hover:text-[#D4AF37] transition-colors">
+            RESEARCH
+          </Link>
+          <Link to="/experience" className="hover:text-[#D4AF37] transition-colors">
+            EXPERIENCE
+          </Link>
+          <Link to="/contact" className="hover:text-[#D4AF37] transition-colors">
+            CONTACT
+          </Link>
         </div>
 
-        {/* Right Copyright */}
+        {/* Right Social & Copyright */}
         <div className="text-center md:text-right text-xs font-mono text-[#8C6D4F]">
+          <div className="flex justify-center md:justify-end gap-4 mb-2 text-[#C4B5A5]">
+            <a
+              href={profileData.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#D4AF37] transition-colors"
+            >
+              GITHUB ↗
+            </a>
+            <a
+              href={profileData.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#D4AF37] transition-colors"
+            >
+              LINKEDIN ↗
+            </a>
+            <a
+              href={profileData.socials.x}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#D4AF37] transition-colors"
+            >
+              X ↗
+            </a>
+          </div>
           © {new Date().getFullYear()} TARUN KUMAR
         </div>
 
