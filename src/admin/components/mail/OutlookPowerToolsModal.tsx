@@ -99,13 +99,13 @@ export const OutlookPowerToolsModal: React.FC<OutlookPowerToolsModalProps> = ({ 
         <div className="p-4 border-b border-[#8C6D4F]/30 bg-[#0F0C09] flex items-center justify-between">
           <div>
             <span className="text-[10px] text-[#D4AF37] tracking-widest uppercase block">
-              MICROSOFT OUTLOOK POWER TOOLS &amp; AUTOMATION
+              MAIL CENTER POWER TOOLS &amp; AUTOMATION
             </span>
             <h2
               className="text-2xl text-white uppercase tracking-tight"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              OUTLOOK CONTROL CENTER
+              MAIL CENTER CONTROL CENTER
             </h2>
           </div>
           <button
@@ -177,7 +177,7 @@ export const OutlookPowerToolsModal: React.FC<OutlookPowerToolsModalProps> = ({ 
           {activeTab === 'rules' && (
             <div className="space-y-6">
               <form onSubmit={handleAddRule} className="bg-[#120F0C] border border-[#8C6D4F]/30 p-4 rounded-sm space-y-3">
-                <h3 className="text-xs font-bold text-[#D4AF37] uppercase">CREATE NEW AUTOMATED OUTLOOK RULE</h3>
+                <h3 className="text-xs font-bold text-[#D4AF37] uppercase">CREATE NEW AUTOMATED INBOX RULE</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   <div>
                     <label className="text-[10px] text-[#8C6D4F] block mb-1">RULE NAME</label>
@@ -242,14 +242,14 @@ export const OutlookPowerToolsModal: React.FC<OutlookPowerToolsModalProps> = ({ 
                     type="submit"
                     className="px-4 py-2 bg-[#D4AF37] text-black font-bold uppercase rounded-sm hover:bg-[#E2C054]"
                   >
-                    + ADD OUTLOOK RULE
+                    + ADD INBOX RULE
                   </button>
                 </div>
               </form>
 
               {/* Active Rules List */}
               <div className="space-y-2">
-                <h3 className="text-xs font-bold text-[#8C6D4F] uppercase">ACTIVE OUTLOOK INBOX RULES</h3>
+                <h3 className="text-xs font-bold text-[#8C6D4F] uppercase">ACTIVE INBOX RULES</h3>
                 {rules.map((rule) => (
                   <div
                     key={rule.id}
@@ -405,7 +405,7 @@ export const OutlookPowerToolsModal: React.FC<OutlookPowerToolsModalProps> = ({ 
               </form>
 
               <div className="space-y-3">
-                <h3 className="text-xs font-bold text-[#8C6D4F] uppercase">SAVED OUTLOOK QUICK TEMPLATES</h3>
+                <h3 className="text-xs font-bold text-[#8C6D4F] uppercase">SAVED QUICK TEMPLATES</h3>
                 {templates.map((tpl) => (
                   <div key={tpl.id} className="p-4 bg-[#0D0B08] border border-[#8C6D4F]/20 rounded-sm space-y-2">
                     <div className="flex items-center justify-between">
@@ -430,7 +430,7 @@ export const OutlookPowerToolsModal: React.FC<OutlookPowerToolsModalProps> = ({ 
           {/* TAB 4: OUT OF OFFICE */}
           {activeTab === 'autoresponder' && (
             <form onSubmit={handleSaveAutoResponder} className="bg-[#120F0C] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4">
-              <h3 className="text-xs font-bold text-[#D4AF37] uppercase">OUTLOOK OUT-OF-OFFICE AUTO-RESPONDER</h3>
+              <h3 className="text-xs font-bold text-[#D4AF37] uppercase">OUT-OF-OFFICE AUTO-RESPONDER</h3>
               
               <div className="flex items-center space-x-3 p-3 bg-[#0A0806] border border-[#8C6D4F]/20 rounded-sm">
                 <input

@@ -89,7 +89,7 @@ export const MailMessageList: React.FC<MailMessageListProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search Outlook mail (from, subject)..."
+            placeholder="Search mail (from, subject)..."
             className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white pl-8 pr-8 py-2 rounded-sm outline-none text-xs"
           />
           <span className="absolute left-2.5 top-2 text-[#8C6D4F]">🔍</span>

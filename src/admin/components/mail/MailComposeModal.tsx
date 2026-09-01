@@ -228,7 +228,7 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
                 }}
                 className="text-[10px] text-[#D4AF37] hover:underline font-bold"
               >
-                + INSERT OUTLOOK SIGNATURE
+                + INSERT SIGNATURE
               </button>
             </div>
             <textarea

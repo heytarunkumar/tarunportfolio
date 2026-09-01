@@ -115,7 +115,7 @@ export const AdminMailPage: React.FC = () => {
       setSelectedThreadId(list[0].id);
     }
 
-    setSavedMessage('Synced Outlook Mail Center with Gmail API!');
+    setSavedMessage('Synced Mail Center with Gmail API!');
     setTimeout(() => setSavedMessage(''), 2500);
   };
 
@@ -143,7 +143,7 @@ export const AdminMailPage: React.FC = () => {
   const handleSetCategory = (threadId: string, category: string) => {
     GmailService.setThreadCategory(threadId, category);
     refreshMailbox();
-    setSavedMessage(`Assigned Outlook category "${category}".`);
+    setSavedMessage(`Assigned category "${category}".`);
     setTimeout(() => setSavedMessage(''), 2500);
   };
 

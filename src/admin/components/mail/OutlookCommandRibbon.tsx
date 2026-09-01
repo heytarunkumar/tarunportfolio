@@ -144,7 +144,7 @@ export const OutlookCommandRibbon: React.FC<OutlookCommandRibbonProps> = ({
           {showCategoryMenu && selectedThreadId && (
             <div className="absolute top-full left-0 mt-1 w-44 bg-[#0A0806] border border-[#8C6D4F]/40 rounded-sm shadow-xl z-30 py-1 space-y-1">
               <span className="text-[9px] text-[#8C6D4F] uppercase tracking-wider px-3 block font-bold">
-                SELECT OUTLOOK CATEGORY
+                SELECT CATEGORY
               </span>
               {categories.map((c) => (
                 <button
@@ -172,7 +172,7 @@ export const OutlookCommandRibbon: React.FC<OutlookCommandRibbonProps> = ({
           type="button"
           onClick={onOpenPowerTools}
           className="px-3 py-1.5 bg-[#1E1914] border border-[#D4AF37]/50 text-[#D4AF37] font-bold rounded-sm hover:bg-[#D4AF37] hover:text-black flex items-center space-x-1 transition-colors"
-          title="Outlook Rules, Signatures, Templates & Auto-Responder"
+          title="Inbox Rules, Signatures, Templates & Auto-Responder"
         >
           <span>⚡</span>
           <span>Rules &amp; Power Tools</span>
@@ -182,7 +182,7 @@ export const OutlookCommandRibbon: React.FC<OutlookCommandRibbonProps> = ({
           type="button"
           onClick={onRefresh}
           className="px-3 py-1.5 bg-[#120F0C] border border-[#8C6D4F]/30 text-[#C4B5A5] rounded-sm hover:text-white flex items-center space-x-1"
-          title="Sync with Outlook / Gmail API"
+          title="Sync with Gmail API"
         >
           <span>🔄</span>
           <span>Sync</span>
