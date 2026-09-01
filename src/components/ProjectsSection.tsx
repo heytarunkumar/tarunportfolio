@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ScrollStack, { ScrollStackItem } from './ScrollStack';
 import { projectsData, type Project } from '../data/projects';
 
 const categories = ['ALL', 'Python / Backend', 'DevOps', 'Cloud', 'AI / ML'] as const;
@@ -95,169 +94,161 @@ export const ProjectsSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* ScrollStack Deck with Functional Morphing Cards */}
-        <ScrollStack
-          itemDistance={20}
-          itemScale={0.035}
-          itemStackDistance={28}
-          stackPosition="15%"
-          scaleEndPosition="6%"
-          baseScale={0.88}
-          useWindowScroll={true}
-        >
-          {filteredProjects.map((project: Project) => {
+        {/* Project Cards Stack */}
+        <div className="flex flex-col space-y-10 sm:space-y-12">
+          {filteredProjects.map((project: Project, idx: number) => {
             const isExpanded = expandedSlug === project.slug;
 
             return (
-              <ScrollStackItem key={project.title}>
-                <motion.div
-                  layout
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full rounded-2xl border border-[#8C6D4F]/50 bg-[#0E0C0A] p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] group overflow-hidden transition-colors duration-500 hover:border-[#D4AF37]"
+              <motion.div
+                key={project.slug || project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="relative w-full rounded-2xl border border-[#8C6D4F]/50 bg-[#0E0C0A] p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.98)] group overflow-hidden transition-colors duration-500 hover:border-[#D4AF37]"
+              >
+                {/* Top Gold Border Light Flare */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+
+                {/* Big Watermark Number */}
+                <span
+                  className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none"
+                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
+                  {project.number}
+                </span>
+
+                {/* Content Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
                   
-                  {/* Top Gold Border Light Flare */}
-                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-
-                  {/* Big Watermark Number */}
-                  <span
-                    className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none"
-                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                  >
-                    {project.number}
-                  </span>
-
-                  {/* Content Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
-                    
-                    {/* Left Column (7 Cols) */}
-                    <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
-                      <div>
-                        <div className="flex items-center space-x-3 mb-3">
-                          <span className="text-xs font-mono font-bold text-[#D4AF37]">
-                            {project.number} //
-                          </span>
-                          <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#A8988B]">
-                            {project.category}
-                          </span>
-                          <span className="text-[9px] font-mono px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
-                            {project.status}
-                          </span>
-                        </div>
-
-                        <h3
-                          className="text-4xl sm:text-5xl lg:text-5xl font-normal tracking-tight text-white mb-3 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[0.9]"
-                          style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                        >
-                          {project.title}
-                        </h3>
-
-                        <p
-                          className="text-xs sm:text-sm text-[#BDB0A4] font-light leading-relaxed mb-4 max-w-2xl"
-                          style={{ fontFamily: "'Montserrat', sans-serif" }}
-                        >
-                          {project.description}
-                        </p>
-
-                        {/* Morphing Details Expansion Toggle Button */}
-                        <button
-                          type="button"
-                          onClick={() => toggleExpand(project.slug)}
-                          className="inline-flex items-center space-x-2 text-[10px] font-mono tracking-widest text-[#D4AF37] hover:underline uppercase mb-4 focus:outline-none"
-                        >
-                          <span>{isExpanded ? '[- HIDE ARCHITECTURE DETAILS]' : '[+ EXPAND ARCHITECTURE DETAILS]'}</span>
-                          <span className={`transform transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>↓</span>
-                        </button>
-
-                        {/* Morphing Expanded Problem & Solution Blocks */}
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                              className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 overflow-hidden"
-                            >
-                              <div className="p-3.5 rounded-sm border border-red-950/60 bg-[#120B09]">
-                                <span className="text-[9.5px] font-mono text-red-400 block mb-1">
-                                  PROBLEM
-                                </span>
-                                <p className="text-[11px] text-[#A8988B] font-light">
-                                  {project.problem}
-                                </p>
-                              </div>
-
-                              <div className="p-3.5 rounded-sm border border-emerald-950/60 bg-[#09120D]">
-                                <span className="text-[9.5px] font-mono text-emerald-400 block mb-1">
-                                  SOLUTION
-                                </span>
-                                <p className="text-[11px] text-[#A8988B] font-light">
-                                  {project.solution}
-                                </p>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                  {/* Left Column (7 Cols) */}
+                  <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
+                    <div>
+                      <div className="flex items-center space-x-3 mb-3">
+                        <span className="text-xs font-mono font-bold text-[#D4AF37]">
+                          {project.number} //
+                        </span>
+                        <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#A8988B]">
+                          {project.category}
+                        </span>
+                        <span className="text-[9px] font-mono px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
+                          {project.status}
+                        </span>
                       </div>
 
-                      {/* Tech Stack Pills */}
-                      <div className="flex flex-wrap gap-2 pt-4 border-t border-[#8C6D4F]/25">
-                        {project.technologies.map((t) => (
-                          <span
-                            key={t}
-                            className="px-3 py-1 text-[10px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#16120E] text-[#E8D7C5] group-hover:border-[#D4AF37]/50 transition-all duration-300"
-                            style={{ fontFamily: "'Montserrat', sans-serif" }}
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+                      <h3
+                        className="text-4xl sm:text-5xl lg:text-5xl font-normal tracking-tight text-white mb-3 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[0.9]"
+                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                      >
+                        {project.title}
+                      </h3>
+
+                      <p
+                        className="text-xs sm:text-sm font-light text-[#C4B5A5] leading-relaxed mb-6"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      >
+                        {project.description}
+                      </p>
                     </div>
 
-                    {/* Right Column (5 Cols) */}
-                    <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 lg:pl-6 lg:border-l lg:border-[#8C6D4F]/25">
-                      <div className="space-y-3">
-                        <span className="text-[9.5px] font-mono tracking-[0.25em] uppercase text-[#8C6D4F] block mb-2">
-                          // ARCHITECTURE METRICS
+                    {/* Tech Badges */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      {project.technologies.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2.5 py-1 text-[10px] font-mono tracking-wider text-[#EAD8C7] bg-[#1A1511] border border-[#8C6D4F]/30 rounded-sm"
+                        >
+                          {tag}
                         </span>
-                        {project.architectureMetrics.map((m) => (
-                          <div
-                            key={m.label}
-                            className="p-3 rounded-sm border border-[#8C6D4F]/25 bg-[#050403] flex items-center justify-between"
-                          >
-                            <span className="text-[10px] font-mono text-[#A8988B]">
-                              {m.label}
-                            </span>
-                            <span className="text-[11px] font-mono font-medium text-[#F7E7C4]">
-                              {m.value}
-                            </span>
+                      ))}
+                    </div>
+
+                    {/* Expand/Collapse Button */}
+                    <div className="pt-4">
+                      <button
+                        onClick={() => toggleExpand(project.slug)}
+                        className="inline-flex items-center space-x-2 text-[11px] font-mono tracking-widest uppercase text-[#D4AF37] hover:text-[#FFF5EB] transition-colors"
+                      >
+                        <span>{isExpanded ? '[ HIDE ENGINEERING DETAILS ]' : '[ EXPLORE ARCHITECTURE DETAILS ]'}</span>
+                        <span className="text-xs">{isExpanded ? '↑' : '↓'}</span>
+                      </button>
+                    </div>
+
+                    {/* Morphing Expanded Details */}
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                          className="space-y-6 pt-6 border-t border-[#8C6D4F]/30 overflow-hidden"
+                        >
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div className="p-4 bg-[#14100C] border border-[#8C6D4F]/20 rounded-sm">
+                              <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider block mb-1">
+                                PROBLEM STATEMENT
+                              </span>
+                              <p className="text-xs text-[#C4B5A5] leading-relaxed">
+                                {project.problem}
+                              </p>
+                            </div>
+                            <div className="p-4 bg-[#14100C] border border-[#8C6D4F]/20 rounded-sm">
+                              <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider block mb-1">
+                                ARCHITECTURAL SOLUTION
+                              </span>
+                              <p className="text-xs text-[#C4B5A5] leading-relaxed">
+                                {project.solution}
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Right Column (5 Cols) — Architecture Metrics */}
+                  <div className="lg:col-span-5 flex flex-col justify-between h-full bg-[#120F0C] border border-[#8C6D4F]/30 p-6 sm:p-8 rounded-xl space-y-6">
+                    <div>
+                      <span
+                        className="text-[10px] font-mono tracking-[0.3em] uppercase text-[#D4AF37] block mb-4"
+                      >
+                        // SYSTEM METRICS
+                      </span>
+
+                      <div className="space-y-4">
+                        {project.architectureMetrics.map((m, i) => (
+                          <div key={i} className="flex items-center justify-between border-b border-[#8C6D4F]/20 pb-3">
+                            <span className="text-xs font-mono text-[#A8988B] uppercase">{m.label}</span>
+                            <span className="text-sm font-mono font-bold text-[#F7E7C4]">{m.value}</span>
                           </div>
                         ))}
                       </div>
-
-                      <div className="space-y-2">
-                        {project.github && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#8C6D4F] bg-[#16120E] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#EAD8C7] hover:text-black text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.1)]"
-                            style={{ fontFamily: "'Montserrat', sans-serif" }}
-                          >
-                            <span>VIEW CODE ON GITHUB</span>
-                            <span className="text-xs">↗</span>
-                          </a>
-                        )}
-                      </div>
                     </div>
 
+                    {/* Action Links */}
+                    <div className="pt-4 space-y-3">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#8C6D4F] bg-[#16120E] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#EAD8C7] hover:text-black text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.1)]"
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          <span>VIEW CODE ON GITHUB</span>
+                          <span className="text-xs">↗</span>
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </motion.div>
-              </ScrollStackItem>
+
+                </div>
+              </motion.div>
             );
           })}
-        </ScrollStack>
+        </div>
 
       </div>
     </section>
