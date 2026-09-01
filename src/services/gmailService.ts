@@ -651,24 +651,61 @@ export class GmailService {
   public static trashThread(threadId: string): void {
     const idx = this.threads.findIndex((t) => t.id === threadId);
     if (idx !== -1) {
-      if (this.threads[idx].labelIds?.includes('TRASH')) {
-        // Permanently delete if already in Trash
+      const isAlreadyTrash = this.threads[idx].labelIds?.includes('TRASH');
+      if (isAlreadyTrash) {
         this.threads.splice(idx, 1);
       } else {
         this.threads[idx].labelIds = ['TRASH'];
       }
       safeSetStorage('threads', this.threads);
+
+      // Async Google API trash call
+      this.refreshAccessToken().then((token) => {
+        if (token && threadId && !threadId.startsWith('contact_thread_') && !threadId.startsWith('thread_')) {
+          const endpoint = isAlreadyTrash
+            ? `https://gmail.googleapis.com/gmail/v1/users/me/threads/${threadId}`
+            : `https://gmail.googleapis.com/gmail/v1/users/me/threads/${threadId}/trash`;
+          
+          fetch(endpoint, {
+            method: isAlreadyTrash ? 'DELETE' : 'POST',
+            headers: { Authorization: `Bearer ${token}` },
+          }).catch(() => {});
+        }
+      });
     }
   }
 
   public static permanentlyDeleteThread(threadId: string): void {
     this.threads = this.threads.filter((t) => t.id !== threadId);
     safeSetStorage('threads', this.threads);
+
+    this.refreshAccessToken().then((token) => {
+      if (token && threadId && !threadId.startsWith('contact_thread_') && !threadId.startsWith('thread_')) {
+        fetch(`https://gmail.googleapis.com/gmail/v1/users/me/threads/${threadId}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        }).catch(() => {});
+      }
+    });
   }
 
   public static emptyTrash(): void {
+    const trashedIds = this.threads.filter((t) => t.labelIds?.includes('TRASH')).map((t) => t.id);
     this.threads = this.threads.filter((t) => !t.labelIds?.includes('TRASH'));
     safeSetStorage('threads', this.threads);
+
+    this.refreshAccessToken().then((token) => {
+      if (token) {
+        trashedIds.forEach((id) => {
+          if (id && !id.startsWith('contact_thread_') && !id.startsWith('thread_')) {
+            fetch(`https://gmail.googleapis.com/gmail/v1/users/me/threads/${id}`, {
+              method: 'DELETE',
+              headers: { Authorization: `Bearer ${token}` },
+            }).catch(() => {});
+          }
+        });
+      }
+    });
   }
 
   public static restoreFromTrash(threadId: string): void {
@@ -676,6 +713,15 @@ export class GmailService {
     if (idx !== -1) {
       this.threads[idx].labelIds = ['INBOX'];
       safeSetStorage('threads', this.threads);
+
+      this.refreshAccessToken().then((token) => {
+        if (token && threadId && !threadId.startsWith('contact_thread_') && !threadId.startsWith('thread_')) {
+          fetch(`https://gmail.googleapis.com/gmail/v1/users/me/threads/${threadId}/untrash`, {
+            method: 'POST',
+            headers: { Authorization: `Bearer ${token}` },
+          }).catch(() => {});
+        }
+      });
     }
   }
 

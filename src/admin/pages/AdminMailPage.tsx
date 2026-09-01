@@ -107,6 +107,14 @@ export const AdminMailPage: React.FC = () => {
     }
     setThreads(list);
 
+    if (list.length === 0) {
+      setSelectedThreadId(null);
+    } else if (selectedThreadId && !list.some((t) => t.id === selectedThreadId)) {
+      setSelectedThreadId(list[0].id);
+    } else if (!selectedThreadId && list.length > 0) {
+      setSelectedThreadId(list[0].id);
+    }
+
     setSavedMessage('Synced Outlook Mail Center with Gmail API!');
     setTimeout(() => setSavedMessage(''), 2500);
   };
