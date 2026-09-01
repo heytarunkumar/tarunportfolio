@@ -3,71 +3,30 @@ import { profileData } from '../../data/profile';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-[#050403] border-t border-[#8C6D4F]/20 text-[#E8DFD8] py-12 px-6 sm:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        
-        {/* Left Identity */}
-        <div className="text-center md:text-left">
-          <span
-            className="text-sm font-semibold tracking-[0.3em] uppercase text-white block mb-1"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            {profileData.name}
-          </span>
-          <span className="text-xs font-mono text-[#8C6D4F]">
-            {profileData.title}
-          </span>
+    <footer className="w-full py-12 px-6 sm:px-12 lg:px-20 bg-[#030407] text-[#F1F5F9] font-sans border-t border-white/10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400 font-mono">
+        <div>
+          <span className="text-white font-bold">{profileData.name}</span> — Python Developer | Cloud &amp; DevOps Engineer
         </div>
 
-        {/* Center Social Links */}
-        <div
-          className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-[#C4B5A5]"
-        >
-          <a
-            href={profileData.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            GITHUB ↗
+        <div className="flex items-center space-x-6">
+          <a href={profileData.socials.github} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
+            GitHub
           </a>
-          <a
-            href={profileData.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            LINKEDIN ↗
+          <a href={profileData.socials.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
+            LinkedIn
           </a>
-          <a
-            href={profileData.socials.x}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            X ↗
+          <a href={profileData.socials.x} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
+            X
           </a>
-          <a
-            href={profileData.socials.medium}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            MEDIUM ↗
-          </a>
-          <a
-            href={`mailto:${profileData.email}`}
-            className="hover:text-[#D4AF37] transition-colors"
-          >
-            EMAIL ↗
+          <a href={profileData.socials.medium} target="_blank" rel="noopener noreferrer" className="hover:text-cyan-400 transition-colors">
+            Medium
           </a>
         </div>
 
-        {/* Right Copyright */}
-        <div className="text-center md:text-right text-xs font-mono text-[#8C6D4F]">
-          © {new Date().getFullYear()} TARUN KUMAR
+        <div className="text-slate-500">
+          © {new Date().getFullYear()} All Rights Reserved.
         </div>
-
       </div>
     </footer>
   );

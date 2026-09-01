@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { profileData } from '../data/profile';
@@ -16,177 +16,205 @@ const containerVariants: Variants = {
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 18, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: 22, filter: 'blur(8px)' },
   visible: {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
     transition: {
-      duration: 1.0,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     },
   },
 };
 
 export const HeroSection: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'sys' | 'arch' | 'stack'>('sys');
+
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black">
+    <section className="relative w-full min-h-screen bg-[#05060A] text-[#F1F5F9] font-sans overflow-hidden bg-grid-pattern">
       
       {/* Top Navbar */}
       <Navbar />
 
-      {/* Background Video / Ambient Technical Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-end">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-screen w-auto max-w-none object-contain origin-right opacity-30 scale-95 md:scale-100"
-        >
-          <source src="/videos/hero.mp4" type="video/mp4" />
-        </video>
+      {/* Ambient Gradient Orbs */}
+      <div className="glow-orb-cyan top-1/4 -left-20" />
+      <div className="glow-orb-indigo bottom-1/4 -right-20" />
 
-        {/* Soft Ambient Left Edge Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black pointer-events-none" />
-      </div>
-
-      {/* Main Content Layer */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen w-full px-6 sm:px-12 lg:px-16 pt-24 pb-12">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      {/* Main Content Container */}
+      <div className="relative z-10 flex flex-col justify-center min-h-screen w-full px-6 sm:px-12 lg:px-16 pt-28 pb-16">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
-          {/* LEFT: Technical Positioning & Headline (7 Cols) */}
+          {/* LEFT: Headline & Value Proposition (7 Cols) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 z-20"
+            className="lg:col-span-7"
           >
-            {/* Status Badge */}
-            <motion.div variants={fadeUpVariants} className="mb-4 inline-flex items-center space-x-2.5 px-3 py-1 rounded-sm border border-[#8C6D4F]/40 bg-[#120F0C]/80 backdrop-blur-md">
+            {/* Live Availability Badge */}
+            <motion.div variants={fadeUpVariants} className="mb-6 inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-500/30 text-xs font-mono text-cyan-300 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
-                AVAILABLE FOR OPPORTUNITIES
-              </span>
+              <span>{profileData.location}</span>
             </motion.div>
 
             {/* Massive Display Title */}
-            <motion.div variants={fadeUpVariants} className="relative mb-4 select-none">
-              <h1
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.8rem] xl:text-[7.4rem] tracking-tight uppercase leading-[0.83]"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
-                  TARUN KUMAR
+            <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-extrabold tracking-tight leading-[1.02]">
+                <span className="block text-white">
+                  Hi, I&apos;m {profileData.name}
                 </span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                  PYTHON DEVELOPER
+                <span className="block text-gradient-cyan">
+                  Python Developer
                 </span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410]">
-                  CLOUD &amp; DEVOPS
+                <span className="block text-gradient-gold">
+                  Cloud &amp; DevOps Engineer
                 </span>
               </h1>
             </motion.div>
 
-            {/* Subtitle Technologies Line */}
-            <motion.div variants={fadeUpVariants} className="mb-4">
-              <p
-                className="text-[10.5px] sm:text-xs font-mono tracking-[0.25em] uppercase text-[#D4AF37]"
-              >
-                PYTHON <span className="text-[#8C6D4F]">·</span> BACKEND <span className="text-[#8C6D4F]">·</span> CLOUD <span className="text-[#8C6D4F]">·</span> DEVOPS <span className="text-[#8C6D4F]">·</span> AUTOMATION <span className="text-[#8C6D4F]">·</span> AI
-              </p>
-            </motion.div>
-
-            {/* Supporting Description */}
+            {/* Concise Narrative */}
             <motion.p
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14px] font-light text-[#A8988B] leading-[1.8] tracking-wide max-w-xl mb-8"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed max-w-2xl mb-8"
             >
               {profileData.narrative}
             </motion.p>
 
-            {/* CTA Action Buttons */}
+            {/* Tech Badges */}
+            <motion.div variants={fadeUpVariants} className="flex flex-wrap gap-2 mb-10">
+              {profileData.focusAreas.map((area) => (
+                <span
+                  key={area}
+                  className="px-3 py-1 text-xs font-mono rounded-full bg-slate-900/80 border border-white/10 text-slate-300 shadow-sm"
+                >
+                  ⚡ {area}
+                </span>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
             <motion.div
               variants={fadeUpVariants}
-              className="flex flex-wrap items-center gap-4 sm:gap-6"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
+              className="flex flex-wrap items-center gap-4 sm:gap-5"
             >
               <a
                 href="#work"
-                className="inline-flex items-center space-x-3 px-6 sm:px-7 py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black text-[11px] font-semibold tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.25)] hover:bg-[#E2C054]"
+                className="btn-primary px-7 py-3.5 text-sm font-semibold flex items-center space-x-2"
               >
-                <span>VIEW MY WORK</span>
-                <span className="text-xs">↗</span>
+                <span>View My Work</span>
+                <span className="text-base">↗</span>
               </a>
 
               <a
                 href={profileData.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#120F0C]/90 text-[#EAD8C7] hover:text-[#FFF5EB] text-[11px] font-medium tracking-[0.24em] uppercase transition-all duration-300"
+                className="btn-secondary px-7 py-3.5 text-sm font-medium flex items-center space-x-2"
               >
-                <span>DOWNLOAD RESUME</span>
-                <span className="text-xs">↓</span>
-              </a>
-
-              <a
-                href="#contact"
-                className="inline-flex items-center space-x-2 text-[11px] font-medium tracking-[0.24em] uppercase text-[#D4AF37] hover:underline py-3.5"
-              >
-                <span>LET&apos;S CONNECT ↗</span>
+                <span>Download Resume</span>
+                <span className="text-base">↓</span>
               </a>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT: Technical CLI Terminal Visualizer (5 Cols) */}
+          {/* RIGHT: Interactive Glass Terminal & System Status (5 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 25 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 1.0 }}
-            className="lg:col-span-5 z-20"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="lg:col-span-5"
           >
-            <div className="rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-6 shadow-2xl font-mono text-xs text-[#E8DFD8] relative overflow-hidden">
-              {/* Top Window Dots */}
-              <div className="flex items-center justify-between pb-4 mb-4 border-b border-[#8C6D4F]/20">
+            <div className="rounded-2xl border border-white/15 bg-slate-950/80 backdrop-blur-2xl shadow-2xl overflow-hidden">
+              
+              {/* Window Bar */}
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-900/80 border-b border-white/10">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-[10px] text-[#8C6D4F]">bash — tarun@devops-node</span>
+                
+                {/* Tab Controls */}
+                <div className="flex items-center space-x-1 font-mono text-[11px]">
+                  <button
+                    onClick={() => setActiveTab('sys')}
+                    className={`px-2.5 py-1 rounded transition-colors ${
+                      activeTab === 'sys' ? 'bg-cyan-500/20 text-cyan-300 font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    sys.py
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('arch')}
+                    className={`px-2.5 py-1 rounded transition-colors ${
+                      activeTab === 'arch' ? 'bg-cyan-500/20 text-cyan-300 font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    pipeline.sh
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('stack')}
+                    className={`px-2.5 py-1 rounded transition-colors ${
+                      activeTab === 'stack' ? 'bg-cyan-500/20 text-cyan-300 font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    stack.json
+                  </button>
+                </div>
               </div>
 
-              {/* Terminal Commands */}
-              <div className="space-y-4">
-                <div>
-                  <span className="text-[#D4AF37]">$</span> whoami
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">tarun-kumar</p>
-                </div>
+              {/* Terminal Code View */}
+              <div className="p-6 font-mono text-xs text-slate-200 leading-relaxed min-h-[300px]">
+                {activeTab === 'sys' && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+                    <p className="text-slate-500"># System Identity Script</p>
+                    <p><span className="text-purple-400">class</span> <span className="text-yellow-300">Developer</span>:</p>
+                    <div className="pl-4 border-l-2 border-slate-800 space-y-1.5">
+                      <p><span className="text-cyan-400">name</span> = <span className="text-emerald-300">&quot;{profileData.name}&quot;</span></p>
+                      <p><span className="text-cyan-400">primary_role</span> = <span className="text-emerald-300">&quot;Python Developer&quot;</span></p>
+                      <p><span className="text-cyan-400">target_role</span> = <span className="text-emerald-300">&quot;Cloud &amp; DevOps Engineer&quot;</span></p>
+                      <p><span className="text-cyan-400">specialization</span> = <span className="text-emerald-300">&quot;AI &amp; Automation&quot;</span></p>
+                      <p><span className="text-cyan-400">status</span> = <span className="text-emerald-400">&quot;ACTIVE_BUILDING&quot;</span></p>
+                    </div>
+                    <p className="pt-2 text-cyan-400 font-bold">$ python3 sys.py --exec</p>
+                    <p className="text-emerald-400">✓ Systems operational. Ready to deploy.</p>
+                  </motion.div>
+                )}
 
-                <div>
-                  <span className="text-[#D4AF37]">$</span> role --primary
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">python-developer</p>
-                  <span className="text-[#D4AF37]">$</span> role --target
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">cloud-and-devops-engineer</p>
-                </div>
+                {activeTab === 'arch' && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
+                    <p className="text-slate-500"># Infrastructure Pipeline Workflow</p>
+                    <p><span className="text-cyan-400">1. Client Request</span> → REST API Gateway (Flask)</p>
+                    <p><span className="text-cyan-400">2. Container</span> → Docker Multi-Stage Image</p>
+                    <p><span className="text-cyan-400">3. Automation</span> → GitHub Actions CI/CD Pipeline</p>
+                    <p><span className="text-cyan-400">4. Cloud Target</span> → AWS Cloud Infrastructure</p>
+                    <p><span className="text-cyan-400">5. IaC Blueprint</span> → Terraform State Provisioning</p>
+                  </motion.div>
+                )}
 
-                <div>
-                  <span className="text-[#D4AF37]">$</span> focus --active
-                  <div className="pl-4 mt-0.5 text-[11px] text-[#A8988B] space-y-1">
-                    <p>› backend-apis [Flask / REST]</p>
-                    <p>› containerization [Docker]</p>
-                    <p>› cloud-infrastructure [AWS]</p>
-                    <p>› ci-cd-pipelines [GitHub Actions]</p>
-                    <p>› automation-and-ai [Python / ML]</p>
-                  </div>
-                </div>
+                {activeTab === 'stack' && (
+                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
+                    <p className="text-slate-500">// Technical Competencies Matrix</p>
+                    <pre className="text-cyan-300 text-[11px]">
+{`{
+  "core": ["Python", "Flask", "REST APIs", "SQL", "OOP"],
+  "devops": ["Docker", "Linux", "CI/CD", "AWS", "Terraform"],
+  "ai_data": ["Scikit-learn", "Generative AI", "Pandas"],
+  "status": "Production Ready"
+}`}
+                    </pre>
+                  </motion.div>
+                )}
+              </div>
 
-                <div>
-                  <span className="text-[#D4AF37]">$</span> status --availability
-                  <p className="text-emerald-400 pl-4 mt-0.5">[READY_FOR_DEPLOYMENT]</p>
-                </div>
+              {/* Terminal Status Bar */}
+              <div className="px-6 py-2.5 bg-slate-900/90 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span className="flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span>tarun@devops-node:~$</span>
+                </span>
+                <span className="text-cyan-400">UTF-8</span>
               </div>
 
             </div>
