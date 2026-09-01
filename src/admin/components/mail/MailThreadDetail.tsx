@@ -10,6 +10,7 @@ interface MailThreadDetailProps {
   onArchive: (threadId: string) => void;
   onTrash: (threadId: string) => void;
   onRestore?: (threadId: string) => void;
+  onEditDraft?: (thread: GmailThread) => void;
   onSendReply: (req: SendMailRequest) => void;
   onClose?: () => void;
   isFullscreen?: boolean;
@@ -23,6 +24,7 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
   onArchive,
   onTrash,
   onRestore,
+  onEditDraft,
   onSendReply,
   onClose,
   isFullscreen = false,
@@ -114,6 +116,16 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
         </div>
 
         <div className="flex items-center space-x-2 shrink-0">
+          {thread.labelIds?.includes('DRAFTS') && onEditDraft && (
+            <button
+              type="button"
+              onClick={() => onEditDraft(thread)}
+              className="px-3 py-1 bg-[#D4AF37] text-black hover:bg-[#E2C054] rounded-sm text-[10px] uppercase font-bold tracking-wider"
+            >
+              ✏️ EDIT DRAFT
+            </button>
+          )}
+
           <button
             type="button"
             onClick={handleCopyDetails}

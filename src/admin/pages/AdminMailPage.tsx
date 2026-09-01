@@ -21,6 +21,11 @@ export const AdminMailPage: React.FC = () => {
   const [isComposeOpen, setIsComposeOpen] = useState<boolean>(false);
   const [isPowerToolsOpen, setIsPowerToolsOpen] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [composeInitialData, setComposeInitialData] = useState<{ to: string; subject: string; body: string; threadId?: string }>({
+    to: '',
+    subject: '',
+    body: '',
+  });
 
   // Keyboard Shortcuts Listener (c=Compose, r=Reply, f=Flag, e=Archive, d=Delete, s=Star)
   useEffect(() => {
@@ -190,8 +195,28 @@ export const AdminMailPage: React.FC = () => {
     setTimeout(() => setSavedMessage(''), 3000);
   };
 
+  const handleOpenCompose = () => {
+    setComposeInitialData({ to: '', subject: '', body: '' });
+    setIsComposeOpen(true);
+  };
+
+  const handleEditDraft = (thread: GmailThread) => {
+    const lastMsg = thread.messages[thread.messages.length - 1];
+    setComposeInitialData({
+      to: lastMsg?.to || '',
+      subject: thread.subject || '',
+      body: lastMsg?.bodyText || '',
+      threadId: thread.id,
+    });
+    setIsComposeOpen(true);
+  };
+
   const handleSaveDraft = (req: SendMailRequest) => {
-    GmailService.saveDraft(req);
+    const draftReq: SendMailRequest = {
+      ...req,
+      threadId: composeInitialData.threadId || req.threadId,
+    };
+    GmailService.saveDraft(draftReq);
     refreshMailbox();
     setSavedMessage('Draft saved to Gmail Drafts.');
     setTimeout(() => setSavedMessage(''), 3000);
@@ -212,7 +237,7 @@ export const AdminMailPage: React.FC = () => {
       
       {/* Top Microsoft Outlook Command Ribbon */}
       <OutlookCommandRibbon
-        onOpenCompose={() => setIsComposeOpen(true)}
+        onOpenCompose={handleOpenCompose}
         onOpenPowerTools={() => setIsPowerToolsOpen(true)}
         selectedThreadId={selectedThreadId}
         onArchive={handleArchive}
@@ -246,7 +271,7 @@ export const AdminMailPage: React.FC = () => {
           <MailFolderSidebar
             currentFolder={currentFolder}
             onSelectFolder={handleSelectFolder}
-            onOpenCompose={() => setIsComposeOpen(true)}
+            onOpenCompose={handleOpenCompose}
             labels={labels}
             unreadCount={account.unreadCount || 0}
             draftsCount={drafts.length}
@@ -294,6 +319,7 @@ export const AdminMailPage: React.FC = () => {
               onArchive={handleArchive}
               onTrash={handleTrash}
               onRestore={handleRestore}
+              onEditDraft={handleEditDraft}
               onSendReply={handleSendMail}
               onClose={() => setSelectedThreadId(null)}
               isFullscreen={isFullscreen}
@@ -309,6 +335,9 @@ export const AdminMailPage: React.FC = () => {
         onClose={() => setIsComposeOpen(false)}
         onSend={handleSendMail}
         onSaveDraft={handleSaveDraft}
+        initialTo={composeInitialData.to}
+        initialSubject={composeInitialData.subject}
+        initialBody={composeInitialData.body}
       />
 
       {/* Outlook Power Tools Modal */}

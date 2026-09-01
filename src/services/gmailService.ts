@@ -371,6 +371,8 @@ export class GmailService {
       result = result.filter((t) => t.starred || t.labelIds?.includes('STARRED'));
     } else if (folder === 'SENT') {
       result = result.filter((t) => t.labelIds?.includes('SENT'));
+    } else if (folder === 'DRAFTS') {
+      result = result.filter((t) => t.labelIds?.includes('DRAFTS'));
     } else if (folder === 'SPAM') {
       result = result.filter((t) => t.labelIds?.includes('SPAM'));
     } else if (folder === 'TRASH') {
@@ -421,11 +423,16 @@ export class GmailService {
     };
 
     if (req.threadId) {
+      // Clean up draft associated with this threadId
+      this.drafts = this.drafts.filter((d) => d.message.threadId !== req.threadId);
+      safeSetStorage('drafts', this.drafts);
+
       // Append to existing thread
       const threadIdx = this.threads.findIndex((t) => t.id === req.threadId);
       if (threadIdx !== -1) {
         this.threads[threadIdx].messages.push(newMessage);
         this.threads[threadIdx].lastMessageDate = new Date().toISOString().replace('T', ' ').substring(0, 16);
+        this.threads[threadIdx].labelIds = this.threads[threadIdx].labelIds?.filter((l) => l !== 'DRAFTS') || [];
         if (!this.threads[threadIdx].labelIds?.includes('SENT')) {
           this.threads[threadIdx].labelIds?.push('SENT');
         }
@@ -545,26 +552,57 @@ export class GmailService {
   }
 
   public static saveDraft(req: SendMailRequest): GmailDraft {
+    const threadId = req.threadId || `thread_draft_${Date.now()}`;
     const draftId = `draft_${Date.now()}`;
-    const draft: GmailDraft = {
-      id: draftId,
-      message: {
-        id: `msg_${draftId}`,
-        threadId: req.threadId || `thread_${draftId}`,
-        labelIds: ['DRAFTS'],
-        snippet: req.body.substring(0, 100),
-        internalDate: Date.now().toString(),
-        to: req.to,
-        cc: req.cc,
-        bcc: req.bcc,
-        subject: req.subject || '(No Subject)',
-        bodyText: req.body,
-        bodyHtml: sanitizeHtml(req.body),
-      },
+
+    const draftMsg: GmailMessage = {
+      id: `msg_${draftId}`,
+      threadId,
+      labelIds: ['DRAFTS'],
+      snippet: req.body.substring(0, 100).replace(/<[^>]*>?/gm, ''),
+      internalDate: Date.now().toString(),
+      to: req.to,
+      cc: req.cc,
+      bcc: req.bcc,
+      subject: req.subject || '(Draft - No Subject)',
+      dateStr: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+      bodyText: req.body.replace(/<[^>]*>?/gm, ''),
+      bodyHtml: sanitizeHtml(req.body),
     };
 
+    const draft: GmailDraft = {
+      id: draftId,
+      message: draftMsg,
+    };
+
+    // Remove old draft with same threadId if updating
+    this.drafts = this.drafts.filter((d) => d.message.threadId !== threadId);
     this.drafts.unshift(draft);
     safeSetStorage('drafts', this.drafts);
+
+    // Sync into this.threads so it displays in DRAFTS folder view
+    const existingThreadIdx = this.threads.findIndex((t) => t.id === threadId);
+    const draftThread: GmailThread = {
+      id: threadId,
+      subject: req.subject || '(Draft - No Subject)',
+      snippet: draftMsg.snippet,
+      lastMessageDate: new Date().toISOString().replace('T', ' ').substring(0, 16),
+      unread: false,
+      starred: false,
+      labelIds: ['DRAFTS'],
+      participants: [
+        { name: 'Tarun Kumar (Draft)', email: TARGET_GMAIL_ACCOUNT },
+        { name: req.to || 'Recipient', email: req.to || '' },
+      ],
+      messages: [draftMsg],
+    };
+
+    if (existingThreadIdx !== -1) {
+      this.threads[existingThreadIdx] = draftThread;
+    } else {
+      this.threads.unshift(draftThread);
+    }
+    safeSetStorage('threads', this.threads);
 
     // Async Google API Save Draft if token available
     this.refreshAccessToken().then((token) => {
@@ -585,8 +623,23 @@ export class GmailService {
   }
 
   public static deleteDraft(draftId: string): void {
-    this.drafts = this.drafts.filter((d) => d.id !== draftId);
+    const draft = this.drafts.find((d) => d.id === draftId || d.message.threadId === draftId);
+    const threadId = draft?.message?.threadId || draftId;
+
+    this.drafts = this.drafts.filter((d) => d.id !== draftId && d.message.threadId !== draftId);
+    this.threads = this.threads.filter((t) => t.id !== threadId);
+
     safeSetStorage('drafts', this.drafts);
+    safeSetStorage('threads', this.threads);
+
+    this.refreshAccessToken().then((token) => {
+      if (token && draftId && !draftId.startsWith('draft_')) {
+        fetch(`https://gmail.googleapis.com/gmail/v1/users/me/drafts/${draftId}`, {
+          method: 'DELETE',
+          headers: { Authorization: `Bearer ${token}` },
+        }).catch(() => {});
+      }
+    });
   }
 
   public static toggleThreadPin(threadId: string): void {

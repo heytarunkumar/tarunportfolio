@@ -30,6 +30,16 @@ export const MailComposeModal: React.FC<MailComposeModalProps> = ({
   const [attachments, setAttachments] = useState<{ filename: string; mimeType: string; dataUrl: string }[]>([]);
   const [autosaveTime, setAutosaveTime] = useState<string | null>(null);
 
+  // Sync initial props whenever modal opens or initial data changes
+  React.useEffect(() => {
+    if (isOpen) {
+      setTo(initialTo);
+      setSubject(initialSubject);
+      setBody(initialBody);
+      setAutosaveTime(null);
+    }
+  }, [isOpen, initialTo, initialSubject, initialBody]);
+
   // Draft Autosave Effect (Runs every 8 seconds if body or subject typed)
   React.useEffect(() => {
     if (!isOpen) return;
