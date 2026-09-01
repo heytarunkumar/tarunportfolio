@@ -74,6 +74,9 @@ export interface GmailThread {
   participants?: { name: string; email: string }[];
   unread?: boolean;
   starred?: boolean;
+  pinned?: boolean;
+  flagged?: boolean;
+  category?: string;
   labelIds?: string[];
 }
 

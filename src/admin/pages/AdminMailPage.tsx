@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { GmailService, TARGET_GMAIL_ACCOUNT } from '../../services/gmailService';
 import type { GmailThread, GmailAccount, SendMailRequest } from '../../types/gmail';
 
+import { OutlookCommandRibbon } from '../components/mail/OutlookCommandRibbon';
 import { MailFolderSidebar } from '../components/mail/MailFolderSidebar';
 import { MailMessageList } from '../components/mail/MailMessageList';
 import { MailThreadDetail } from '../components/mail/MailThreadDetail';
@@ -53,7 +54,6 @@ export const AdminMailPage: React.FC = () => {
     }
     setThreads(list);
 
-    // Auto-select first thread if available and none selected
     if (list.length > 0 && !selectedThreadId) {
       setSelectedThreadId(list[0].id);
     } else if (list.length === 0) {
@@ -74,7 +74,7 @@ export const AdminMailPage: React.FC = () => {
     }
     setThreads(list);
 
-    setSavedMessage('Mailbox synced with Gmail API!');
+    setSavedMessage('Synced Outlook Mail Center with Gmail API!');
     setTimeout(() => setSavedMessage(''), 2500);
   };
 
@@ -87,6 +87,23 @@ export const AdminMailPage: React.FC = () => {
   const handleToggleStar = (threadId: string) => {
     GmailService.toggleThreadStar(threadId);
     refreshMailbox();
+  };
+
+  const handleTogglePin = (threadId: string) => {
+    GmailService.toggleThreadPin(threadId);
+    refreshMailbox();
+  };
+
+  const handleToggleFlag = (threadId: string) => {
+    GmailService.toggleThreadFlag(threadId);
+    refreshMailbox();
+  };
+
+  const handleSetCategory = (threadId: string, category: string) => {
+    GmailService.setThreadCategory(threadId, category);
+    refreshMailbox();
+    setSavedMessage(`Assigned Outlook category "${category}".`);
+    setTimeout(() => setSavedMessage(''), 2500);
   };
 
   const handleToggleUnread = (threadId: string) => {
@@ -137,7 +154,24 @@ export const AdminMailPage: React.FC = () => {
   return (
     <div className="h-[calc(100vh-5rem)] flex flex-col font-sans bg-[#050403] text-[#E8DFD8] border border-[#8C6D4F]/30 rounded-sm overflow-hidden shadow-2xl">
       
-      {/* Top Banner Alert */}
+      {/* Top Microsoft Outlook Command Ribbon */}
+      <OutlookCommandRibbon
+        onOpenCompose={() => setIsComposeOpen(true)}
+        selectedThreadId={selectedThreadId}
+        onArchive={handleArchive}
+        onTrash={handleTrash}
+        onToggleUnread={handleToggleUnread}
+        onTogglePin={handleTogglePin}
+        onToggleFlag={handleToggleFlag}
+        onSetCategory={handleSetCategory}
+        onRefresh={refreshMailbox}
+        isPinned={activeThread?.pinned || false}
+        isFlagged={activeThread?.flagged || false}
+        isUnread={activeThread?.unread || false}
+        activeCategory={activeThread?.category || ''}
+      />
+
+      {/* Top Alert Banner */}
       {savedMessage && (
         <div className="p-3 border-b border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono flex items-center justify-between z-20 shrink-0">
           <span>✓ {savedMessage}</span>
@@ -180,6 +214,8 @@ export const AdminMailPage: React.FC = () => {
               selectedThreadId={selectedThreadId}
               onSelectThread={(id) => setSelectedThreadId(id)}
               onToggleStar={handleToggleStar}
+              onTogglePin={handleTogglePin}
+              onToggleFlag={handleToggleFlag}
               onArchive={handleArchive}
               onTrash={handleTrash}
               onRefresh={refreshMailbox}

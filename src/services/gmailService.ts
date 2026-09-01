@@ -375,7 +375,12 @@ export class GmailService {
       result = result.filter((t) => t.labelIds?.includes(folder));
     }
 
-    return result.sort((a, b) => new Date(b.lastMessageDate || 0).getTime() - new Date(a.lastMessageDate || 0).getTime());
+    // Microsoft Outlook Workflow: Pinned messages stay anchored at the top
+    return result.sort((a, b) => {
+      if (a.pinned && !b.pinned) return -1;
+      if (!a.pinned && b.pinned) return 1;
+      return new Date(b.lastMessageDate || 0).getTime() - new Date(a.lastMessageDate || 0).getTime();
+    });
   }
 
   public static getThreadById(id: string): GmailThread | undefined {
@@ -578,6 +583,30 @@ export class GmailService {
   public static deleteDraft(draftId: string): void {
     this.drafts = this.drafts.filter((d) => d.id !== draftId);
     safeSetStorage('drafts', this.drafts);
+  }
+
+  public static toggleThreadPin(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].pinned = !this.threads[idx].pinned;
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static toggleThreadFlag(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].flagged = !this.threads[idx].flagged;
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static setThreadCategory(threadId: string, category: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].category = category;
+      safeSetStorage('threads', this.threads);
+    }
   }
 
   // 10. Message & Thread Actions (Star, Unread, Archive, Trash, Apply Label)
