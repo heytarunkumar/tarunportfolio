@@ -31,8 +31,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     // 1. Save to Supabase Central Database if configured
-    const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-    const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
+    const supabaseUrl =
+      process.env.VITE_SUPABASE_URL ||
+      process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      process.env.SUPABASE_URL ||
+      process.env.STORAGE_URL;
+
+    const supabaseAnonKey =
+      process.env.VITE_SUPABASE_ANON_KEY ||
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+      process.env.SUPABASE_ANON_KEY ||
+      process.env.STORAGE_ANON_KEY ||
+      process.env.STORAGE_SERVICE_ROLE_KEY;
 
     if (supabaseUrl && supabaseAnonKey && !supabaseUrl.includes('xyzcompany')) {
       const supabase = createClient(supabaseUrl, supabaseAnonKey);
