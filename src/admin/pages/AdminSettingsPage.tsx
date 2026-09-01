@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export const AdminSettingsPage: React.FC = () => {
   const [savedMessage, setSavedMessage] = useState('');
   const [siteName, setSiteName] = useState('Tarun Kumar Portfolio');
-  const [siteUrl, setSiteUrl] = useState('https://tarunkumar.dev');
+  const [siteUrl, setSiteUrl] = useState('https://heytarunkumar.vercel.app');
   const [timezone, setTimezone] = useState('Asia/Kolkata (UTC+5:30)');
   const [defaultStatus, setDefaultStatus] = useState('Published');
 

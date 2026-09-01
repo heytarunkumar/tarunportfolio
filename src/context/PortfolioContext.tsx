@@ -109,10 +109,10 @@ const initialSeo: SeoSettings = {
   metaDescription:
     'Portfolio of Tarun Kumar. Python Developer building backend services, REST APIs, automation workflows, and cloud solutions.',
   keywords: 'Tarun Kumar, Python Developer, Backend Developer, Cloud Engineer, DevOps Engineer, REST API, Docker, AWS',
-  canonicalUrl: 'https://tarunkumar.dev',
+  canonicalUrl: 'https://heytarunkumar.vercel.app',
   ogTitle: 'Tarun Kumar — Python Developer | Cloud & DevOps Engineer',
   ogDescription: 'Python-focused developer building backend services, APIs, automation workflows, and cloud solutions.',
-  ogImage: 'https://tarunkumar.dev/og-image.png',
+  ogImage: 'https://heytarunkumar.vercel.app/og-image.png',
   twitterCard: 'summary_large_image',
   robotsIndex: true,
   sitemapEnabled: true,
