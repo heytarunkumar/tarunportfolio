@@ -1,0 +1,543 @@
+import type {
+  GmailAccount,
+  GmailThread,
+  GmailMessage,
+  GmailLabel,
+  GmailDraft,
+  SendMailRequest,
+  MailSearchQuery,
+  OAuthCredentials,
+} from '../types/gmail';
+import { sanitizeHtml } from './htmlSanitizer';
+
+export const TARGET_GMAIL_ACCOUNT = 'tarunsinghchaudharyy@gmail.com';
+
+const STORAGE_PREFIX = 'tarun_portfolio_gmail_';
+
+const safeGetStorage = <T,>(key: string, fallback: T): T => {
+  if (typeof window === 'undefined') return fallback;
+  try {
+    const saved = localStorage.getItem(STORAGE_PREFIX + key);
+    if (!saved) return fallback;
+    return JSON.parse(saved);
+  } catch {
+    return fallback;
+  }
+};
+
+const safeSetStorage = <T,>(key: string, value: T): void => {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STORAGE_PREFIX + key, JSON.stringify(value));
+  } catch {
+    // ignore
+  }
+};
+
+// Initial Seed Data for Sandbox Mode
+const initialAccount: GmailAccount = {
+  email: TARGET_GMAIL_ACCOUNT,
+  name: 'Tarun Kumar',
+  connected: false,
+  lastSync: new Date().toISOString().replace('T', ' ').substring(0, 16),
+  quotaUsed: '1.2 GB / 15 GB',
+  messagesTotal: 12,
+  threadsTotal: 5,
+  unreadCount: 2,
+};
+
+const initialLabels: GmailLabel[] = [
+  { id: 'INBOX', name: 'INBOX', type: 'system', messagesUnread: 2, messagesTotal: 5 },
+  { id: 'STARRED', name: 'STARRED', type: 'system', messagesTotal: 2 },
+  { id: 'SENT', name: 'SENT', type: 'system', messagesTotal: 4 },
+  { id: 'DRAFTS', name: 'DRAFTS', type: 'system', messagesTotal: 1 },
+  { id: 'SPAM', name: 'SPAM', type: 'system', messagesTotal: 0 },
+  { id: 'TRASH', name: 'TRASH', type: 'system', messagesTotal: 0 },
+  { id: 'Label_Work', name: 'Work & Offers', type: 'user', color: { backgroundColor: '#1E1914', textColor: '#D4AF37' } },
+  { id: 'Label_Projects', name: 'Projects & Consulting', type: 'user', color: { backgroundColor: '#0F1A14', textColor: '#34D399' } },
+  { id: 'Label_Research', name: 'AI & Research', type: 'user', color: { backgroundColor: '#14141E', textColor: '#60A5FA' } },
+];
+
+const initialThreads: GmailThread[] = [
+  {
+    id: 'thread_001',
+    subject: 'Senior Python & Cloud DevOps Opportunity — Executive Inquiry',
+    snippet: 'Hi Tarun, we reviewed your Python API microservices architecture & AWS infrastructure lab track...',
+    lastMessageDate: '2026-09-01 14:15',
+    unread: true,
+    starred: true,
+    labelIds: ['INBOX', 'STARRED', 'Label_Work'],
+    participants: [{ name: 'Elena Vance', email: 'elena.vance@techcorp.com' }, { name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT }],
+    messages: [
+      {
+        id: 'msg_001',
+        threadId: 'thread_001',
+        labelIds: ['INBOX', 'STARRED', 'Label_Work'],
+        snippet: 'Hi Tarun, we reviewed your Python API microservices architecture...',
+        internalDate: Date.now().toString(),
+        starred: true,
+        unread: true,
+        from: { name: 'Elena Vance', email: 'elena.vance@techcorp.com' },
+        to: TARGET_GMAIL_ACCOUNT,
+        subject: 'Senior Python & Cloud DevOps Opportunity — Executive Inquiry',
+        dateStr: 'Sep 1, 2026, 2:15 PM',
+        bodyText: 'Hi Tarun,\n\nWe reviewed your portfolio engineering lab tracks and REST API architecture. We are impressed by your Python backend design and Docker/AWS deployment pipeline.\n\nWould you be open for a short call this week to discuss a lead Python engineering role?\n\nBest regards,\nElena Vance',
+        bodyHtml: '<p>Hi Tarun,</p><p>We reviewed your portfolio engineering lab tracks and REST API architecture. We are impressed by your Python backend design and Docker/AWS deployment pipeline.</p><p>Would you be open for a short call this week to discuss a lead Python engineering role?</p><p>Best regards,<br><strong>Elena Vance</strong><br><em>Talent Lead @ TechCorp</em></p>',
+        attachments: [
+          { id: 'att_1', filename: 'Engineering_Role_Overview.pdf', mimeType: 'application/pdf', size: 245000 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'thread_002',
+    subject: 'Consulting Inquiry: Scalable Microservices Architecture in FastAPI',
+    snippet: 'Hey Tarun, saw your FastAPI + Redis caching project on GitHub. We need help auditing our backend...',
+    lastMessageDate: '2026-08-31 16:40',
+    unread: true,
+    starred: false,
+    labelIds: ['INBOX', 'Label_Projects'],
+    participants: [{ name: 'David Miller', email: 'david@cloudscale.io' }, { name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT }],
+    messages: [
+      {
+        id: 'msg_002',
+        threadId: 'thread_002',
+        labelIds: ['INBOX', 'Label_Projects'],
+        snippet: 'Hey Tarun, saw your FastAPI + Redis caching project on GitHub...',
+        internalDate: (Date.now() - 86400000).toString(),
+        starred: false,
+        unread: true,
+        from: { name: 'David Miller', email: 'david@cloudscale.io' },
+        to: TARGET_GMAIL_ACCOUNT,
+        subject: 'Consulting Inquiry: Scalable Microservices Architecture in FastAPI',
+        dateStr: 'Aug 31, 2026, 4:40 PM',
+        bodyText: 'Hey Tarun,\n\nI came across your GitHub repository for distributed Python REST services. Our team is building a high-throughput backend service in FastAPI and PostgreSQL.\n\nWe would love to contract your expertise for an architectural code review.\n\nThanks,\nDavid',
+        bodyHtml: '<p>Hey Tarun,</p><p>I came across your GitHub repository for distributed Python REST services. Our team is building a high-throughput backend service in FastAPI and PostgreSQL.</p><p>We would love to contract your expertise for an architectural code review.</p><p>Thanks,<br><strong>David Miller</strong></p>',
+      },
+    ],
+  },
+  {
+    id: 'thread_003',
+    subject: 'Research Collaboration: Explainable AI & SHAP Model Diagnostics',
+    snippet: 'Greetings Tarun, your research paper on XAI interpretability for neural networks aligns closely with our lab...',
+    lastMessageDate: '2026-08-29 11:20',
+    unread: false,
+    starred: true,
+    labelIds: ['INBOX', 'STARRED', 'Label_Research'],
+    participants: [{ name: 'Dr. Aris Thorne', email: 'athorne@stanford.edu' }, { name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT }],
+    messages: [
+      {
+        id: 'msg_003',
+        threadId: 'thread_003',
+        labelIds: ['INBOX', 'STARRED', 'Label_Research'],
+        snippet: 'Greetings Tarun, your research paper on XAI interpretability...',
+        internalDate: (Date.now() - 172800000).toString(),
+        starred: true,
+        unread: false,
+        from: { name: 'Dr. Aris Thorne', email: 'athorne@stanford.edu' },
+        to: TARGET_GMAIL_ACCOUNT,
+        subject: 'Research Collaboration: Explainable AI & SHAP Model Diagnostics',
+        dateStr: 'Aug 29, 2026, 11:20 AM',
+        bodyText: 'Greetings Tarun,\n\nYour research section on SHAP and LIME feature attributions caught our interest. We are organizing a workshop on interpretable Machine Learning.\n\nWould you be interested in presenting your methodology breakdown?\n\nBest,\nDr. Aris Thorne',
+        bodyHtml: '<p>Greetings Tarun,</p><p>Your research section on SHAP and LIME feature attributions caught our interest. We are organizing a workshop on interpretable Machine Learning.</p><p>Would you be interested in presenting your methodology breakdown?</p><p>Best,<br><strong>Dr. Aris Thorne</strong><br><em>Department of Computer Science</em></p>',
+      },
+    ],
+  },
+  {
+    id: 'thread_004',
+    subject: 'Re: Portfolio Contact Form Submission — Infrastructure Automation',
+    snippet: 'Hi Marcus, thank you for reaching out via my portfolio. I have attached my cloud automation architecture spec...',
+    lastMessageDate: '2026-08-27 09:15',
+    unread: false,
+    starred: false,
+    labelIds: ['SENT'],
+    participants: [{ name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT }, { name: 'Marcus Brody', email: 'marcus@devops.co' }],
+    messages: [
+      {
+        id: 'msg_004_1',
+        threadId: 'thread_004',
+        labelIds: ['SENT'],
+        snippet: 'Hi Marcus, thank you for reaching out via my portfolio...',
+        internalDate: (Date.now() - 345600000).toString(),
+        starred: false,
+        unread: false,
+        from: { name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT },
+        to: 'marcus@devops.co',
+        subject: 'Re: Portfolio Contact Form Submission — Infrastructure Automation',
+        dateStr: 'Aug 27, 2026, 9:15 AM',
+        bodyText: 'Hi Marcus,\n\nThank you for reaching out via my portfolio. I have reviewed your request regarding Terraform scripts and Docker CI/CD pipelines.\n\nFeel free to schedule a quick sync.\n\nBest regards,\nTarun Kumar',
+        bodyHtml: '<p>Hi Marcus,</p><p>Thank you for reaching out via my portfolio. I have reviewed your request regarding Terraform scripts and Docker CI/CD pipelines.</p><p>Feel free to schedule a quick sync.</p><p>Best regards,<br><strong>Tarun Kumar</strong></p>',
+      },
+    ],
+  },
+];
+
+const initialDrafts: GmailDraft[] = [
+  {
+    id: 'draft_001',
+    message: {
+      id: 'msg_draft_001',
+      threadId: 'draft_thread_001',
+      labelIds: ['DRAFTS'],
+      snippet: '[Draft] Project Proposal for Custom Python API Gateway...',
+      internalDate: Date.now().toString(),
+      to: 'client@enterprise.org',
+      subject: 'Draft: Proposal for Custom Python API Gateway & Cloud Setup',
+      bodyText: 'Hi team,\n\nAttached is the preliminary technical architecture draft for the backend microservice API...',
+      bodyHtml: '<p>Hi team,</p><p>Attached is the preliminary technical architecture draft for the backend microservice API...</p>',
+    },
+  },
+];
+
+// Gmail Service Manager Class
+export class GmailService {
+  private static account: GmailAccount = safeGetStorage('account', initialAccount);
+  private static threads: GmailThread[] = safeGetStorage('threads', initialThreads);
+  private static drafts: GmailDraft[] = safeGetStorage('drafts', initialDrafts);
+  private static labels: GmailLabel[] = safeGetStorage('labels', initialLabels);
+  private static oauthConfig: OAuthCredentials = safeGetStorage('oauth_credentials', {
+    clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || '',
+    clientSecret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET || '',
+    redirectUri: import.meta.env.VITE_GOOGLE_REDIRECT_URI || `${typeof window !== 'undefined' ? window.location.origin : ''}/admin/mail/settings`,
+    refreshToken: import.meta.env.VITE_GMAIL_REFRESH_TOKEN || '',
+  });
+
+  // 1. Account & Connection Status
+  public static getAccount(): GmailAccount {
+    const unread = this.threads.filter((t) => t.unread && t.labelIds?.includes('INBOX')).length;
+    this.account.unreadCount = unread;
+    this.account.messagesTotal = this.threads.reduce((acc, t) => acc + t.messages.length, 0);
+    this.account.threadsTotal = this.threads.length;
+    return { ...this.account };
+  }
+
+  public static updateAccount(updated: Partial<GmailAccount>): GmailAccount {
+    this.account = { ...this.account, ...updated };
+    safeSetStorage('account', this.account);
+    return { ...this.account };
+  }
+
+  public static getOAuthCredentials(): OAuthCredentials {
+    return { ...this.oauthConfig };
+  }
+
+  public static saveOAuthCredentials(credentials: Partial<OAuthCredentials>): OAuthCredentials {
+    this.oauthConfig = { ...this.oauthConfig, ...credentials };
+    if (this.oauthConfig.refreshToken) {
+      this.account.connected = true;
+    }
+    safeSetStorage('oauth_credentials', this.oauthConfig);
+    safeSetStorage('account', this.account);
+    return { ...this.oauthConfig };
+  }
+
+  // 2. Generate Google OAuth 2.0 Auth URL (Least privilege scope)
+  public static getGoogleAuthUrl(): string {
+    const clientId = this.oauthConfig.clientId || 'YOUR_GOOGLE_CLIENT_ID';
+    const redirectUri = encodeURIComponent(this.oauthConfig.redirectUri || 'https://heytarunkumar.vercel.app/admin/mail/settings');
+    const scope = encodeURIComponent([
+      'https://www.googleapis.com/auth/gmail.readonly',
+      'https://www.googleapis.com/auth/gmail.send',
+      'https://www.googleapis.com/auth/gmail.compose',
+      'https://www.googleapis.com/auth/gmail.modify',
+      'https://www.googleapis.com/auth/gmail.labels',
+    ].join(' '));
+
+    return `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&access_type=offline&prompt=consent&state=tarun_admin_gmail_oauth`;
+  }
+
+  // 3. Threads & Mailbox Retrieval
+  public static getThreads(folder: string = 'INBOX'): GmailThread[] {
+    let result = [...this.threads];
+
+    if (folder === 'INBOX') {
+      result = result.filter((t) => t.labelIds?.includes('INBOX'));
+    } else if (folder === 'STARRED') {
+      result = result.filter((t) => t.starred || t.labelIds?.includes('STARRED'));
+    } else if (folder === 'SENT') {
+      result = result.filter((t) => t.labelIds?.includes('SENT'));
+    } else if (folder === 'SPAM') {
+      result = result.filter((t) => t.labelIds?.includes('SPAM'));
+    } else if (folder === 'TRASH') {
+      result = result.filter((t) => t.labelIds?.includes('TRASH'));
+    } else if (folder.startsWith('Label_')) {
+      result = result.filter((t) => t.labelIds?.includes(folder));
+    }
+
+    return result.sort((a, b) => new Date(b.lastMessageDate || 0).getTime() - new Date(a.lastMessageDate || 0).getTime());
+  }
+
+  public static getThreadById(id: string): GmailThread | undefined {
+    return this.threads.find((t) => t.id === id);
+  }
+
+  // 4. Send Email & Contact Form Integration
+  public static sendEmail(req: SendMailRequest): { success: boolean; threadId: string } {
+    const fromEmail = TARGET_GMAIL_ACCOUNT;
+
+    const newMessage: GmailMessage = {
+      id: `msg_${Date.now()}`,
+      threadId: req.threadId || `thread_${Date.now()}`,
+      labelIds: ['SENT'],
+      snippet: req.body.substring(0, 100).replace(/<[^>]*>?/gm, ''),
+      internalDate: Date.now().toString(),
+      starred: false,
+      unread: false,
+      from: { name: 'Tarun Kumar', email: fromEmail },
+      to: req.to,
+      cc: req.cc,
+      bcc: req.bcc,
+      subject: req.subject,
+      dateStr: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+      bodyText: req.body.replace(/<[^>]*>?/gm, ''),
+      bodyHtml: sanitizeHtml(req.body),
+      attachments: req.attachments?.map((a, i) => ({
+        id: `att_sent_${Date.now()}_${i}`,
+        filename: a.filename,
+        mimeType: a.mimeType,
+        size: Math.round(a.dataUrl.length * 0.75),
+        dataUrl: a.dataUrl,
+      })),
+    };
+
+    if (req.threadId) {
+      // Append to existing thread
+      const threadIdx = this.threads.findIndex((t) => t.id === req.threadId);
+      if (threadIdx !== -1) {
+        this.threads[threadIdx].messages.push(newMessage);
+        this.threads[threadIdx].lastMessageDate = new Date().toISOString().replace('T', ' ').substring(0, 16);
+        if (!this.threads[threadIdx].labelIds?.includes('SENT')) {
+          this.threads[threadIdx].labelIds?.push('SENT');
+        }
+      }
+    } else {
+      // Create new thread
+      const newThread: GmailThread = {
+        id: newMessage.threadId,
+        subject: req.subject,
+        snippet: newMessage.snippet,
+        lastMessageDate: new Date().toISOString().replace('T', ' ').substring(0, 16),
+        unread: false,
+        starred: false,
+        labelIds: ['SENT'],
+        participants: [
+          { name: 'Tarun Kumar', email: fromEmail },
+          { name: req.to.split('@')[0], email: req.to },
+        ],
+        messages: [newMessage],
+      };
+      this.threads.unshift(newThread);
+    }
+
+    safeSetStorage('threads', this.threads);
+    this.account.lastSync = new Date().toISOString().replace('T', ' ').substring(0, 16);
+    safeSetStorage('account', this.account);
+
+    return { success: true, threadId: newMessage.threadId };
+  }
+
+  // 5. Public Portfolio Contact Form Mail Dispatcher
+  public static dispatchContactFormPayload(data: { name: string; email: string; subject?: string; message: string }): void {
+    const threadId = `contact_thread_${Date.now()}`;
+    const subjectTitle = data.subject ? `[Portfolio Contact] ${data.subject}` : `[Portfolio Contact] Message from ${data.name}`;
+
+    const incomingMsg: GmailMessage = {
+      id: `msg_contact_${Date.now()}`,
+      threadId,
+      labelIds: ['INBOX', 'Label_Projects'],
+      snippet: data.message.substring(0, 120),
+      internalDate: Date.now().toString(),
+      starred: false,
+      unread: true,
+      from: { name: data.name, email: data.email },
+      to: TARGET_GMAIL_ACCOUNT,
+      subject: subjectTitle,
+      dateStr: new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' }),
+      bodyText: data.message,
+      bodyHtml: `<div style="font-family: monospace; color: #111;">
+        <h3 style="color: #8C6D4F; margin-bottom: 8px;">PORTFOLIO CONTACT FORM PAYLOAD</h3>
+        <p><strong>Sender:</strong> ${data.name} &lt;${data.email}&gt;</p>
+        <p><strong>Date:</strong> ${new Date().toUTCString()}</p>
+        <hr style="border: none; border-top: 1px solid #ccc; margin: 12px 0;" />
+        <p style="white-space: pre-wrap; font-size: 14px;">${data.message}</p>
+      </div>`,
+    };
+
+    const newThread: GmailThread = {
+      id: threadId,
+      subject: subjectTitle,
+      snippet: incomingMsg.snippet,
+      lastMessageDate: new Date().toISOString().replace('T', ' ').substring(0, 16),
+      unread: true,
+      starred: false,
+      labelIds: ['INBOX', 'Label_Projects'],
+      participants: [
+        { name: data.name, email: data.email },
+        { name: 'Tarun Kumar', email: TARGET_GMAIL_ACCOUNT },
+      ],
+      messages: [incomingMsg],
+    };
+
+    this.threads.unshift(newThread);
+    safeSetStorage('threads', this.threads);
+  }
+
+  // 6. Drafts Management
+  public static getDrafts(): GmailDraft[] {
+    return [...this.drafts];
+  }
+
+  public static saveDraft(req: SendMailRequest): GmailDraft {
+    const draftId = `draft_${Date.now()}`;
+    const draft: GmailDraft = {
+      id: draftId,
+      message: {
+        id: `msg_${draftId}`,
+        threadId: req.threadId || `thread_${draftId}`,
+        labelIds: ['DRAFTS'],
+        snippet: req.body.substring(0, 100),
+        internalDate: Date.now().toString(),
+        to: req.to,
+        cc: req.cc,
+        bcc: req.bcc,
+        subject: req.subject || '(No Subject)',
+        bodyText: req.body,
+        bodyHtml: sanitizeHtml(req.body),
+      },
+    };
+
+    this.drafts.unshift(draft);
+    safeSetStorage('drafts', this.drafts);
+    return draft;
+  }
+
+  public static deleteDraft(draftId: string): void {
+    this.drafts = this.drafts.filter((d) => d.id !== draftId);
+    safeSetStorage('drafts', this.drafts);
+  }
+
+  // 7. Message & Thread Actions (Star, Unread, Archive, Trash, Apply Label)
+  public static toggleThreadStar(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      const isStarred = !this.threads[idx].starred;
+      this.threads[idx].starred = isStarred;
+      if (isStarred) {
+        if (!this.threads[idx].labelIds?.includes('STARRED')) {
+          this.threads[idx].labelIds?.push('STARRED');
+        }
+      } else {
+        this.threads[idx].labelIds = this.threads[idx].labelIds?.filter((l) => l !== 'STARRED');
+      }
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static toggleThreadUnread(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      const isUnread = !this.threads[idx].unread;
+      this.threads[idx].unread = isUnread;
+      this.threads[idx].messages.forEach((m) => (m.unread = isUnread));
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static archiveThread(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].labelIds = this.threads[idx].labelIds?.filter((l) => l !== 'INBOX');
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static trashThread(threadId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].labelIds = ['TRASH'];
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  public static applyLabelToThread(threadId: string, labelId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      if (!this.threads[idx].labelIds?.includes(labelId)) {
+        this.threads[idx].labelIds?.push(labelId);
+        safeSetStorage('threads', this.threads);
+      }
+    }
+  }
+
+  public static removeLabelFromThread(threadId: string, labelId: string): void {
+    const idx = this.threads.findIndex((t) => t.id === threadId);
+    if (idx !== -1) {
+      this.threads[idx].labelIds = this.threads[idx].labelIds?.filter((l) => l !== labelId);
+      safeSetStorage('threads', this.threads);
+    }
+  }
+
+  // 8. Labels Management
+  public static getLabels(): GmailLabel[] {
+    return [...this.labels];
+  }
+
+  public static addCustomLabel(name: string, color?: { backgroundColor: string; textColor: string }): GmailLabel {
+    const labelId = `Label_${name.replace(/\s+/g, '_')}`;
+    const newLabel: GmailLabel = {
+      id: labelId,
+      name,
+      type: 'user',
+      messagesTotal: 0,
+      color: color || { backgroundColor: '#1E1914', textColor: '#D4AF37' },
+    };
+    this.labels.push(newLabel);
+    safeSetStorage('labels', this.labels);
+    return newLabel;
+  }
+
+  // 9. Mail Search Engine
+  public static searchMail(query: MailSearchQuery): GmailThread[] {
+    const q = query.q?.toLowerCase().trim() || '';
+    const fromQ = query.from?.toLowerCase().trim() || '';
+    const toQ = query.to?.toLowerCase().trim() || '';
+    const subjectQ = query.subject?.toLowerCase().trim() || '';
+
+    return this.threads.filter((t) => {
+      if (query.isUnread && !t.unread) return false;
+      if (query.labelId && !t.labelIds?.includes(query.labelId)) return false;
+
+      if (fromQ && !t.messages.some((m) => m.from?.email.toLowerCase().includes(fromQ) || m.from?.name.toLowerCase().includes(fromQ))) {
+        return false;
+      }
+      if (toQ && !t.messages.some((m) => m.to?.toLowerCase().includes(toQ))) {
+        return false;
+      }
+      if (subjectQ && !t.subject?.toLowerCase().includes(subjectQ)) {
+        return false;
+      }
+
+      if (query.hasAttachment && !t.messages.some((m) => m.attachments && m.attachments.length > 0)) {
+        return false;
+      }
+
+      if (!q) return true;
+
+      const inSubject = t.subject?.toLowerCase().includes(q);
+      const inSnippet = t.snippet?.toLowerCase().includes(q);
+      const inSender = t.messages.some((m) => m.from?.name.toLowerCase().includes(q) || m.from?.email.toLowerCase().includes(q));
+      const inBody = t.messages.some((m) => m.bodyText?.toLowerCase().includes(q) || m.bodyHtml?.toLowerCase().includes(q));
+
+      return inSubject || inSnippet || inSender || inBody;
+    });
+  }
+
+  // 10. Connection Reset & Disconnect
+  public static disconnectGmail(): void {
+    this.account.connected = false;
+    this.oauthConfig.refreshToken = '';
+    this.oauthConfig.accessToken = '';
+    safeSetStorage('account', this.account);
+    safeSetStorage('oauth_credentials', this.oauthConfig);
+  }
+}

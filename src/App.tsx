@@ -28,6 +28,7 @@ import { AdminExperienceManager } from './admin/pages/AdminExperienceManager';
 import { AdminResearchManager } from './admin/pages/AdminResearchManager';
 import { AdminWritingManager } from './admin/pages/AdminWritingManager';
 import { AdminMediaPage } from './admin/pages/AdminMediaPage';
+import { AdminMailPage } from './admin/pages/AdminMailPage';
 import { AdminNavManager } from './admin/pages/AdminNavManager';
 import { AdminSeoManager } from './admin/pages/AdminSeoManager';
 import { AdminDesignManager } from './admin/pages/AdminDesignManager';
@@ -75,6 +76,8 @@ function App() {
             <Route path="/admin/research" element={<ProtectedRoute><AdminLayout><AdminResearchManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/writing" element={<ProtectedRoute><AdminLayout><AdminWritingManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/media" element={<ProtectedRoute><AdminLayout><AdminMediaPage /></AdminLayout></ProtectedRoute>} />
+            <Route path="/admin/mail" element={<ProtectedRoute><AdminLayout><AdminMailPage /></AdminLayout></ProtectedRoute>} />
+            <Route path="/admin/mail/*" element={<ProtectedRoute><AdminLayout><AdminMailPage /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/navigation" element={<ProtectedRoute><AdminLayout><AdminNavManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/seo" element={<ProtectedRoute><AdminLayout><AdminSeoManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/design" element={<ProtectedRoute><AdminLayout><AdminDesignManager /></AdminLayout></ProtectedRoute>} />

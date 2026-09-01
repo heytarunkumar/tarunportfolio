@@ -3,6 +3,8 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { usePortfolio } from '../../context/PortfolioContext';
 
+import { GmailService } from '../../services/gmailService';
+
 const adminNavItems = [
   { name: 'DASHBOARD', path: '/admin/dashboard', icon: '📊' },
   { name: 'PAGES MANAGER', path: '/admin/pages', icon: '📄' },
@@ -13,6 +15,7 @@ const adminNavItems = [
   { name: 'RESEARCH', path: '/admin/research', icon: '📑' },
   { name: 'WRITING', path: '/admin/writing', icon: '✍️' },
   { name: 'MEDIA LIBRARY', path: '/admin/media', icon: '🖼️' },
+  { name: 'GMAIL MAIL CENTER', path: '/admin/mail', icon: '✉️' },
   { name: 'NAVIGATION', path: '/admin/navigation', icon: '🧭' },
   { name: 'SEO SETTINGS', path: '/admin/seo', icon: '🔍' },
   { name: 'DESIGN & MOTION', path: '/admin/design', icon: '🎨' },
@@ -27,6 +30,8 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   const navigate = useNavigate();
 
   const unreadMessages = contact.inboxMessages.filter((m) => !m.read).length;
+  const gmailAccount = GmailService.getAccount();
+  const unreadGmailCount = gmailAccount.unreadCount || 0;
 
   const handleLogout = () => {
     logout();
@@ -70,6 +75,11 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
                   <span>{item.icon}</span>
                   <span className="tracking-wider">{item.name}</span>
                 </div>
+                {item.name === 'GMAIL MAIL CENTER' && unreadGmailCount > 0 && (
+                  <span className="px-1.5 py-0.5 text-[9px] bg-amber-500 text-black font-bold rounded-full">
+                    {unreadGmailCount}
+                  </span>
+                )}
                 {item.name === 'CONTACT & INBOX' && unreadMessages > 0 && (
                   <span className="px-1.5 py-0.5 text-[9px] bg-red-600 text-white rounded-full font-bold">
                     {unreadMessages}

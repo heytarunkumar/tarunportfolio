@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
+import { GmailService } from '../services/gmailService';
 
 export const ContactSection: React.FC = () => {
   const { profile, contact, addMessage } = usePortfolio();
@@ -31,13 +32,21 @@ export const ContactSection: React.FC = () => {
 
     setStatus('submitting');
 
-    // Transmit to PortfolioContext Inbox
+    // Transmit to PortfolioContext Inbox & Gmail Service Target Mailbox
     setTimeout(() => {
       addMessage({
         name: formData.name,
         email: formData.email,
         message: `${formData.subject ? `[${formData.subject}] ` : ''}${formData.message}`,
       });
+      
+      GmailService.dispatchContactFormPayload({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      });
+
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
     }, 800);
