@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { GmailThread, SendMailRequest } from '../../../types/gmail';
 import { sanitizeHtml } from '../../../services/htmlSanitizer';
+import { GmailService } from '../../../services/gmailService';
 
 interface MailThreadDetailProps {
   thread: GmailThread | null;
@@ -97,6 +98,15 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
         </div>
 
         <div className="flex items-center space-x-2 shrink-0">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="px-3 py-1 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] hover:text-white rounded-sm text-[10px] uppercase font-bold"
+            title="Print Conversation"
+          >
+            🖨️ PRINT
+          </button>
+
           <button
             type="button"
             onClick={() => onToggleUnread(thread.id)}
@@ -271,7 +281,39 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">MESSAGE PAYLOAD *</label>
+              <div className="flex items-center justify-between mb-1">
+                <label className="block text-[#8C6D4F] uppercase">MESSAGE PAYLOAD *</label>
+
+                <div className="flex items-center space-x-3">
+                  <select
+                    onChange={(e) => {
+                      const tpl = GmailService.getTemplates().find((t) => t.id === e.target.value);
+                      if (tpl) {
+                        setReplyBody((prev) => (prev ? prev + '\n\n' + tpl.body : tpl.body));
+                      }
+                    }}
+                    className="bg-[#120F0C] border border-[#8C6D4F]/30 text-[#D4AF37] text-[10px] p-1 rounded-sm outline-none font-bold"
+                  >
+                    <option value="">-- Quick Template --</option>
+                    {GmailService.getTemplates().map((t) => (
+                      <option key={t.id} value={t.id}>{t.title}</option>
+                    ))}
+                  </select>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const defaultSig = GmailService.getSignatures().find((s) => s.isDefault) || GmailService.getSignatures()[0];
+                      if (defaultSig) {
+                        setReplyBody((prev) => prev + '\n\n' + defaultSig.contentHtml);
+                      }
+                    }}
+                    className="text-[10px] text-[#D4AF37] hover:underline font-bold"
+                  >
+                    + SIGNATURE
+                  </button>
+                </div>
+              </div>
               <textarea
                 required
                 rows={5}
