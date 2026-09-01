@@ -36,7 +36,7 @@ export const MailFolderSidebar: React.FC<MailFolderSidebarProps> = ({
   const userLabels = labels.filter((l) => l.type === 'user');
 
   return (
-    <aside className="w-full lg:w-64 bg-[#0A0806] border-b lg:border-b-0 lg:border-r border-[#8C6D4F]/30 p-4 flex flex-col justify-between shrink-0 font-mono text-xs select-none">
+    <aside className="w-full lg:w-64 bg-[#0A0806] border-b lg:border-b-0 lg:border-r border-[#8C6D4F]/30 p-4 flex flex-col justify-between shrink-0 font-mono text-xs select-none overflow-y-auto min-h-0 h-full scrollbar-thin">
       <div className="space-y-6">
         
         {/* Compose Button */}

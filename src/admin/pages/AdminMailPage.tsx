@@ -200,7 +200,7 @@ export const AdminMailPage: React.FC = () => {
   const isConnected = account.connected;
 
   return (
-    <div className="h-[calc(100vh-5rem)] flex flex-col font-sans bg-[#050403] text-[#E8DFD8] border border-[#8C6D4F]/30 rounded-sm overflow-hidden shadow-2xl">
+    <div className="h-[calc(100vh-5rem)] flex flex-col min-h-0 font-sans bg-[#050403] text-[#E8DFD8] border border-[#8C6D4F]/30 rounded-sm overflow-hidden shadow-2xl">
       
       {/* Top Microsoft Outlook Command Ribbon */}
       <OutlookCommandRibbon
@@ -231,7 +231,7 @@ export const AdminMailPage: React.FC = () => {
       )}
 
       {/* Main 3-Pane Viewport Container */}
-      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+      <div className="flex-1 min-h-0 flex flex-col lg:flex-row overflow-hidden">
         
         {/* Pane 1: Left Navigation Sidebar */}
         {!isFullscreen && (

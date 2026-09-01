@@ -93,7 +93,7 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
   };
 
   return (
-    <div className="flex-1 bg-[#050403] flex flex-col h-full overflow-hidden font-mono text-xs">
+    <div className="flex-1 min-w-0 min-h-0 bg-[#050403] flex flex-col h-full overflow-hidden font-mono text-xs">
       
       {/* Thread Action Header */}
       <div className="p-4 border-b border-[#8C6D4F]/30 bg-[#0A0806] flex flex-wrap items-center justify-between gap-4 shrink-0">
@@ -190,7 +190,7 @@ export const MailThreadDetail: React.FC<MailThreadDetailProps> = ({
       </div>
 
       {/* Messages Thread Timeline */}
-      <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+      <div className="flex-1 min-h-0 overflow-y-auto p-4 sm:p-6 space-y-6 scrollbar-thin">
         {thread.messages.map((msg, idx) => {
           const isSender = msg.from?.email.includes('tarunsinghchaudharyy') || msg.from?.name.includes('Tarun');
           const cleanBody = msg.bodyHtml ? sanitizeHtml(msg.bodyHtml) : msg.bodyText || '';

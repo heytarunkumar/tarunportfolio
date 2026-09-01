@@ -80,7 +80,7 @@ export const MailMessageList: React.FC<MailMessageListProps> = ({
   });
 
   return (
-    <div className="w-full lg:w-96 bg-[#070504] border-b lg:border-b-0 lg:border-r border-[#8C6D4F]/30 flex flex-col shrink-0 font-mono text-xs select-none h-full">
+    <div className="w-full lg:w-96 bg-[#070504] border-b lg:border-b-0 lg:border-r border-[#8C6D4F]/30 flex flex-col shrink-0 font-mono text-xs select-none h-full min-h-0">
       
       {/* Search Bar */}
       <div className="p-3 border-b border-[#8C6D4F]/30 bg-[#0A0806] space-y-2">
@@ -191,7 +191,7 @@ export const MailMessageList: React.FC<MailMessageListProps> = ({
       </div>
 
       {/* Threads List Viewport */}
-      <div className="flex-1 overflow-y-auto divide-y divide-[#8C6D4F]/15">
+      <div className="flex-1 min-h-0 overflow-y-auto divide-y divide-[#8C6D4F]/15 scrollbar-thin">
         {displayThreads.length === 0 ? (
           <div className="p-8 text-center text-[#8C6D4F] space-y-2">
             <span className="text-2xl block">📬</span>
