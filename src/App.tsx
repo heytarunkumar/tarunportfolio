@@ -81,6 +81,9 @@ function App() {
             <Route path="/admin/contact" element={<ProtectedRoute><AdminLayout><AdminContactManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/resume" element={<ProtectedRoute><AdminLayout><AdminResumeManager /></AdminLayout></ProtectedRoute>} />
             <Route path="/admin/settings" element={<ProtectedRoute><AdminLayout><AdminSettingsPage /></AdminLayout></ProtectedRoute>} />
+
+            {/* Catch-all route fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
       </PortfolioProvider>
