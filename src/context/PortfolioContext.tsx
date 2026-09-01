@@ -103,6 +103,9 @@ export interface PortfolioContextType {
   updateContact: (contact: Partial<ContactSettings>) => void;
   addMessage: (msg: { name: string; email: string; message: string }) => void;
   markMessageRead: (id: string) => void;
+  toggleMessageRead: (id: string) => void;
+  deleteMessage: (id: string) => void;
+  clearAllMessages: () => void;
 }
 
 const STORAGE_PREFIX = 'tarun_portfolio_cms_';
@@ -334,6 +337,39 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     });
   };
 
+  const toggleMessageRead = (id: string) => {
+    setContact((prev) => {
+      const next = {
+        ...prev,
+        inboxMessages: prev.inboxMessages.map((m) => (m.id === id ? { ...m, read: !m.read } : m)),
+      };
+      safeSetStorage('contact', next);
+      return next;
+    });
+  };
+
+  const deleteMessage = (id: string) => {
+    setContact((prev) => {
+      const next = {
+        ...prev,
+        inboxMessages: prev.inboxMessages.filter((m) => m.id !== id),
+      };
+      safeSetStorage('contact', next);
+      return next;
+    });
+  };
+
+  const clearAllMessages = () => {
+    setContact((prev) => {
+      const next = {
+        ...prev,
+        inboxMessages: [],
+      };
+      safeSetStorage('contact', next);
+      return next;
+    });
+  };
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -364,6 +400,9 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         updateContact,
         addMessage,
         markMessageRead,
+        toggleMessageRead,
+        deleteMessage,
+        clearAllMessages,
       }}
     >
       {children}
