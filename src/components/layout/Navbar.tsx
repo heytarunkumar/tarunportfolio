@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 export const Navbar: React.FC = () => {
-  const { profile, navigation } = usePortfolio();
+  const { profile, navigation, theme, toggleTheme } = usePortfolio();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -94,8 +94,48 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Action Button, Theme Toggle & Mobile Toggle */}
+        <div className="flex items-center space-x-2.5 sm:space-x-3.5">
+          
+          {/* Theme Toggle Button */}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            className="p-2 sm:p-2.5 rounded-full border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-[#D4AF37] transition-all duration-300 backdrop-blur-sm shadow-sm flex items-center justify-center cursor-pointer group"
+          >
+            <AnimatePresence mode="wait" initial={false}>
+              {theme === 'dark' ? (
+                <motion.span
+                  key="sun"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-[#D4AF37] flex items-center justify-center"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z" />
+                  </svg>
+                </motion.span>
+              ) : (
+                <motion.span
+                  key="moon"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-[#9E7815] flex items-center justify-center"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12.3 2a10 10 0 0 0-.19 2 10 10 0 0 0 10 10c.69 0 1.36-.07 2-.19A10 10 0 0 1 12.3 2z" />
+                  </svg>
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </button>
+
           <Link
             to="/contact"
             className="hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] focus:outline-none cursor-pointer"
@@ -159,7 +199,18 @@ export const Navbar: React.FC = () => {
               ))}
             </div>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-col space-y-3">
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="w-full flex items-center justify-between py-3 px-4 rounded-xl border border-[#26211B] bg-[#12100E] text-xs font-mono uppercase text-[#F5F2EB]"
+              >
+                <span>THEME APPEARANCE</span>
+                <span className="text-[#D4AF37] font-bold">
+                  {theme === 'dark' ? '☀️ SWITCH TO LIGHT' : '🌙 SWITCH TO DARK'}
+                </span>
+              </button>
+
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}

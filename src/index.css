@@ -10,6 +10,7 @@
     background-color: #0A0908;
     color: #F5F2EB;
     font-family: 'Plus Jakarta Sans', 'Work Sans', 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   :focus-visible {
@@ -34,6 +35,115 @@
     font-family: 'Instrument Serif', Georgia, serif;
     font-style: italic;
   }
+}
+
+/* =========================================================================
+   LIGHT THEME SYSTEM (Editorial Ivory & Polished Gold)
+   ========================================================================= */
+html.light,
+html[data-theme="light"],
+html.light body,
+html[data-theme="light"] body {
+  background-color: #FAF8F5 !important;
+  color: #171513 !important;
+}
+
+/* Surfaces & Containers */
+html.light .bg-\[\#0A0908\],
+html[data-theme="light"] .bg-\[\#0A0908\],
+html.light .bg-\[\#0A0908\]\/92,
+html[data-theme="light"] .bg-\[\#0A0908\]\/92 {
+  background-color: #FAF8F5 !important;
+}
+
+html.light .bg-\[\#12100E\],
+html[data-theme="light"] .bg-\[\#12100E\] {
+  background-color: #FFFFFF !important;
+}
+
+html.light .bg-\[\#1A1612\],
+html[data-theme="light"] .bg-\[\#1A1612\],
+html.light .bg-\[\#171411\],
+html[data-theme="light"] .bg-\[\#171411\] {
+  background-color: #F1ECE3 !important;
+}
+
+html.light .bg-\[\#0E0C0A\],
+html[data-theme="light"] .bg-\[\#0E0C0A\] {
+  background-color: #F5F1E8 !important;
+}
+
+/* Borders */
+html.light .border-\[\#26211B\],
+html[data-theme="light"] .border-\[\#26211B\],
+html.light .border-\[\#8C6D4F\]\/30,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/30,
+html.light .border-\[\#8C6D4F\]\/20,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/20 {
+  border-color: #E2DBD0 !important;
+}
+
+/* Typography Overrides */
+html.light .text-white,
+html[data-theme="light"] .text-white,
+html.light .text-\[\#F5F2EB\],
+html[data-theme="light"] .text-\[\#F5F2EB\],
+html.light .text-\[\#FFF5EB\],
+html[data-theme="light"] .text-\[\#FFF5EB\] {
+  color: #171513 !important;
+}
+
+html.light .text-\[\#C4BCB3\],
+html[data-theme="light"] .text-\[\#C4BCB3\],
+html.light .text-\[\#C4B5A5\],
+html[data-theme="light"] .text-\[\#C4B5A5\],
+html.light .text-\[\#A8988B\],
+html[data-theme="light"] .text-\[\#A8988B\],
+html.light .text-\[\#E8DFD8\],
+html[data-theme="light"] .text-\[\#E8DFD8\] {
+  color: #4A443C !important;
+}
+
+html.light .text-\[\#8C6D4F\],
+html[data-theme="light"] .text-\[\#8C6D4F\] {
+  color: #8C7862 !important;
+}
+
+html.light .text-\[\#D4AF37\],
+html[data-theme="light"] .text-\[\#D4AF37\] {
+  color: #9E7815 !important;
+}
+
+/* Keep Dark Text on Gold Gradient Buttons */
+html.light .text-\[\#0A0908\],
+html[data-theme="light"] .text-\[\#0A0908\] {
+  color: #0A0908 !important;
+}
+
+/* Light Mode Card Shadows */
+html.light .card-lift,
+html[data-theme="light"] .card-lift {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+html.light .card-lift:hover,
+html[data-theme="light"] .card-lift:hover {
+  border-color: rgba(158, 120, 21, 0.45) !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 0 20px -6px rgba(158, 120, 21, 0.2);
+}
+
+/* Light Mode Scrollbar */
+html.light::-webkit-scrollbar-track,
+html[data-theme="light"]::-webkit-scrollbar-track {
+  background: #F1ECE3;
+}
+html.light::-webkit-scrollbar-thumb,
+html[data-theme="light"]::-webkit-scrollbar-thumb {
+  background: #B8A896;
+}
+html.light::-webkit-scrollbar-thumb:hover,
+html[data-theme="light"]::-webkit-scrollbar-thumb:hover {
+  background: #9E7815;
 }
 
 /* Custom Scrollbar */

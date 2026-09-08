@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { profileData as initialProfile, type Profile } from '../data/profile';
 import { projectsData as initialProjects, type Project } from '../data/projects';
 import { skillsData as initialSkills, type SkillGroup } from '../data/skills';
@@ -100,6 +100,8 @@ export interface PortfolioContextType {
 
   design: DesignSettings;
   updateDesign: (design: Partial<DesignSettings>) => void;
+  theme: 'dark' | 'light';
+  toggleTheme: () => void;
 
   contact: ContactSettings;
   updateContact: (contact: Partial<ContactSettings>) => void;
@@ -210,6 +212,33 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [seo, setSeo] = useState<SeoSettings>(() => safeGetStorage('seo', initialSeo));
   const [design, setDesign] = useState<DesignSettings>(() => safeGetStorage('design', initialDesign));
   const [contact, setContact] = useState<ContactSettings>(() => safeGetStorage('contact', initialContact));
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    if (typeof window === 'undefined') return 'dark';
+    try {
+      const saved = localStorage.getItem('tarun_portfolio_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch {}
+    return 'dark';
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const root = document.documentElement;
+    if (theme === 'light') {
+      root.classList.add('light');
+      root.setAttribute('data-theme', 'light');
+    } else {
+      root.classList.remove('light');
+      root.setAttribute('data-theme', 'dark');
+    }
+    try {
+      localStorage.setItem('tarun_portfolio_theme', theme);
+    } catch {}
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Save changes to LocalStorage
   const updateProfile = (updated: Partial<Profile>) => {
@@ -418,6 +447,8 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         updateSeo,
         design,
         updateDesign,
+        theme,
+        toggleTheme,
         contact,
         updateContact,
         addMessage,
