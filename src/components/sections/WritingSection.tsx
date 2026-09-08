@@ -9,7 +9,7 @@ export const WritingSection: React.FC = () => {
   return (
     <section
       id="writing"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black py-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
       {/* Ambient Studio Glow */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
@@ -25,8 +25,8 @@ export const WritingSection: React.FC = () => {
           className="flex items-center space-x-4 mb-5"
         >
           <span
-            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#D4AF37]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             07 / TECHNICAL DISPATCHES
           </span>
@@ -46,11 +46,11 @@ export const WritingSection: React.FC = () => {
               className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.2rem] tracking-tight uppercase leading-[0.85] select-none"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
                 TECHNICAL WRITING.
               </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                KNOWLEDGE SHARING.
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]">
+                KNOWLEDGE &amp; VERDICTS.
               </span>
             </h2>
           </div>
@@ -77,8 +77,7 @@ export const WritingSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="relative p-6 sm:p-8 rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B]/85 backdrop-blur-xl overflow-hidden transition-all duration-300 hover:border-[#D4AF37] group flex flex-col justify-between"
+              className="card-lift relative p-6 sm:p-8 rounded-2xl border border-[#8C6D4F]/35 bg-[#12100E] backdrop-blur-xl overflow-hidden group flex flex-col justify-between"
             >
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -99,8 +98,8 @@ export const WritingSection: React.FC = () => {
                 </h3>
 
                 <p
-                  className="text-xs text-[#A8988B] font-light leading-relaxed mb-6"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  className="text-xs text-[#C4BCB3] font-light leading-relaxed mb-6"
+                  style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {article.summary}
                 </p>
@@ -111,7 +110,7 @@ export const WritingSection: React.FC = () => {
                   {(article.tags || []).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#171310] text-[#C4B5A5]"
+                      className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#1A1714] text-[#F5F2EB]"
                     >
                       #{tag}
                     </span>
@@ -119,7 +118,7 @@ export const WritingSection: React.FC = () => {
                 </div>
 
                 <span className="text-xs font-mono text-[#D4AF37] group-hover:translate-x-1 transition-transform">
-                  READ ↗
+                  READ ARTICLE ↗
                 </span>
               </div>
             </motion.a>

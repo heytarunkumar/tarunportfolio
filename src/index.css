@@ -2,12 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background-color: #000;
-  color: #E8DFD8;
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #0A0908;
+    color: #F5F2EB;
+    font-family: 'Plus Jakarta Sans', 'Work Sans', 'Montserrat', sans-serif;
+  }
+
+  :focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .card-lift {
+    will-change: transform, box-shadow, border-color;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card-lift:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7), 0 0 20px -8px rgba(212, 175, 55, 0.15);
+  }
+
+  .editorial-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+  }
 }
 
 /* Custom Scrollbar */
@@ -15,7 +41,7 @@ html, body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #050403;
+  background: #060504;
 }
 ::-webkit-scrollbar-thumb {
   background: #8C6D4F;

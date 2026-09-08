@@ -23,7 +23,7 @@ export const ExperienceSection: React.FC = () => {
     <section
       id="experience"
       ref={containerRef}
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black py-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#D4AF37]/[0.03] rounded-full blur-[150px] pointer-events-none" />
@@ -39,8 +39,8 @@ export const ExperienceSection: React.FC = () => {
           className="flex items-center space-x-4 mb-7"
         >
           <span
-            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#D4AF37]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             06 / EXPERIENCE &amp; MILESTONES
           </span>
@@ -59,10 +59,10 @@ export const ExperienceSection: React.FC = () => {
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
-              ENGINEERING ROADMAP &amp;
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
+              VENTURE &amp; LEADERSHIP
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]">
               MILESTONES.
             </span>
           </h2>
@@ -94,14 +94,14 @@ export const ExperienceSection: React.FC = () => {
                 >
                   {/* Year Label */}
                   <div className="hidden md:block w-[140px] shrink-0 pr-8 pt-0.5 text-right">
-                    <span className="text-[10px] font-mono tracking-[0.2em] text-[#8C6D4F] group-hover:text-[#D4AF37] transition-colors">
+                    <span className="text-[10.5px] font-mono tracking-[0.2em] text-[#8C6D4F] group-hover:text-[#D4AF37] transition-colors">
                       {item.year}
                     </span>
                   </div>
 
                   {/* Timeline Node */}
                   <div className="absolute left-[19px] md:left-[140px] top-1.5 -translate-x-1/2 flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#120F0C] border border-[#8C6D4F] group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-colors duration-300" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#12100E] border border-[#8C6D4F] group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-colors duration-300" />
                   </div>
 
                   {/* Content */}
@@ -117,7 +117,7 @@ export const ExperienceSection: React.FC = () => {
                         <img
                           src={item.logoUrl}
                           alt={item.organization}
-                          className="w-7 h-7 object-contain rounded bg-[#0A0806] border border-[#8C6D4F]/30 p-0.5"
+                          className="w-7 h-7 object-contain rounded bg-[#0A0908] border border-[#8C6D4F]/30 p-0.5"
                         />
                       )}
                       <h3
@@ -140,15 +140,15 @@ export const ExperienceSection: React.FC = () => {
                         {item.organization}
                       </span>
                       {item.tagline && (
-                        <span className="text-[9px] font-mono text-[#8C6D4F] border border-[#8C6D4F]/30 px-1.5 py-0.5 rounded-sm bg-[#0E0C0A]">
+                        <span className="text-[9px] font-mono text-[#8C6D4F] border border-[#8C6D4F]/30 px-1.5 py-0.5 rounded-sm bg-[#12100E]">
                           &quot;{item.tagline}&quot;
                         </span>
                       )}
                     </div>
                     
                     <p 
-                      className="text-xs sm:text-[13px] font-light text-[#A8988B] leading-[1.7] max-w-xl mb-3"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      className="text-xs sm:text-[13px] font-light text-[#C4BCB3] leading-[1.7] max-w-xl mb-3"
+                      style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
                       {item.description}
                     </p>
@@ -175,7 +175,7 @@ export const ExperienceSection: React.FC = () => {
                             KEY RESPONSIBILITIES &amp; SCOPE:
                           </span>
                           {(item.responsibilities || []).map((resp, i) => (
-                            <p key={i} className="text-xs text-[#C4B5A5] font-light flex items-start space-x-2">
+                            <p key={i} className="text-xs text-[#E8E3D8] font-light flex items-start space-x-2">
                               <span className="text-[#D4AF37]">›</span>
                               <span>{resp}</span>
                             </p>
@@ -188,7 +188,7 @@ export const ExperienceSection: React.FC = () => {
                       {(item.technologies || []).map((t) => (
                         <span
                           key={t}
-                          className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#120F0C] text-[#C4B5A5]"
+                          className="px-2 py-0.5 text-[9.5px] font-mono rounded-sm border border-[#8C6D4F]/25 bg-[#12100E] text-[#C4BCB3]"
                         >
                           {t}
                         </span>

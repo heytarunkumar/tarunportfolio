@@ -74,8 +74,11 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-20 pb-20 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#E8DFD8] font-sans selection:bg-[#D4AF37]/30 selection:text-white pt-24 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
     >
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
+
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
         {/* Split Grid */}
@@ -89,14 +92,11 @@ export const ContactSection: React.FC = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.6 }}
                 className="flex items-center space-x-4 mb-5"
               >
-                <span
-                  className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  08 / GET IN TOUCH
+                <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+                  08 / INITIATE CONTACT
                 </span>
                 <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
               </motion.div>
@@ -109,63 +109,54 @@ export const ContactSection: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-6"
               >
-                <h2
-                  className="text-5xl sm:text-6xl md:text-7xl tracking-tight uppercase leading-[0.85] select-none"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                >
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
-                    LET&apos;S BUILD
-                  </span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                    SOMETHING USEFUL.
-                  </span>
+                <h2 className="text-4xl sm:text-5xl font-serif text-white tracking-tight leading-[1.1] mb-2">
+                  Let&apos;s build <span className="italic text-[#D4AF37]">meaningful</span> intelligence.
                 </h2>
               </motion.div>
 
-              <p
-                className="text-xs sm:text-[13.5px] font-light text-[#A8988B] leading-relaxed max-w-md mb-8"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                Have a Python backend API to architect, cloud infrastructure task, DevOps automation pipeline, or software engineering opportunity? Send a direct dispatch below.
+              <p className="text-sm font-sans font-light text-[#A8988B] leading-relaxed max-w-md mb-8">
+                Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct messages are welcome.
               </p>
             </div>
 
-            {/* Social Links */}
-            <div className="space-y-3 pt-6 border-t border-[#8C6D4F]/20 font-mono text-xs">
-              <span className="text-[#8C6D4F] text-[10px] block uppercase tracking-widest">
-                // DIRECT CHANNELS
+            {/* Quick Contact Cards */}
+            <div className="space-y-4 font-mono text-xs">
+              <span className="text-[#8C6D4F] text-[10px] block uppercase tracking-widest font-mono">
+                // DIRECT COMMUNICATIONS
               </span>
-              <div className="flex flex-col space-y-2">
-                <a
-                  href={`mailto:${contactEmail}`}
-                  className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors flex items-center space-x-2"
-                >
-                  <span className="text-[#D4AF37]">EMAIL:</span>
-                  <span>{contactEmail}</span>
-                </a>
+              
+              <a
+                href={`mailto:${contactEmail}`}
+                className="card-lift block p-4 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 transition-all group"
+              >
+                <div className="text-[10px] text-[#D4AF37] uppercase tracking-wider mb-1 font-mono">Primary Dispatch Email</div>
+                <div className="text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors">{contactEmail}</div>
+              </a>
+
+              <div className="grid grid-cols-3 gap-3">
                 <a
                   href={linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
+                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  LINKEDIN ↗
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">LinkedIn ↗</span>
                 </a>
                 <a
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
+                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  GITHUB ↗
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">GitHub ↗</span>
                 </a>
                 <a
                   href={mediumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#EAD8C7] hover:text-[#D4AF37] transition-colors"
+                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  MEDIUM ↗
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Medium ↗</span>
                 </a>
               </div>
             </div>
@@ -177,25 +168,25 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 relative w-full rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.9)] overflow-hidden"
+            className="lg:col-span-7 relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden card-lift"
           >
             {/* Top Gold Horizon Edge */}
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />
             
             {status === 'success' ? (
               <div className="py-16 text-center space-y-4">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-[#D4AF37] text-[#D4AF37] text-lg font-bold">
                   ✓
                 </div>
-                <h3 className="text-3xl text-white font-normal uppercase" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
-                  TRANSMISSION DELIVERED
+                <h3 className="text-2xl font-serif text-white">
+                  Transmission Delivered
                 </h3>
-                <p className="text-xs text-[#A8988B] font-light max-w-sm mx-auto" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                <p className="text-xs text-[#A8988B] font-light max-w-sm mx-auto">
                   {contact?.successMessage || 'Thank you. Your message payload has been dispatched. Tarun will review and respond shortly.'}
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
-                  className="mt-4 px-6 py-2 border border-[#8C6D4F]/50 text-xs font-mono text-[#D4AF37] hover:border-[#D4AF37]"
+                  className="mt-4 px-6 py-2 rounded-lg border border-[#8C6D4F]/50 text-xs font-mono text-[#D4AF37] hover:border-[#D4AF37] transition-colors"
                 >
                   SEND ANOTHER DISPATCH
                 </button>
@@ -204,14 +195,14 @@ export const ContactSection: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 
                 {status === 'error' && (
-                  <div className="p-3 border border-red-500/50 bg-red-950/30 text-red-300 text-xs font-mono rounded-sm">
+                  <div className="p-3.5 border border-red-500/40 bg-red-950/20 text-red-300 text-xs font-mono rounded-xl">
                     ⚠️ {errorMessage}
                   </div>
                 )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="contact-name" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-name" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
                       // SENDER NAME *
                     </label>
                     <input
@@ -220,14 +211,13 @@ export const ContactSection: React.FC = () => {
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Enter your name"
-                      className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      placeholder="e.g. Alex Vance"
+                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-email" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
                       // EMAIL ADDRESS *
                     </label>
                     <input
@@ -236,30 +226,28 @@ export const ContactSection: React.FC = () => {
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="Enter your email"
-                      className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
-                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                      placeholder="e.g. alex@company.com"
+                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="contact-subject" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
-                    // SUBJECT
+                  <label htmlFor="contact-subject" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    // SUBJECT / TOPIC
                   </label>
                   <input
                     id="contact-subject"
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Engineering Inquiry / Opportunity"
-                    className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3 outline-none rounded-sm transition-colors"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    placeholder="AI Collaboration / Tech Talk / Project Inquiry"
+                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-[9.5px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-message" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
                     // MESSAGE PAYLOAD *
                   </label>
                   <textarea
@@ -268,19 +256,17 @@ export const ContactSection: React.FC = () => {
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Enter your message transmission payload..."
-                    className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 p-4 outline-none rounded-sm transition-colors resize-none"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    placeholder="Describe your project, community idea, or inquiry..."
+                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 p-4 outline-none rounded-xl transition-colors resize-none font-sans"
                   />
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="w-full py-3.5 border border-[#8C6D4F]/50 bg-[#14100D] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#E8DFD8] hover:text-black text-xs font-semibold tracking-[0.25em] uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] disabled:opacity-50"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  className="w-full py-4 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 disabled:opacity-50 cursor-pointer font-mono"
                 >
-                  {status === 'submitting' ? 'TRANSMITTING PAYLOAD...' : 'EXECUTE DISPATCH ↗'}
+                  {status === 'submitting' ? 'DISPATCHING PAYLOAD...' : 'DISPATCH MESSAGE ↗'}
                 </button>
 
               </form>

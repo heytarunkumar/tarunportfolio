@@ -16,7 +16,7 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 25, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
@@ -54,7 +54,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-full bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
     >
       {/* Ambient Glows */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
@@ -71,8 +71,8 @@ export const SkillsSection: React.FC = () => {
           className="flex items-center space-x-4 mb-7"
         >
           <span
-            className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
+            className="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#D4AF37]"
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             02 / TECHNICAL ECOSYSTEM
           </span>
@@ -92,11 +92,11 @@ export const SkillsSection: React.FC = () => {
               className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
               style={{ fontFamily: "'Bebas Neue', sans-serif" }}
             >
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
                 TECHNICAL STACK.
               </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                SKILL &amp; PROJECT ECOSYSTEM.
+              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]">
+                SKILL &amp; LEARNING ROADMAP.
               </span>
             </h2>
           </div>
@@ -108,10 +108,10 @@ export const SkillsSection: React.FC = () => {
                 cat === 'all'
                   ? 'ALL'
                   : cat === 'core'
-                  ? 'CORE'
+                  ? 'CORE PRODUCTION'
                   : cat === 'building'
-                  ? 'CURRENTLY BUILDING'
-                  : 'APPLIED';
+                  ? 'CURRENTLY EXPLORING'
+                  : 'APPLIED & RESEARCH';
               const isActive = activeCategory === cat;
 
               return (
@@ -121,7 +121,7 @@ export const SkillsSection: React.FC = () => {
                   className={`px-3.5 py-1.5 uppercase tracking-widest transition-all duration-300 border rounded-sm ${
                     isActive
                       ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.2)]'
-                      : 'border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] hover:text-white hover:border-[#D4AF37]/60'
+                      : 'border-[#8C6D4F]/30 bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/60'
                   }`}
                 >
                   {label}
@@ -139,10 +139,10 @@ export const SkillsSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="lg:col-span-4 lg:sticky lg:top-28 rounded-sm border border-[#8C6D4F]/40 bg-[#0A0806] p-6 shadow-2xl font-mono text-xs text-[#E8DFD8] relative overflow-hidden"
+            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-sm border border-[#8C6D4F]/35 bg-[#12100E]/95 p-6 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
           >
             {/* Header Status Bar */}
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#8C6D4F]/30">
+            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#8C6D4F]/25">
               <div className="flex items-center space-x-2">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
                 <span className="text-[10px] tracking-widest text-[#D4AF37] uppercase">
@@ -161,26 +161,30 @@ export const SkillsSection: React.FC = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
+                transition={{ duration: 0.22 }}
                 className="space-y-4"
               >
                 <div>
                   <span className="text-2xl font-bold tracking-tight text-white block mb-1" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
                     {activeSkill.name}
                   </span>
-                  <div className="inline-block px-2 py-0.5 border border-[#8C6D4F]/50 bg-[#140F0C] text-[10px] text-[#D4AF37] uppercase">
+                  <div className={`inline-block px-2 py-0.5 border text-[10px] uppercase rounded-sm ${
+                    activeSkill.category === 'building'
+                      ? 'border-amber-500/40 bg-amber-950/30 text-amber-300'
+                      : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300'
+                  }`}>
                     STATUS: {activeSkill.status}
                   </div>
                 </div>
 
-                <p className="text-[#A8988B] text-[11.5px] font-sans font-light leading-relaxed">
+                <p className="text-[#C4BCB3] text-[12px] font-sans font-light leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   {activeSkill.description}
                 </p>
 
                 {/* Related Projects Linkage */}
                 <div className="pt-3 border-t border-[#8C6D4F]/20">
                   <span className="text-[10px] text-[#8C6D4F] tracking-widest uppercase block mb-2">
-                    RELATED DEMONSTRATED PROJECTS ({activeSkill.relatedProjects.length})
+                    DEMONSTRATED PROJECTS ({activeSkill.relatedProjects.length})
                   </span>
                   {activeSkill.relatedProjects.length > 0 ? (
                     <div className="space-y-2">
@@ -191,10 +195,10 @@ export const SkillsSection: React.FC = () => {
                           <a
                             key={slug}
                             href="#work"
-                            className="block p-2 rounded-sm border border-[#8C6D4F]/30 bg-[#120F0C] hover:border-[#D4AF37] hover:bg-[#1A140F] transition-all group"
+                            className="block p-2.5 rounded-sm border border-[#8C6D4F]/25 bg-[#1A1714] hover:border-[#D4AF37] hover:bg-[#221D18] transition-all group"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="text-[11px] text-[#EAD8C7] group-hover:text-[#D4AF37]">
+                              <span className="text-[11px] text-[#F5F2EB] group-hover:text-[#D4AF37] font-medium">
                                 {proj.title}
                               </span>
                               <span className="text-[10px] text-[#8C6D4F] group-hover:text-[#D4AF37]">↗</span>
@@ -208,7 +212,7 @@ export const SkillsSection: React.FC = () => {
                     </div>
                   ) : (
                     <p className="text-[10.5px] text-[#8C6D4F] italic">
-                      Currently developing in active Engineering Lab learning track.
+                      Hands-on practice in active Engineering Lab learning track.
                     </p>
                   )}
                 </div>
@@ -224,68 +228,79 @@ export const SkillsSection: React.FC = () => {
             viewport={{ once: true, margin: '-60px' }}
             className="lg:col-span-8 grid grid-cols-1 md:grid-cols-12 gap-6"
           >
-            {filteredGroups.map((block) => (
-              <motion.div
-                key={block.id}
-                variants={cardVariants}
-                className="md:col-span-12 relative p-7 rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B]/85 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[#D4AF37]/70"
-              >
-                {/* Header Badge & Status */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#D4AF37]">
-                    {block.badge}
-                  </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 border border-[#8C6D4F]/40 text-[#C4B5A5] bg-[#17130F]">
-                    {block.statusText}
-                  </span>
-                </div>
+            {filteredGroups.map((block) => {
+              const isLearningTrack = block.category === 'building';
 
-                {/* Title */}
-                <h3
-                  className="text-2xl sm:text-3xl font-normal tracking-wide text-white mb-2"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+              return (
+                <motion.div
+                  key={block.id}
+                  variants={cardVariants}
+                  className="card-lift md:col-span-12 relative p-7 rounded-sm border border-[#8C6D4F]/30 bg-[#12100E] backdrop-blur-xl overflow-hidden group"
                 >
-                  {block.title}
-                </h3>
+                  {/* Top Subtle Flare */}
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
 
-                <p
-                  className="text-xs text-[#A8988B] font-light leading-relaxed mb-5"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  {block.description}
-                </p>
+                  {/* Header Badge & Status */}
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#D4AF37]">
+                      {block.badge}
+                    </span>
+                    <span className={`text-[10px] font-mono px-2.5 py-0.5 border rounded-sm uppercase ${
+                      isLearningTrack
+                        ? 'border-amber-500/40 bg-amber-950/30 text-amber-300 font-medium'
+                        : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300 font-medium'
+                    }`}>
+                      {block.statusText}
+                    </span>
+                  </div>
 
-                {/* Interactive Skill Badges */}
-                <div className="flex flex-wrap gap-2 pt-3 border-t border-[#8C6D4F]/20">
-                  {block.skills.map((tech) => {
-                    const isSelected = activeSkill.id === tech.id;
-                    const isBuilding = tech.category === 'building';
+                  {/* Title */}
+                  <h3
+                    className="text-2xl sm:text-3xl font-normal tracking-wide text-white mb-2"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
+                    {block.title}
+                  </h3>
 
-                    return (
-                      <button
-                        key={tech.id}
-                        onClick={() => setSelectedSkill(tech)}
-                        onMouseEnter={() => setSelectedSkill(tech)}
-                        onFocus={() => setSelectedSkill(tech)}
-                        className={`px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border text-left transition-all duration-300 focus:outline-none focus:ring-1 focus:ring-[#D4AF37] ${
-                          isSelected
-                            ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.3)]'
-                            : isBuilding
-                            ? 'border-sky-500/40 bg-sky-950/20 text-sky-200 hover:border-sky-400 hover:bg-sky-950/40'
-                            : 'border-[#8C6D4F]/35 bg-[#171310] text-[#E8D7C5] hover:border-[#D4AF37]/50 hover:bg-[#1F1914] hover:text-white'
-                        }`}
-                        style={{ fontFamily: "'Montserrat', sans-serif" }}
-                      >
-                        <span>{tech.name}</span>
-                        {tech.relatedProjects.length > 0 && (
-                          <span className="ml-1.5 opacity-60 text-[9px]">({tech.relatedProjects.length})</span>
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))}
+                  <p
+                    className="text-xs text-[#C4BCB3] font-light leading-relaxed mb-5"
+                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                  >
+                    {block.description}
+                  </p>
+
+                  {/* Interactive Skill Badges */}
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[#8C6D4F]/20">
+                    {block.skills.map((tech) => {
+                      const isSelected = activeSkill.id === tech.id;
+                      const isBuilding = tech.category === 'building';
+
+                      return (
+                        <button
+                          key={tech.id}
+                          onClick={() => setSelectedSkill(tech)}
+                          onMouseEnter={() => setSelectedSkill(tech)}
+                          onFocus={() => setSelectedSkill(tech)}
+                          className={`px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border text-left transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[#D4AF37] ${
+                            isSelected
+                              ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.3)]'
+                              : isBuilding
+                              ? 'border-amber-500/30 bg-amber-950/20 text-amber-200 hover:border-amber-400 hover:bg-amber-950/40'
+                              : 'border-[#8C6D4F]/30 bg-[#1A1714] text-[#F5F2EB] hover:border-[#D4AF37]/50 hover:bg-[#221D18]'
+                          }`}
+                          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                        >
+                          <span>{tech.name}</span>
+                          {tech.relatedProjects.length > 0 && (
+                            <span className="ml-1.5 opacity-60 text-[9px]">({tech.relatedProjects.length})</span>
+                          )}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
 
         </div>
