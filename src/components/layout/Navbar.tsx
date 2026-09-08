@@ -171,71 +171,78 @@ export const Navbar: React.FC = () => {
             <span className={`text-xs ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#9E7815]'}`}>↗</span>
           </Link>
 
-          {/* Theme Toggle Button (Right of Let's Connect) */}
+          {/* Sliding Theme Toggle Button (Right of Let's Connect) */}
           <button
             type="button"
+            role="switch"
+            aria-checked={theme === 'dark'}
             onClick={toggleTheme}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D4AF37] ${
+            className={`w-14 h-8 rounded-full p-1 flex items-center transition-colors duration-300 border cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D4AF37] relative select-none ${
               theme === 'dark'
-                ? 'bg-[#161310] border border-[#3D342B] hover:border-[#D4AF37] text-[#F5C542] shadow-[0_2px_10px_rgba(0,0,0,0.6)] hover:shadow-[0_0_15px_rgba(212,175,55,0.35)]'
-                : 'bg-white border border-[#D5CEBF] hover:border-[#9E7815] text-[#9E7815] shadow-[0_2px_10px_rgba(0,0,0,0.08)] hover:shadow-[0_2px_16px_rgba(158,120,21,0.25)]'
+                ? 'bg-[#141210] border-[#3D342B] justify-end shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]'
+                : 'bg-[#EDE7DC] border-[#D5CEBF] justify-start shadow-[inset_0_2px_4px_rgba(0,0,0,0.08)]'
             }`}
           >
-            <AnimatePresence mode="wait" initial={false}>
+            {/* Ambient background icons */}
+            <div className="absolute inset-0 px-2 flex items-center justify-between pointer-events-none text-[10px]">
+              <span className={`transition-opacity duration-200 ${theme === 'light' ? 'opacity-0' : 'opacity-40 text-[#D4AF37]'}`}>
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z" />
+                </svg>
+              </span>
+              <span className={`transition-opacity duration-200 ${theme === 'dark' ? 'opacity-0' : 'opacity-40 text-[#8C6D4F]'}`}>
+                <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.3 2a10 10 0 0 0-.19 2 10 10 0 0 0 10 10c.69 0 1.36-.07 2-.19A10 10 0 0 1 12.3 2z" />
+                </svg>
+              </span>
+            </div>
+
+            {/* Sliding thumb knob */}
+            <motion.div
+              layout
+              transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              className={`w-6 h-6 rounded-full flex items-center justify-center shadow-md relative z-10 ${
+                theme === 'dark'
+                  ? 'bg-[#241F1A] border border-[#D4AF37]/60 text-[#F5C542] shadow-[0_2px_8px_rgba(0,0,0,0.8)]'
+                  : 'bg-white border border-[#D5CEBF] text-[#9E7815] shadow-[0_2px_8px_rgba(0,0,0,0.18)]'
+              }`}
+            >
               {theme === 'dark' ? (
-                <motion.span
-                  key="sun"
-                  initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center justify-center"
+                <svg
+                  className="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="4.5" fill="#F5C542" />
-                    <line x1="12" y1="1" x2="12" y2="3" />
-                    <line x1="12" y1="21" x2="12" y2="23" />
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                    <line x1="1" y1="12" x2="3" y2="12" />
-                    <line x1="21" y1="12" x2="23" y2="12" />
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                  </svg>
-                </motion.span>
+                  <circle cx="12" cy="12" r="4" fill="#F5C542" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
               ) : (
-                <motion.span
-                  key="moon"
-                  initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center justify-center"
+                <svg
+                  className="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
-                  <svg
-                    className="w-5 h-5"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                  </svg>
-                </motion.span>
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
               )}
-            </AnimatePresence>
+            </motion.div>
           </button>
 
           {/* Hamburger Mobile Button */}
@@ -310,27 +317,46 @@ export const Navbar: React.FC = () => {
             </div>
 
             <div className="pt-4 flex flex-col space-y-3">
-              <button
-                type="button"
+              <div
                 onClick={toggleTheme}
+                role="switch"
+                aria-checked={theme === 'dark'}
                 className={`w-full flex items-center justify-between py-3 px-4 rounded-xl border text-xs font-mono uppercase transition-all duration-200 cursor-pointer ${
                   theme === 'dark'
                     ? 'border-[#3D342B] bg-[#161310] text-[#F5F2EB]'
                     : 'border-[#D5CEBF] bg-white text-[#171513]'
                 }`}
               >
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2.5">
                   <span className="text-sm">{theme === 'dark' ? '☀️' : '🌙'}</span>
-                  <span className="tracking-wider">THEME MODE</span>
+                  <span className="tracking-wider">{theme === 'dark' ? 'DARK THEME' : 'LIGHT THEME'}</span>
                 </div>
-                <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
-                  theme === 'dark'
-                    ? 'bg-amber-950/40 border border-amber-500/40 text-[#F5C542]'
-                    : 'bg-amber-50 border border-amber-300 text-[#9E7815]'
-                }`}>
-                  {theme === 'dark' ? 'DARK (CLICK FOR LIGHT)' : 'LIGHT (CLICK FOR DARK)'}
-                </span>
-              </button>
+                
+                {/* Mini Sliding Switch */}
+                <div
+                  className={`w-12 h-6 rounded-full p-0.5 flex items-center transition-colors duration-300 border relative ${
+                    theme === 'dark'
+                      ? 'bg-[#141210] border-[#3D342B] justify-end'
+                      : 'bg-[#EDE7DC] border-[#D5CEBF] justify-start'
+                  }`}
+                >
+                  <motion.div
+                    layout
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    className={`w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm ${
+                      theme === 'dark'
+                        ? 'bg-[#241F1A] border border-[#D4AF37]/60 text-[#F5C542]'
+                        : 'bg-white border border-[#D5CEBF] text-[#9E7815]'
+                    }`}
+                  >
+                    {theme === 'dark' ? (
+                      <span className="text-[9px]">☀️</span>
+                    ) : (
+                      <span className="text-[9px]">🌙</span>
+                    )}
+                  </motion.div>
+                </div>
+              </div>
 
               <Link
                 to="/contact"
