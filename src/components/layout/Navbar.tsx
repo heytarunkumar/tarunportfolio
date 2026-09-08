@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-20 flex items-center justify-between">
         
         {/* Brand Identity */}
         <Link
@@ -119,7 +119,7 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Navigation Links */}
         <nav
-          className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[11px] tracking-[0.18em] font-medium uppercase"
+          className="hidden lg:flex items-center space-x-6 xl:space-x-9 text-[11px] tracking-[0.18em] font-medium uppercase"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           {activeNavItems.map((item) => (
