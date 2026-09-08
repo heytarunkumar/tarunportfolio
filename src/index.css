@@ -48,24 +48,31 @@ html[data-theme="light"] body {
   color: #171513 !important;
 }
 
-/* Surfaces & Containers */
+/* Backgrounds & Surfaces */
 html.light .bg-\[\#0A0908\],
 html[data-theme="light"] .bg-\[\#0A0908\],
 html.light .bg-\[\#0A0908\]\/92,
-html[data-theme="light"] .bg-\[\#0A0908\]\/92 {
+html[data-theme="light"] .bg-\[\#0A0908\]\/92,
+html.light .bg-\[\#0A0908\]\/80,
+html[data-theme="light"] .bg-\[\#0A0908\]\/80,
+html.light .bg-\[\#070605\],
+html[data-theme="light"] .bg-\[\#070605\],
+html.light .bg-\[\#060504\],
+html[data-theme="light"] .bg-\[\#060504\] {
   background-color: #FAF8F5 !important;
 }
 
 html.light .bg-\[\#12100E\],
-html[data-theme="light"] .bg-\[\#12100E\] {
+html[data-theme="light"] .bg-\[\#12100E\],
+html.light .bg-\[\#12100E\]\/95,
+html[data-theme="light"] .bg-\[\#12100E\]\/95,
+html.light .bg-\[\#12100E\]\/90,
+html[data-theme="light"] .bg-\[\#12100E\]\/90,
+html.light .bg-\[\#12100E\]\/80,
+html[data-theme="light"] .bg-\[\#12100E\]\/80,
+html.light .bg-\[\#12100E\]\/70,
+html[data-theme="light"] .bg-\[\#12100E\]\/70 {
   background-color: #FFFFFF !important;
-}
-
-html.light .bg-\[\#1A1612\],
-html[data-theme="light"] .bg-\[\#1A1612\],
-html.light .bg-\[\#171411\],
-html[data-theme="light"] .bg-\[\#171411\] {
-  background-color: #F1ECE3 !important;
 }
 
 html.light .bg-\[\#0E0C0A\],
@@ -73,24 +80,107 @@ html[data-theme="light"] .bg-\[\#0E0C0A\] {
   background-color: #F5F1E8 !important;
 }
 
+html.light .bg-\[\#1A1612\],
+html[data-theme="light"] .bg-\[\#1A1612\],
+html.light .bg-\[\#1A1714\],
+html[data-theme="light"] .bg-\[\#1A1714\],
+html.light .bg-\[\#16130F\],
+html[data-theme="light"] .bg-\[\#16130F\],
+html.light .bg-\[\#171411\],
+html[data-theme="light"] .bg-\[\#171411\],
+html.light .bg-\[\#141210\],
+html[data-theme="light"] .bg-\[\#141210\],
+html.light .bg-\[\#141210\]\/60,
+html[data-theme="light"] .bg-\[\#141210\]\/60,
+html.light .bg-\[\#1E1914\],
+html[data-theme="light"] .bg-\[\#1E1914\] {
+  background-color: #F1ECE3 !important;
+}
+
+html.light .bg-\[\#120F0C\],
+html[data-theme="light"] .bg-\[\#120F0C\] {
+  background-color: #E6E0D5 !important;
+}
+
+/* Gradients Overrides */
+html.light .from-\[\#0A0908\],
+html[data-theme="light"] .from-\[\#0A0908\],
+html.light .from-\[\#0A0908\]\/80,
+html[data-theme="light"] .from-\[\#0A0908\]\/80 {
+  --tw-gradient-from: #FAF8F5 var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgba(250, 248, 245, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+html.light .via-\[\#0A0908\]\/90,
+html[data-theme="light"] .via-\[\#0A0908\]\/90,
+html.light .via-\[\#0A0908\],
+html[data-theme="light"] .via-\[\#0A0908\] {
+  --tw-gradient-to: rgba(250, 248, 245, 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), #FAF8F5 var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+}
+
+html.light .to-\[\#0A0908\],
+html[data-theme="light"] .to-\[\#0A0908\] {
+  --tw-gradient-to: #FAF8F5 var(--tw-gradient-to-position) !important;
+}
+
+/* Video Overlay Adjustment */
+html.light video,
+html[data-theme="light"] video {
+  opacity: 0.12 !important;
+  filter: contrast(1.1) brightness(0.95);
+}
+
 /* Borders */
 html.light .border-\[\#26211B\],
 html[data-theme="light"] .border-\[\#26211B\],
-html.light .border-\[\#8C6D4F\]\/30,
-html[data-theme="light"] .border-\[\#8C6D4F\]\/30,
-html.light .border-\[\#8C6D4F\]\/20,
-html[data-theme="light"] .border-\[\#8C6D4F\]\/20 {
+html.light .border-\[\#1F1B16\],
+html[data-theme="light"] .border-\[\#1F1B16\],
+html.light .border-\[\#1C1814\],
+html[data-theme="light"] .border-\[\#1C1814\] {
   border-color: #E2DBD0 !important;
 }
 
-/* Typography Overrides */
+html.light .border-\[\#8C6D4F\]\/20,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/20,
+html.light .border-\[\#8C6D4F\]\/25,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/25,
+html.light .border-\[\#8C6D4F\]\/30,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/30,
+html.light .border-\[\#8C6D4F\]\/40,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/40,
+html.light .border-\[\#8C6D4F\]\/50,
+html[data-theme="light"] .border-\[\#8C6D4F\]\/50 {
+  border-color: #D5CEBF !important;
+}
+
+html.light .border-\[\#D4AF37\]\/40,
+html[data-theme="light"] .border-\[\#D4AF37\]\/40,
+html.light .border-\[\#D4AF37\]\/50,
+html[data-theme="light"] .border-\[\#D4AF37\]\/50,
+html.light .border-\[\#D4AF37\]\/60,
+html[data-theme="light"] .border-\[\#D4AF37\]\/60 {
+  border-color: rgba(158, 120, 21, 0.45) !important;
+}
+
+/* Typography & Headings */
 html.light .text-white,
 html[data-theme="light"] .text-white,
 html.light .text-\[\#F5F2EB\],
 html[data-theme="light"] .text-\[\#F5F2EB\],
 html.light .text-\[\#FFF5EB\],
-html[data-theme="light"] .text-\[\#FFF5EB\] {
+html[data-theme="light"] .text-\[\#FFF5EB\],
+html.light .text-\[\#F7E7C4\],
+html[data-theme="light"] .text-\[\#F7E7C4\] {
   color: #171513 !important;
+}
+
+html.light .text-\[\#E8E3D8\],
+html[data-theme="light"] .text-\[\#E8E3D8\],
+html.light .text-\[\#E8DFD8\],
+html[data-theme="light"] .text-\[\#E8DFD8\] {
+  color: #26211B !important;
 }
 
 html.light .text-\[\#C4BCB3\],
@@ -98,15 +188,24 @@ html[data-theme="light"] .text-\[\#C4BCB3\],
 html.light .text-\[\#C4B5A5\],
 html[data-theme="light"] .text-\[\#C4B5A5\],
 html.light .text-\[\#A8988B\],
-html[data-theme="light"] .text-\[\#A8988B\],
-html.light .text-\[\#E8DFD8\],
-html[data-theme="light"] .text-\[\#E8DFD8\] {
+html[data-theme="light"] .text-\[\#A8988B\] {
   color: #4A443C !important;
 }
 
 html.light .text-\[\#8C6D4F\],
-html[data-theme="light"] .text-\[\#8C6D4F\] {
-  color: #8C7862 !important;
+html[data-theme="light"] .text-\[\#8C6D4F\],
+html.light .text-\[\#8C827A\],
+html[data-theme="light"] .text-\[\#8C827A\],
+html.light .text-\[\#8C7862\],
+html[data-theme="light"] .text-\[\#8C7862\],
+html.light .text-\[\#8C8275\],
+html[data-theme="light"] .text-\[\#8C8275\] {
+  color: #736250 !important;
+}
+
+html.light .text-\[\#C99E5D\],
+html[data-theme="light"] .text-\[\#C99E5D\] {
+  color: #8F6E1C !important;
 }
 
 html.light .text-\[\#D4AF37\],
@@ -114,22 +213,151 @@ html[data-theme="light"] .text-\[\#D4AF37\] {
   color: #9E7815 !important;
 }
 
+/* Hover States */
+html.light .group:hover .group-hover\:text-white,
+html[data-theme="light"] .group:hover .group-hover\:text-white {
+  color: #171513 !important;
+}
+
+html.light .group:hover .group-hover\:text-\[\#F7E7C4\],
+html[data-theme="light"] .group:hover .group-hover\:text-\[\#F7E7C4\] {
+  color: #9E7815 !important;
+}
+
+html.light .group:hover .group-hover\:text-\[\#D4AF37\],
+html[data-theme="light"] .group:hover .group-hover\:text-\[\#D4AF37\] {
+  color: #9E7815 !important;
+}
+
 /* Keep Dark Text on Gold Gradient Buttons */
 html.light .text-\[\#0A0908\],
-html[data-theme="light"] .text-\[\#0A0908\] {
+html[data-theme="light"] .text-\[\#0A0908\],
+html.light .text-black,
+html[data-theme="light"] .text-black {
   color: #0A0908 !important;
 }
 
-/* Light Mode Card Shadows */
+/* Status Badges & Pills (Emerald, Amber, Red, Blue) */
+html.light .text-emerald-300,
+html[data-theme="light"] .text-emerald-300,
+html.light .text-emerald-400,
+html[data-theme="light"] .text-emerald-400 {
+  color: #047857 !important;
+}
+
+html.light .bg-emerald-950\/20,
+html[data-theme="light"] .bg-emerald-950\/20,
+html.light .bg-emerald-950\/30,
+html[data-theme="light"] .bg-emerald-950\/30,
+html.light .bg-emerald-950\/40,
+html[data-theme="light"] .bg-emerald-950\/40,
+html.light .bg-emerald-950\/60,
+html[data-theme="light"] .bg-emerald-950\/60 {
+  background-color: #ECFDF5 !important;
+  border-color: #A7F3D0 !important;
+}
+
+html.light .text-amber-200,
+html[data-theme="light"] .text-amber-200,
+html.light .text-amber-300,
+html[data-theme="light"] .text-amber-300,
+html.light .text-amber-400,
+html[data-theme="light"] .text-amber-400 {
+  color: #B45309 !important;
+}
+
+html.light .bg-amber-950\/20,
+html[data-theme="light"] .bg-amber-950\/20,
+html.light .bg-amber-950\/30,
+html[data-theme="light"] .bg-amber-950\/30,
+html.light .bg-amber-950\/40,
+html[data-theme="light"] .bg-amber-950\/40,
+html.light .bg-amber-950\/60,
+html[data-theme="light"] .bg-amber-950\/60 {
+  background-color: #FFFBEB !important;
+  border-color: #FDE68A !important;
+}
+
+html.light .text-red-300,
+html[data-theme="light"] .text-red-300,
+html.light .text-red-400,
+html[data-theme="light"] .text-red-400 {
+  color: #B91C1C !important;
+}
+
+html.light .bg-red-950\/20,
+html[data-theme="light"] .bg-red-950\/20,
+html.light .bg-red-950\/30,
+html[data-theme="light"] .bg-red-950\/30,
+html.light .bg-red-950\/40,
+html[data-theme="light"] .bg-red-950\/40 {
+  background-color: #FEF2F2 !important;
+  border-color: #FECACA !important;
+}
+
+html.light .text-blue-300,
+html[data-theme="light"] .text-blue-300,
+html.light .text-blue-400,
+html[data-theme="light"] .text-blue-400 {
+  color: #1D4ED8 !important;
+}
+
+html.light .bg-blue-950\/20,
+html[data-theme="light"] .bg-blue-950\/20,
+html.light .bg-blue-950\/30,
+html[data-theme="light"] .bg-blue-950\/30,
+html.light .bg-blue-950\/40,
+html[data-theme="light"] .bg-blue-950\/40 {
+  background-color: #EFF6FF !important;
+  border-color: #BFDBFE !important;
+}
+
+/* Watermark & Subdued Background Elements */
+html.light .text-white\/\[0\.02\],
+html[data-theme="light"] .text-white\/\[0\.02\] {
+  color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Form Inputs, Textarea, Select & Placeholders */
+html.light input,
+html[data-theme="light"] input,
+html.light textarea,
+html[data-theme="light"] textarea,
+html.light select,
+html[data-theme="light"] select {
+  background-color: #FFFFFF !important;
+  border-color: #D5CEBF !important;
+  color: #171513 !important;
+}
+
+html.light input:focus,
+html[data-theme="light"] input:focus,
+html.light textarea:focus,
+html[data-theme="light"] textarea:focus,
+html.light select:focus,
+html[data-theme="light"] select:focus {
+  border-color: #9E7815 !important;
+  box-shadow: 0 0 0 1px #9E7815 !important;
+}
+
+html.light input::placeholder,
+html[data-theme="light"] input::placeholder,
+html.light textarea::placeholder,
+html[data-theme="light"] textarea::placeholder {
+  color: #8C7862 !important;
+  opacity: 1 !important;
+}
+
+/* Card Shadows & Elevation */
 html.light .card-lift,
 html[data-theme="light"] .card-lift {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px -2px rgba(23, 21, 19, 0.06), 0 1px 3px 0 rgba(23, 21, 19, 0.04) !important;
 }
 
 html.light .card-lift:hover,
 html[data-theme="light"] .card-lift:hover {
-  border-color: rgba(158, 120, 21, 0.45) !important;
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.1), 0 0 20px -6px rgba(158, 120, 21, 0.2);
+  border-color: rgba(158, 120, 21, 0.5) !important;
+  box-shadow: 0 16px 36px -8px rgba(23, 21, 19, 0.12), 0 0 20px -6px rgba(158, 120, 21, 0.25) !important;
 }
 
 /* Light Mode Scrollbar */
