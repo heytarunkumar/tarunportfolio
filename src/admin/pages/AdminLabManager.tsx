@@ -162,46 +162,43 @@ export const AdminLabManager: React.FC = () => {
     <div className="space-y-8 max-w-6xl font-sans text-[#E8DFD8]">
       
       {/* Header */}
-      <div className="border-b border-[#8C6D4F]/30 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-b border-[#26211B] pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs font-mono text-[#D4AF37] tracking-widest uppercase block mb-1">
             INFRASTRUCTURE PROGRESSION ROADMAP MANAGER
           </span>
-          <h1
-            className="text-4xl uppercase tracking-tight text-white"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-          >
-            ENGINEERING LAB MANAGER
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white tracking-tight">
+            Engineering Lab Manager
           </h1>
           <p className="text-xs text-[#A8988B] mt-1 font-mono">
             Create, edit, delete, reorder, and toggle visibility for engineering lab nodes.
           </p>
         </div>
-        <span className="text-xs font-mono text-[#D4AF37] px-3 py-1 border border-[#D4AF37]/40 bg-[#1E1914] rounded-sm self-start sm:self-auto">
+        <span className="text-xs font-mono text-[#D4AF37] px-3.5 py-1.5 border border-[#26211B] bg-[#12100E] rounded-full self-start sm:self-auto">
           {labTracks.length} NODES TOTAL / {labTracks.filter((t) => t.visible !== false).length} VISIBLE
         </span>
       </div>
 
       {savedMessage && (
-        <div className="p-4 border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm flex items-center justify-between animate-fadeIn">
+        <div className="p-4 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 text-xs font-mono rounded-xl flex items-center justify-between animate-fadeIn">
           <span>✓ {savedMessage}</span>
-          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
+          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline cursor-pointer">
             DISMISS
           </button>
         </div>
       )}
 
       {/* Add / Edit Form */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-6">
-        <h2 className="text-sm font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#8C6D4F]/20 pb-3">
+      <div className="card-lift bg-[#12100E] border border-[#26211B] p-6 sm:p-7 rounded-2xl space-y-6">
+        <h2 className="text-xs font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#26211B] pb-3 font-bold">
           {editingTrackId ? `EDIT LAB TRACK NODE` : 'ADD NEW ENGINEERING LAB NODE'}
         </h2>
 
         <form onSubmit={handleSaveTrack} className="space-y-4 font-mono text-xs">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
-                NODE TITLE *
+              <label className="block text-[#8C6D4F] uppercase mb-1.5 text-[10px]">
+                // NODE TITLE *
               </label>
               <input
                 type="text"
@@ -209,13 +206,13 @@ export const AdminLabManager: React.FC = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="e.g. Distributed Caching & Redis Pipelines"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
-                CATEGORY / DOMAIN *
+              <label className="block text-[#8C6D4F] uppercase mb-1.5 text-[10px]">
+                // CATEGORY / DOMAIN *
               </label>
               <input
                 type="text"
@@ -223,7 +220,7 @@ export const AdminLabManager: React.FC = () => {
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 placeholder="Python / Backend / Caching"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
           </div>
@@ -336,7 +333,7 @@ export const AdminLabManager: React.FC = () => {
           <div className="flex items-center space-x-3 pt-2">
             <button
               type="submit"
-              className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+              className="px-6 py-3 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer"
             >
               {editingTrackId ? 'SAVE LAB TRACK ↗' : 'ADD LAB TRACK NODE ↗'}
             </button>
@@ -344,7 +341,7 @@ export const AdminLabManager: React.FC = () => {
               <button
                 type="button"
                 onClick={resetForm}
-                className="px-4 py-3 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] uppercase tracking-widest hover:text-white"
+                className="px-4 py-3 rounded-xl border border-[#26211B] bg-[#0A0908] text-[#C4BCB3] uppercase tracking-wider hover:text-white cursor-pointer"
               >
                 CANCEL EDIT
               </button>
@@ -354,13 +351,13 @@ export const AdminLabManager: React.FC = () => {
       </div>
 
       {/* Existing Lab Nodes List */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#8C6D4F]/20 pb-3 gap-2">
-          <h2 className="text-lg font-mono text-white tracking-wider uppercase">
-            CATALOGED LAB NODES &amp; SEQUENCING ({labTracks.length})
+      <div className="card-lift bg-[#12100E] border border-[#26211B] p-6 sm:p-7 rounded-2xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#26211B] pb-3 gap-2">
+          <h2 className="text-base font-serif font-bold text-white tracking-wide">
+            Cataloged Lab Nodes &amp; Sequence ({labTracks.length})
           </h2>
           <span className="text-xs font-mono text-[#8C6D4F]">
-            Use ▲ / ▼ or Position Selectors to reorder sequence
+            Use arrows or Position Selectors to reorder sequence
           </span>
         </div>
 
@@ -371,23 +368,23 @@ export const AdminLabManager: React.FC = () => {
             return (
               <div
                 key={track.id || idx}
-                className={`p-5 border rounded-sm space-y-3 transition-colors ${
+                className={`p-5 rounded-xl border space-y-3 transition-colors ${
                   isVisible
-                    ? 'bg-[#120F0C] border-[#8C6D4F]/30 hover:border-[#D4AF37]/50'
-                    : 'bg-[#0E0B08] border-amber-900/40 opacity-75'
+                    ? 'bg-[#0A0908] border-[#26211B] hover:border-[#D4AF37]/40'
+                    : 'bg-[#0A0908]/50 border-dashed border-[#26211B] opacity-75'
                 }`}
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#8C6D4F]/20 pb-3">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-[#26211B] pb-3">
                   <div className="flex items-start space-x-3">
                     
                     {/* Serial Order Controls */}
-                    <div className="flex flex-col items-center space-y-1 bg-[#0A0806] p-2 border border-[#8C6D4F]/30 rounded-sm shrink-0">
+                    <div className="flex flex-col items-center space-y-1 bg-[#12100E] p-2 border border-[#26211B] rounded-xl shrink-0">
                       <button
                         type="button"
                         disabled={idx === 0}
                         onClick={() => handleMoveUp(idx)}
                         title="Move Node Up"
-                        className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
+                        className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 rounded"
                       >
                         ▲
                       </button>
@@ -399,7 +396,7 @@ export const AdminLabManager: React.FC = () => {
                         disabled={idx === labTracks.length - 1}
                         onClick={() => handleMoveDown(idx)}
                         title="Move Node Down"
-                        className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
+                        className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 rounded"
                       >
                         ▼
                       </button>
@@ -416,21 +413,21 @@ export const AdminLabManager: React.FC = () => {
                           type="button"
                           onClick={() => toggleVisibility(track.id)}
                           title="Click to toggle visibility on public website"
-                          className={`text-[9px] font-mono px-2 py-0.5 border rounded-sm uppercase transition-all ${
+                          className={`text-[9.5px] font-mono px-2 py-0.5 border rounded-full uppercase transition-all cursor-pointer ${
                             isVisible
-                              ? 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60'
-                              : 'border-amber-500/50 bg-amber-950/40 text-amber-300 hover:bg-amber-900/60'
+                              ? 'border-emerald-500/40 bg-emerald-950/20 text-emerald-300'
+                              : 'border-amber-500/40 bg-amber-950/20 text-amber-300'
                           }`}
                         >
                           {isVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}
                         </button>
 
-                        <span className="text-[9px] px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
+                        <span className="text-[9.5px] px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 rounded-full uppercase">
                           {track.status}
                         </span>
                       </div>
 
-                      <h3 className="text-xl font-bold text-white uppercase">{track.title}</h3>
+                      <h3 className="text-lg font-serif font-bold text-white">{track.title}</h3>
                     </div>
                   </div>
 
@@ -440,11 +437,11 @@ export const AdminLabManager: React.FC = () => {
                       value={idx}
                       onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
                       title="Change Node Position"
-                      className="bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] text-xs px-2 py-1.5 rounded-sm outline-none hover:border-[#D4AF37]"
+                      className="bg-[#12100E] border border-[#26211B] text-[#D4AF37] text-xs px-2.5 py-1.5 rounded-xl outline-none"
                     >
                       {labTracks.map((_, posIdx) => (
                         <option key={posIdx} value={posIdx}>
-                          Position #{String(posIdx + 1).padStart(2, '0')}
+                          Pos #{String(posIdx + 1).padStart(2, '0')}
                         </option>
                       ))}
                     </select>
@@ -452,26 +449,26 @@ export const AdminLabManager: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => startEdit(track)}
-                      className="px-3 py-1.5 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37] hover:border-[#D4AF37]"
+                      className="px-3 py-1.5 border border-[#26211B] bg-[#12100E] text-[#D4AF37] hover:border-[#D4AF37] rounded-xl cursor-pointer"
                     >
-                      EDIT ✏️
+                      EDIT
                     </button>
                     <button
                       type="button"
                       onClick={() => handleDeleteTrack(track.id)}
-                      className="px-3 py-1.5 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40 font-bold"
+                      className="px-3 py-1.5 border border-red-500/30 bg-red-950/20 text-red-400 hover:border-red-500 rounded-xl cursor-pointer"
                     >
-                      DELETE 🗑️
+                      DELETE
                     </button>
                   </div>
                 </div>
 
-                <p className="text-[#A8988B] text-xs font-light">{track.objective}</p>
+                <p className="text-[#A8988B] text-xs font-light font-sans">{track.objective}</p>
 
                 {track.architecture && (
-                  <div className="p-3 bg-[#0A0806] border border-[#8C6D4F]/20 rounded-sm text-[11px]">
+                  <div className="p-3.5 bg-[#12100E] border border-[#26211B] rounded-xl text-[11px]">
                     <span className="text-[#8C6D4F] block mb-1 font-bold">BLUEPRINT:</span>
-                    <code className="text-[#E8DFD8]">{track.architecture}</code>
+                    <code className="text-[#E8DFD8] font-mono">{track.architecture}</code>
                   </div>
                 )}
               </div>

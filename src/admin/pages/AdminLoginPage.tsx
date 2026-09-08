@@ -25,73 +25,70 @@ export const AdminLoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-[#E8DFD8] flex items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-md bg-[#0A0806] border border-[#8C6D4F]/40 p-8 rounded-sm shadow-2xl relative overflow-hidden">
+    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] flex items-center justify-center p-6 font-sans selection:bg-[#D4AF37]/30 selection:text-white">
+      <div className="w-full max-w-md bg-[#12100E] border border-[#26211B] p-8 sm:p-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden card-lift">
         {/* Top Gold Flare */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#14100D] border border-[#8C6D4F]/30 rounded-sm mb-3">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#1A1714] border border-[#26211B] rounded-full mb-4">
             <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
             <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-widest">
               PORTFOLIO ADMIN CMS
             </span>
           </div>
-          <h1
-            className="text-4xl uppercase tracking-tight text-white mb-2"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-          >
-            TARUN KUMAR ADMIN LOGIN
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-2">
+            Administrator Portal
           </h1>
-          <p className="text-xs text-[#A8988B] font-mono">
-            Enter administrator password to manage portfolio content.
+          <p className="text-xs text-[#A8988B] font-sans font-light">
+            Enter administrator credentials to access the portfolio CMS.
           </p>
         </div>
 
         {error && (
-          <div className="mb-6 p-3 border border-red-500/40 bg-red-950/30 text-red-300 text-xs font-mono rounded-sm">
-            {error}
+          <div className="mb-6 p-3.5 border border-red-500/40 bg-red-950/20 text-red-300 text-xs font-mono rounded-xl">
+            ⚠️ {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5 font-mono text-xs">
           <div>
-            <label className="block text-[#8C6D4F] uppercase tracking-wider mb-2">
-              ADMIN USERNAME
+            <label className="block text-[10px] text-[#8C6D4F] uppercase tracking-widest mb-2 font-mono">
+              // ADMIN USERNAME
             </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsernameInput(e.target.value)}
               required
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none transition-colors"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white px-4 py-3.5 rounded-xl outline-none transition-colors font-sans text-xs"
             />
           </div>
 
           <div>
-            <label className="block text-[#8C6D4F] uppercase tracking-wider mb-2">
-              ADMIN PASSWORD
+            <label className="block text-[10px] text-[#8C6D4F] uppercase tracking-widest mb-2 font-mono">
+              // ADMIN PASSWORD
             </label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password (e.g. admin123)"
+              placeholder="Enter password"
               required
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none transition-colors"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white px-4 py-3.5 rounded-xl outline-none transition-colors font-sans text-xs"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054] transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+            className="w-full py-4 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all cursor-pointer font-mono"
           >
             AUTHENTICATE &amp; ENTER ↗
           </button>
         </form>
 
-        <div className="mt-8 text-center pt-6 border-t border-[#8C6D4F]/20 text-[10.5px] font-mono text-[#8C6D4F]">
-          Protected route · Server-side authorization ready
+        <div className="mt-8 text-center pt-6 border-t border-[#26211B] text-[10.5px] font-mono text-[#8C6D4F]">
+          Protected route · Multi-layered authentication active
         </div>
       </div>
     </div>

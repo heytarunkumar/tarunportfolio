@@ -130,40 +130,40 @@ export const AdminProjectManager: React.FC = () => {
     <div className="space-y-8 font-sans text-[#E8DFD8]">
       
       {/* Top Title Banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#8C6D4F]/30 pb-4 gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#26211B] pb-5 gap-4">
         <div>
-          <h1 className="text-2xl font-bold uppercase tracking-wider text-white font-mono">
-            PROJECT CATALOG &amp; SERIALIZATION MANAGER
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-white">
+            Projects Catalog Manager
           </h1>
           <p className="text-xs text-[#A8988B] mt-1 font-mono">
             Add, edit, delete, reorder, and toggle visibility for portfolio projects.
           </p>
         </div>
-        <span className="text-xs font-mono text-[#D4AF37] px-3 py-1 border border-[#D4AF37]/40 bg-[#1E1914] rounded-sm self-start sm:self-auto">
-          {projects.length} TOTAL / {projects.filter((p) => p.visible !== false).length} VISIBLE ON PUBLIC SITE
+        <span className="text-xs font-mono text-[#D4AF37] px-3.5 py-1.5 border border-[#26211B] bg-[#12100E] rounded-full self-start sm:self-auto">
+          {projects.length} TOTAL / {projects.filter((p) => p.visible !== false).length} VISIBLE ON SITE
         </span>
       </div>
 
       {savedMessage && (
-        <div className="p-4 border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm flex items-center justify-between animate-fadeIn">
+        <div className="p-4 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 text-xs font-mono rounded-xl flex items-center justify-between animate-fadeIn">
           <span>✓ {savedMessage}</span>
-          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
+          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline cursor-pointer">
             DISMISS
           </button>
         </div>
       )}
 
       {/* Edit / Create Form */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-6">
-        <h2 className="text-sm font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#8C6D4F]/20 pb-3">
+      <div className="card-lift bg-[#12100E] border border-[#26211B] p-6 sm:p-7 rounded-2xl space-y-6">
+        <h2 className="text-xs font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#26211B] pb-3 font-bold">
           {editingSlug ? `EDIT PROJECT: ${editingSlug}` : 'CREATE NEW PROJECT DISPATCH'}
         </h2>
 
         <form onSubmit={handleSave} className="space-y-4 font-mono text-xs">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                PROJECT TITLE *
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // PROJECT TITLE *
               </label>
               <input
                 type="text"
@@ -175,14 +175,14 @@ export const AdminProjectManager: React.FC = () => {
                     setSlug(e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
                   }
                 }}
-                placeholder="e.g. Automated API Gateway & Microservices Dispatcher"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                placeholder="e.g. Automated API Gateway & Microservices"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                URL SLUG *
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // URL SLUG *
               </label>
               <input
                 type="text"
@@ -190,20 +190,20 @@ export const AdminProjectManager: React.FC = () => {
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
                 placeholder="api-gateway-microservices"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                CATEGORY *
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // CATEGORY *
               </label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as any)}
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               >
                 <option value="Python / Backend">Python / Backend</option>
                 <option value="DevOps">DevOps</option>
@@ -213,13 +213,13 @@ export const AdminProjectManager: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                EXECUTION STATUS *
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // EXECUTION STATUS *
               </label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as any)}
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               >
                 <option value="completed">Completed (Production)</option>
                 <option value="building">Building (Active)</option>
@@ -228,28 +228,28 @@ export const AdminProjectManager: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                PUBLIC WEBSITE VISIBILITY
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // PUBLIC VISIBILITY
               </label>
               <div
                 onClick={() => setVisible(!visible)}
-                className={`p-3 border rounded-sm cursor-pointer flex items-center justify-between font-mono select-none transition-colors ${
+                className={`p-3 border rounded-xl cursor-pointer flex items-center justify-between font-mono select-none transition-colors ${
                   visible
-                    ? 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300'
-                    : 'border-amber-500/50 bg-amber-950/30 text-amber-300'
+                    ? 'border-emerald-500/40 bg-emerald-950/20 text-emerald-300'
+                    : 'border-amber-500/40 bg-amber-950/20 text-amber-300'
                 }`}
               >
                 <span>{visible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}</span>
                 <span className="text-[10px] uppercase font-bold">
-                  {visible ? '[ PUBLIC ]' : '[ DRAFT / HIDDEN ]'}
+                  {visible ? '[ PUBLIC ]' : '[ DRAFT ]'}
                 </span>
               </div>
             </div>
           </div>
 
           <div>
-            <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-              SHORT DESCRIPTION / SUMMARY *
+            <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+              // SHORT DESCRIPTION *
             </label>
             <textarea
               required
@@ -257,60 +257,60 @@ export const AdminProjectManager: React.FC = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="High-level architectural summary of what this project executes..."
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
             />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                PROBLEM STATEMENT
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // PROBLEM STATEMENT
               </label>
               <textarea
                 rows={2}
                 value={problem}
                 onChange={(e) => setProblem(e.target.value)}
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                ENGINEERING SOLUTION
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // ENGINEERING SOLUTION
               </label>
               <textarea
                 rows={2}
                 value={solution}
                 onChange={(e) => setSolution(e.target.value)}
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                TECHNOLOGIES (Comma-separated)
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // TECHNOLOGIES (Comma-separated)
               </label>
               <input
                 type="text"
                 value={technologies}
                 onChange={(e) => setTechnologies(e.target.value)}
                 placeholder="Python, Flask, Docker, Redis"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1">
-                GITHUB CODE REPOSITORY URL
+              <label className="block text-[#8C6D4F] uppercase tracking-wider mb-1.5 text-[10px]">
+                // GITHUB REPO URL
               </label>
               <input
                 type="url"
                 value={github}
                 onChange={(e) => setGithub(e.target.value)}
                 placeholder="https://github.com/heytarunkumar/..."
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>
           </div>
@@ -318,7 +318,7 @@ export const AdminProjectManager: React.FC = () => {
           <div className="flex items-center space-x-3 pt-2">
             <button
               type="submit"
-              className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+              className="px-6 py-3 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer"
             >
               {editingSlug ? 'UPDATE PROJECT ↗' : 'SAVE PROJECT ↗'}
             </button>
@@ -326,7 +326,7 @@ export const AdminProjectManager: React.FC = () => {
               <button
                 type="button"
                 onClick={resetForm}
-                className="px-4 py-3 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] uppercase tracking-widest hover:text-white"
+                className="px-4 py-3 rounded-xl border border-[#26211B] bg-[#0A0908] text-[#C4BCB3] uppercase tracking-wider hover:text-white cursor-pointer"
               >
                 CANCEL EDIT
               </button>
@@ -336,121 +336,119 @@ export const AdminProjectManager: React.FC = () => {
       </div>
 
       {/* Existing Projects List with Ordering & Visibility Controls */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#8C6D4F]/20 pb-3 gap-2">
-          <h2 className="text-lg font-mono text-white tracking-wider uppercase">
-            CATALOGED PROJECTS &amp; SERIAL SEQUENCE ({projects.length})
+      <div className="card-lift bg-[#12100E] border border-[#26211B] p-6 sm:p-7 rounded-2xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#26211B] pb-3 gap-2">
+          <h2 className="text-base font-serif font-bold text-white tracking-wide">
+            Cataloged Projects &amp; Sequence ({projects.length})
           </h2>
           <span className="text-xs font-mono text-[#8C6D4F]">
-            Use VISIBLE 👁 / HIDDEN 🙈 buttons or ▲ / ▼ arrows to configure public display
+            Use VISIBLE 👁 / HIDDEN 🙈 buttons or arrows to configure display
           </span>
         </div>
 
         <div className="space-y-3 font-mono text-xs">
           {projects.map((proj, idx) => {
             const isVisible = proj.visible !== false;
+            const isEditing = editingSlug === proj.slug;
 
             return (
               <div
                 key={proj.slug || idx}
-                className={`p-4 border rounded-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4 group transition-colors ${
-                  isVisible
-                    ? 'bg-[#120F0C] border-[#8C6D4F]/20 hover:border-[#D4AF37]/50'
-                    : 'bg-[#0E0B08] border-amber-900/40 opacity-75'
+                className={`p-4 rounded-xl border transition-all ${
+                  isEditing
+                    ? 'border-[#D4AF37] bg-[#1A1714]'
+                    : isVisible
+                    ? 'bg-[#0A0908] border-[#26211B] hover:border-[#D4AF37]/40'
+                    : 'bg-[#0A0908]/50 border-dashed border-[#26211B] opacity-75'
                 }`}
               >
-                <div className="flex items-start space-x-3">
-                  
-                  {/* Serial Order Controls */}
-                  <div className="flex flex-col items-center space-y-1 bg-[#0A0806] p-2 border border-[#8C6D4F]/30 rounded-sm shrink-0">
-                    <button
-                      type="button"
-                      disabled={idx === 0}
-                      onClick={() => handleMoveUp(idx)}
-                      title="Move Project Up"
-                      className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
-                    >
-                      ▲
-                    </button>
-                    <span className="text-[11px] font-bold text-[#F7E7C4]">
-                      #{proj.number || String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <button
-                      type="button"
-                      disabled={idx === projects.length - 1}
-                      onClick={() => handleMoveDown(idx)}
-                      title="Move Project Down"
-                      className="p-1 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20 disabled:hover:bg-transparent"
-                    >
-                      ▼
-                    </button>
-                  </div>
-
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
-                      <span className="text-white font-bold tracking-wider text-sm">{proj.title}</span>
-                      
-                      {/* Visibility Badge Toggle Button */}
-                      <button
-                        type="button"
-                        onClick={() => toggleVisibility(proj.slug)}
-                        title="Click to toggle visibility on public portfolio website"
-                        className={`text-[9px] font-mono px-2 py-0.5 border rounded-sm uppercase transition-all ${
-                          isVisible
-                            ? 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300 hover:bg-emerald-900/60'
-                            : 'border-amber-500/50 bg-amber-950/40 text-amber-300 hover:bg-amber-900/60'
-                        }`}
-                      >
-                        {isVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}
-                      </button>
-
-                      <span className="text-[9px] px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
-                        {proj.status}
-                      </span>
-                      <span className="text-[9px] px-2 py-0.5 border border-[#8C6D4F]/40 bg-[#16120E] text-[#D4AF37] rounded-sm uppercase">
-                        {proj.category}
-                      </span>
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                  {/* Left Identity & Position Controls */}
+                  <div className="flex items-start space-x-3">
+                    <div className="flex flex-col items-center space-y-1 bg-[#12100E] p-2 border border-[#26211B] rounded-xl shrink-0">
+                      <span className="text-[10px] text-[#D4AF37] font-bold">#{String(idx + 1).padStart(2, '0')}</span>
+                      <div className="flex space-x-1">
+                        <button
+                          type="button"
+                          disabled={idx === 0}
+                          onClick={() => handleMoveUp(idx)}
+                          className="px-1 py-0.5 text-[9px] bg-[#0A0908] border border-[#26211B] text-[#C4BCB3] hover:text-[#D4AF37] disabled:opacity-30 rounded"
+                        >
+                          ▲
+                        </button>
+                        <button
+                          type="button"
+                          disabled={idx === projects.length - 1}
+                          onClick={() => handleMoveDown(idx)}
+                          className="px-1 py-0.5 text-[9px] bg-[#0A0908] border border-[#26211B] text-[#C4BCB3] hover:text-[#D4AF37] disabled:opacity-30 rounded"
+                        >
+                          ▼
+                        </button>
+                      </div>
                     </div>
 
-                    <p className="text-[11px] text-[#A8988B] line-clamp-1 mb-1">
-                      {proj.description}
-                    </p>
-                    <span className="text-[10px] text-[#8C6D4F] block">
-                      Tech: {(proj.technologies || []).join(', ')}
-                    </span>
+                    <div>
+                      <div className="flex items-center space-x-2 mb-1">
+                        <span className="text-white font-sans font-bold text-sm">{proj.title}</span>
+                        <span className="text-[10px] text-[#8C6D4F] border border-[#26211B] px-1.5 py-0.2 rounded-md">
+                          {proj.category}
+                        </span>
+                      </div>
+                      <div className="text-[10.5px] text-[#A8988B] line-clamp-1 font-sans font-light">
+                        {proj.description}
+                      </div>
+                      <div className="text-[10px] text-[#8C6D4F] mt-1">
+                        slug: <span className="text-[#D4AF37]">{proj.slug}</span> | stack: {proj.technologies.slice(0, 3).join(', ')}
+                      </div>
+                    </div>
                   </div>
 
-                </div>
+                  {/* Right Actions Toolbar */}
+                  <div className="flex items-center space-x-2 shrink-0">
+                    <select
+                      value={idx}
+                      onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
+                      className="bg-[#12100E] border border-[#26211B] text-[#D4AF37] text-xs px-2.5 py-1.5 rounded-xl outline-none"
+                    >
+                      {projects.map((_, pIdx) => (
+                        <option key={pIdx} value={pIdx}>Pos #{String(pIdx + 1).padStart(2, '0')}</option>
+                      ))}
+                    </select>
 
-                {/* Action Controls & Position Selector */}
-                <div className="flex items-center space-x-2 shrink-0 self-end lg:self-auto">
-                  <select
-                    value={idx}
-                    onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
-                    title="Change Serial Position"
-                    className="bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] text-xs px-2 py-1.5 rounded-sm outline-none hover:border-[#D4AF37]"
-                  >
-                    {projects.map((_, posIdx) => (
-                      <option key={posIdx} value={posIdx}>
-                        Position #{String(posIdx + 1).padStart(2, '0')}
-                      </option>
-                    ))}
-                  </select>
+                    <button
+                      type="button"
+                      onClick={() => toggleVisibility(proj.slug)}
+                      className={`px-3 py-1.5 border rounded-xl text-xs font-mono transition-colors cursor-pointer ${
+                        isVisible
+                          ? 'border-emerald-500/40 bg-emerald-950/20 text-emerald-300'
+                          : 'border-amber-500/40 bg-amber-950/20 text-amber-300'
+                      }`}
+                    >
+                      {isVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={() => startEdit(proj)}
-                    className="px-3 py-1.5 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37] hover:border-[#D4AF37]"
-                  >
-                    EDIT
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => deleteProject(proj.slug)}
-                    className="px-3 py-1.5 border border-red-500/40 bg-red-950/20 text-red-400 hover:bg-red-950/40"
-                  >
-                    DELETE
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => startEdit(proj)}
+                      className="px-3 py-1.5 border border-[#26211B] bg-[#12100E] text-[#D4AF37] hover:border-[#D4AF37] rounded-xl cursor-pointer"
+                    >
+                      EDIT
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (confirm(`Delete project "${proj.title}" permanently?`)) {
+                          deleteProject(proj.slug);
+                          setSavedMessage(`Project "${proj.title}" deleted.`);
+                          setTimeout(() => setSavedMessage(''), 3000);
+                        }
+                      }}
+                      className="px-3 py-1.5 border border-red-500/30 bg-red-950/20 text-red-400 hover:border-red-500 rounded-xl cursor-pointer"
+                    >
+                      DELETE
+                    </button>
+                  </div>
                 </div>
               </div>
             );

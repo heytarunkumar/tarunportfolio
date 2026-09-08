@@ -14,65 +14,81 @@ export const AdminSettingsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl font-sans">
-      <div className="border-b border-[#8C6D4F]/30 pb-6">
+    <div className="space-y-8 max-w-5xl font-sans text-[#E8DFD8]">
+      <div className="border-b border-[#26211B] pb-6">
         <span className="text-xs font-mono text-[#D4AF37] tracking-widest uppercase block mb-1">
-          SYSTEM CONFIGURATION &amp; PUBLISHING SETTINGS
+          SYSTEM CONFIGURATION &amp; DEPLOYMENT PREFERENCES
         </span>
-        <h1
-          className="text-4xl uppercase tracking-tight text-white"
-          style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-        >
-          SETTINGS MANAGER
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-white">
+          Settings Manager
         </h1>
+        <p className="text-xs text-[#A8988B] mt-1 font-mono">
+          Configure site identity, canonical domain, server timezones, and persistence parameters.
+        </p>
       </div>
 
       {savedMessage && (
-        <div className="p-3 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm">
-          {savedMessage}
+        <div className="p-4 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 text-xs font-mono rounded-xl flex items-center justify-between animate-fadeIn">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            ✓ {savedMessage}
+          </span>
+          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
+            DISMISS
+          </button>
         </div>
       )}
 
-      <form onSubmit={handleSave} className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4 font-mono text-xs">
+      <form onSubmit={handleSave} className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift font-sans text-xs">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">SITE NAME</label>
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+              SITE NAME *
+            </label>
             <input
               type="text"
+              required
               value={siteName}
               onChange={(e) => setSiteName(e.target.value)}
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 text-white p-3 rounded-sm outline-none"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">SITE CANONICAL URL</label>
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+              SITE CANONICAL URL *
+            </label>
             <input
               type="url"
+              required
               value={siteUrl}
               onChange={(e) => setSiteUrl(e.target.value)}
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 text-white p-3 rounded-sm outline-none"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
             />
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">TIMEZONE</label>
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+              SYSTEM TIMEZONE
+            </label>
             <input
               type="text"
               value={timezone}
               onChange={(e) => setTimezone(e.target.value)}
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 text-white p-3 rounded-sm outline-none"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
             />
           </div>
 
           <div>
-            <label className="block text-[#8C6D4F] uppercase mb-1">DEFAULT PUBLISHING STATE</label>
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+              DEFAULT PUBLISHING STATE
+            </label>
             <select
               value={defaultStatus}
               onChange={(e) => setDefaultStatus(e.target.value)}
-              className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 text-white p-3 rounded-sm outline-none"
+              className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
             >
               <option value="Published">Published (Live immediately)</option>
               <option value="Draft">Draft (Requires explicit publish)</option>
@@ -80,18 +96,20 @@ export const AdminSettingsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="p-4 bg-[#120F0C] border border-[#8C6D4F]/20 rounded-sm space-y-2">
-          <span className="text-white font-bold block">FUTURE PERSISTENCE &amp; DATABASE MIGRATION ARCHITECTURE:</span>
-          <p className="text-[#A8988B] text-[11px] leading-relaxed">
-            Data layer is served through abstract data services (`PortfolioContext.tsx`). If browser-based multi-user editing with server-side database persistence is required in the future, PostgreSQL with Prisma ORM can be attached directly to these methods without altering public UI components.
+        <div className="p-5 bg-[#0A0908] border border-[#26211B] rounded-xl space-y-2">
+          <span className="text-[#D4AF37] font-mono font-bold text-xs uppercase block">
+            ARCHITECTURE NOTE: CMS PERSISTENCE &amp; DB INTEGRATION
+          </span>
+          <p className="text-[#A8988B] text-[11px] leading-relaxed font-sans">
+            Data layer is served through reactive data contexts (`PortfolioContext.tsx`). If browser-based multi-user editing with server-side database persistence is enabled in production, PostgreSQL with Prisma ORM can be attached directly to these endpoints without altering any front-facing components.
           </p>
         </div>
 
         <button
           type="submit"
-          className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+          className="px-6 py-3 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer font-mono"
         >
-          SAVE SYSTEM SETTINGS ↗
+          Save System Settings ↗
         </button>
       </form>
     </div>

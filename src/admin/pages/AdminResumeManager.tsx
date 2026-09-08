@@ -14,58 +14,75 @@ export const AdminResumeManager: React.FC = () => {
   };
 
   return (
-    <div className="space-y-8 max-w-5xl font-sans">
-      <div className="border-b border-[#8C6D4F]/30 pb-6">
+    <div className="space-y-8 max-w-5xl font-sans text-[#E8DFD8]">
+      <div className="border-b border-[#26211B] pb-6">
         <span className="text-xs font-mono text-[#D4AF37] tracking-widest uppercase block mb-1">
           PUBLIC RESUME ASSET &amp; VERSION SELECTOR
         </span>
-        <h1
-          className="text-4xl uppercase tracking-tight text-white"
-          style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-        >
-          RESUME ASSETS MANAGER
+        <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-white">
+          Resume Assets Manager
         </h1>
+        <p className="text-xs text-[#A8988B] mt-1 font-mono">
+          Configure the active PDF asset download link used by recruiters and visitors across the site.
+        </p>
       </div>
 
       {savedMessage && (
-        <div className="p-3 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm">
-          {savedMessage}
+        <div className="p-4 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 text-xs font-mono rounded-xl flex items-center justify-between animate-fadeIn">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            ✓ {savedMessage}
+          </span>
+          <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
+            DISMISS
+          </button>
         </div>
       )}
 
-      <form onSubmit={handleSave} className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4 font-mono text-xs">
+      <form onSubmit={handleSave} className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-5 card-lift font-sans text-xs">
         <div>
-          <label className="block text-[#8C6D4F] uppercase mb-1">ACTIVE PUBLIC RESUME PDF URL</label>
+          <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+            ACTIVE PUBLIC RESUME PDF URL *
+          </label>
           <input
             type="text"
+            required
             value={resumeUrl}
             onChange={(e) => setResumeUrl(e.target.value)}
-            className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 text-white p-3 rounded-sm outline-none"
+            className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
           />
         </div>
 
-        <div className="p-4 bg-[#120F0C] border border-[#8C6D4F]/20 rounded-sm space-y-2">
-          <span className="text-white font-bold block">AVAILABLE RESUME ASSETS IN PUBLIC DIRECTORY:</span>
-          <ul className="space-y-1 text-[#A8988B]">
-            <li>• `/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf` (Current Active ATS Resume)</li>
-            <li>• `/resume/tarun-kumar-resume.pdf` (Standard Alias Path)</li>
+        <div className="p-5 bg-[#0A0908] border border-[#26211B] rounded-xl space-y-2">
+          <span className="text-white font-mono font-bold text-xs uppercase block">
+            AVAILABLE RESUME ASSETS IN PUBLIC DIRECTORY:
+          </span>
+          <ul className="space-y-1.5 text-[#A8988B] font-mono text-[11px]">
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              `/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf` (Current Active ATS Resume)
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
+              `/resume/tarun-kumar-resume.pdf` (Standard Alias Path)
+            </li>
           </ul>
         </div>
 
-        <div className="flex items-center space-x-3 pt-2">
+        <div className="flex flex-wrap items-center gap-3 pt-2">
           <button
             type="submit"
-            className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+            className="px-6 py-3 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer font-mono"
           >
-            UPDATE RESUME SELECTION ↗
+            Update Resume Selection ↗
           </button>
           <a
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#D4AF37] uppercase tracking-widest hover:border-[#D4AF37]"
+            className="px-5 py-3 rounded-xl border border-[#26211B] bg-[#171411] text-[#E8DFD8] text-xs font-mono uppercase tracking-wider hover:border-[#D4AF37]/50 hover:text-white transition-all cursor-pointer"
           >
-            PREVIEW ACTIVE RESUME PDF ↗
+            Preview Active Resume PDF ↗
           </a>
         </div>
       </form>

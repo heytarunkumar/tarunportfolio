@@ -176,29 +176,29 @@ export const AdminMediaPage: React.FC = () => {
     <div className="space-y-8 max-w-6xl font-sans text-[#E8DFD8]">
       
       {/* Header */}
-      <div className="border-b border-[#8C6D4F]/30 pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-b border-[#26211B] pb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <span className="text-xs font-mono text-[#D4AF37] tracking-widest uppercase block mb-1">
-            ASSET &amp; MEDIA MANAGEMENT
+            ASSET &amp; MEDIA REPOSITORY
           </span>
-          <h1
-            className="text-4xl uppercase tracking-tight text-white"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-          >
-            MEDIA LIBRARY MANAGER
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-white">
+            Media Library Manager
           </h1>
           <p className="text-xs text-[#A8988B] mt-1 font-mono">
-            Register, edit, delete, reorder, and manage public media assets and documents.
+            Register, catalog, reorder, preview, and manage public media assets and documents.
           </p>
         </div>
-        <span className="text-xs font-mono text-[#D4AF37] px-3 py-1 border border-[#D4AF37]/40 bg-[#1E1914] rounded-sm self-start sm:self-auto">
-          {assets.length} ASSETS REGISTERED / {assets.filter((a) => a.visible !== false).length} ACTIVE
+        <span className="text-xs font-mono text-[#D4AF37] px-3.5 py-1.5 border border-[#D4AF37]/30 bg-[#1A1612] rounded-full self-start sm:self-auto shadow-sm">
+          {assets.length} ASSETS REGISTERED · {assets.filter((a) => a.visible !== false).length} ACTIVE
         </span>
       </div>
 
       {savedMessage && (
-        <div className="p-4 border border-emerald-500/50 bg-emerald-950/30 text-emerald-300 text-xs font-mono rounded-sm flex items-center justify-between animate-fadeIn">
-          <span>✓ {savedMessage}</span>
+        <div className="p-4 border border-emerald-500/40 bg-emerald-950/20 text-emerald-300 text-xs font-mono rounded-xl flex items-center justify-between animate-fadeIn">
+          <span className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            ✓ {savedMessage}
+          </span>
           <button onClick={() => setSavedMessage('')} className="text-emerald-400 font-bold hover:underline">
             DISMISS
           </button>
@@ -206,15 +206,16 @@ export const AdminMediaPage: React.FC = () => {
       )}
 
       {/* Add / Edit Asset Form */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-6">
-        <h2 className="text-sm font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#8C6D4F]/20 pb-3">
-          {editingId ? `EDIT MEDIA ASSET REGISTRATION` : 'REGISTER NEW MEDIA ASSET / DOCUMENT'}
+      <div className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift">
+        <h2 className="text-sm font-mono text-[#D4AF37] tracking-wider uppercase border-b border-[#26211B] pb-3 flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
+          {editingId ? `Edit Media Asset Registration` : 'Register New Media Asset / Document'}
         </h2>
 
-        <form onSubmit={handleSaveAsset} className="space-y-4 font-mono text-xs">
+        <form onSubmit={handleSaveAsset} className="space-y-5 font-sans text-xs">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 ASSET FILENAME *
               </label>
               <input
@@ -223,12 +224,12 @@ export const AdminMediaPage: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. project_arch_diagram.png"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none transition-all font-mono"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 FILE PATH / URL *
               </label>
               <input
@@ -237,20 +238,20 @@ export const AdminMediaPage: React.FC = () => {
                 value={path}
                 onChange={(e) => setPath(e.target.value)}
                 placeholder="/images/project_arch_diagram.png or https://..."
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none transition-all font-mono"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 ASSET TYPE *
               </label>
               <select
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none transition-all"
               >
                 <option value="PNG Image">PNG Image</option>
                 <option value="JPG Image">JPG Image</option>
@@ -262,7 +263,7 @@ export const AdminMediaPage: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 FILE SIZE / APPROX
               </label>
               <input
@@ -270,12 +271,12 @@ export const AdminMediaPage: React.FC = () => {
                 value={size}
                 onChange={(e) => setSize(e.target.value)}
                 placeholder="320 kB"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none transition-all font-mono"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 USAGE CONTEXT
               </label>
               <input
@@ -283,44 +284,45 @@ export const AdminMediaPage: React.FC = () => {
                 value={usage}
                 onChange={(e) => setUsage(e.target.value)}
                 placeholder="Hero Section Video / Resume"
-                className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
+                className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none transition-all"
               />
             </div>
 
             <div>
-              <label className="block text-[#8C6D4F] uppercase mb-1">
+              <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                 ASSET VISIBILITY
               </label>
-              <div
+              <button
+                type="button"
                 onClick={() => setVisible(!visible)}
-                className={`p-2.5 border rounded-sm cursor-pointer flex items-center justify-between font-mono select-none transition-colors ${
+                className={`w-full p-3 border rounded-xl cursor-pointer flex items-center justify-between font-mono select-none transition-all ${
                   visible
-                    ? 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300'
-                    : 'border-amber-500/50 bg-amber-950/30 text-amber-300'
+                    ? 'border-emerald-500/40 bg-emerald-950/20 text-emerald-300'
+                    : 'border-amber-500/40 bg-amber-950/20 text-amber-300'
                 }`}
               >
                 <span>{visible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}</span>
                 <span className="text-[10px] uppercase font-bold">
                   {visible ? '[ ACTIVE ]' : '[ HIDDEN ]'}
                 </span>
-              </div>
+              </button>
             </div>
           </div>
 
           <div className="flex items-center space-x-3 pt-2">
             <button
               type="submit"
-              className="px-6 py-3 border border-[#D4AF37] bg-[#D4AF37] text-black font-bold uppercase tracking-widest hover:bg-[#E2C054]"
+              className="px-6 py-3 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer font-mono"
             >
-              {editingId ? 'SAVE MEDIA ASSET ↗' : 'REGISTER MEDIA ASSET ↗'}
+              {editingId ? 'Save Media Asset ↗' : 'Register Media Asset ↗'}
             </button>
             {editingId && (
               <button
                 type="button"
                 onClick={resetForm}
-                className="px-4 py-3 border border-[#8C6D4F]/40 bg-[#120F0C] text-[#C4B5A5] uppercase tracking-widest hover:text-white"
+                className="px-5 py-3 rounded-xl border border-[#26211B] bg-[#171411] text-[#E8DFD8] text-xs font-mono uppercase tracking-wider hover:border-[#D4AF37]/50 hover:text-white transition-all cursor-pointer"
               >
-                CANCEL EDIT
+                Cancel Edit
               </button>
             )}
           </div>
@@ -328,12 +330,12 @@ export const AdminMediaPage: React.FC = () => {
       </div>
 
       {/* Cataloged Assets Grid */}
-      <div className="bg-[#0A0806] border border-[#8C6D4F]/30 p-6 rounded-sm space-y-4 font-mono text-xs">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#8C6D4F]/20 pb-3 gap-2">
-          <h2 className="text-lg text-white font-bold uppercase">
-            REGISTERED PUBLIC MEDIA ASSETS ({assets.length})
+      <div className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#26211B] pb-3 gap-2">
+          <h2 className="text-base text-white font-mono uppercase tracking-wider font-semibold">
+            Registered Public Media Assets ({assets.length})
           </h2>
-          <span className="text-xs text-[#8C6D4F]">
+          <span className="text-xs text-[#8C6D4F] font-mono">
             Use ▲ / ▼ or Position Selectors to reorder asset sequence
           </span>
         </div>
@@ -345,26 +347,26 @@ export const AdminMediaPage: React.FC = () => {
             return (
               <div
                 key={asset.id || idx}
-                className={`p-4 border rounded-sm space-y-3 transition-colors ${
+                className={`p-5 border rounded-xl space-y-3 transition-all card-lift ${
                   isVisible
-                    ? 'bg-[#120F0C] border-[#8C6D4F]/20 hover:border-[#D4AF37]/50'
-                    : 'bg-[#0E0B08] border-amber-900/40 opacity-75'
+                    ? 'bg-[#0A0908] border-[#26211B] hover:border-[#D4AF37]/40'
+                    : 'bg-[#0E0C0A] border-amber-900/30 opacity-75'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   
                   {/* Order Controls */}
-                  <div className="flex flex-col items-center space-y-1 bg-[#0A0806] p-1.5 border border-[#8C6D4F]/30 rounded-sm shrink-0">
+                  <div className="flex flex-col items-center space-y-1 bg-[#171411] p-1.5 border border-[#26211B] rounded-lg shrink-0">
                     <button
                       type="button"
                       disabled={idx === 0}
                       onClick={() => handleMoveUp(idx)}
                       title="Move Asset Up"
-                      className="p-0.5 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20"
+                      className="p-1 text-[#D4AF37] hover:bg-[#26211B] rounded disabled:opacity-20 transition-colors"
                     >
                       ▲
                     </button>
-                    <span className="text-[10px] font-bold text-[#F7E7C4]">
+                    <span className="text-[10px] font-mono font-bold text-[#F7E7C4]">
                       #{String(idx + 1).padStart(2, '0')}
                     </span>
                     <button
@@ -372,38 +374,38 @@ export const AdminMediaPage: React.FC = () => {
                       disabled={idx === assets.length - 1}
                       onClick={() => handleMoveDown(idx)}
                       title="Move Asset Down"
-                      className="p-0.5 text-[#D4AF37] hover:bg-[#1E1914] disabled:opacity-20"
+                      className="p-1 text-[#D4AF37] hover:bg-[#26211B] rounded disabled:opacity-20 transition-colors"
                     >
                       ▼
                     </button>
                   </div>
 
-                  <div className="flex-1 truncate">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center space-x-2 mb-1">
-                      <span className="text-[#D4AF37] font-bold truncate">{asset.name}</span>
+                      <span className="text-white font-mono font-bold text-sm truncate">{asset.name}</span>
                       
                       {/* Visibility Toggle Button */}
                       <button
                         type="button"
                         onClick={() => toggleVisibility(asset.id)}
                         title="Toggle Asset Visibility"
-                        className={`text-[9px] px-1.5 py-0.5 border rounded-sm uppercase ${
+                        className={`text-[9px] font-mono px-2 py-0.5 border rounded-full uppercase shrink-0 ${
                           isVisible
-                            ? 'border-emerald-500/50 bg-emerald-950/40 text-emerald-300'
-                            : 'border-amber-500/50 bg-amber-950/40 text-amber-300'
+                            ? 'border-emerald-500/40 bg-emerald-950/40 text-emerald-300'
+                            : 'border-amber-500/40 bg-amber-950/40 text-amber-300'
                         }`}
                       >
                         {isVisible ? 'VISIBLE 👁' : 'HIDDEN 🙈'}
                       </button>
                     </div>
-                    <p className="text-[11px] text-[#A8988B] truncate">
-                      {asset.type} · {asset.size} · Usage: {asset.usage}
+                    <p className="text-[11px] text-[#A8988B] truncate font-mono">
+                      {asset.type} · {asset.size} · Context: {asset.usage}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-2 border-t border-[#8C6D4F]/15">
-                  <span className="text-[10px] text-[#8C6D4F] truncate max-w-[180px]" title={asset.path}>
+                <div className="pt-3 flex flex-wrap items-center justify-between gap-2 border-t border-[#26211B]">
+                  <span className="text-[10px] text-[#8C6D4F] font-mono truncate max-w-[180px]" title={asset.path}>
                     {asset.path}
                   </span>
 
@@ -411,7 +413,7 @@ export const AdminMediaPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => copyToClipboard(asset.path)}
-                      className="text-[10px] px-2 py-1 border border-[#8C6D4F]/30 bg-[#0A0806] text-[#C4B5A5] hover:text-white"
+                      className="text-[10px] font-mono px-2.5 py-1 rounded-lg border border-[#26211B] bg-[#171411] text-[#C4B5A5] hover:text-white hover:border-[#D4AF37]/40 transition-all"
                     >
                       COPY PATH 📋
                     </button>
@@ -420,7 +422,7 @@ export const AdminMediaPage: React.FC = () => {
                       value={idx}
                       onChange={(e) => handleMoveToPosition(idx, parseInt(e.target.value, 10))}
                       title="Change Position"
-                      className="bg-[#0A0806] border border-[#8C6D4F]/40 text-[#D4AF37] text-[10px] px-1.5 py-1 rounded-sm outline-none"
+                      className="bg-[#171411] border border-[#26211B] text-[#D4AF37] text-[10px] font-mono px-2 py-1 rounded-lg outline-none"
                     >
                       {assets.map((_, posIdx) => (
                         <option key={posIdx} value={posIdx}>
@@ -432,7 +434,7 @@ export const AdminMediaPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => startEdit(asset)}
-                      className="text-[10px] px-2 py-1 border border-[#8C6D4F]/40 bg-[#1A140F] text-[#D4AF37]"
+                      className="text-[10px] font-mono px-2.5 py-1 rounded-lg border border-[#D4AF37]/30 bg-[#1A1612] text-[#D4AF37] hover:bg-[#D4AF37]/10 transition-colors"
                     >
                       EDIT ✏️
                     </button>
@@ -440,7 +442,7 @@ export const AdminMediaPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleDeleteAsset(asset.id)}
-                      className="text-[10px] px-2 py-1 border border-red-500/40 bg-red-950/20 text-red-400 font-bold"
+                      className="text-[10px] font-mono px-2.5 py-1 rounded-lg border border-red-500/30 bg-red-950/20 text-red-400 hover:bg-red-950/40 font-bold transition-colors"
                     >
                       DELETE 🗑️
                     </button>
