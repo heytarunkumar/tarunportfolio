@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePortfolio } from '../../context/PortfolioContext';
 
@@ -7,6 +7,7 @@ export const Navbar: React.FC = () => {
   const { profile, navigation, theme, toggleTheme } = usePortfolio();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -17,6 +18,19 @@ export const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Body scroll lock when mobile menu is open
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -30,6 +44,11 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [mobileMenuOpen]);
 
+  // Close mobile menu on route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   const activeNavItems = navigation
     ? [...navigation].filter((item) => item.visible).sort((a, b) => a.order - b.order)
     : [
@@ -42,11 +61,39 @@ export const Navbar: React.FC = () => {
         { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
       ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    const isHomePage = location.pathname === '/';
+    const sectionId = path.replace('/', '');
+
+    if (isHomePage) {
+      if (path === '/') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setMobileMenuOpen(false);
+        return;
+      }
+
+      if (sectionId) {
+        const targetElement = document.getElementById(sectionId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+          setMobileMenuOpen(false);
+          return;
+        }
+      }
+    }
+
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0A0908]/92 backdrop-blur-md border-b border-[#26211B] py-3.5 shadow-2xl'
+          ? theme === 'dark'
+            ? 'bg-[#0A0908]/92 backdrop-blur-md border-b border-[#26211B] py-3.5 shadow-2xl'
+            : 'bg-[#FAF8F5]/92 backdrop-blur-md border-b border-[#E2DBD0] py-3.5 shadow-[0_4px_20px_rgba(0,0,0,0.06)]'
           : 'bg-transparent py-5'
       }`}
     >
@@ -55,42 +102,54 @@ export const Navbar: React.FC = () => {
         {/* Brand Identity */}
         <Link
           to="/"
-          className="group flex items-center space-x-2.5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F5F2EB] hover:text-[#D4AF37] transition-colors focus:outline-none"
+          onClick={(e) => handleNavClick(e, '/')}
+          className={`group flex items-center space-x-2.5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase transition-colors focus:outline-none ${
+            theme === 'dark' ? 'text-[#F5F2EB] hover:text-[#D4AF37]' : 'text-[#171513] hover:text-[#9E7815]'
+          }`}
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
-          <span className="w-2 h-2 rounded-full bg-[#D4AF37] group-hover:scale-125 transition-transform" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] group-hover:scale-125 transition-transform shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
           <span className="font-bold tracking-widest">{profile?.name || 'TARUN KUMAR'}</span>
-          <span className="hidden md:inline-block text-[10px] font-mono text-[#8C6D4F] border-l border-[#26211B] pl-2 ml-1 font-normal lowercase">
+          <span className={`hidden md:inline-block text-[10.5px] font-mono border-l pl-2 ml-1 font-normal lowercase ${
+            theme === 'dark' ? 'border-[#26211B] text-[#8C6D4F]' : 'border-[#E2DBD0] text-[#736250]'
+          }`}>
             founder · ai
           </span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <nav
-          className="hidden xl:flex items-center space-x-7 text-[11px] tracking-[0.18em] font-medium uppercase text-[#C4BCB3]"
+          className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[11px] tracking-[0.18em] font-medium uppercase"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           {activeNavItems.map((item) => (
             <NavLink
               key={item.id || item.name}
               to={item.path}
-              className={({ isActive }) =>
-                `relative group py-1 transition-colors duration-200 focus:outline-none focus:text-[#D4AF37] ${
-                  isActive ? 'text-[#D4AF37] font-semibold' : 'hover:text-[#FFF5EB]'
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  {item.name}
-                  <span
-                    className={`absolute bottom-0 left-0 h-[1.5px] bg-[#D4AF37] transition-all duration-300 ${
-                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                    }`}
-                  />
-                </>
-              )}
-            </NavLink>
+              onClick={(e) => handleNavClick(e, item.path)}
+                className={({ isActive }) =>
+                  `relative group py-1 transition-colors duration-200 focus:outline-none ${
+                    isActive
+                      ? theme === 'dark'
+                        ? 'text-[#D4AF37] font-semibold'
+                        : 'text-[#9E7815] font-semibold'
+                      : theme === 'dark'
+                      ? 'text-[#C4BCB3] hover:text-[#FFF5EB]'
+                      : 'text-[#4A443C] hover:text-[#171513]'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <span>{item.name}</span>
+                    <span
+                      className={`absolute bottom-0 left-0 h-[2px] rounded-full bg-[#D4AF37] transition-all duration-300 ${
+                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
           ))}
         </nav>
 
@@ -164,13 +223,19 @@ export const Navbar: React.FC = () => {
             </AnimatePresence>
           </button>
 
+          {/* Connect Button */}
           <Link
             to="/contact"
-            className="hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] focus:outline-none cursor-pointer"
+            onClick={(e) => handleNavClick(e, '/contact')}
+            className={`hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border transition-all duration-300 backdrop-blur-sm focus:outline-none cursor-pointer ${
+              theme === 'dark'
+                ? 'border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]'
+                : 'border-[#D5CEBF] hover:border-[#9E7815] bg-white text-[#171513] hover:text-[#9E7815] shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_16px_rgba(158,120,21,0.2)]'
+            }`}
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             <span>LET&apos;S CONNECT</span>
-            <span className="text-xs text-[#D4AF37]">↗</span>
+            <span className={`text-xs ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#9E7815]'}`}>↗</span>
           </Link>
 
           {/* Hamburger Mobile Button */}
@@ -179,7 +244,11 @@ export const Navbar: React.FC = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
-            className="xl:hidden p-2 rounded-lg border border-[#26211B] bg-[#12100E] text-[#F5F2EB] hover:text-[#D4AF37] focus:outline-none cursor-pointer"
+            className={`lg:hidden w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer ${
+              theme === 'dark'
+                ? 'border-[#26211B] bg-[#12100E] text-[#F5F2EB] hover:text-[#D4AF37] hover:border-[#D4AF37]/40'
+                : 'border-[#D5CEBF] bg-white text-[#171513] hover:text-[#9E7815] hover:border-[#9E7815]'
+            }`}
           >
             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
@@ -207,22 +276,35 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="xl:hidden bg-[#0A0908] border-b border-[#26211B] px-6 pt-4 pb-8 space-y-4 shadow-2xl"
+            className={`lg:hidden border-b px-6 pt-4 pb-8 space-y-4 shadow-2xl backdrop-blur-xl ${
+              theme === 'dark'
+                ? 'bg-[#0A0908]/98 border-[#26211B]'
+                : 'bg-[#FAF8F5]/98 border-[#E2DBD0]'
+            }`}
           >
-            <div className="flex flex-col space-y-3 pt-2">
+            <div className="flex flex-col space-y-2 pt-2">
               {activeNavItems.map((item) => (
                 <NavLink
                   key={item.id || item.name}
                   to={item.path}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.path)}
                   className={({ isActive }) =>
-                    `text-xs tracking-[0.2em] font-medium uppercase py-2.5 border-b border-[#26211B] transition-colors ${
-                      isActive ? 'text-[#D4AF37]' : 'text-[#C4BCB3] hover:text-[#D4AF37]'
+                    `text-xs tracking-[0.2em] font-medium uppercase py-3 border-b transition-colors flex items-center justify-between ${
+                      theme === 'dark' ? 'border-[#26211B]' : 'border-[#E2DBD0]'
+                    } ${
+                      isActive
+                        ? theme === 'dark'
+                          ? 'text-[#D4AF37] font-semibold'
+                          : 'text-[#9E7815] font-semibold'
+                        : theme === 'dark'
+                        ? 'text-[#C4BCB3] hover:text-[#D4AF37]'
+                        : 'text-[#4A443C] hover:text-[#9E7815]'
                     }`
                   }
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
-                  {item.name}
+                  <span>{item.name}</span>
+                  <span className="text-[10px] opacity-40">›</span>
                 </NavLink>
               ))}
             </div>
@@ -252,8 +334,8 @@ export const Navbar: React.FC = () => {
 
               <Link
                 to="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center space-x-2 text-xs tracking-[0.18em] font-semibold uppercase py-3.5 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908]"
+                onClick={(e) => handleNavClick(e, '/contact')}
+                className="w-full inline-flex items-center justify-center space-x-2 text-xs tracking-[0.18em] font-semibold uppercase py-3.5 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] shadow-[0_4px_20px_rgba(212,175,55,0.25)] cursor-pointer"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 <span>LET&apos;S CONNECT ↗</span>
