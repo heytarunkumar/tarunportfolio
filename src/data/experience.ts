@@ -9,27 +9,49 @@ export interface ExperienceItem {
   technologies: string[];
   isVerified: boolean;
   visible?: boolean;
+  logoUrl?: string;
+  tagline?: string;
+  link?: string;
 }
 
 export const experienceData: ExperienceItem[] = [
   {
     id: "01",
     year: "2024 - PRESENT",
-    role: "Python Backend & Cloud Systems Exploration",
-    organization: "Independent Software Projects & Open Source",
+    role: "Founder & President",
+    organization: "OrigoHOST Tech Community",
     location: "India",
+    tagline: "WHERE BUILDERS BECOME INNOVATORS",
+    logoUrl: "/images/origohost/origohost-icon.png",
     description:
-      "Architecting backend REST microservices, automated python tools, Docker container workflows, and cloud automation scripts.",
+      "Leading institutional engagements, technical initiatives, and developer community growth focused on applied AI, intelligent systems, and modern software engineering education.",
     responsibilities: [
-      "Designing REST APIs and modular Python software architectures.",
-      "Containerizing services with multi-stage Docker builds and automated CI/CD checks.",
-      "Developing machine learning server prototypes and tabular prediction systems.",
+      "Leading institutional engagements, technical bootcamps, and developer initiatives on applied AI and modern engineering stacks.",
+      "Enabling students and emerging engineers to gain practical hands-on exposure to intelligent systems and production-grade technologies.",
+      "Spearheading open-source initiatives, hackathons, and collaborative engineering projects for student builders.",
+      "Cultivating an ecosystem where builders transition into impactful innovators and entrepreneurs.",
     ],
-    technologies: ["Python", "Flask", "Docker", "Linux", "REST APIs", "AWS", "Git"],
+    technologies: ["Applied AI", "Generative AI", "Community Leadership", "Python", "Technical Mentorship", "System Architecture"],
     isVerified: true,
   },
   {
     id: "02",
+    year: "2024 - PRESENT",
+    role: "AI Engineer & Founder (Applied AI & Systems)",
+    organization: "Independent Ventures & Intelligent Systems",
+    location: "India · Remote",
+    description:
+      "Architecting AI-powered solutions, Generative AI applications, backend REST microservices, and automation pipelines turning complex problems into scalable products.",
+    responsibilities: [
+      "Designing intelligent systems and GenAI integrations combining LLM workflows with backend services.",
+      "Developing scalable Python backend architectures, automated data pipelines, and microservices.",
+      "Prototyping practical AI products with measurable business impact and user-centric value.",
+    ],
+    technologies: ["Artificial Intelligence", "Generative AI", "Python", "LLMs", "Docker", "REST APIs", "Cloud & Automation"],
+    isVerified: true,
+  },
+  {
+    id: "03",
     year: "2024",
     role: "ML & XAI Research Lead (AI-HealthGuard Project)",
     organization: "Academic Research Collaboration",
@@ -38,33 +60,18 @@ export const experienceData: ExperienceItem[] = [
       "Collaborated on machine learning risk prediction research utilizing explainable AI techniques (SHAP/LIME) for tabular health dataset analysis.",
     responsibilities: [
       "Preprocessed dataset attributes and trained ensemble classification models.",
-      "Integrated SHAP explainability pipelines to evaluate feature contributions.",
+      "Integrated SHAP explainability pipelines to evaluate feature contributions and model transparency.",
       "Drafted research paper documentation alongside co-authors Sakshi Rajput and Prashant Prajapati.",
     ],
-    technologies: ["Python", "Scikit-learn", "SHAP", "Pandas", "Streamlit"],
+    technologies: ["Python", "Scikit-learn", "SHAP", "Pandas", "Streamlit", "Explainable AI"],
     isVerified: true,
-  },
-  {
-    id: "03",
-    year: "[VERIFY DATES — PLACEHOLDER]",
-    role: "Software Engineering Intern / Trainee [PLACEHOLDER]",
-    organization: "[ORGANIZATION NAME — VERIFY BEFORE PUBLISHING]",
-    location: "India",
-    description:
-      "Hands-on software development training focused on backend engineering, database schemas, and modern web software practices.",
-    responsibilities: [
-      "Assisted in backend API testing, bug resolution, and documentation.",
-      "Participated in database query optimization and clean code code-reviews.",
-    ],
-    technologies: ["Python", "SQL", "Git", "REST APIs"],
-    isVerified: false,
   },
   {
     id: "04",
     year: "2022 - 2026",
     role: "B.Tech in Computer Science & Engineering (AI & ML)",
-    organization: "[UNIVERSITY / COLLEGE NAME — VERIFY BEFORE PUBLISHING]",
-    location: "India",
+    organization: "Galgotias University",
+    location: "Greater Noida, India",
     description:
       "Specialized in Artificial Intelligence, Machine Learning, Data Structures, Algorithms, Object-Oriented Programming, Database Management Systems, and Cloud Software Foundations.",
     responsibilities: [
@@ -75,3 +82,4 @@ export const experienceData: ExperienceItem[] = [
     isVerified: true,
   },
 ];
+

@@ -53,7 +53,7 @@ export const AboutSection: React.FC = () => {
             className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            01 / ABOUT MY JOURNEY
+            01 / MISSION &amp; PHILOSOPHY
           </span>
           <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
@@ -76,24 +76,30 @@ export const AboutSection: React.FC = () => {
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448]">
-                  BUILDING BACKEND APIS.
+                  ENGINEERING INTELLIGENCE.
                 </span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                  EVOLVING CLOUD &amp; DEVOPS.
+                  SCALING VENTURES.
                 </span>
               </h2>
             </motion.div>
 
             {/* Narrative Paragraph */}
-            <motion.p
+            <motion.div
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-8 max-w-xl"
+              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-8 max-w-xl space-y-4"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I am <span className="text-[#F3DBB3] font-medium">{profile?.name || 'Tarun Kumar'}</span>, a software developer specializing in Python backend systems, REST APIs, automation workflows, and cloud-based architecture.
-              <br /><br />
-              {profile?.narrative || 'My software engineering philosophy is grounded in clean code principles, system reliability, and continuous learning.'}
-            </motion.p>
+              <p>
+                I am <span className="text-[#F3DBB3] font-medium">{profile?.name || 'Tarun Kumar'}</span>, a Founder, AI Engineer, and Technology Entrepreneur focused on building intelligent systems, AI-powered solutions, and technology-driven ventures.
+              </p>
+              <p>
+                My work sits at the intersection of <span className="text-white">Artificial Intelligence, Generative AI, Python engineering, automation, data, and entrepreneurship</span>. I enjoy turning complex problems into practical products and scalable solutions that create measurable value.
+              </p>
+              <p className="text-[#D4AF37]/90 italic border-l-2 border-[#D4AF37]/40 pl-3">
+                &ldquo;I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.&rdquo;
+              </p>
+            </motion.div>
 
             {/* Core Competency Pillars Grid */}
             <motion.div 
@@ -102,85 +108,110 @@ export const AboutSection: React.FC = () => {
             >
               <div className="p-4 rounded-sm border border-[#8C6D4F]/25 bg-[#0E0C0A]">
                 <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  01 // BACKEND & APIS
+                  01 // AI &amp; GENAI
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Python, Flask, OOP &amp; REST API Design
+                  LLMs, Intelligent Agents &amp; Applied AI Systems
                 </p>
               </div>
 
               <div className="p-4 rounded-sm border border-[#8C6D4F]/25 bg-[#0E0C0A]">
                 <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  02 // CLOUD & DEVOPS
+                  02 // PYTHON &amp; AUTOMATION
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Linux, Docker, AWS &amp; CI/CD Pipelines
+                  Scalable Microservices, APIs &amp; Workflows
                 </p>
               </div>
 
               <div className="p-4 rounded-sm border border-[#8C6D4F]/25 bg-[#0E0C0A]">
                 <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  03 // AI & AUTOMATION
+                  03 // VENTURES &amp; COMMUNITY
                 </span>
                 <p className="text-xs font-mono text-[#E8DFD8]">
-                  Machine Learning &amp; Streamlit Apps
+                  OrigoHOST Founder, Developer Education &amp; Growth
                 </p>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* RIGHT ARCHITECTURE BLUEPRINT CARD (5 COLS) */}
-          <div className="lg:col-span-5 flex items-center justify-center relative">
+          {/* RIGHT ARCHITECTURE BLUEPRINT & COMMUNITY CARD (5 COLS) */}
+          <div className="lg:col-span-5 flex flex-col space-y-6 relative">
+            
+            {/* OrigoHOST Highlight Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.9 }}
+              className="relative p-6 border border-[#8C6D4F]/40 rounded-sm bg-[#0E0C0A] shadow-2xl overflow-hidden group hover:border-[#D4AF37]/60 transition-all duration-300"
+            >
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+              
+              <div className="flex items-center space-x-4 mb-4">
+                <img
+                  src="/images/origohost/origohost-icon.png"
+                  alt="OrigoHOST Tech Community"
+                  className="w-12 h-12 object-contain rounded-md bg-black/80 border border-[#8C6D4F]/30 p-1"
+                />
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase">VENTURE &amp; COMMUNITY</span>
+                    <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-sm">ACTIVE</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-white tracking-wide" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                    OrigoHOST Tech Community
+                  </h3>
+                  <p className="text-[10px] font-mono text-[#C99E5D]">WHERE BUILDERS BECOME INNOVATORS</p>
+                </div>
+              </div>
+
+              <p className="text-xs font-light text-[#A8988B] leading-relaxed mb-3">
+                As Founder &amp; President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.
+              </p>
+
+              <div className="pt-3 border-t border-[#8C6D4F]/20 flex items-center justify-between text-[11px] font-mono text-[#8C6D4F]">
+                <span>ROLE: FOUNDER &amp; PRESIDENT</span>
+                <span className="text-[#D4AF37]">APPLIED AI ECOSYSTEM</span>
+              </div>
+            </motion.div>
+
+            {/* Career Progression Roadmap */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1.0 }}
-              className="relative p-6 border border-[#8C6D4F]/40 rounded-sm bg-[#0E0C0A] shadow-2xl w-full font-mono text-xs overflow-hidden"
+              transition={{ duration: 1.0, delay: 0.15 }}
+              className="relative p-6 border border-[#8C6D4F]/40 rounded-sm bg-[#0A0806] shadow-2xl w-full font-mono text-xs overflow-hidden"
             >
-              {/* Top Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#8C6D4F]/20 text-[#8C6D4F]">
-                <span className="text-[10px]">CAREER_PROGRESSION_ROADMAP.LOG</span>
-                <span className="text-[#D4AF37]">v2026.1</span>
+                <span className="text-[10px]">VENTURE_&amp;_TECH_STACK.LOG</span>
+                <span className="text-[#D4AF37]">v2026.AI</span>
               </div>
 
-              <div className="space-y-3 text-[11px]">
-                <div className="p-2.5 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
-                  <span className="text-white">Python Development</span>
+              <div className="space-y-2.5 text-[11px]">
+                <div className="p-2 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
+                  <span className="text-white">Applied AI &amp; GenAI Architectures</span>
+                  <span className="text-emerald-400">✓ ACTIVE</span>
+                </div>
+
+                <div className="p-2 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
+                  <span className="text-white">Python Systems &amp; Automation</span>
                   <span className="text-emerald-400">✓ MASTERED</span>
                 </div>
 
-                <div className="text-center text-[#8C6D4F] text-[10px]">↓</div>
-
-                <div className="p-2.5 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
-                  <span className="text-white">Backend APIs &amp; Databases</span>
-                  <span className="text-emerald-400">✓ MASTERED</span>
+                <div className="p-2 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
+                  <span className="text-white">Community &amp; Builder Ecosystems</span>
+                  <span className="text-emerald-400">✓ LEADING</span>
                 </div>
 
-                <div className="text-center text-[#8C6D4F] text-[10px]">↓</div>
-
-                <div className="p-2.5 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
-                  <span className="text-white">Linux &amp; Shell Scripting</span>
-                  <span className="text-emerald-400">✓ APPLIED</span>
-                </div>
-
-                <div className="text-center text-[#8C6D4F] text-[10px]">↓</div>
-
-                <div className="p-2.5 rounded border border-[#8C6D4F]/20 bg-[#14100D] flex items-center justify-between">
-                  <span className="text-white">Docker &amp; CI/CD Pipelines</span>
-                  <span className="text-amber-400">⚡ BUILDING</span>
-                </div>
-
-                <div className="text-center text-[#8C6D4F] text-[10px]">↓</div>
-
-                <div className="p-2.5 rounded border border-[#D4AF37]/40 bg-[#1E1914] flex items-center justify-between">
-                  <span className="text-[#F7E7C4]">AWS Cloud &amp; Terraform</span>
-                  <span className="text-[#D4AF37]">⚡ BUILDING</span>
+                <div className="p-2 rounded border border-[#D4AF37]/40 bg-[#1E1914] flex items-center justify-between">
+                  <span className="text-[#F7E7C4]">Scalable AI Ventures &amp; Products</span>
+                  <span className="text-[#D4AF37]">⚡ SCALING</span>
                 </div>
               </div>
             </motion.div>
+
           </div>
 
         </div>

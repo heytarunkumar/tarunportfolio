@@ -5,12 +5,12 @@ import { usePortfolio } from '../context/PortfolioContext';
 import { Navbar } from './layout/Navbar';
 
 const heroRoles = [
-  'PYTHON DEVELOPER',
-  'BACKEND ARCHITECT',
-  'AUTOMATION ENGINEER',
-  'CLOUD & DEVOPS',
-  'CONTAINER SPECIALIST',
-  'AI & ML INTEGRATOR',
+  'FOUNDER & AI ENGINEER',
+  'TECH ENTREPRENEUR',
+  'INTELLIGENT SYSTEMS',
+  'FOUNDER @ ORIGOHOST',
+  'GENERATIVE AI & AUTOMATION',
+  'PYTHON ARCHITECT',
 ];
 
 const containerVariants: Variants = {
@@ -105,7 +105,7 @@ export const HeroSection: React.FC = () => {
             <motion.div variants={fadeUpVariants} className="mb-4 inline-flex items-center space-x-2.5 px-3 py-1 rounded-sm border border-[#8C6D4F]/40 bg-[#120F0C]/80 backdrop-blur-md">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
-                AVAILABLE FOR OPPORTUNITIES
+                FOUNDER &amp; AI SYSTEMS ENGINEER
               </span>
             </motion.div>
 
@@ -123,7 +123,7 @@ export const HeroSection: React.FC = () => {
                 <div className="h-[1.1em] overflow-hidden relative">
                   {prefersReducedMotion ? (
                     <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                      PYTHON DEVELOPER
+                      AI ENGINEER
                     </span>
                   ) : (
                     <AnimatePresence mode="wait">
@@ -142,7 +142,7 @@ export const HeroSection: React.FC = () => {
                 </div>
 
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#342410]">
-                  CLOUD &amp; DEVOPS
+                  INTELLIGENT SYSTEMS
                 </span>
               </h1>
             </motion.div>
@@ -152,7 +152,7 @@ export const HeroSection: React.FC = () => {
               <p
                 className="text-[10.5px] sm:text-xs font-mono tracking-[0.25em] uppercase text-[#D4AF37]"
               >
-                PYTHON <span className="text-[#8C6D4F]">·</span> BACKEND <span className="text-[#8C6D4F]">·</span> CLOUD <span className="text-[#8C6D4F]">·</span> DEVOPS <span className="text-[#8C6D4F]">·</span> AUTOMATION <span className="text-[#8C6D4F]">·</span> AI
+                AI <span className="text-[#8C6D4F]">·</span> GENAI <span className="text-[#8C6D4F]">·</span> PYTHON <span className="text-[#8C6D4F]">·</span> AUTOMATION <span className="text-[#8C6D4F]">·</span> VENTURES <span className="text-[#8C6D4F]">·</span> ORIGOHOST
               </p>
             </motion.div>
 
@@ -175,7 +175,7 @@ export const HeroSection: React.FC = () => {
                 href="#work"
                 className="inline-flex items-center space-x-3 px-6 sm:px-7 py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black text-[11px] font-semibold tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.25)] hover:bg-[#E2C054]"
               >
-                <span>VIEW MY WORK</span>
+                <span>EXPLORE WORK</span>
                 <span className="text-xs">↗</span>
               </a>
 
@@ -219,37 +219,35 @@ export const HeroSection: React.FC = () => {
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-[10px] text-[#8C6D4F]">bash — tarun@devops-node</span>
+                <span className="text-[10px] text-[#8C6D4F]">terminal — tarun@ai-venture</span>
               </div>
 
               {/* Terminal Commands */}
               <div className="space-y-4">
                 <div>
                   <span className="text-[#D4AF37]">$</span> whoami
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">tarun-kumar</p>
+                  <p className="text-[#C4B5A5] pl-4 mt-0.5">tarun-kumar [Founder &amp; AI Engineer]</p>
                 </div>
 
                 <div>
-                  <span className="text-[#D4AF37]">$</span> role --primary
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">python-developer</p>
-                  <span className="text-[#D4AF37]">$</span> role --target
-                  <p className="text-[#C4B5A5] pl-4 mt-0.5">cloud-and-devops-engineer</p>
+                  <span className="text-[#D4AF37]">$</span> ventures --current
+                  <p className="text-[#F3DBB3] pl-4 mt-0.5">› OrigoHOST Tech Community [Founder &amp; President]</p>
+                  <p className="text-[#A8988B] pl-4 text-[10.5px]">  &quot;WHERE BUILDERS BECOME INNOVATORS&quot;</p>
                 </div>
 
                 <div>
                   <span className="text-[#D4AF37]">$</span> focus --active
                   <div className="pl-4 mt-0.5 text-[11px] text-[#A8988B] space-y-1">
-                    <p>› backend-apis [Flask / REST]</p>
-                    <p>› containerization [Docker]</p>
-                    <p>› cloud-infrastructure [AWS]</p>
-                    <p>› ci-cd-pipelines [GitHub Actions]</p>
-                    <p>› automation-and-ai [Python / ML]</p>
+                    <p>› intelligent-systems [GenAI / LLMs / Agents]</p>
+                    <p>› python-engineering [Automated Pipelines &amp; REST APIs]</p>
+                    <p>› applied-ai-education [Developer Communities]</p>
+                    <p>› scalable-ventures [Practical Products &amp; Value]</p>
                   </div>
                 </div>
 
                 <div>
-                  <span className="text-[#D4AF37]">$</span> status --availability
-                  <p className="text-emerald-400 pl-4 mt-0.5">[READY_FOR_DEPLOYMENT]</p>
+                  <span className="text-[#D4AF37]">$</span> status --mission
+                  <p className="text-emerald-400 pl-4 mt-0.5">[BUILDING_WHAT_COMES_NEXT]</p>
                 </div>
               </div>
 

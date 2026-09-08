@@ -112,7 +112,14 @@ export const ExperienceSection: React.FC = () => {
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap items-center space-x-2 mb-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      {item.logoUrl && (
+                        <img
+                          src={item.logoUrl}
+                          alt={item.organization}
+                          className="w-7 h-7 object-contain rounded bg-[#0A0806] border border-[#8C6D4F]/30 p-0.5"
+                        />
+                      )}
                       <h3
                         className="text-3xl sm:text-4xl tracking-wide text-white group-hover:text-[#F7E7C4] transition-colors leading-none"
                         style={{ fontFamily: "'Bebas Neue', sans-serif" }}
@@ -126,14 +133,21 @@ export const ExperienceSection: React.FC = () => {
                       )}
                     </div>
                     
-                    <span 
-                      className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2"
-                    >
-                      {item.organization}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span 
+                        className="text-[10.5px] font-mono tracking-[0.2em] uppercase text-[#D4AF37]"
+                      >
+                        {item.organization}
+                      </span>
+                      {item.tagline && (
+                        <span className="text-[9px] font-mono text-[#8C6D4F] border border-[#8C6D4F]/30 px-1.5 py-0.5 rounded-sm bg-[#0E0C0A]">
+                          &quot;{item.tagline}&quot;
+                        </span>
+                      )}
+                    </div>
                     
                     <p 
-                      className="text-xs sm:text-[13px] font-light text-[#A8988B] leading-[1.7] max-w-lg mb-3"
+                      className="text-xs sm:text-[13px] font-light text-[#A8988B] leading-[1.7] max-w-xl mb-3"
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
                       {item.description}

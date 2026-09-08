@@ -26,23 +26,23 @@ export interface Profile {
 
 export const profileData: Profile = {
   name: "Tarun Kumar",
-  title: "Python Developer | Cloud & DevOps Engineer",
-  subtitle: "AI, Machine Learning & Automation",
-  primaryRole: "Python Developer",
-  secondaryRole: "Cloud & DevOps Engineer",
+  title: "Founder & AI Engineer | Technology Entrepreneur",
+  subtitle: "Intelligent Systems · GenAI · Automation · Ventures",
+  primaryRole: "Founder & AI Engineer",
+  secondaryRole: "Technology Entrepreneur",
   focusAreas: [
-    "Python Backend APIs",
-    "Automation & Workflows",
-    "Cloud Infrastructure (AWS)",
-    "Containerization (Docker)",
-    "CI/CD Pipelines",
-    "AI / ML Integration",
+    "Artificial Intelligence & GenAI",
+    "Intelligent Systems & Architecture",
+    "Python Engineering & Automation",
+    "Scalable Tech Ventures",
+    "Applied AI & Developer Education",
+    "Community Building (OrigoHOST)",
   ],
   narrative:
-    "A Python-focused developer building backend applications, REST APIs, automation workflows, and cloud-based solutions while progressively developing practical hands-on expertise in modern DevOps and infrastructure engineering.",
+    "Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, AI-powered solutions, and technology-driven ventures. Turning complex problems into practical products and scalable solutions that create measurable value.",
   bio:
-    "I specialize in architecting scalable Python services, reliable REST APIs, automated backend workflows, and cloud solutions. I am actively expanding my hands-on technical stack into container orchestration, Infrastructure as Code, CI/CD pipelines, and cloud systems engineering, with machine learning and generative AI as complementary specializations.",
-  location: "India · Open to Remote",
+    "My work sits at the intersection of Artificial Intelligence, Generative AI, Python engineering, automation, data, and entrepreneurship. Beyond building technology, I work on creating developer communities and enabling students and emerging engineers to gain practical exposure to modern technologies. As the Founder & President of OrigoHOST Tech Community, I lead institutional engagements, technical initiatives, and community growth focused on applied AI and developer education. I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.",
+  location: "India · Global / Remote",
   email: "imtarunchaudharyy@gmail.com",
   socials: {
     github: "https://github.com/heytarunkumar",
@@ -52,3 +52,4 @@ export const profileData: Profile = {
   },
   resumeUrl: "/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf",
 };
+
