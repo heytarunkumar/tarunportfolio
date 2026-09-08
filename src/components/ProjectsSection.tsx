@@ -22,8 +22,8 @@ export const ProjectsSection: React.FC = () => {
 
   return (
     <section
-      id="work"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black pt-20 pb-32 px-6 sm:px-12 lg:px-20"
+      id="projects"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16"
     >
       {/* Studio Ambient Glows */}
       <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
@@ -36,42 +36,30 @@ export const ProjectsSection: React.FC = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center space-x-4 mb-5"
+          transition={{ duration: 0.6 }}
+          className="flex items-center space-x-4 mb-6"
         >
-          <span
-            className="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
-            04 / FEATURED PROJECTS
+          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+            03 / FEATURED PROJECTS &amp; SYSTEMS
           </span>
-          <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
         {/* Section Headline */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-10"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6"
         >
-          <h2
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
-            style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-          >
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
-              SELECTED PROJECTS.
-            </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]">
-              ENGINEERED SOLUTIONS.
-            </span>
-          </h2>
+          <div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+              Selected projects &amp; <span className="italic text-[#D4AF37]">architected systems.</span>
+            </h2>
+          </div>
 
-          <p
-            className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-sm mt-4 md:mt-0 leading-relaxed"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
+          <p className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-sm leading-relaxed">
             Demonstrating applied engineering across intelligent systems, Python REST microservices, automation, and cloud deployments.
           </p>
         </motion.div>
@@ -81,16 +69,16 @@ export const ProjectsSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-wrap items-center gap-2 mb-12"
+          className="flex flex-wrap items-center gap-2 mb-10"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 text-[10px] font-mono tracking-widest uppercase rounded-sm border transition-all ${
+              className={`px-4 py-2 text-[10.5px] font-mono tracking-wider uppercase rounded-full border transition-all cursor-pointer ${
                 selectedCategory === cat
-                  ? 'border-[#D4AF37] bg-[#1E1914] text-[#F7E7C4] shadow-[0_0_12px_rgba(212,175,55,0.2)]'
-                  : 'border-[#8C6D4F]/30 bg-[#12100E] text-[#C4BCB3] hover:border-[#8C6D4F]'
+                  ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]'
+                  : 'border-[#26211B] bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/50'
               }`}
             >
               {cat}
@@ -99,156 +87,153 @@ export const ProjectsSection: React.FC = () => {
         </motion.div>
 
         {/* Project Cards Stack */}
-        <div className="flex flex-col space-y-10 sm:space-y-12">
+        <div className="flex flex-col space-y-8 sm:space-y-10">
           {filteredProjects.map((project: Project, idx: number) => {
             const isExpanded = expandedSlug === project.slug;
 
             return (
               <motion.div
                 key={project.slug || project.title}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: idx * 0.08 }}
-                className="card-lift relative w-full rounded-2xl border border-[#8C6D4F]/40 bg-[#12100E] p-8 sm:p-12 shadow-[0_25px_70px_rgba(0,0,0,0.85)] group overflow-hidden"
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: idx * 0.06 }}
+                className="card-lift relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-7 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group overflow-hidden"
               >
                 {/* Top Gold Border Light Flare */}
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
 
                 {/* Big Watermark Number */}
-                <span
-                  className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-[#EAD8C7]/5 select-none pointer-events-none leading-none"
-                  style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                >
-                  {project.number}
+                <span className="absolute -bottom-6 -right-3 text-8xl sm:text-9xl font-bold text-white/[0.02] select-none pointer-events-none leading-none font-serif">
+                  0{idx + 1}
                 </span>
 
-                {/* Content Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
                   
-                  {/* Left Column (7 Cols) */}
+                  {/* Left Specs (7 Cols) */}
                   <div className="lg:col-span-7 flex flex-col justify-between space-y-4">
                     <div>
-                      <div className="flex items-center space-x-3 mb-3">
-                        <span className="text-xs font-mono font-bold text-[#D4AF37]">
-                          {project.number} //
-                        </span>
-                        <span className="text-[10.5px] font-mono tracking-[0.25em] uppercase text-[#C4BCB3]">
+                      {/* Meta Tags */}
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
                           {project.category}
                         </span>
-                        <span className="text-[9px] font-mono px-2 py-0.5 border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 rounded-sm uppercase">
-                          {project.status}
+                        <span className="text-[10px] font-mono text-[#8C6D4F]">•</span>
+                        <span className="text-[10px] font-mono text-[#C4BCB3] uppercase">
+                          {project.status || 'COMPLETED'}
                         </span>
                       </div>
 
-                      <h3
-                        className="text-4xl sm:text-5xl lg:text-5xl font-normal tracking-tight text-white mb-3 group-hover:text-[#F7E7C4] transition-colors uppercase leading-[0.9]"
-                        style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                      >
+                      {/* Project Title */}
+                      <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
                         {project.title}
                       </h3>
 
-                      <p
-                        className="text-xs sm:text-sm font-light text-[#C4BCB3] leading-relaxed mb-6"
-                        style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                      >
+                      {/* Description */}
+                      <p className="text-xs sm:text-[13.5px] font-light text-[#C4BCB3] leading-relaxed mb-4">
                         {project.description}
                       </p>
                     </div>
 
                     {/* Tech Badges */}
-                    <div className="flex flex-wrap items-center gap-2">
-                      {project.technologies.map((tag) => (
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {(project.technologies || []).map((tech: string) => (
                         <span
-                          key={tag}
-                          className="px-2.5 py-1 text-[10px] font-mono tracking-wider text-[#F5F2EB] bg-[#1A1714] border border-[#8C6D4F]/30 rounded-sm"
+                          key={tech}
+                          className="px-3 py-1 rounded-xl text-[10px] font-mono bg-[#0A0908] border border-[#26211B] text-[#E8DFD8]"
                         >
-                          {tag}
+                          {tech}
                         </span>
                       ))}
                     </div>
 
-                    {/* Expand/Collapse Button */}
-                    <div className="pt-4">
-                      <button
-                        onClick={() => toggleExpand(project.slug)}
-                        className="inline-flex items-center space-x-2 text-[11px] font-mono tracking-widest uppercase text-[#D4AF37] hover:text-[#FFF5EB] transition-colors"
-                      >
-                        <span>{isExpanded ? '[ HIDE ARCHITECTURAL DETAILS ]' : '[ EXPLORE ARCHITECTURAL DETAILS ]'}</span>
-                        <span className="text-xs">{isExpanded ? '↑' : '↓'}</span>
-                      </button>
-                    </div>
-
-                    {/* Morphing Expanded Details */}
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="space-y-6 pt-6 border-t border-[#8C6D4F]/30 overflow-hidden"
-                        >
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div className="p-4 bg-[#161310] border border-[#8C6D4F]/25 rounded-sm">
-                              <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider block mb-1">
-                                PROBLEM STATEMENT
-                              </span>
-                              <p className="text-xs text-[#C4BCB3] leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                {project.problem}
-                              </p>
-                            </div>
-                            <div className="p-4 bg-[#161310] border border-[#8C6D4F]/25 rounded-sm">
-                              <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider block mb-1">
-                                ARCHITECTURAL SOLUTION
-                              </span>
-                              <p className="text-xs text-[#C4BCB3] leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                                {project.solution}
-                              </p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Right Column (5 Cols) — Architecture Metrics */}
-                  <div className="lg:col-span-5 flex flex-col justify-between h-full bg-[#1A1714] border border-[#8C6D4F]/30 p-6 sm:p-8 rounded-xl space-y-6">
-                    <div>
-                      <span
-                        className="text-[10px] font-mono tracking-[0.3em] uppercase text-[#D4AF37] block mb-4"
-                      >
-                        // SYSTEM METRICS
-                      </span>
-
-                      <div className="space-y-4">
-                        {project.architectureMetrics.map((m, i) => (
-                          <div key={i} className="flex items-center justify-between border-b border-[#8C6D4F]/20 pb-3">
-                            <span className="text-xs font-mono text-[#C4BCB3] uppercase">{m.label}</span>
-                            <span className="text-sm font-mono font-bold text-[#F7E7C4]">{m.value}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Action Links */}
-                    <div className="pt-4 space-y-3">
+                    {/* Interactive CTAs */}
+                    <div className="flex flex-wrap items-center gap-3 pt-3">
                       {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full inline-flex items-center justify-center space-x-3 px-6 py-3.5 border border-[#8C6D4F] bg-[#12100E] hover:border-[#D4AF37] hover:bg-[#D4AF37] text-[#F5F2EB] hover:text-black text-[11px] font-semibold tracking-[0.24em] uppercase transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.08)]"
-                          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                          className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-mono border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#0A0908] text-white hover:text-[#D4AF37] transition-all cursor-pointer"
                         >
-                          <span>VIEW CODE ON GITHUB</span>
-                          <span className="text-xs">↗</span>
+                          <span>GITHUB REPO</span>
+                          <span>↗</span>
                         </a>
                       )}
+
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-mono border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-semibold hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer"
+                        >
+                          <span>LIVE SYSTEM</span>
+                          <span>↗</span>
+                        </a>
+                      )}
+
+                      <button
+                        type="button"
+                        onClick={() => toggleExpand(project.slug)}
+                        className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl text-xs font-mono text-[#D4AF37] hover:text-white border border-transparent hover:border-[#26211B] transition-colors cursor-pointer"
+                      >
+                        <span>{isExpanded ? 'COLLAPSE SPECS' : 'VIEW APPROACH'}</span>
+                        <span>{isExpanded ? '↑' : '↓'}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Right Metrics & Architecture Highlights (5 Cols) */}
+                  <div className="lg:col-span-5 rounded-xl border border-[#26211B] bg-[#0A0908] p-5 sm:p-6 font-mono text-xs">
+                    <div className="text-[10px] text-[#D4AF37] uppercase tracking-widest mb-3 pb-2 border-b border-[#26211B]">
+                      // SYSTEM METRICS &amp; ARCHITECTURE
+                    </div>
+
+                    <div className="space-y-3">
+                      {(project.architectureMetrics || []).map((metric, i) => (
+                        <div key={i} className="flex items-center justify-between py-1 border-b border-[#26211B]/50 last:border-0">
+                          <span className="text-[10px] text-[#8C6D4F] uppercase">{metric.label}</span>
+                          <span className="text-white text-[11px] font-sans font-medium">{metric.value}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
                 </div>
+
+                {/* Expandable Technical Deep-Dive */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="mt-6 pt-6 border-t border-[#26211B] text-xs font-sans"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[#0A0908] p-5 rounded-xl border border-[#26211B]">
+                        <div>
+                          <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-widest block mb-1.5">
+                            PROBLEM STATEMENT &amp; OBJECTIVE
+                          </span>
+                          <p className="text-[#C4BCB3] text-xs font-light leading-relaxed">
+                            {project.problem || 'Designed and developed to resolve performance bottlenecks and provide resilient backend services.'}
+                          </p>
+                        </div>
+                        <div>
+                          <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-widest block mb-1.5">
+                            ENGINEERING ARCHITECTURE &amp; IMPACT
+                          </span>
+                          <p className="text-[#C4BCB3] text-xs font-light leading-relaxed">
+                            {project.solution || 'Employed clean modular architecture with automated pipelines and validated unit coverage.'}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
               </motion.div>
             );
           })}

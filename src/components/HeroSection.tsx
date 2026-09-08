@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
-import { Navbar } from './layout/Navbar';
 
 const heroRoles = [
   'FOUNDER & AI ENGINEER',
@@ -10,7 +9,7 @@ const heroRoles = [
   'INTELLIGENT SYSTEMS ARCHITECT',
   'FOUNDER @ ORIGOHOST',
   'GENERATIVE AI & AUTOMATION',
-  'PYTHON ENGINEERING',
+  'PYTHON SYSTEMS ARCHITECT',
 ];
 
 const containerVariants: Variants = {
@@ -67,12 +66,11 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black">
-      
-      {/* Top Navbar */}
-      <Navbar />
+  const resumeUrl = profile?.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf';
 
+  return (
+    <section className="relative w-full min-h-screen overflow-hidden bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white flex items-center">
+      
       {/* Ambient Technical Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-end">
         <video
@@ -80,13 +78,13 @@ export const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
-          className="h-screen w-auto max-w-none object-contain origin-right opacity-25 scale-95 md:scale-100"
+          className="h-screen w-auto max-w-none object-contain origin-right opacity-20 scale-95 md:scale-100"
         >
           <source src="/videos/hero.mp4" type="video/mp4" />
         </video>
 
         {/* Ambient Subtle Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0908] via-[#0A0908]/92 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0908] via-[#0A0908]/90 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0908]/80 via-transparent to-[#0A0908] pointer-events-none" />
         
         {/* Soft Radial Ambient Lights */}
@@ -95,8 +93,8 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Main Content Layer */}
-      <div className="relative z-10 flex flex-col justify-center min-h-screen w-full px-6 sm:px-12 lg:px-16 pt-28 pb-16">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 pt-32 pb-20 sm:pt-36 sm:pb-24">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           
           {/* LEFT: Technical Positioning & Headline (7 Cols) */}
           <motion.div
@@ -106,16 +104,16 @@ export const HeroSection: React.FC = () => {
             className="lg:col-span-7 z-20"
           >
             {/* Status & Venture Badges */}
-            <motion.div variants={fadeUpVariants} className="mb-5 flex flex-wrap items-center gap-2.5">
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-sm border border-[#8C6D4F]/40 bg-[#12100E]/80 backdrop-blur-md">
+            <motion.div variants={fadeUpVariants} className="mb-6 flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
                   FOUNDER &amp; AI SYSTEMS ENGINEER
                 </span>
               </div>
 
-              <div className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-sm border border-[#8C6D4F]/20 bg-[#141210]/60 backdrop-blur-md">
-                <span className="text-[9.5px] font-mono text-[#C4BCB3]">
+              <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/25 bg-[#141210]/60 backdrop-blur-md">
+                <span className="text-[10px] font-mono text-[#C4BCB3]">
                   PRESIDENT @ <span className="text-white font-medium">ORIGOHOST</span>
                 </span>
               </div>
@@ -123,29 +121,24 @@ export const HeroSection: React.FC = () => {
 
             {/* Editorial Display Title with Dynamic Role Morphing */}
             <motion.div variants={fadeUpVariants} className="relative mb-5 select-none">
-              <h1
-                className="text-6xl sm:text-7xl md:text-8xl lg:text-[6.4rem] xl:text-[7rem] tracking-tight uppercase leading-[0.85]"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
-                  TARUN KUMAR
-                </span>
+              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-[1.05]">
+                <span>Tarun Kumar</span>
                 
                 {/* Hero Role Morphing Surface */}
-                <div className="h-[1.12em] overflow-hidden relative">
+                <div className="h-[1.25em] overflow-hidden relative my-1 text-[#D4AF37] italic font-normal">
                   {prefersReducedMotion ? (
-                    <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A]">
-                      AI ENGINEER
+                    <span className="block">
+                      Founder &amp; AI Engineer
                     </span>
                   ) : (
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={heroRoles[roleIndex]}
-                        initial={{ opacity: 0, y: 24 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -24 }}
-                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]"
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        className="block"
                       >
                         {heroRoles[roleIndex]}
                       </motion.span>
@@ -153,17 +146,15 @@ export const HeroSection: React.FC = () => {
                   )}
                 </div>
 
-                <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#DFBE8A] via-[#9B7640] to-[#3B2912]">
-                  INTELLIGENT SYSTEMS
+                <span className="text-2xl sm:text-3xl md:text-4xl font-sans font-light text-[#C4BCB3] tracking-normal block mt-1">
+                  Building practical intelligence &amp; scalable systems.
                 </span>
-              </h1>
+              </div>
             </motion.div>
 
             {/* Subtitle Technologies Line */}
-            <motion.div variants={fadeUpVariants} className="mb-5">
-              <p
-                className="text-[10px] sm:text-xs font-mono tracking-[0.22em] uppercase text-[#D4AF37]"
-              >
+            <motion.div variants={fadeUpVariants} className="mb-6">
+              <p className="text-[10.5px] sm:text-xs font-mono tracking-[0.2em] uppercase text-[#D4AF37]">
                 APPLIED AI <span className="text-[#8C6D4F]">·</span> GENAI <span className="text-[#8C6D4F]">·</span> PYTHON <span className="text-[#8C6D4F]">·</span> AUTOMATION <span className="text-[#8C6D4F]">·</span> VENTURES <span className="text-[#8C6D4F]">·</span> ORIGOHOST
               </p>
             </motion.div>
@@ -171,7 +162,7 @@ export const HeroSection: React.FC = () => {
             {/* Supporting Description */}
             <motion.p
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14px] font-light text-[#C4BCB3] leading-[1.8] tracking-wide max-w-xl mb-8"
+              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.8] max-w-xl mb-8"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               {profile.narrative}
@@ -180,22 +171,23 @@ export const HeroSection: React.FC = () => {
             {/* CTA Action Buttons */}
             <motion.div
               variants={fadeUpVariants}
-              className="flex flex-wrap items-center gap-4 sm:gap-5"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1"
             >
+              {/* Primary CTA */}
               <a
-                href="#work"
-                className="inline-flex items-center space-x-2.5 px-6 sm:px-7 py-3.5 border border-[#D4AF37] bg-[#D4AF37] text-black text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-[0_0_25px_rgba(212,175,55,0.22)] hover:bg-[#E2C054] hover:shadow-[0_0_30px_rgba(212,175,55,0.35)]"
+                href="#projects"
+                className="inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 rounded-xl border border-[#D4AF37] bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_28px_rgba(212,175,55,0.45)] hover:scale-[1.02] cursor-pointer"
               >
                 <span>EXPLORE WORK</span>
                 <span className="text-xs">↗</span>
               </a>
 
+              {/* Secondary CTA */}
               <a
-                href={profile.resumeUrl}
+                href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#8C6D4F]/50 hover:border-[#D4AF37] bg-[#12100E]/90 text-[#F5F2EB] hover:text-[#FFF5EB] text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-300"
+                className="inline-flex items-center space-x-2 px-5 sm:px-6 py-3.5 rounded-xl border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 <span>DOWNLOAD RESUME</span>
                 <span className="text-xs text-[#D4AF37]">↓</span>
@@ -205,13 +197,13 @@ export const HeroSection: React.FC = () => {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className={`inline-flex items-center space-x-2 px-5 py-3.5 border text-[11px] font-semibold tracking-[0.2em] uppercase transition-all duration-300 ${
+                className={`inline-flex items-center space-x-2 px-4 sm:px-5 py-3.5 rounded-xl border text-xs font-mono tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer ${
                   copiedEmail
-                    ? 'border-emerald-500 bg-emerald-950/40 text-emerald-300'
-                    : 'border-[#8C6D4F]/40 hover:border-[#D4AF37] bg-[#0A0908] text-[#D4AF37]'
+                    ? 'border-emerald-500/60 bg-emerald-950/40 text-emerald-300'
+                    : 'border-[#26211B] hover:border-[#D4AF37]/50 bg-[#12100E] text-[#D4AF37]'
                 }`}
               >
-                <span>{copiedEmail ? 'EMAIL COPIED ✓' : 'COPY EMAIL'}</span>
+                <span>{copiedEmail ? 'COPIED ✓' : 'COPY EMAIL'}</span>
               </button>
             </motion.div>
           </motion.div>
@@ -220,25 +212,25 @@ export const HeroSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 z-20"
           >
-            <div className="card-lift rounded-sm border border-[#8C6D4F]/40 bg-[#12100E]/95 p-6 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md">
+            <div className="card-lift rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-6 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md">
               {/* Top Window Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
               {/* Window Header */}
-              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#8C6D4F]/20 text-[#8C6D4F]">
+              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#26211B] text-[#8C6D4F]">
                 <div className="flex items-center space-x-2">
                   <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-[10px] text-[#8C6D4F]">system — tarun@ai-venture</span>
+                <span className="text-[10px] text-[#8C6D4F]">tarun@ai-venture ~ bash</span>
               </div>
 
               {/* Terminal Commands & Insights */}
-              <div className="space-y-4">
+              <div className="space-y-4 text-xs">
                 <div>
                   <span className="text-[#D4AF37]">$</span> whoami
                   <p className="text-[#E8E3D8] pl-3.5 mt-0.5 font-medium">tarun-kumar [Founder &amp; AI Engineer]</p>
@@ -254,7 +246,7 @@ export const HeroSection: React.FC = () => {
                   <span className="text-[#D4AF37]">$</span> core-stack --status
                   <div className="pl-3.5 mt-0.5 text-[11px] text-[#C4BCB3] space-y-1">
                     <p>› applied-ai [LLMs / Intelligent Agents / XAI]</p>
-                    <p>› python-engineering [FastAPI / Flask / Microservices]</p>
+                    <p>› python-engineering [FastAPI / Microservices]</p>
                     <p>› data-systems [ML Pipelines / Tabular Risk Scoring]</p>
                     <p>› devops-track <span className="text-amber-400 text-[10px] font-semibold">[LEARNING &amp; EXPLORING]</span></p>
                   </div>

@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -46,28 +46,28 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0A0908]/90 backdrop-blur-md border-b border-[#D7CEC3]/10 py-3.5 shadow-2xl'
+          ? 'bg-[#0A0908]/92 backdrop-blur-md border-b border-[#26211B] py-3.5 shadow-2xl'
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center justify-between">
         
         {/* Brand Identity */}
         <Link
           to="/"
-          className="group flex items-center space-x-2.5 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-[#F5F2EB] hover:text-[#D4AF37] transition-colors focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
+          className="group flex items-center space-x-2.5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F5F2EB] hover:text-[#D4AF37] transition-colors focus:outline-none"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           <span className="w-2 h-2 rounded-full bg-[#D4AF37] group-hover:scale-125 transition-transform" />
-          <span>{profile?.name || 'TARUN KUMAR'}</span>
-          <span className="hidden md:inline-block text-[10px] font-mono text-[#8C6D4F] border-l border-[#8C6D4F]/30 pl-2 ml-1 font-normal lowercase">
+          <span className="font-bold tracking-widest">{profile?.name || 'TARUN KUMAR'}</span>
+          <span className="hidden md:inline-block text-[10px] font-mono text-[#8C6D4F] border-l border-[#26211B] pl-2 ml-1 font-normal lowercase">
             founder · ai
           </span>
         </Link>
 
         {/* Desktop Navigation Links */}
         <nav
-          className="hidden xl:flex items-center space-x-7 text-[11px] tracking-[0.22em] font-medium uppercase text-[#C4BCB3]"
+          className="hidden xl:flex items-center space-x-7 text-[11px] tracking-[0.18em] font-medium uppercase text-[#C4BCB3]"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           {activeNavItems.map((item) => (
@@ -95,10 +95,10 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Action Button & Mobile Toggle */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3 sm:space-x-4">
           <Link
             to="/contact"
-            className="hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.22em] font-semibold uppercase py-2.5 px-4.5 border border-[#8C6D4F]/40 hover:border-[#D4AF37] bg-[#12100E]/90 text-[#F5F2EB] hover:text-[#FFF5EB] transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.08)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
+            className="hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] focus:outline-none cursor-pointer"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
             <span>LET&apos;S CONNECT</span>
@@ -111,9 +111,9 @@ export const Navbar: React.FC = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
-            className="xl:hidden p-2 text-[#F5F2EB] hover:text-[#D4AF37] focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
+            className="xl:hidden p-2 rounded-lg border border-[#26211B] bg-[#12100E] text-[#F5F2EB] hover:text-[#D4AF37] focus:outline-none cursor-pointer"
           >
-            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
               {mobileMenuOpen ? (
                 <path
                   fillRule="evenodd"
@@ -138,8 +138,8 @@ export const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="xl:hidden bg-[#0A0908] border-b border-[#8C6D4F]/30 px-6 pt-4 pb-8 space-y-4 shadow-2xl"
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="xl:hidden bg-[#0A0908] border-b border-[#26211B] px-6 pt-4 pb-8 space-y-4 shadow-2xl"
           >
             <div className="flex flex-col space-y-3 pt-2">
               {activeNavItems.map((item) => (
@@ -148,7 +148,7 @@ export const Navbar: React.FC = () => {
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={({ isActive }) =>
-                    `text-xs tracking-[0.25em] font-medium uppercase py-2.5 border-b border-[#8C6D4F]/15 transition-colors ${
+                    `text-xs tracking-[0.2em] font-medium uppercase py-2.5 border-b border-[#26211B] transition-colors ${
                       isActive ? 'text-[#D4AF37]' : 'text-[#C4BCB3] hover:text-[#D4AF37]'
                     }`
                   }
@@ -163,7 +163,7 @@ export const Navbar: React.FC = () => {
               <Link
                 to="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center space-x-2 text-xs tracking-[0.22em] font-medium uppercase py-3 border border-[#8C6D4F] bg-[#12100E] text-[#F5F2EB] hover:border-[#D4AF37]"
+                className="w-full inline-flex items-center justify-center space-x-2 text-xs tracking-[0.18em] font-semibold uppercase py-3.5 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908]"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 <span>LET&apos;S CONNECT ↗</span>

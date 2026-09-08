@@ -54,7 +54,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden flex flex-col justify-center"
     >
       {/* Ambient Glows */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
@@ -67,37 +67,26 @@ export const SkillsSection: React.FC = () => {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex items-center space-x-4 mb-7"
+          transition={{ duration: 0.6 }}
+          className="flex items-center space-x-4 mb-6"
         >
-          <span
-            className="text-[11px] font-semibold tracking-[0.35em] uppercase text-[#D4AF37]"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
+          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
             02 / TECHNICAL ECOSYSTEM
           </span>
-          <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
-        {/* Section Header */}
+        {/* Section Header & Filter Tabs */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div>
-            <h2
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
-              style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-            >
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#E8E3D8] to-[#7A6E62]">
-                TECHNICAL STACK.
-              </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#634824]">
-                SKILL &amp; LEARNING ROADMAP.
-              </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+              Technical stack &amp; <span className="italic text-[#D4AF37]">learning roadmap.</span>
             </h2>
           </div>
 
@@ -106,7 +95,7 @@ export const SkillsSection: React.FC = () => {
             {(['all', 'core', 'building', 'applied'] as const).map((cat) => {
               const label =
                 cat === 'all'
-                  ? 'ALL'
+                  ? 'ALL STACKS'
                   : cat === 'core'
                   ? 'CORE PRODUCTION'
                   : cat === 'building'
@@ -118,10 +107,10 @@ export const SkillsSection: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3.5 py-1.5 uppercase tracking-widest transition-all duration-300 border rounded-sm ${
+                  className={`px-3.5 py-1.5 uppercase tracking-wider transition-all duration-300 border rounded-full cursor-pointer ${
                     isActive
-                      ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.2)]'
-                      : 'border-[#8C6D4F]/30 bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/60'
+                      ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]'
+                      : 'border-[#26211B] bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/50'
                   }`}
                 >
                   {label}
@@ -139,10 +128,10 @@ export const SkillsSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-sm border border-[#8C6D4F]/35 bg-[#12100E]/95 p-6 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
+            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-6 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
           >
             {/* Header Status Bar */}
-            <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#8C6D4F]/25">
+            <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#26211B]">
               <div className="flex items-center space-x-2">
                 <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
                 <span className="text-[10px] tracking-widest text-[#D4AF37] uppercase">
@@ -165,10 +154,10 @@ export const SkillsSection: React.FC = () => {
                 className="space-y-4"
               >
                 <div>
-                  <span className="text-2xl font-bold tracking-tight text-white block mb-1" style={{ fontFamily: "'Bebas Neue', sans-serif" }}>
+                  <span className="text-xl sm:text-2xl font-serif font-bold text-white block mb-1.5">
                     {activeSkill.name}
                   </span>
-                  <div className={`inline-block px-2 py-0.5 border text-[10px] uppercase rounded-sm ${
+                  <div className={`inline-block px-2.5 py-0.5 border text-[10px] uppercase rounded-full ${
                     activeSkill.category === 'building'
                       ? 'border-amber-500/40 bg-amber-950/30 text-amber-300'
                       : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300'
@@ -177,14 +166,14 @@ export const SkillsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <p className="text-[#C4BCB3] text-[12px] font-sans font-light leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <p className="text-[#C4BCB3] text-[13px] font-sans font-light leading-relaxed">
                   {activeSkill.description}
                 </p>
 
                 {/* Related Projects Linkage */}
-                <div className="pt-3 border-t border-[#8C6D4F]/20">
-                  <span className="text-[10px] text-[#8C6D4F] tracking-widest uppercase block mb-2">
-                    DEMONSTRATED PROJECTS ({activeSkill.relatedProjects.length})
+                <div className="pt-3.5 border-t border-[#26211B]">
+                  <span className="text-[10px] text-[#8C6D4F] tracking-widest uppercase block mb-2.5">
+                    DEMONSTRATED IN PROJECTS ({activeSkill.relatedProjects.length})
                   </span>
                   {activeSkill.relatedProjects.length > 0 ? (
                     <div className="space-y-2">
@@ -194,16 +183,16 @@ export const SkillsSection: React.FC = () => {
                         return (
                           <a
                             key={slug}
-                            href="#work"
-                            className="block p-2.5 rounded-sm border border-[#8C6D4F]/25 bg-[#1A1714] hover:border-[#D4AF37] hover:bg-[#221D18] transition-all group"
+                            href="#projects"
+                            className="block p-3 rounded-xl border border-[#26211B] bg-[#0A0908] hover:border-[#D4AF37]/50 hover:bg-[#16130F] transition-all group"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="text-[11px] text-[#F5F2EB] group-hover:text-[#D4AF37] font-medium">
+                              <span className="text-[12px] text-[#F5F2EB] group-hover:text-[#D4AF37] font-sans font-medium">
                                 {proj.title}
                               </span>
                               <span className="text-[10px] text-[#8C6D4F] group-hover:text-[#D4AF37]">↗</span>
                             </div>
-                            <span className="text-[9.5px] text-[#8C6D4F] block mt-0.5">
+                            <span className="text-[10px] text-[#8C6D4F] block mt-0.5">
                               {proj.category} · {proj.status}
                             </span>
                           </a>
@@ -211,8 +200,8 @@ export const SkillsSection: React.FC = () => {
                       })}
                     </div>
                   ) : (
-                    <p className="text-[10.5px] text-[#8C6D4F] italic">
-                      Hands-on practice in active Engineering Lab learning track.
+                    <p className="text-[11px] text-[#8C6D4F] italic">
+                      Active hands-on progression in Engineering Lab track.
                     </p>
                   )}
                 </div>
@@ -235,17 +224,17 @@ export const SkillsSection: React.FC = () => {
                 <motion.div
                   key={block.id}
                   variants={cardVariants}
-                  className="card-lift md:col-span-12 relative p-7 rounded-sm border border-[#8C6D4F]/30 bg-[#12100E] backdrop-blur-xl overflow-hidden group"
+                  className="card-lift md:col-span-12 relative p-6 sm:p-7 rounded-2xl border border-[#26211B] bg-[#12100E] backdrop-blur-xl overflow-hidden group"
                 >
                   {/* Top Subtle Flare */}
-                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent" />
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
 
                   {/* Header Badge & Status */}
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#D4AF37]">
                       {block.badge}
                     </span>
-                    <span className={`text-[10px] font-mono px-2.5 py-0.5 border rounded-sm uppercase ${
+                    <span className={`text-[10px] font-mono px-2.5 py-0.5 border rounded-full uppercase ${
                       isLearningTrack
                         ? 'border-amber-500/40 bg-amber-950/30 text-amber-300 font-medium'
                         : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300 font-medium'
@@ -255,22 +244,16 @@ export const SkillsSection: React.FC = () => {
                   </div>
 
                   {/* Title */}
-                  <h3
-                    className="text-2xl sm:text-3xl font-normal tracking-wide text-white mb-2"
-                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-                  >
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
                     {block.title}
                   </h3>
 
-                  <p
-                    className="text-xs text-[#C4BCB3] font-light leading-relaxed mb-5"
-                    style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-                  >
+                  <p className="text-xs text-[#C4BCB3] font-light leading-relaxed mb-5">
                     {block.description}
                   </p>
 
                   {/* Interactive Skill Badges */}
-                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[#8C6D4F]/20">
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[#26211B]">
                     {block.skills.map((tech) => {
                       const isSelected = activeSkill.id === tech.id;
                       const isBuilding = tech.category === 'building';
@@ -281,18 +264,17 @@ export const SkillsSection: React.FC = () => {
                           onClick={() => setSelectedSkill(tech)}
                           onMouseEnter={() => setSelectedSkill(tech)}
                           onFocus={() => setSelectedSkill(tech)}
-                          className={`px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border text-left transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-[#D4AF37] ${
+                          className={`px-3.5 py-2 text-[11px] font-medium tracking-wide rounded-xl border text-left transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#D4AF37] ${
                             isSelected
                               ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.3)]'
                               : isBuilding
                               ? 'border-amber-500/30 bg-amber-950/20 text-amber-200 hover:border-amber-400 hover:bg-amber-950/40'
-                              : 'border-[#8C6D4F]/30 bg-[#1A1714] text-[#F5F2EB] hover:border-[#D4AF37]/50 hover:bg-[#221D18]'
+                              : 'border-[#26211B] bg-[#0A0908] text-[#F5F2EB] hover:border-[#D4AF37]/50 hover:bg-[#16130F]'
                           }`}
-                          style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                         >
                           <span>{tech.name}</span>
                           {tech.relatedProjects.length > 0 && (
-                            <span className="ml-1.5 opacity-60 text-[9px]">({tech.relatedProjects.length})</span>
+                            <span className="ml-1.5 opacity-60 text-[9.5px]">({tech.relatedProjects.length})</span>
                           )}
                         </button>
                       );

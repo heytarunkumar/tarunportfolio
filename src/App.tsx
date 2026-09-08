@@ -36,7 +36,7 @@ import { AdminSettingsPage } from './admin/pages/AdminSettingsPage';
 
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-full min-h-screen bg-black text-[#E8DFD8] selection:bg-[#cbb59d] selection:text-black flex flex-col justify-between">
+    <div className="w-full min-h-screen bg-[#0A0908] text-[#F5F2EB] selection:bg-[#D4AF37]/30 selection:text-white flex flex-col justify-between overflow-x-hidden">
       <Navbar />
       <main className="flex-grow">{children}</main>
       <Footer />
