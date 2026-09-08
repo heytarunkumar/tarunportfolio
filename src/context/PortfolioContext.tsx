@@ -3,7 +3,7 @@ import { profileData as initialProfile, type Profile } from '../data/profile';
 import { projectsData as initialProjects, type Project } from '../data/projects';
 import { skillsData as initialSkills, type SkillGroup } from '../data/skills';
 import { engineeringLabTracks as initialLab, type LabTrack } from '../data/engineeringLab';
-import { researchData as initialResearch, type ResearchProject } from '../data/research';
+import { researchData as initialResearch, initialResearchProjects, type ResearchProject } from '../data/research';
 import { experienceData as initialExperience, type ExperienceItem } from '../data/experience';
 import { articlesData as initialArticles, type Article } from '../data/articles';
 
@@ -86,6 +86,8 @@ export interface PortfolioContextType {
 
   research: ResearchProject;
   updateResearch: (updated: Partial<ResearchProject>) => void;
+  researchList: ResearchProject[];
+  updateResearchList: (list: ResearchProject[]) => void;
 
   articles: Article[];
   updateArticles: (articles: Article[]) => void;
@@ -198,7 +200,11 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [skills, setSkills] = useState<SkillGroup[]>(() => safeGetStorage('skills', initialSkills));
   const [labTracks, setLabTracks] = useState<LabTrack[]>(() => safeGetStorage('lab', initialLab));
   const [experience, setExperience] = useState<ExperienceItem[]>(() => safeGetStorage('experience', initialExperience));
-  const [research, setResearch] = useState<ResearchProject>(() => safeGetStorage('research', initialResearch));
+  const [researchList, setResearchList] = useState<ResearchProject[]>(() => {
+    const saved = safeGetStorage<ResearchProject[]>('research_list', initialResearchProjects);
+    return Array.isArray(saved) && saved.length > 0 ? saved : initialResearchProjects;
+  });
+  const [research, setResearch] = useState<ResearchProject>(() => researchList[0] || initialResearch);
   const [articles, setArticles] = useState<Article[]>(() => safeGetStorage('articles', initialArticles));
   const [navigation, setNavigation] = useState<NavItemSetting[]>(() => safeGetStorage('navigation', initialNav));
   const [seo, setSeo] = useState<SeoSettings>(() => safeGetStorage('seo', initialSeo));
@@ -271,6 +277,20 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       safeSetStorage('research', next);
       return next;
     });
+    setResearchList((prev) => {
+      const next = prev.map((r, idx) => (idx === 0 ? { ...r, ...updated } : r));
+      safeSetStorage('research_list', next);
+      return next;
+    });
+  };
+
+  const updateResearchList = (list: ResearchProject[]) => {
+    setResearchList(list);
+    safeSetStorage('research_list', list);
+    if (list.length > 0) {
+      setResearch(list[0]);
+      safeSetStorage('research', list[0]);
+    }
   };
 
   const updateArticles = (art: Article[]) => {
@@ -388,6 +408,8 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         updateExperience,
         research,
         updateResearch,
+        researchList,
+        updateResearchList,
         articles,
         updateArticles,
         navigation,
