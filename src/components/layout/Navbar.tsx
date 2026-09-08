@@ -156,7 +156,22 @@ export const Navbar: React.FC = () => {
         {/* Action Button, Theme Toggle & Mobile Toggle */}
         <div className="flex items-center space-x-2.5 sm:space-x-3.5">
           
-          {/* Theme Toggle Button */}
+          {/* Connect Button */}
+          <Link
+            to="/contact"
+            onClick={(e) => handleNavClick(e, '/contact')}
+            className={`hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border transition-all duration-300 backdrop-blur-sm focus:outline-none cursor-pointer ${
+              theme === 'dark'
+                ? 'border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]'
+                : 'border-[#D5CEBF] hover:border-[#9E7815] bg-white text-[#171513] hover:text-[#9E7815] shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_16px_rgba(158,120,21,0.2)]'
+            }`}
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+          >
+            <span>LET&apos;S CONNECT</span>
+            <span className={`text-xs ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#9E7815]'}`}>↗</span>
+          </Link>
+
+          {/* Theme Toggle Button (Right of Let's Connect) */}
           <button
             type="button"
             onClick={toggleTheme}
@@ -222,21 +237,6 @@ export const Navbar: React.FC = () => {
               )}
             </AnimatePresence>
           </button>
-
-          {/* Connect Button */}
-          <Link
-            to="/contact"
-            onClick={(e) => handleNavClick(e, '/contact')}
-            className={`hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border transition-all duration-300 backdrop-blur-sm focus:outline-none cursor-pointer ${
-              theme === 'dark'
-                ? 'border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]'
-                : 'border-[#D5CEBF] hover:border-[#9E7815] bg-white text-[#171513] hover:text-[#9E7815] shadow-[0_2px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_2px_16px_rgba(158,120,21,0.2)]'
-            }`}
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-          >
-            <span>LET&apos;S CONNECT</span>
-            <span className={`text-xs ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#9E7815]'}`}>↗</span>
-          </Link>
 
           {/* Hamburger Mobile Button */}
           <button
