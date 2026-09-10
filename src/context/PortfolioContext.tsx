@@ -168,10 +168,10 @@ const initialSeo: SeoSettings = {
 };
 
 const initialDesign: DesignSettings = {
-  theme: 'dark',
+  theme: 'light',
   primaryColor: '#D4AF37',
   accentColor: '#8C6D4F',
-  backgroundColor: '#0A0806',
+  backgroundColor: '#FAF8F5',
   morphingEnabled: true,
   pageTransitionsEnabled: true,
   animationIntensity: 'high',
@@ -213,12 +213,12 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [design, setDesign] = useState<DesignSettings>(() => safeGetStorage('design', initialDesign));
   const [contact, setContact] = useState<ContactSettings>(() => safeGetStorage('contact', initialContact));
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window === 'undefined') return 'dark';
+    if (typeof window === 'undefined') return 'light';
     try {
       const saved = localStorage.getItem('tarun_portfolio_theme');
       if (saved === 'light' || saved === 'dark') return saved;
     } catch {}
-    return 'dark';
+    return 'light';
   });
 
   useEffect(() => {
