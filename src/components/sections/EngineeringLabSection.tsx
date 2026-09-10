@@ -77,7 +77,7 @@ export const EngineeringLabSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] overflow-x-auto"
+          className="mb-8 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] overflow-x-auto no-scrollbar"
         >
           <div className="flex items-center space-x-3 min-w-max text-xs font-mono">
             <span className="text-[#D4AF37] font-bold uppercase tracking-wider">ROADMAP:</span>
