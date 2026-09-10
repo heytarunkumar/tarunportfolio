@@ -109,7 +109,7 @@ export const ExperienceSection: React.FC = () => {
                           className="w-7 h-7 object-contain rounded-lg bg-[#0A0908] border border-[#26211B] p-0.5"
                         />
                       )}
-                      <h3 className="text-xl sm:text-2xl font-serif font-bold text-white group-hover:text-[#F7E7C4] transition-colors leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-serif font-normal text-white group-hover:text-[#F7E7C4] transition-colors leading-tight">
                         {item.role}
                       </h3>
                       {!item.isVerified && (

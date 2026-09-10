@@ -125,7 +125,7 @@ export const ProjectsSection: React.FC = () => {
                       </div>
 
                       {/* Project Title */}
-                      <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-3">
+                      <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white mb-3">
                         {project.title}
                       </h3>
 

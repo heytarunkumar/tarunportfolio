@@ -79,7 +79,7 @@ export const WritingSection: React.FC = () => {
                   <span>{article.date}</span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-serif font-bold text-white group-hover:text-[#F7E7C4] transition-colors leading-snug mb-3">
+                <h3 className="text-xl sm:text-2xl font-serif font-normal text-white group-hover:text-[#F7E7C4] transition-colors leading-snug mb-3">
                   {article.title}
                 </h3>
 

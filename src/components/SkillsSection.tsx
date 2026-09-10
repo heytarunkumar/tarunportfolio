@@ -154,7 +154,7 @@ export const SkillsSection: React.FC = () => {
                 className="space-y-4"
               >
                 <div>
-                  <span className="text-xl sm:text-2xl font-serif font-bold text-white block mb-1.5">
+                  <span className="text-xl sm:text-2xl font-serif font-normal text-white block mb-1.5">
                     {activeSkill.name}
                   </span>
                   <div className={`inline-block px-2.5 py-0.5 border text-[10px] uppercase rounded-full ${
@@ -244,7 +244,7 @@ export const SkillsSection: React.FC = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-white mb-2">
+                  <h3 className="text-xl sm:text-2xl font-serif font-normal text-white mb-2">
                     {block.title}
                   </h3>
 

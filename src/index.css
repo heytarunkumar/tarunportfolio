@@ -34,6 +34,14 @@
   .editorial-serif {
     font-family: 'Instrument Serif', Georgia, serif;
     font-style: italic;
+    font-weight: 400;
+  }
+
+  .font-serif {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 

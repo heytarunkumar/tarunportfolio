@@ -80,7 +80,7 @@ export const ResearchSection: React.FC = () => {
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white mb-2 leading-snug">
+                <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white mb-2 leading-snug">
                   {primaryResearch.title}: {primaryResearch.subtitle}
                 </h3>
 
@@ -223,7 +223,7 @@ export const ResearchSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-serif font-bold text-white leading-snug">
+                  <h3 className="text-xl font-serif font-normal text-white leading-snug">
                     {paper.title}
                   </h3>
                   <p className="text-xs text-[#A8988B] font-sans">

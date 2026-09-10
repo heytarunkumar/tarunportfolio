@@ -148,7 +148,7 @@ export const AboutSection: React.FC = () => {
                     <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase">VENTURE &amp; COMMUNITY</span>
                     <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-md">ACTIVE</span>
                   </div>
-                  <h3 className="text-lg font-serif font-bold text-white tracking-wide">
+                  <h3 className="text-lg font-serif font-normal text-white tracking-wide">
                     OrigoHOST Tech Community
                   </h3>
                   <p className="text-[10px] font-mono text-[#C99E5D]">WHERE BUILDERS BECOME INNOVATORS</p>

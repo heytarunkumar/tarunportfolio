@@ -130,7 +130,7 @@ export const EngineeringLabSection: React.FC = () => {
                       {track.status}
                     </span>
                   </div>
-                  <h3 className="text-base font-serif font-bold text-white group-hover:text-[#F7E7C4] transition-colors">
+                  <h3 className="text-[15px] font-sans font-semibold text-white group-hover:text-[#F7E7C4] transition-colors leading-snug">
                     {track.title}
                   </h3>
                 </div>
@@ -156,7 +156,7 @@ export const EngineeringLabSection: React.FC = () => {
                     <span className="text-xs font-mono text-[#D4AF37] block mb-1">
                       PROGRESSION TRACK #{activeTrack.stepNumber || '01'}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-serif font-bold text-white tracking-tight">
+                    <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white tracking-tight leading-snug">
                       {activeTrack.title}
                     </h3>
                   </div>
