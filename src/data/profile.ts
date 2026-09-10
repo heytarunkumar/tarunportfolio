@@ -45,10 +45,10 @@ export const profileData: Profile = {
   location: "India · Global / Remote",
   email: "imtarunchaudharyy@gmail.com",
   socials: {
-    github: "https://github.com/heytarunkumar",
-    linkedin: "https://linkedin.com/in/heytarunkumar",
-    x: "https://x.com/heytarunkumar",
-    medium: "https://medium.com/@heytarunkumar",
+    github: "https://github.com/haytarunkumar",
+    linkedin: "https://linkedin.com/in/haytarunkumar",
+    x: "https://x.com/heytarunkumarr",
+    medium: "https://medium.com/@haytarunkumar",
   },
   resumeUrl: "/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf",
 };

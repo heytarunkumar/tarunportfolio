@@ -67,9 +67,10 @@ export const ContactSection: React.FC = () => {
   };
 
   const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
-  const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/heytarunkumar';
-  const githubUrl = profile?.socials?.github || 'https://github.com/heytarunkumar';
-  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@heytarunkumar';
+  const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar';
+  const githubUrl = profile?.socials?.github || 'https://github.com/haytarunkumar';
+  const xUrl = profile?.socials?.x || 'https://x.com/heytarunkumarr';
+  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@haytarunkumar';
 
   return (
     <section
@@ -133,7 +134,7 @@ export const ContactSection: React.FC = () => {
                 <div className="text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors">{contactEmail}</div>
               </a>
 
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <a
                   href={linkedinUrl}
                   target="_blank"
@@ -149,6 +150,14 @@ export const ContactSection: React.FC = () => {
                   className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
                   <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">GitHub ↗</span>
+                </a>
+                <a
+                  href={xUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                >
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">X ↗</span>
                 </a>
                 <a
                   href={mediumUrl}

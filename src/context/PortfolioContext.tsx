@@ -156,7 +156,7 @@ const initialSeo: SeoSettings = {
   ogImage: 'https://heytarunkumar.vercel.app/og-image.png',
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterCreator: '@heytarunkumar',
+  twitterCreator: '@heytarunkumarr',
   robotsIndex: true,
   sitemapEnabled: true,
   structuredDataEnabled: true,

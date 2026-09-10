@@ -22,10 +22,10 @@ export const AdminPageManager: React.FC = () => {
 
   // Contact Form State
   const [email, setEmail] = useState(profile.email || contact?.email || 'imtarunchaudharyy@gmail.com');
-  const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/heytarunkumar');
-  const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://linkedin.com/in/heytarunkumar');
-  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar');
-  const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumar');
+  const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/haytarunkumar');
+  const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar');
+  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@haytarunkumar');
+  const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumarr');
   const [successMessage, setSuccessMessage] = useState(contact?.successMessage || 'Thank you. Your message payload has been dispatched. Tarun will review and respond shortly.');
 
   const handleToggleNavVisibility = (id: string) => {
@@ -377,7 +377,7 @@ export const AdminPageManager: React.FC = () => {
                   type="url"
                   value={github}
                   onChange={(e) => setGithub(e.target.value)}
-                  placeholder="https://github.com/heytarunkumar"
+                  placeholder="https://github.com/haytarunkumar"
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
@@ -390,7 +390,7 @@ export const AdminPageManager: React.FC = () => {
                   type="url"
                   value={linkedin}
                   onChange={(e) => setLinkedin(e.target.value)}
-                  placeholder="https://linkedin.com/in/heytarunkumar"
+                  placeholder="https://linkedin.com/in/haytarunkumar"
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
@@ -405,7 +405,7 @@ export const AdminPageManager: React.FC = () => {
                   type="url"
                   value={medium}
                   onChange={(e) => setMedium(e.target.value)}
-                  placeholder="https://medium.com/@heytarunkumar"
+                  placeholder="https://medium.com/@haytarunkumar"
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
@@ -418,7 +418,7 @@ export const AdminPageManager: React.FC = () => {
                   type="url"
                   value={xSocial}
                   onChange={(e) => setXSocial(e.target.value)}
-                  placeholder="https://x.com/heytarunkumar"
+                  placeholder="https://x.com/heytarunkumarr"
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>

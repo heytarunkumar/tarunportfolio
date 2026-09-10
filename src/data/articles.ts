@@ -21,7 +21,7 @@ export const articlesData: Article[] = [
     topic: "Python",
     date: "AUG 2026",
     readTime: "6 MIN READ",
-    mediumUrl: "https://medium.com/@heytarunkumar/building-production-ready-rest-apis-python-flask",
+    mediumUrl: "https://medium.com/@haytarunkumar/building-production-ready-rest-apis-python-flask",
     tags: ["Python", "Flask", "REST APIs", "Backend"],
   },
   {
@@ -33,7 +33,7 @@ export const articlesData: Article[] = [
     topic: "DevOps",
     date: "JUL 2026",
     readTime: "8 MIN READ",
-    mediumUrl: "https://medium.com/@heytarunkumar/multi-stage-docker-builds-python-microservices",
+    mediumUrl: "https://medium.com/@haytarunkumar/multi-stage-docker-builds-python-microservices",
     tags: ["Docker", "DevOps", "Python", "Containers"],
   },
   {
@@ -45,7 +45,7 @@ export const articlesData: Article[] = [
     topic: "Automation",
     date: "JUN 2026",
     readTime: "5 MIN READ",
-    mediumUrl: "https://medium.com/@heytarunkumar/automating-testing-linting-python-github-actions",
+    mediumUrl: "https://medium.com/@haytarunkumar/automating-testing-linting-python-github-actions",
     tags: ["GitHub Actions", "CI/CD", "Automation", "Python"],
   },
   {
@@ -57,7 +57,7 @@ export const articlesData: Article[] = [
     topic: "AI / ML",
     date: "MAY 2026",
     readTime: "7 MIN READ",
-    mediumUrl: "https://medium.com/@heytarunkumar/demystifying-shap-explainable-machine-learning-python",
+    mediumUrl: "https://medium.com/@haytarunkumar/demystifying-shap-explainable-machine-learning-python",
     tags: ["Machine Learning", "Explainable AI", "SHAP", "Python"],
   },
 ];

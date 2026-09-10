@@ -35,7 +35,7 @@ npm run build      # or node_modules\.bin\vite.cmd build
 [x] Admin authentication credentials configured
 [x] Environment variables checked
 [x] Active ATS Resume uploaded (/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf)
-[x] Social links verified (GitHub: @heytarunkumar, LinkedIn, X, Medium)
+[x] Social links verified (GitHub/LinkedIn/Medium: @haytarunkumar, X: @heytarunkumarr)
 [x] Project links & GitHub code repositories verified
 [x] Research paper methodology (AI-HealthGuard) verified
 [x] Global SEO metadata & OpenGraph tags verified

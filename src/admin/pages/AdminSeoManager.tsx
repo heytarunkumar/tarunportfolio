@@ -19,7 +19,7 @@ export const AdminSeoManager: React.FC = () => {
   const [ogImage, setOgImage] = useState(seo.ogImage || 'https://heytarunkumar.vercel.app/og-image.png');
   const [ogType, setOgType] = useState(seo.ogType || 'website');
   const [twitterCard, setTwitterCard] = useState(seo.twitterCard || 'summary_large_image');
-  const [twitterCreator, setTwitterCreator] = useState(seo.twitterCreator || '@heytarunkumar');
+  const [twitterCreator, setTwitterCreator] = useState(seo.twitterCreator || '@heytarunkumarr');
 
   // Technical SEO State
   const [robotsIndex, setRobotsIndex] = useState(seo.robotsIndex !== false);
@@ -114,9 +114,10 @@ export const AdminSeoManager: React.FC = () => {
     jobTitle: 'Python Developer | Cloud & DevOps Engineer',
     url: canonicalUrl,
     sameAs: [
-      'https://github.com/heytarunkumar',
-      'https://linkedin.com/in/heytarunkumar',
-      'https://medium.com/@heytarunkumar',
+      'https://github.com/haytarunkumar',
+      'https://linkedin.com/in/haytarunkumar',
+      'https://x.com/heytarunkumarr',
+      'https://medium.com/@haytarunkumar',
     ],
     knowsAbout: [
       'Python',
@@ -396,7 +397,7 @@ export const AdminSeoManager: React.FC = () => {
                 type="text"
                 value={twitterCreator}
                 onChange={(e) => setTwitterCreator(e.target.value)}
-                placeholder="@heytarunkumar"
+                placeholder="@heytarunkumarr"
                 className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
               />
             </div>

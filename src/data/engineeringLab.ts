@@ -30,7 +30,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Implementing structured API response formats and error handling.",
     ],
     status: "Completed",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "linux-sysadmin",
@@ -47,7 +47,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Diagnosing system performance using htop, netstat, journalctl, and curl.",
     ],
     status: "Applied",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "docker-containers",
@@ -64,7 +64,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Managing persistent container volumes and network bridges.",
     ],
     status: "Applied",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "cicd-automation",
@@ -81,7 +81,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Publishing container tags to container registries automatically.",
     ],
     status: "Building",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "aws-cloud",
@@ -98,7 +98,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Applying least-privilege IAM policies and cloud security practices.",
     ],
     status: "Building",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "terraform-iac",
@@ -115,7 +115,7 @@ export const engineeringLabTracks: LabTrack[] = [
       "Automating cloud resource creation and teardown reliably.",
     ],
     status: "Learning",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
   {
     id: "kubernetes-orchestration",
@@ -132,6 +132,6 @@ export const engineeringLabTracks: LabTrack[] = [
       "Understanding cluster networking and service exposition concepts.",
     ],
     status: "Learning",
-    githubUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/haytarunkumar",
   },
 ];

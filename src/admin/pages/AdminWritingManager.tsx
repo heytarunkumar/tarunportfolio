@@ -66,7 +66,7 @@ export const AdminWritingManager: React.FC = () => {
           topic,
           date,
           readTime,
-          mediumUrl: mediumUrl || 'https://medium.com/@heytarunkumar',
+          mediumUrl: mediumUrl || 'https://medium.com/@haytarunkumar',
           tags: tagArray,
           visible,
         };
@@ -82,7 +82,7 @@ export const AdminWritingManager: React.FC = () => {
         topic,
         date,
         readTime,
-        mediumUrl: mediumUrl || 'https://medium.com/@heytarunkumar',
+        mediumUrl: mediumUrl || 'https://medium.com/@haytarunkumar',
         tags: tagArray,
         visible,
       });
@@ -308,7 +308,7 @@ export const AdminWritingManager: React.FC = () => {
                 type="url"
                 value={mediumUrl}
                 onChange={(e) => setMediumUrl(e.target.value)}
-                placeholder="https://medium.com/@heytarunkumar/..."
+                placeholder="https://medium.com/@haytarunkumar/..."
                 className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
               />
             </div>

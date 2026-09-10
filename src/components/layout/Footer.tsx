@@ -45,9 +45,9 @@ export const Footer: React.FC = () => {
 
         {/* Right Social & Copyright */}
         <div className="text-center md:text-right text-xs font-mono text-[#8C6D4F]">
-          <div className="flex justify-center md:justify-end gap-5 mb-2 text-[#C4B5A5]">
+          <div className="flex flex-wrap justify-center md:justify-end gap-5 mb-2 text-[#C4B5A5]">
             <a
-              href={profile?.socials?.github || 'https://github.com/heytarunkumar'}
+              href={profile?.socials?.github || 'https://github.com/haytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
               GITHUB ↗
             </a>
             <a
-              href={profile?.socials?.linkedin || 'https://linkedin.com/in/heytarunkumar'}
+              href={profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"
@@ -63,7 +63,15 @@ export const Footer: React.FC = () => {
               LINKEDIN ↗
             </a>
             <a
-              href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar'}
+              href={profile?.socials?.x || 'https://x.com/heytarunkumarr'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#D4AF37] transition-colors"
+            >
+              X ↗
+            </a>
+            <a
+              href={profile?.socials?.medium || 'https://medium.com/@haytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors"

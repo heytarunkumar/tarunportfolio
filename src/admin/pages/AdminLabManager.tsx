@@ -325,7 +325,7 @@ export const AdminLabManager: React.FC = () => {
               type="url"
               value={githubUrl}
               onChange={(e) => setGithubUrl(e.target.value)}
-              placeholder="https://github.com/heytarunkumar/..."
+              placeholder="https://github.com/haytarunkumar/..."
               className="w-full bg-[#120F0C] border border-[#8C6D4F]/30 focus:border-[#D4AF37] text-white p-3 rounded-sm outline-none"
             />
           </div>

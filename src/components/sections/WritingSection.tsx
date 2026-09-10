@@ -45,7 +45,7 @@ export const WritingSection: React.FC = () => {
           </div>
 
           <a
-            href="https://medium.com/@heytarunkumar"
+            href="https://medium.com/@haytarunkumar"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 text-xs font-mono text-[#D4AF37] hover:underline"
