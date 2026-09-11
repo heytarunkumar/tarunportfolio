@@ -61,29 +61,11 @@ export const Navbar: React.FC = () => {
         { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
       ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    const isHomePage = location.pathname === '/';
-    const sectionId = path.replace('/', '');
-
-    if (isHomePage) {
-      if (path === '/') {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setMobileMenuOpen(false);
-        return;
-      }
-
-      if (sectionId) {
-        const targetElement = document.getElementById(sectionId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: 'smooth' });
-          setMobileMenuOpen(false);
-          return;
-        }
-      }
+  const handleNavClick = (_e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    // If clicking the current active path, scroll smoothly to top
+    if (location.pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     setMobileMenuOpen(false);
   };
 
