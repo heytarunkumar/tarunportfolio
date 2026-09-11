@@ -2,10 +2,37 @@ import React, { useEffect } from 'react';
 import { AboutSection } from '../components/AboutSection';
 import { SkillsSection } from '../components/SkillsSection';
 import { FaqSection } from '../components/FaqSection';
+import { SITE_CONFIG } from '../config/site';
 
 export const AboutPage: React.FC = () => {
   useEffect(() => {
     document.title = 'About Tarun Kumar | Python Developer, AI Engineer & Founder (@heytarunkumar)';
+
+    // Inject ProfilePage JSON-LD schema specifically for the profile page
+    const scriptId = 'about-profile-page-schema';
+    let script = document.getElementById(scriptId) as HTMLScriptElement | null;
+    if (!script) {
+      script = document.createElement('script');
+      script.id = scriptId;
+      script.type = 'application/ld+json';
+      script.text = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': SITE_CONFIG.profilePageId,
+        'url': `${SITE_CONFIG.url}/about`,
+        'name': `${SITE_CONFIG.name} (@${SITE_CONFIG.handle}) Official Personal Entity Profile`,
+        'description': `Dedicated profile page for ${SITE_CONFIG.name} (${SITE_CONFIG.handle}) — ${SITE_CONFIG.tagline}.`,
+        'mainEntity': {
+          '@id': SITE_CONFIG.personId,
+        },
+      });
+      document.head.appendChild(script);
+    }
+
+    return () => {
+      const existing = document.getElementById(scriptId);
+      if (existing) existing.remove();
+    };
   }, []);
 
   return (

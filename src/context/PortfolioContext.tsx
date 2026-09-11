@@ -151,11 +151,11 @@ const initialSeo: SeoSettings = {
     'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community (origohost.in).',
   keywords:
     'heytarunkumar, Tarun Kumar, Tarun Kumar heytarunkumar, Tarun Kumar AI Engineer, Tarun Kumar Python Developer, Tarun Kumar Researcher, Tarun Kumar Author, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Tarun Kumar AI, Python Developer, AI Engineer, Generative AI Architect, Machine Learning, Explainable AI, REST APIs, OrigoHOST Tech Community, Mathura, AKTU Lucknow, India, Worldwide',
-  canonicalUrl: 'https://www.tarunkumarai.vercel.app',
+  canonicalUrl: 'https://heytarunkumar.vercel.app',
   ogTitle: 'Tarun Kumar | Python Developer, AI Engineer, Researcher & Founder (@heytarunkumar)',
   ogDescription:
     'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building intelligent systems, GenAI architectures, and developer communities worldwide.',
-  ogImage: 'https://www.tarunkumarai.vercel.app/images/tarun-executive.jpg',
+  ogImage: 'https://heytarunkumar.vercel.app/images/tarun-executive.webp',
   ogType: 'profile',
   twitterCard: 'summary_large_image',
   twitterCreator: '@heytarunkumarr',

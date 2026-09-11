@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { usePortfolio } from '../context/PortfolioContext';
+import { SITE_URL } from '../config/site';
 
 interface HubLink {
   title: string;
@@ -34,7 +35,7 @@ export const LinksPage: React.FC = () => {
         {
           title: 'Official Portfolio',
           subtitle: 'Main website, project blueprints & technical architecture',
-          url: 'https://www.tarunkumarai.vercel.app',
+          url: SITE_URL,
           isExternal: true,
           tag: 'PRIMARY',
           iconText: '🌐',
@@ -263,7 +264,7 @@ export const LinksPage: React.FC = () => {
           Canonical Entity: <span className="text-[#F5F2EB]">Tarun Kumar</span> (<span className="text-[#D4AF37]">@heytarunkumar</span>)
         </p>
         <p className="text-[11px] text-[#8C6D4F] mt-1">
-          Official Domain: <a href="https://www.tarunkumarai.vercel.app" className="text-[#D4AF37] hover:underline">https://www.tarunkumarai.vercel.app</a>
+          Official Domain: <a href={SITE_URL} className="text-[#D4AF37] hover:underline">{SITE_URL}</a>
         </p>
       </div>
 

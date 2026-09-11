@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePortfolio } from '../../context/PortfolioContext';
 import type { CustomMetaTag } from '../../context/PortfolioContext';
+import { SITE_URL } from '../../config/site';
 
 export const AdminSeoManager: React.FC = () => {
   const { seo, updateSeo } = usePortfolio();
@@ -11,12 +12,12 @@ export const AdminSeoManager: React.FC = () => {
   const [siteTitle, setSiteTitle] = useState(seo.siteTitle || '');
   const [metaDescription, setMetaDescription] = useState(seo.metaDescription || '');
   const [keywords, setKeywords] = useState(seo.keywords || '');
-  const [canonicalUrl, setCanonicalUrl] = useState(seo.canonicalUrl || 'https://www.heytarunkumar.com');
+  const [canonicalUrl, setCanonicalUrl] = useState(seo.canonicalUrl || SITE_URL);
 
   // Social / OpenGraph State
   const [ogTitle, setOgTitle] = useState(seo.ogTitle || seo.siteTitle || '');
   const [ogDescription, setOgDescription] = useState(seo.ogDescription || seo.metaDescription || '');
-  const [ogImage, setOgImage] = useState(seo.ogImage || 'https://www.heytarunkumar.com/images/tarun-executive.jpg');
+  const [ogImage, setOgImage] = useState(seo.ogImage || `${SITE_URL}/images/tarun-executive.webp`);
   const [ogType, setOgType] = useState(seo.ogType || 'website');
   const [twitterCard, setTwitterCard] = useState(seo.twitterCard || 'summary_large_image');
   const [twitterCreator, setTwitterCreator] = useState(seo.twitterCreator || '@heytarunkumarr');
