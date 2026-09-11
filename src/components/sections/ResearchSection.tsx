@@ -96,7 +96,7 @@ export const ResearchSection: React.FC = () => {
               {/* Research Methodology Items */}
               {primaryResearch.methodology && primaryResearch.methodology.length > 0 && (
                 <div>
-                  <span className="text-[10px] font-mono tracking-widest text-[#8C6D4F] uppercase block mb-2.5">
+                  <span className="text-[10px] font-mono tracking-widest text-[#A8988B] uppercase block mb-2.5">
                     // METHODOLOGY &amp; TECHNICAL CONTRIBUTIONS
                   </span>
                   <div className="space-y-2">
@@ -126,7 +126,7 @@ export const ResearchSection: React.FC = () => {
             {/* Right Column: Explainability Architecture (5 Cols) */}
             <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-6 lg:pl-6 lg:border-l lg:border-[#26211B]">
               <div className="space-y-4">
-                <span className="text-[10px] font-mono tracking-widest uppercase text-[#8C6D4F] block">
+                <span className="text-[10px] font-mono tracking-widest uppercase text-[#A8988B] block">
                   // EXPLAINABLE AI (XAI) VISUALIZER
                 </span>
 
@@ -174,7 +174,7 @@ export const ResearchSection: React.FC = () => {
                 </div>
 
                 <div className="p-4 rounded-xl border border-[#26211B] bg-[#0A0908] space-y-1">
-                  <span className="text-[10px] font-mono text-[#8C6D4F] block">
+                  <span className="text-[10px] font-mono text-[#A8988B] block">
                     RESEARCH FOCUS AREA
                   </span>
                   <span className="text-xs font-mono text-[#F7E7C4] block">

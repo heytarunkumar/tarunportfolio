@@ -159,13 +159,13 @@ export const ContactSection: React.FC = () => {
                   </span>
                 </div>
                 <h4 className="text-white font-sans font-semibold text-sm sm:text-base truncate">{directBadge.name}</h4>
-                <p className="text-[10.5px] sm:text-[11px] text-[#8C6D4F] truncate">{directBadge.note}</p>
+                <p className="text-[10.5px] sm:text-[11px] text-[#A8988B] truncate">{directBadge.note}</p>
               </div>
             </div>
 
             {/* Quick Contact Cards */}
             <div className="space-y-4 font-mono text-xs">
-              <span className="text-[#8C6D4F] text-[10px] block uppercase tracking-widest font-mono">
+              <span className="text-[#A8988B] text-[10px] block uppercase tracking-widest font-mono">
                 // DIRECT COMMUNICATIONS
               </span>
               

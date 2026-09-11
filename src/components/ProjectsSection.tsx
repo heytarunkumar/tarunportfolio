@@ -118,7 +118,7 @@ export const ProjectsSection: React.FC = () => {
                         <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
                           {project.category}
                         </span>
-                        <span className="text-[10px] font-mono text-[#8C6D4F]">•</span>
+                        <span className="text-[10px] font-mono text-[#A8988B]">•</span>
                         <span className="text-[10px] font-mono text-[#C4BCB3] uppercase">
                           {project.status || 'COMPLETED'}
                         </span>
@@ -193,7 +193,7 @@ export const ProjectsSection: React.FC = () => {
                     <div className="space-y-3">
                       {(project.architectureMetrics || []).map((metric, i) => (
                         <div key={i} className="flex items-center justify-between py-1 border-b border-[#26211B]/50 last:border-0">
-                          <span className="text-[10px] text-[#8C6D4F] uppercase">{metric.label}</span>
+                          <span className="text-[10px] text-[#A8988B] uppercase">{metric.label}</span>
                           <span className="text-white text-[11px] font-sans font-medium">{metric.value}</span>
                         </div>
                       ))}

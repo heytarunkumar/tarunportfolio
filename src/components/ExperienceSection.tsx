@@ -83,7 +83,7 @@ export const ExperienceSection: React.FC = () => {
                 >
                   {/* Year Label */}
                   <div className="hidden md:block w-[140px] shrink-0 pr-8 pt-0.5 text-right">
-                    <span className="text-[11px] font-mono tracking-[0.2em] text-[#8C6D4F] group-hover:text-[#D4AF37] transition-colors">
+                    <span className="text-[11px] font-mono tracking-[0.2em] text-[#A8988B] group-hover:text-[#D4AF37] transition-colors">
                       {item.year}
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export const ExperienceSection: React.FC = () => {
                         {item.organization}
                       </span>
                       {item.tagline && (
-                        <span className="text-[9.5px] font-mono text-[#8C6D4F] border border-[#26211B] px-2 py-0.5 rounded-md bg-[#12100E]">
+                        <span className="text-[9.5px] font-mono text-[#A8988B] border border-[#26211B] px-2 py-0.5 rounded-md bg-[#12100E]">
                           &quot;{item.tagline}&quot;
                         </span>
                       )}
@@ -152,7 +152,7 @@ export const ExperienceSection: React.FC = () => {
                           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                           className="mb-4 pl-3.5 border-l-2 border-[#D4AF37]/50 space-y-1.5 overflow-hidden"
                         >
-                          <span className="text-[10px] font-mono text-[#8C6D4F] uppercase block mb-1">
+                          <span className="text-[10px] font-mono text-[#A8988B] uppercase block mb-1">
                             KEY SCOPE &amp; CONTRIBUTIONS:
                           </span>
                           {(item.responsibilities || []).map((resp, i) => (

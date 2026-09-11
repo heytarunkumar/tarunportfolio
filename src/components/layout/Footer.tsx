@@ -37,8 +37,10 @@ export const Footer: React.FC = () => {
         <div className="text-center lg:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 shrink-0">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
             <img
-              src={profile.monogramUrl || "/images/brand/tarun-monogram.webp"}
+              src={profile.monogramUrl || "/images/brand/tarun-monogram-64.webp"}
               alt={`${profile.name || 'Tarun Kumar'} Monogram`}
+              width="48"
+              height="48"
               className="w-full h-full object-contain"
             />
           </div>
@@ -49,7 +51,7 @@ export const Footer: React.FC = () => {
             >
               {profile?.name || 'TARUN KUMAR'}
             </Link>
-            <span className="text-[11px] sm:text-xs font-mono text-[#8C6D4F] block">
+            <span className="text-[11px] sm:text-xs font-mono text-[#A8988B] block">
               {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
             </span>
           </div>
@@ -69,7 +71,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Right Social & Copyright */}
-        <div className="text-center lg:text-right text-[11px] sm:text-xs font-mono text-[#8C6D4F] shrink-0">
+        <div className="text-center lg:text-right text-[11px] sm:text-xs font-mono text-[#A8988B] shrink-0">
           <div className="flex flex-wrap justify-center lg:justify-end gap-x-4 sm:gap-x-6 gap-y-2 mb-2 text-[#C4B5A5]">
             <a
               href={profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar'}
@@ -80,7 +82,7 @@ export const Footer: React.FC = () => {
               LINKTREE ↗
             </a>
             <a
-              href={profile?.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/'}
+              href={profile?.socials?.instagram || 'https://www.instagram.com/heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"

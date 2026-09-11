@@ -92,15 +92,17 @@ export const Navbar: React.FC = () => {
         >
           <div className="w-8 h-8 rounded-lg overflow-hidden bg-white p-0.5 border border-[#D4AF37]/50 shadow-[0_0_12px_rgba(212,175,55,0.25)] shrink-0 group-hover:scale-105 transition-transform">
             <img
-              src={profile.monogramUrl || "/images/brand/tarun-monogram.webp"}
+              src={profile.monogramUrl || "/images/brand/tarun-monogram-64.webp"}
               alt={`${profile.name || 'Tarun Kumar'} Logo`}
+              width="32"
+              height="32"
               className="w-full h-full object-contain"
             />
           </div>
           <div className="flex flex-col min-w-0">
             <span className="font-bold tracking-widest leading-none truncate max-w-[140px] sm:max-w-none">{profile?.name || 'TARUN KUMAR'}</span>
             <span className={`text-[9px] sm:text-[9.5px] font-mono tracking-wider font-normal mt-0.5 truncate max-w-[140px] sm:max-w-none ${
-              theme === 'dark' ? 'text-[#8C6D4F]' : 'text-[#736250]'
+              theme === 'dark' ? 'text-[#A8988B]' : 'text-[#736250]'
             }`}>
               {profile.brandRole || 'FOUNDER · AI & TECH'}
             </span>
@@ -182,7 +184,7 @@ export const Navbar: React.FC = () => {
                   <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1z" />
                 </svg>
               </span>
-              <span className={`transition-opacity duration-200 ${theme === 'dark' ? 'opacity-0' : 'opacity-40 text-[#8C6D4F]'}`}>
+              <span className={`transition-opacity duration-200 ${theme === 'dark' ? 'opacity-0' : 'opacity-40 text-[#A8988B]'}`}>
                 <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
                   <path d="M12.3 2a10 10 0 0 0-.19 2 10 10 0 0 0 10 10c.69 0 1.36-.07 2-.19A10 10 0 0 1 12.3 2z" />
                 </svg>

@@ -16,13 +16,12 @@ const containerVariants: Variants = {
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: {
-      duration: 0.8,
+      duration: 0.7,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -138,7 +137,7 @@ export const SkillsSection: React.FC = () => {
                   SKILL INSPECTOR
                 </span>
               </div>
-              <span className="text-[9.5px] text-[#8C6D4F] uppercase">
+              <span className="text-[9.5px] text-[#A8988B] uppercase">
                 {activeSkill.category}
               </span>
             </div>
@@ -172,7 +171,7 @@ export const SkillsSection: React.FC = () => {
 
                 {/* Related Projects Linkage */}
                 <div className="pt-3.5 border-t border-[#26211B]">
-                  <span className="text-[10px] text-[#8C6D4F] tracking-widest uppercase block mb-2.5">
+                  <span className="text-[10px] text-[#A8988B] tracking-widest uppercase block mb-2.5">
                     DEMONSTRATED IN PROJECTS ({activeSkill.relatedProjects.length})
                   </span>
                   {activeSkill.relatedProjects.length > 0 ? (
@@ -190,9 +189,9 @@ export const SkillsSection: React.FC = () => {
                               <span className="text-[12px] text-[#F5F2EB] group-hover:text-[#D4AF37] font-sans font-medium">
                                 {proj.title}
                               </span>
-                              <span className="text-[10px] text-[#8C6D4F] group-hover:text-[#D4AF37]">↗</span>
+                              <span className="text-[10px] text-[#A8988B] group-hover:text-[#D4AF37]">↗</span>
                             </div>
-                            <span className="text-[10px] text-[#8C6D4F] block mt-0.5">
+                            <span className="text-[10px] text-[#A8988B] block mt-0.5">
                               {proj.category} · {proj.status}
                             </span>
                           </a>
@@ -200,7 +199,7 @@ export const SkillsSection: React.FC = () => {
                       })}
                     </div>
                   ) : (
-                    <p className="text-[11px] text-[#8C6D4F] italic">
+                    <p className="text-[11px] text-[#A8988B] italic">
                       Active hands-on progression in Engineering Lab track.
                     </p>
                   )}

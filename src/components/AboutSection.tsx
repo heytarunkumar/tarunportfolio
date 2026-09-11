@@ -15,13 +15,12 @@ const containerVariants: Variants = {
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(4px)' },
+  hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: {
-      duration: 0.8,
+      duration: 0.7,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -196,7 +195,7 @@ export const AboutSection: React.FC = () => {
                   <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">{spotlight.role}</p>
                 </div>
                 <div className="text-left sm:text-right">
-                  <span className="text-[9.5px] font-mono text-[#8C6D4F] block">LEADERSHIP</span>
+                  <span className="text-[9.5px] font-mono text-[#A8988B] block">LEADERSHIP</span>
                   <span className="text-[11px] font-mono text-[#C4BCB3]">{spotlight.leadership}</span>
                 </div>
               </div>
@@ -214,7 +213,7 @@ export const AboutSection: React.FC = () => {
               
               <div className="flex items-center space-x-3.5 sm:space-x-4 mb-4">
                 <img
-                  src={origo.logoUrl || "/images/origohost/origohost-icon.webp"}
+                  src={origo.logoUrl || "/images/origohost/origohost-icon-64.webp"}
                   alt={origo.title}
                   loading="lazy"
                   decoding="async"
@@ -238,7 +237,7 @@ export const AboutSection: React.FC = () => {
                 {origo.description}
               </p>
 
-              <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#8C6D4F]">
+              <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#A8988B]">
                 <span>{origo.role}</span>
                 <a
                   href="https://origohost.in"
@@ -260,7 +259,7 @@ export const AboutSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#8C6D4F]">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#A8988B]">
                 <span className="text-[10px] truncate max-w-[200px]">{log.logTitle}</span>
                 <span className="text-[#D4AF37]">{log.version}</span>
               </div>

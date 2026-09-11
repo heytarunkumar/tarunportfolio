@@ -171,7 +171,7 @@ export const EngineeringLabSection: React.FC = () => {
 
                 {/* Objective */}
                 <div className="mb-5">
-                  <span className="text-[10px] font-mono tracking-widest text-[#8C6D4F] uppercase block mb-1.5">
+                  <span className="text-[10px] font-mono tracking-widest text-[#A8988B] uppercase block mb-1.5">
                     // OBJECTIVE &amp; SCOPE
                   </span>
                   <p className="text-xs sm:text-[13.5px] text-[#C4BCB3] font-light leading-relaxed">
@@ -191,7 +191,7 @@ export const EngineeringLabSection: React.FC = () => {
 
                 {/* Key Learnings */}
                 <div className="mb-5">
-                  <span className="text-[10px] font-mono tracking-widest text-[#8C6D4F] uppercase block mb-2">
+                  <span className="text-[10px] font-mono tracking-widest text-[#A8988B] uppercase block mb-2">
                     // WHAT I AM LEARNING &amp; BUILDING
                   </span>
                   <ul className="space-y-1.5">
