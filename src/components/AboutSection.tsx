@@ -153,7 +153,11 @@ export const AboutSection: React.FC = () => {
               <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[440px] overflow-hidden bg-[#0A0908]">
                 <img
                   src="/images/tarun-headshot.jpg"
-                  alt="Tarun Kumar — Founder & AI Systems Engineer"
+                  alt="Tarun Kumar — Founder &amp; AI Systems Engineer (heytarunkumar)"
+                  loading="lazy"
+                  decoding="async"
+                  width="440"
+                  height="550"
                   className="w-full h-full object-cover object-top sm:object-[center_10%] transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-black/10 pointer-events-none" />
@@ -185,7 +189,11 @@ export const AboutSection: React.FC = () => {
               <div className="flex items-center space-x-4 mb-4">
                 <img
                   src="/images/origohost/origohost-icon.png"
-                  alt="OrigoHOST Tech Community"
+                  alt="OrigoHOST Tech Community Founded by Tarun Kumar"
+                  loading="lazy"
+                  decoding="async"
+                  width="48"
+                  height="48"
                   className="w-12 h-12 object-contain rounded-xl bg-[#0A0908] border border-[#26211B] p-1.5"
                 />
                 <div>

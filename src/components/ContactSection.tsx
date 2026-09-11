@@ -125,7 +125,11 @@ export const ContactSection: React.FC = () => {
               <div className="relative shrink-0">
                 <img
                   src="/images/tarun-about.jpg"
-                  alt="Tarun Kumar"
+                  alt="Tarun Kumar (heytarunkumar)"
+                  loading="lazy"
+                  decoding="async"
+                  width="56"
+                  height="56"
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md"
                 />
                 <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#12100E] flex items-center justify-center">

@@ -108,7 +108,10 @@ export const HeroSection: React.FC = () => {
               <div className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
                 <img
                   src="/images/tarun-executive.jpg"
-                  alt="Tarun Kumar"
+                  alt="Tarun Kumar (heytarunkumar)"
+                  width="20"
+                  height="20"
+                  decoding="async"
                   className="w-5 h-5 rounded-full object-cover border border-[#D4AF37]/60 shrink-0"
                 />
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -238,7 +241,10 @@ export const HeroSection: React.FC = () => {
               <div className="flex items-center space-x-3.5 p-3 rounded-xl bg-[#0A0908] border border-[#26211B] mb-4">
                 <img
                   src="/images/tarun-executive.jpg"
-                  alt="Tarun Kumar"
+                  alt="Tarun Kumar (heytarunkumar) — Founder &amp; AI Systems Engineer"
+                  width="48"
+                  height="48"
+                  decoding="async"
                   className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md shrink-0"
                 />
                 <div className="font-mono min-w-0">
