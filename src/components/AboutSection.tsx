@@ -135,29 +135,39 @@ export const AboutSection: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="card-lift relative rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl overflow-hidden group"
             >
+              {/* Top Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent z-10" />
+
+              {/* Card Header Tag */}
+              <div className="px-4 sm:px-5 py-3.5 flex items-center justify-between border-b border-[#26211B] bg-[#141210]">
+                <div className="flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
+                </div>
+                <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
+                  VERIFIED
+                </span>
+              </div>
               
-              <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#0A0908]">
+              {/* Photo Area with optimal portrait aspect ratio & zero awkward cropping */}
+              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[440px] overflow-hidden bg-[#0A0908]">
                 <img
                   src="/images/tarun-headshot.jpg"
                   alt="Tarun Kumar — Founder & AI Systems Engineer"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover object-top sm:object-[center_10%] transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-[#12100E]/30 to-transparent" />
-                
-                <div className="absolute top-3.5 left-3.5 flex items-center space-x-2 bg-[#0A0908]/80 backdrop-blur-md px-3 py-1 rounded-full border border-[#8C6D4F]/30">
-                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-black/10 pointer-events-none" />
+              </div>
 
-                <div className="absolute bottom-3.5 left-4 right-4 flex items-end justify-between">
-                  <div>
-                    <h3 className="text-lg font-serif font-normal text-white">Tarun Kumar</h3>
-                    <p className="text-[11px] font-mono text-[#D4AF37]">AI Engineer &amp; Technology Entrepreneur</p>
-                  </div>
-                  <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
-                    VERIFIED
-                  </span>
+              {/* Clean Footer Info Bar */}
+              <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex items-center justify-between">
+                <div>
+                  <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">Tarun Kumar</h3>
+                  <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">Founder &amp; AI Systems Engineer</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-[9.5px] font-mono text-[#8C6D4F] block">LEADERSHIP</span>
+                  <span className="text-[11px] font-mono text-[#C4BCB3]">President @ OrigoHOST</span>
                 </div>
               </div>
             </motion.div>
