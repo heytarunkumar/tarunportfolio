@@ -105,8 +105,13 @@ export const HeroSection: React.FC = () => {
           >
             {/* Status & Venture Badges */}
             <motion.div variants={fadeUpVariants} className="mb-6 flex flex-wrap items-center gap-3">
-              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <div className="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
+                <img
+                  src="/images/tarun-executive.jpg"
+                  alt="Tarun Kumar"
+                  className="w-5 h-5 rounded-full object-cover border border-[#D4AF37]/60 shrink-0"
+                />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
                   FOUNDER &amp; AI SYSTEMS ENGINEER
                 </span>
@@ -227,6 +232,23 @@ export const HeroSection: React.FC = () => {
                   <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
                 </div>
                 <span className="text-[10px] text-[#8C6D4F]">tarun@ai-venture ~ bash</span>
+              </div>
+
+              {/* Founder Identity Card */}
+              <div className="flex items-center space-x-3.5 p-3 rounded-xl bg-[#0A0908] border border-[#26211B] mb-4">
+                <img
+                  src="/images/tarun-executive.jpg"
+                  alt="Tarun Kumar"
+                  className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md shrink-0"
+                />
+                <div className="font-mono min-w-0">
+                  <div className="text-[#F5F2EB] font-sans font-semibold text-xs sm:text-[13px] truncate">Tarun Kumar</div>
+                  <div className="text-[#D4AF37] text-[10.5px] truncate">Founder &amp; AI Systems Engineer</div>
+                  <div className="text-[9.5px] text-emerald-400 flex items-center space-x-1 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>ACTIVE · BUILDING VENTURES</span>
+                  </div>
+                </div>
               </div>
 
               {/* Terminal Commands & Insights */}

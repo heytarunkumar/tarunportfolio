@@ -127,6 +127,41 @@ export const AboutSection: React.FC = () => {
           {/* RIGHT ARCHITECTURE BLUEPRINT & COMMUNITY CARD (5 COLS) */}
           <div className="lg:col-span-5 flex flex-col space-y-5 relative">
             
+            {/* Founder Portrait Spotlight Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="card-lift relative rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent z-10" />
+              
+              <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#0A0908]">
+                <img
+                  src="/images/tarun-about.jpg"
+                  alt="Tarun Kumar — Founder & AI Systems Engineer"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-[#12100E]/30 to-transparent" />
+                
+                <div className="absolute top-3.5 left-3.5 flex items-center space-x-2 bg-[#0A0908]/80 backdrop-blur-md px-3 py-1 rounded-full border border-[#8C6D4F]/30">
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37]" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
+                </div>
+
+                <div className="absolute bottom-3.5 left-4 right-4 flex items-end justify-between">
+                  <div>
+                    <h3 className="text-lg font-serif font-normal text-white">Tarun Kumar</h3>
+                    <p className="text-[11px] font-mono text-[#D4AF37]">AI Engineer &amp; Technology Entrepreneur</p>
+                  </div>
+                  <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
+                    VERIFIED
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
             {/* OrigoHOST Highlight Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}

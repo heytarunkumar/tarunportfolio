@@ -45,7 +45,14 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
         <div>
           {/* Admin Header Identity */}
           <div className="flex items-center space-x-3 pb-5 mb-5 border-b border-[#26211B]">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] animate-pulse" />
+            <div className="relative shrink-0">
+              <img
+                src="/images/tarun-headshot.jpg"
+                alt="Tarun Kumar"
+                className="w-10 h-10 rounded-full object-cover border border-[#D4AF37]/50 shadow-sm"
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#0E0C0A]" />
+            </div>
             <div>
               <h1 className="text-sm font-bold tracking-widest text-white uppercase font-mono">
                 TARUN CMS
@@ -123,9 +130,16 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
             </div>
           </div>
 
-          <div className="flex items-center justify-between text-[#8C6D4F] text-[11px] px-1">
-            <span>USER:</span>
-            <span className="text-white font-medium">{username || 'heytarunkumar'}</span>
+          <div className="flex items-center space-x-2.5 p-2 rounded-xl bg-[#141210] border border-[#26211B]">
+            <img
+              src="/images/tarun-headshot.jpg"
+              alt="Tarun Kumar"
+              className="w-7 h-7 rounded-full object-cover border border-[#D4AF37]/40 shrink-0"
+            />
+            <div className="min-w-0 flex-1">
+              <div className="text-[9.5px] text-[#8C6D4F] uppercase tracking-wider">LOGGED IN</div>
+              <div className="text-white text-[11px] font-medium truncate">{username || 'Tarun Kumar'}</div>
+            </div>
           </div>
 
           <Link

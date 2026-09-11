@@ -153,7 +153,7 @@ const initialSeo: SeoSettings = {
   canonicalUrl: 'https://heytarunkumar.vercel.app',
   ogTitle: 'Tarun Kumar — Python Developer | Cloud & DevOps Engineer',
   ogDescription: 'Python-focused developer building backend services, APIs, automation workflows, and cloud solutions.',
-  ogImage: 'https://heytarunkumar.vercel.app/og-image.png',
+  ogImage: '/images/tarun-executive.jpg',
   ogType: 'website',
   twitterCard: 'summary_large_image',
   twitterCreator: '@heytarunkumarr',

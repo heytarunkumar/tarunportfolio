@@ -120,6 +120,28 @@ export const ContactSection: React.FC = () => {
               </p>
             </div>
 
+            {/* Founder Direct Line Badge */}
+            <div className="flex items-center space-x-4 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
+              <div className="relative shrink-0">
+                <img
+                  src="/images/tarun-headshot.jpg"
+                  alt="Tarun Kumar"
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md"
+                />
+                <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#12100E] flex items-center justify-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                </span>
+              </div>
+              <div className="font-mono">
+                <div className="flex items-center space-x-2">
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37]">DIRECT LINE //</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.2 rounded font-mono">AVAILABLE</span>
+                </div>
+                <h4 className="text-white font-sans font-semibold text-sm sm:text-base">Tarun Kumar</h4>
+                <p className="text-[11px] text-[#8C6D4F]">Direct response for AI engineering &amp; ventures</p>
+              </div>
+            </div>
+
             {/* Quick Contact Cards */}
             <div className="space-y-4 font-mono text-xs">
               <span className="text-[#8C6D4F] text-[10px] block uppercase tracking-widest font-mono">
