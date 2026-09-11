@@ -67,6 +67,7 @@ export const ContactSection: React.FC = () => {
   };
 
   const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
+  const linktreeUrl = profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar';
   const instagramUrl = profile?.socials?.instagram || 'https://instagram.com/heytarunkumar';
   const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar';
   const githubUrl = profile?.socials?.github || 'https://github.com/haytarunkumar';
@@ -161,7 +162,15 @@ export const ContactSection: React.FC = () => {
                 <div className="text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors">{contactEmail}</div>
               </a>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2">
+                <a
+                  href={linktreeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                >
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Linktree ↗</span>
+                </a>
                 <a
                   href={instagramUrl}
                   target="_blank"

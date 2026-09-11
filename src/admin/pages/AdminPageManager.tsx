@@ -22,6 +22,7 @@ export const AdminPageManager: React.FC = () => {
 
   // Contact Form State
   const [email, setEmail] = useState(profile.email || contact?.email || 'imtarunchaudharyy@gmail.com');
+  const [linktree, setLinktree] = useState(profile.socials?.linktree || 'https://linktr.ee/heytarunkumar');
   const [instagram, setInstagram] = useState(profile.socials?.instagram || 'https://instagram.com/heytarunkumar');
   const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/haytarunkumar');
   const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar');
@@ -77,6 +78,7 @@ export const AdminPageManager: React.FC = () => {
         medium,
         x: xSocial,
         instagram,
+        linktree,
       },
     });
 
@@ -373,6 +375,19 @@ export const AdminPageManager: React.FC = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+                  LINKTREE PROFILE URL (@heytarunkumar)
+                </label>
+                <input
+                  type="url"
+                  value={linktree}
+                  onChange={(e) => setLinktree(e.target.value)}
+                  placeholder="https://linktr.ee/heytarunkumar"
+                  className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                   INSTAGRAM PROFILE URL (@heytarunkumar)
                 </label>
                 <input
@@ -383,7 +398,9 @@ export const AdminPageManager: React.FC = () => {
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                   GITHUB PROFILE URL
@@ -396,9 +413,7 @@ export const AdminPageManager: React.FC = () => {
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                   LINKEDIN PROFILE URL
@@ -411,7 +426,9 @@ export const AdminPageManager: React.FC = () => {
                   className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3.5 rounded-xl outline-none font-mono transition-all"
                 />
               </div>
+            </div>
 
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
                   MEDIUM PROFILE URL

@@ -114,6 +114,7 @@ export const AdminSeoManager: React.FC = () => {
     jobTitle: 'Python Developer | Cloud & DevOps Engineer',
     url: canonicalUrl,
     sameAs: [
+      'https://linktr.ee/heytarunkumar',
       'https://instagram.com/heytarunkumar',
       'https://github.com/haytarunkumar',
       'https://linkedin.com/in/haytarunkumar',
