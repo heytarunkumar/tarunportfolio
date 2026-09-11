@@ -92,7 +92,7 @@ export const HeroSection: React.FC = () => {
       'data-systems [ML Pipelines / Tabular Risk Scoring]',
       'devops-track [LEARNING & EXPLORING]',
     ],
-    avatarUrl: '/images/tarun-executive.jpg',
+    avatarUrl: '/images/tarun-executive.webp',
   };
 
   return (
