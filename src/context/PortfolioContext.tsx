@@ -148,13 +148,13 @@ const initialNav: NavItemSetting[] = [
 const initialSeo: SeoSettings = {
   siteTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer | Technology Entrepreneur',
   metaDescription:
-    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community.',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community. Available worldwide (US, UK, India, Canada, Germany, Singapore, UAE, Australia, Global).',
   keywords:
-    'heytarunkumar, haytarunkumar, heytarunkumarr, Tarun Kumar, Founder, AI Engineer, Technology Entrepreneur, OrigoHOST, Python Developer, Artificial Intelligence, Generative AI, Machine Learning, Automation, REST APIs, Mathura, AKTU Lucknow, India',
+    'heytarunkumar, haytarunkumar, heytarunkumarr, Tarun Kumar, Tarun Kumar AI Engineer, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Founder, AI Engineer, Technology Entrepreneur, Generative AI Architect, Python Developer, Artificial Intelligence, Machine Learning, Automation, REST APIs, San Francisco, Silicon Valley, New York, London, Toronto, Berlin, Singapore, Dubai, Sydney, Mathura, AKTU Lucknow, India, Global AI Engineer, Worldwide Freelance AI Consultant',
   canonicalUrl: 'https://www.heytarunkumar.com',
   ogTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer',
   ogDescription:
-    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, GenAI architectures, and developer communities.',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, GenAI architectures, and developer communities worldwide.',
   ogImage: 'https://www.heytarunkumar.com/images/tarun-executive.jpg',
   ogType: 'profile',
   twitterCard: 'summary_large_image',
@@ -165,10 +165,15 @@ const initialSeo: SeoSettings = {
   customMetaTags: [
     { id: 'meta-1', nameProperty: 'name', key: 'author', content: 'Tarun Kumar (heytarunkumar)', enabled: true },
     { id: 'meta-2', nameProperty: 'name', key: 'theme-color', content: '#0A0806', enabled: true },
-    { id: 'meta-3', nameProperty: 'name', key: 'geo.region', content: 'IN-UP', enabled: true },
-    { id: 'meta-4', nameProperty: 'name', key: 'geo.placename', content: 'Mathura, Uttar Pradesh, India', enabled: true },
-    { id: 'meta-5', nameProperty: 'name', key: 'geo.position', content: '27.4924;77.6737', enabled: true },
-    { id: 'meta-6', nameProperty: 'name', key: 'ICBM', content: '27.4924, 77.6737', enabled: true },
+    { id: 'meta-3', nameProperty: 'name', key: 'coverage', content: 'Worldwide', enabled: true },
+    { id: 'meta-4', nameProperty: 'name', key: 'distribution', content: 'Global', enabled: true },
+    { id: 'meta-5', nameProperty: 'name', key: 'target', content: 'all', enabled: true },
+    { id: 'meta-6', nameProperty: 'name', key: 'audience', content: 'all', enabled: true },
+    { id: 'meta-7', nameProperty: 'name', key: 'country', content: 'Worldwide', enabled: true },
+    { id: 'meta-8', nameProperty: 'name', key: 'geo.region', content: 'GLOBAL, IN-UP, US-CA, US-NY, GB-ENG, CA-ON, DE-BE, SG, AE-DU, AU-NSW', enabled: true },
+    { id: 'meta-9', nameProperty: 'name', key: 'geo.placename', content: 'Worldwide, San Francisco, New York, London, Toronto, Berlin, Singapore, Dubai, Sydney, Mathura, India', enabled: true },
+    { id: 'meta-10', nameProperty: 'name', key: 'geo.position', content: '27.4924;77.6737', enabled: true },
+    { id: 'meta-11', nameProperty: 'name', key: 'ICBM', content: '27.4924, 77.6737', enabled: true },
   ],
 };
 
