@@ -103,18 +103,26 @@ export const Navbar: React.FC = () => {
         <Link
           to="/"
           onClick={(e) => handleNavClick(e, '/')}
-          className={`group flex items-center space-x-2.5 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase transition-colors focus:outline-none ${
+          className={`group flex items-center space-x-3 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase transition-colors focus:outline-none ${
             theme === 'dark' ? 'text-[#F5F2EB] hover:text-[#D4AF37]' : 'text-[#171513] hover:text-[#9E7815]'
           }`}
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] group-hover:scale-125 transition-transform shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
-          <span className="font-bold tracking-widest">{profile?.name || 'TARUN KUMAR'}</span>
-          <span className={`hidden md:inline-block text-[10.5px] font-mono border-l pl-2 ml-1 font-normal lowercase ${
-            theme === 'dark' ? 'border-[#26211B] text-[#8C6D4F]' : 'border-[#E2DBD0] text-[#736250]'
-          }`}>
-            founder · ai
-          </span>
+          <div className="w-8 h-8 rounded-lg overflow-hidden bg-white p-0.5 border border-[#D4AF37]/50 shadow-[0_0_12px_rgba(212,175,55,0.25)] shrink-0 group-hover:scale-105 transition-transform">
+            <img
+              src="/images/brand/tarun-monogram.png"
+              alt="Tarun Kumar Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-bold tracking-widest leading-none">{profile?.name || 'TARUN KUMAR'}</span>
+            <span className={`text-[9.5px] font-mono tracking-wider font-normal mt-0.5 ${
+              theme === 'dark' ? 'text-[#8C6D4F]' : 'text-[#736250]'
+            }`}>
+              FOUNDER · AI &amp; TECH
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation Links */}

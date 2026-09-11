@@ -31,13 +31,21 @@ export const AdminLoginPage: React.FC = () => {
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
         <div className="text-center mb-8">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#1A1714] border border-[#26211B] rounded-full mb-4">
+          <div className="w-16 h-16 mx-auto rounded-2xl overflow-hidden bg-white p-2 border border-[#D4AF37]/50 shadow-[0_0_20px_rgba(212,175,55,0.25)] mb-4">
+            <img
+              src="/images/brand/tarun-monogram.png"
+              alt="Tarun Kumar Monogram"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#1A1714] border border-[#26211B] rounded-full mb-3">
             <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
             <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-widest">
               PORTFOLIO ADMIN CMS
             </span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-white mb-2">
+          <h1 className="text-3xl sm:text-4xl font-serif font-normal text-white mb-2">
             Administrator Portal
           </h1>
           <p className="text-xs text-[#A8988B] font-sans font-light">

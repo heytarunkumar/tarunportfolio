@@ -45,13 +45,12 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
         <div>
           {/* Admin Header Identity */}
           <div className="flex items-center space-x-3 pb-5 mb-5 border-b border-[#26211B]">
-            <div className="relative shrink-0">
+            <div className="w-10 h-10 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-sm shrink-0">
               <img
-                src="/images/tarun-headshot.jpg"
-                alt="Tarun Kumar"
-                className="w-10 h-10 rounded-full object-cover border border-[#D4AF37]/50 shadow-sm"
+                src="/images/brand/tarun-monogram.png"
+                alt="Tarun Kumar Monogram"
+                className="w-full h-full object-contain"
               />
-              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-[#0E0C0A]" />
             </div>
             <div>
               <h1 className="text-sm font-bold tracking-widest text-white uppercase font-mono">

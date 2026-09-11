@@ -22,16 +22,25 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Left Identity */}
-        <div className="text-center md:text-left">
-          <Link
-            to="/"
-            className="text-base font-serif font-normal text-white block mb-1 hover:text-[#D4AF37] transition-colors"
-          >
-            {profile?.name || 'TARUN KUMAR'}
-          </Link>
-          <span className="text-xs font-mono text-[#8C6D4F] block">
-            Founder | AI & Technology • OrigoHOST Community
-          </span>
+        <div className="text-center md:text-left flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4">
+          <div className="w-12 h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
+            <img
+              src="/images/brand/tarun-monogram.png"
+              alt="Tarun Kumar Monogram"
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div>
+            <Link
+              to="/"
+              className="text-base font-serif font-normal text-white block mb-0.5 hover:text-[#D4AF37] transition-colors"
+            >
+              {profile?.name || 'TARUN KUMAR'}
+            </Link>
+            <span className="text-xs font-mono text-[#8C6D4F] block">
+              Founder | AI &amp; Technology • OrigoHOST Community
+            </span>
+          </div>
         </div>
 
         {/* Center Quick Page Links */}
