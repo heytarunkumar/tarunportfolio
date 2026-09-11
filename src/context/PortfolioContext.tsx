@@ -146,24 +146,29 @@ const initialNav: NavItemSetting[] = [
 ];
 
 const initialSeo: SeoSettings = {
-  siteTitle: 'Tarun Kumar — Founder | AI & Technology',
+  siteTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer | Technology Entrepreneur',
   metaDescription:
-    'Portfolio of Tarun Kumar — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, AI-powered solutions, and technology-driven ventures. Founder & President of OrigoHOST Tech Community.',
-  keywords: 'Tarun Kumar, Founder, AI Engineer, Technology Entrepreneur, OrigoHOST, Python Developer, Artificial Intelligence, Generative AI, Machine Learning, Automation, REST APIs',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community.',
+  keywords:
+    'heytarunkumar, haytarunkumar, heytarunkumarr, Tarun Kumar, Founder, AI Engineer, Technology Entrepreneur, OrigoHOST, Python Developer, Artificial Intelligence, Generative AI, Machine Learning, Automation, REST APIs, Mathura, AKTU Lucknow, India',
   canonicalUrl: 'https://www.heytarunkumar.com',
-  ogTitle: 'Tarun Kumar — Founder | AI & Technology',
-  ogDescription: 'Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, AI-powered solutions, and developer communities.',
+  ogTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer',
+  ogDescription:
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, GenAI architectures, and developer communities.',
   ogImage: 'https://www.heytarunkumar.com/images/tarun-executive.jpg',
-  ogType: 'website',
+  ogType: 'profile',
   twitterCard: 'summary_large_image',
   twitterCreator: '@heytarunkumarr',
   robotsIndex: true,
   sitemapEnabled: true,
   structuredDataEnabled: true,
   customMetaTags: [
-    { id: 'meta-1', nameProperty: 'name', key: 'author', content: 'Tarun Kumar', enabled: true },
+    { id: 'meta-1', nameProperty: 'name', key: 'author', content: 'Tarun Kumar (heytarunkumar)', enabled: true },
     { id: 'meta-2', nameProperty: 'name', key: 'theme-color', content: '#0A0806', enabled: true },
-    { id: 'meta-3', nameProperty: 'name', key: 'geo.region', content: 'IN', enabled: true },
+    { id: 'meta-3', nameProperty: 'name', key: 'geo.region', content: 'IN-UP', enabled: true },
+    { id: 'meta-4', nameProperty: 'name', key: 'geo.placename', content: 'Mathura, Uttar Pradesh, India', enabled: true },
+    { id: 'meta-5', nameProperty: 'name', key: 'geo.position', content: '27.4924;77.6737', enabled: true },
+    { id: 'meta-6', nameProperty: 'name', key: 'ICBM', content: '27.4924, 77.6737', enabled: true },
   ],
 };
 
