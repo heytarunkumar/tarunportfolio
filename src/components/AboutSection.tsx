@@ -139,7 +139,7 @@ export const AboutSection: React.FC = () => {
               
               <div className="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#0A0908]">
                 <img
-                  src="/images/tarun-about.jpg"
+                  src="/images/tarun-headshot.jpg"
                   alt="Tarun Kumar — Founder & AI Systems Engineer"
                   className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />

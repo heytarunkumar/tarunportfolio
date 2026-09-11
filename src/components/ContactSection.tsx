@@ -124,7 +124,7 @@ export const ContactSection: React.FC = () => {
             <div className="flex items-center space-x-4 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
               <div className="relative shrink-0">
                 <img
-                  src="/images/tarun-headshot.jpg"
+                  src="/images/tarun-about.jpg"
                   alt="Tarun Kumar"
                   className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md"
                 />
