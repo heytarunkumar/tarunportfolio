@@ -1,0 +1,42 @@
+# Tarun Kumar
+
+> Tarun Kumar is a Python Developer, AI Engineer, Researcher, Author, and Founder. This website presents his professional portfolio, technical systems, machine learning research, projects, writing, and verified public profiles.
+
+## Identity
+
+- Name: Tarun Kumar
+- Professional Positioning: Python Developer | AI Engineer | Researcher | Author | Founder
+- Primary Handle: heytarunkumar
+- Canonical Website: https://heytarunkumar.vercel.app/
+- Primary Contact: imtarunchaudharyy@gmail.com
+
+## Public Pages
+
+- Home: https://heytarunkumar.vercel.app/
+- About & Profile: https://heytarunkumar.vercel.app/about
+- Projects & Systems: https://heytarunkumar.vercel.app/projects
+- Engineering Lab: https://heytarunkumar.vercel.app/lab
+- Research & Publications: https://heytarunkumar.vercel.app/research
+- Experience & Leadership: https://heytarunkumar.vercel.app/experience
+- Official Links Hub: https://heytarunkumar.vercel.app/links
+- Contact Dispatch: https://heytarunkumar.vercel.app/contact
+
+## Core Competencies & Domains
+
+- Python Systems Engineering & Backend Microservices
+- Generative AI Architectures & Large Language Models (LLMs)
+- Machine Learning & Explainable AI (XAI / SHAP) Research
+- Developer Education & Venture Leadership
+
+## Verified Professional Profiles
+
+- LinkedIn: https://www.linkedin.com/in/heytarunkumar/
+- GitHub: https://github.com/heytarunkumar
+- Instagram: https://www.instagram.com/heytarunkumar/
+- Medium: https://medium.com/@heytarunkumar/
+- X (Twitter): https://x.com/heytarunkumarr
+- Linktree: https://linktr.ee/heytarunkumar
+
+## Organizations & Ventures
+
+- OrigoHOST Tech Community (Founder & President): https://origohost.in
