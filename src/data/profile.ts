@@ -151,9 +151,9 @@ export const profileData: Profile = {
   socials: {
     github: "https://github.com/heytarunkumar",
     linkedin: "https://www.linkedin.com/in/heytarunkumar/",
+    instagram: "https://www.instagram.com/heytarunkumar/",
+    medium: "https://medium.com/@heytarunkumar/",
     x: "https://x.com/heytarunkumarr",
-    medium: "https://medium.com/@heytarunkumar",
-    instagram: "https://www.instagram.com/heytarunchaudhary/",
     linktree: "https://linktr.ee/heytarunkumar",
   },
   resumeUrl: "/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf",

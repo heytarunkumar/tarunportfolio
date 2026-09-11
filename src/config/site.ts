@@ -25,10 +25,10 @@ export const SITE_CONFIG = {
   defaultOgImage: `${SITE_URL}/images/tarun-executive.webp`,
   socials: {
     linkedin: 'https://www.linkedin.com/in/heytarunkumar/',
+    instagram: 'https://www.instagram.com/heytarunkumar/',
+    medium: 'https://medium.com/@heytarunkumar/',
     github: 'https://github.com/heytarunkumar',
-    medium: 'https://medium.com/@heytarunkumar',
     x: 'https://x.com/heytarunkumarr',
-    instagram: 'https://www.instagram.com/heytarunchaudhary/',
     linktree: 'https://linktr.ee/heytarunkumar',
   },
   origohost: {

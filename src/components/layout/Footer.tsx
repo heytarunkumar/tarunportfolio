@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
               X ↗
             </a>
             <a
-              href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar'}
+              href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"

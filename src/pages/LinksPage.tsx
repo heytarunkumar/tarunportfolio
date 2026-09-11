@@ -125,9 +125,9 @@ export const LinksPage: React.FC = () => {
         {
           title: 'Instagram',
           subtitle: 'Behind-the-scenes, community hackathons & lifestyle',
-          url: profile.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/',
+          url: profile.socials?.instagram || 'https://www.instagram.com/heytarunkumar/',
           isExternal: true,
-          tag: '@heytarunchaudhary',
+          tag: '@heytarunkumar',
           iconText: '📸',
         },
         {
