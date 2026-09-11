@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
-import { PortfolioProvider } from './context/PortfolioContext';
+import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
 import { ScrollToTop } from './components/common/ScrollToTop';
 
@@ -54,6 +54,17 @@ function SecretAdminListener() {
   return null;
 }
 
+function PageVisibilityGuard({ path, children }: { path: string; children: React.ReactNode }) {
+  const { navigation } = usePortfolio();
+  const item = navigation?.find((n) => n.path === path);
+
+  if (item && item.visible === false) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <>{children}</>;
+}
+
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full min-h-screen bg-[#0A0908] text-[#F5F2EB] selection:bg-[#D4AF37]/30 selection:text-white flex flex-col justify-between overflow-x-hidden">
@@ -72,14 +83,14 @@ function App() {
           <ScrollToTop />
           <SecretAdminListener />
           <Routes>
-            {/* Public Portfolio Routes */}
+            {/* Public Portfolio Routes with Dynamic Page Visibility Guards */}
             <Route path="/" element={<PublicLayout><HomePage /></PublicLayout>} />
-            <Route path="/about" element={<PublicLayout><AboutPage /></PublicLayout>} />
-            <Route path="/projects" element={<PublicLayout><ProjectsPage /></PublicLayout>} />
-            <Route path="/lab" element={<PublicLayout><EngineeringLabPage /></PublicLayout>} />
-            <Route path="/research" element={<PublicLayout><ResearchPage /></PublicLayout>} />
-            <Route path="/experience" element={<PublicLayout><ExperiencePage /></PublicLayout>} />
-            <Route path="/contact" element={<PublicLayout><ContactPage /></PublicLayout>} />
+            <Route path="/about" element={<PageVisibilityGuard path="/about"><PublicLayout><AboutPage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/projects" element={<PageVisibilityGuard path="/projects"><PublicLayout><ProjectsPage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/lab" element={<PageVisibilityGuard path="/lab"><PublicLayout><EngineeringLabPage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/research" element={<PageVisibilityGuard path="/research"><PublicLayout><ResearchPage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/experience" element={<PageVisibilityGuard path="/experience"><PublicLayout><ExperiencePage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/contact" element={<PageVisibilityGuard path="/contact"><PublicLayout><ContactPage /></PublicLayout></PageVisibilityGuard>} />
 
             {/* Admin CMS Authentication Route */}
             <Route path="/admin/login" element={<AdminLoginPage />} />
