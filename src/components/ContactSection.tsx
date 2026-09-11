@@ -110,7 +110,7 @@ export const ContactSection: React.FC = () => {
                 transition={{ duration: 0.8 }}
                 className="mb-6"
               >
-                <h2 className="text-4xl sm:text-5xl font-serif text-white tracking-tight leading-[1.1] mb-2">
+                <h2 className="text-4xl sm:text-5xl font-serif text-white tracking-normal leading-[1.15] mb-2">
                   Let&apos;s build <span className="italic text-[#D4AF37]">meaningful</span> intelligence.
                 </h2>
               </motion.div>

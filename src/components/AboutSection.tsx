@@ -68,7 +68,7 @@ export const AboutSection: React.FC = () => {
           >
             {/* Headline */}
             <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
                 Engineering intelligence. <span className="italic text-[#D4AF37]">Scaling ventures.</span>
               </h2>
             </motion.div>

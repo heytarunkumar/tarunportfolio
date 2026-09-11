@@ -34,14 +34,18 @@
   .editorial-serif {
     font-family: 'Instrument Serif', Georgia, serif;
     font-style: italic;
-    font-weight: 400;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+    text-rendering: optimizeLegibility;
   }
 
   .font-serif {
     font-family: 'Instrument Serif', Georgia, serif;
-    font-weight: 400;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   .no-scrollbar::-webkit-scrollbar {

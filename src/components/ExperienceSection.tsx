@@ -52,7 +52,7 @@ export const ExperienceSection: React.FC = () => {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
             Venture &amp; leadership <span className="italic text-[#D4AF37]">milestones.</span>
           </h2>
         </motion.div>

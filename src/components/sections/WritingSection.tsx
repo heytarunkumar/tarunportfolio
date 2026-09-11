@@ -39,7 +39,7 @@ export const WritingSection: React.FC = () => {
           className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Technical writing &amp; <span className="italic text-[#D4AF37]">architectural thoughts.</span>
             </h2>
           </div>

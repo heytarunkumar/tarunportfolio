@@ -85,7 +85,7 @@ export const SkillsSection: React.FC = () => {
           className="mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Technical stack &amp; <span className="italic text-[#D4AF37]">learning roadmap.</span>
             </h2>
           </div>

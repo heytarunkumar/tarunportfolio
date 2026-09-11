@@ -125,12 +125,12 @@ export const HeroSection: React.FC = () => {
             </motion.div>
 
             {/* Editorial Display Title with Dynamic Role Morphing */}
-            <motion.div variants={fadeUpVariants} className="relative mb-5 select-none">
-              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white tracking-tight leading-[1.05]">
-                <span>Tarun Kumar</span>
+            <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
+              <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.12] tracking-normal">
+                <h1 className="font-normal tracking-normal text-white">Tarun Kumar</h1>
                 
                 {/* Hero Role Morphing Surface */}
-                <div className="h-[1.25em] overflow-hidden relative my-1 text-[#D4AF37] italic font-normal">
+                <div className="h-[1.3em] overflow-hidden relative my-2 text-[#D4AF37] italic font-normal tracking-normal">
                   {prefersReducedMotion ? (
                     <span className="block">
                       Founder &amp; AI Engineer
@@ -139,9 +139,9 @@ export const HeroSection: React.FC = () => {
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={heroRoles[roleIndex]}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        exit={{ opacity: 0, y: -16 }}
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="block"
                       >
@@ -151,7 +151,7 @@ export const HeroSection: React.FC = () => {
                   )}
                 </div>
 
-                <span className="text-2xl sm:text-3xl md:text-4xl font-sans font-light text-[#C4BCB3] tracking-normal block mt-1">
+                <span className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-sans font-light text-[#C4BCB3] tracking-normal block mt-2 leading-relaxed">
                   Building practical intelligence &amp; scalable systems.
                 </span>
               </div>

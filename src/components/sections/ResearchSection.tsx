@@ -50,7 +50,7 @@ export const ResearchSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-tight leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Explainable AI research &amp; <span className="italic text-[#D4AF37]">clinical predictive systems.</span>
             </h2>
           </motion.div>
