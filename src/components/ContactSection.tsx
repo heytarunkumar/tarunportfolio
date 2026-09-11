@@ -67,6 +67,7 @@ export const ContactSection: React.FC = () => {
   };
 
   const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
+  const instagramUrl = profile?.socials?.instagram || 'https://instagram.com/heytarunkumar';
   const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar';
   const githubUrl = profile?.socials?.github || 'https://github.com/haytarunkumar';
   const xUrl = profile?.socials?.x || 'https://x.com/heytarunkumarr';
@@ -160,12 +161,20 @@ export const ContactSection: React.FC = () => {
                 <div className="text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors">{contactEmail}</div>
               </a>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                >
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Instagram ↗</span>
+                </a>
                 <a
                   href={linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
                   <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">LinkedIn ↗</span>
                 </a>
@@ -173,7 +182,7 @@ export const ContactSection: React.FC = () => {
                   href={githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
                   <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">GitHub ↗</span>
                 </a>
@@ -181,7 +190,7 @@ export const ContactSection: React.FC = () => {
                   href={xUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
                   <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">X ↗</span>
                 </a>
@@ -189,7 +198,7 @@ export const ContactSection: React.FC = () => {
                   href={mediumUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-lift p-3 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
+                  className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
                   <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Medium ↗</span>
                 </a>

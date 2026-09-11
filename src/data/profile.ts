@@ -20,6 +20,7 @@ export interface Profile {
     linkedin: string;
     x: string;
     medium: string;
+    instagram?: string;
   };
   resumeUrl: string;
 }
@@ -49,6 +50,7 @@ export const profileData: Profile = {
     linkedin: "https://linkedin.com/in/haytarunkumar",
     x: "https://x.com/heytarunkumarr",
     medium: "https://medium.com/@haytarunkumar",
+    instagram: "https://instagram.com/heytarunkumar",
   },
   resumeUrl: "/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf",
 };

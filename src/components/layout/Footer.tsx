@@ -68,6 +68,14 @@ export const Footer: React.FC = () => {
         <div className="text-center md:text-right text-xs font-mono text-[#8C6D4F]">
           <div className="flex flex-wrap justify-center md:justify-end gap-5 mb-2 text-[#C4B5A5]">
             <a
+              href={profile?.socials?.instagram || 'https://instagram.com/heytarunkumar'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#D4AF37] transition-colors"
+            >
+              INSTAGRAM ↗
+            </a>
+            <a
               href={profile?.socials?.github || 'https://github.com/haytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
