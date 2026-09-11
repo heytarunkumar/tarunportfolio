@@ -1,9 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 export const Footer: React.FC = () => {
   const { profile, navigation } = usePortfolio();
+  const navigate = useNavigate();
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleSecretTrigger = () => {
+    const nextCount = clickCount + 1;
+    setClickCount(nextCount);
+    if (nextCount >= 3) {
+      setClickCount(0);
+      navigate('/admin/dashboard');
+    }
+    setTimeout(() => setClickCount(0), 2000);
+  };
 
   const activeNavItems = navigation
     ? [...navigation].filter((item) => item.visible).sort((a, b) => a.order - b.order)
@@ -88,7 +100,13 @@ export const Footer: React.FC = () => {
               MEDIUM ↗
             </a>
           </div>
-          <span>© {new Date().getFullYear()} {profile?.name || 'Tarun Kumar'}. All rights reserved.</span>
+          <span 
+            onClick={handleSecretTrigger} 
+            className="cursor-default select-none transition-colors duration-200"
+            title=""
+          >
+            © {new Date().getFullYear()} {profile?.name || 'Tarun Kumar'}. All rights reserved.
+          </span>
         </div>
 
       </div>

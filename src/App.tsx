@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { PortfolioProvider } from './context/PortfolioContext';
 import { ProtectedRoute } from './components/common/ProtectedRoute';
@@ -34,6 +35,25 @@ import { AdminDesignManager } from './admin/pages/AdminDesignManager';
 import { AdminResumeManager } from './admin/pages/AdminResumeManager';
 import { AdminSettingsPage } from './admin/pages/AdminSettingsPage';
 
+function SecretAdminListener() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Secret global shortcut: Ctrl + Shift + A (or Cmd + Shift + A on Mac)
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        navigate('/admin/dashboard');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [navigate]);
+
+  return null;
+}
+
 function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full min-h-screen bg-[#0A0908] text-[#F5F2EB] selection:bg-[#D4AF37]/30 selection:text-white flex flex-col justify-between overflow-x-hidden">
@@ -50,6 +70,7 @@ function App() {
       <PortfolioProvider>
         <Router>
           <ScrollToTop />
+          <SecretAdminListener />
           <Routes>
             {/* Public Portfolio Routes */}
             <Route path="/" element={<PublicLayout><HomePage /></PublicLayout>} />
