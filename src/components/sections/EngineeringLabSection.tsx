@@ -25,7 +25,7 @@ export const EngineeringLabSection: React.FC = () => {
     architecture: 'Python 3.12 / FastAPI / PyTest',
     keyLearnings: ['REST API design', 'Data models validation with Pydantic', 'Modular services'],
     technologies: ['Python 3.12', 'FastAPI', 'PyTest'],
-    githubUrl: 'https://github.com/haytarunkumar',
+    githubUrl: 'https://github.com/heytarunkumar',
   };
 
   return (

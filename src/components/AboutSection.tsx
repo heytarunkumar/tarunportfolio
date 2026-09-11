@@ -240,7 +240,15 @@ export const AboutSection: React.FC = () => {
 
               <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#8C6D4F]">
                 <span>{origo.role}</span>
-                <span className="text-[#D4AF37]">{origo.ecosystem}</span>
+                <a
+                  href="https://origohost.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#D4AF37] hover:underline inline-flex items-center space-x-1"
+                >
+                  <span>{origo.ecosystem}</span>
+                  <span className="text-[10px]">↗</span>
+                </a>
               </div>
             </motion.div>
 

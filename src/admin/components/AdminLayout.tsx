@@ -27,6 +27,19 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   const navigate = useNavigate();
   const location = useLocation();
 
+  React.useEffect(() => {
+    const meta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    const previousContent = meta ? meta.getAttribute('content') : null;
+    if (meta) {
+      meta.setAttribute('content', 'noindex, nofollow');
+    }
+    return () => {
+      if (meta && previousContent) {
+        meta.setAttribute('content', previousContent);
+      }
+    };
+  }, []);
+
   const handleLogout = () => {
     logout();
     navigate('/admin/login');

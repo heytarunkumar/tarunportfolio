@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -9,6 +9,19 @@ export const AdminLoginPage: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const meta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    const previousContent = meta ? meta.getAttribute('content') : null;
+    if (meta) {
+      meta.setAttribute('content', 'noindex, nofollow');
+    }
+    return () => {
+      if (meta && previousContent) {
+        meta.setAttribute('content', previousContent);
+      }
+    };
+  }, []);
 
   const from = (location.state as { from?: { pathname: string } })?.from?.pathname || '/admin/dashboard';
 

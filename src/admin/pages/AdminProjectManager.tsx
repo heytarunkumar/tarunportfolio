@@ -309,7 +309,7 @@ export const AdminProjectManager: React.FC = () => {
                 type="url"
                 value={github}
                 onChange={(e) => setGithub(e.target.value)}
-                placeholder="https://github.com/haytarunkumar/..."
+                placeholder="https://github.com/heytarunkumar/..."
                 className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-white p-3 rounded-xl outline-none font-sans"
               />
             </div>

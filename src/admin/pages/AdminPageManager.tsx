@@ -137,10 +137,10 @@ export const AdminPageManager: React.FC = () => {
 
   // Social Links
   const [linktree, setLinktree] = useState(profile.socials?.linktree || 'https://linktr.ee/heytarunkumar');
-  const [instagram, setInstagram] = useState(profile.socials?.instagram || 'https://instagram.com/heytarunkumar');
-  const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/haytarunkumar');
-  const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar');
-  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@haytarunkumar');
+  const [instagram, setInstagram] = useState(profile.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/');
+  const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/heytarunkumar');
+  const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/');
+  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar');
   const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumarr');
 
   // ==================== TAB 5: BRAND, NAVBAR & FOOTER STATE ====================

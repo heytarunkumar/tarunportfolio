@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
               LINKTREE ↗
             </a>
             <a
-              href={profile?.socials?.instagram || 'https://instagram.com/heytarunkumar'}
+              href={profile?.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
@@ -88,7 +88,7 @@ export const Footer: React.FC = () => {
               INSTAGRAM ↗
             </a>
             <a
-              href={profile?.socials?.github || 'https://github.com/haytarunkumar'}
+              href={profile?.socials?.github || 'https://github.com/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
@@ -96,7 +96,7 @@ export const Footer: React.FC = () => {
               GITHUB ↗
             </a>
             <a
-              href={profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar'}
+              href={profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
@@ -112,7 +112,7 @@ export const Footer: React.FC = () => {
               X ↗
             </a>
             <a
-              href={profile?.socials?.medium || 'https://medium.com/@haytarunkumar'}
+              href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"

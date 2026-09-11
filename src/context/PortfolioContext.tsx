@@ -146,16 +146,16 @@ const initialNav: NavItemSetting[] = [
 ];
 
 const initialSeo: SeoSettings = {
-  siteTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer | Technology Entrepreneur',
+  siteTitle: 'Tarun Kumar | Python Developer, AI Engineer, Researcher & Founder (@heytarunkumar)',
   metaDescription:
-    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community. Available worldwide (US, UK, India, Canada, Germany, Singapore, UAE, Australia, Global).',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community (origohost.in).',
   keywords:
-    'heytarunkumar, haytarunkumar, heytarunkumarr, Tarun Kumar, Tarun Kumar AI Engineer, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Founder, AI Engineer, Technology Entrepreneur, Generative AI Architect, Python Developer, Artificial Intelligence, Machine Learning, Automation, REST APIs, San Francisco, Silicon Valley, New York, London, Toronto, Berlin, Singapore, Dubai, Sydney, Mathura, AKTU Lucknow, India, Global AI Engineer, Worldwide Freelance AI Consultant',
-  canonicalUrl: 'https://www.heytarunkumar.com',
-  ogTitle: 'Tarun Kumar (@heytarunkumar) — Founder & AI Engineer',
+    'heytarunkumar, Tarun Kumar, Tarun Kumar heytarunkumar, Tarun Kumar AI Engineer, Tarun Kumar Python Developer, Tarun Kumar Researcher, Tarun Kumar Author, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Tarun Kumar AI, Python Developer, AI Engineer, Generative AI Architect, Machine Learning, Explainable AI, REST APIs, OrigoHOST Tech Community, Mathura, AKTU Lucknow, India, Worldwide',
+  canonicalUrl: 'https://www.tarunkumarai.vercel.app',
+  ogTitle: 'Tarun Kumar | Python Developer, AI Engineer, Researcher & Founder (@heytarunkumar)',
   ogDescription:
-    'Official portfolio of Tarun Kumar (heytarunkumar) — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, GenAI architectures, and developer communities worldwide.',
-  ogImage: 'https://www.heytarunkumar.com/images/tarun-executive.jpg',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building intelligent systems, GenAI architectures, and developer communities worldwide.',
+  ogImage: 'https://www.tarunkumarai.vercel.app/images/tarun-executive.jpg',
   ogType: 'profile',
   twitterCard: 'summary_large_image',
   twitterCreator: '@heytarunkumarr',

@@ -16,6 +16,7 @@ import { EngineeringLabPage } from './pages/EngineeringLabPage';
 import { ResearchPage } from './pages/ResearchPage';
 import { ExperiencePage } from './pages/ExperiencePage';
 import { ContactPage } from './pages/ContactPage';
+import { LinksPage } from './pages/LinksPage';
 
 // Admin CMS Views
 import { AdminLayout } from './admin/components/AdminLayout';
@@ -91,6 +92,7 @@ function App() {
             <Route path="/research" element={<PageVisibilityGuard path="/research"><PublicLayout><ResearchPage /></PublicLayout></PageVisibilityGuard>} />
             <Route path="/experience" element={<PageVisibilityGuard path="/experience"><PublicLayout><ExperiencePage /></PublicLayout></PageVisibilityGuard>} />
             <Route path="/contact" element={<PageVisibilityGuard path="/contact"><PublicLayout><ContactPage /></PublicLayout></PageVisibilityGuard>} />
+            <Route path="/links" element={<PublicLayout><LinksPage /></PublicLayout>} />
 
             {/* Admin CMS Authentication Route */}
             <Route path="/admin/login" element={<AdminLoginPage />} />

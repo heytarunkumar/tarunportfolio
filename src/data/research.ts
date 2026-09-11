@@ -36,8 +36,8 @@ export const researchData: ResearchProject = {
     "Utilizes SHAP breakdown plots to display exact feature contributions (e.g., blood pressure, cholesterol levels) driving individual risk score predictions, replacing black-box models with interpretable feature attributions.",
   status: "Research Manuscript in Preparation",
   date: "AUG 2026",
-  paperUrl: "https://github.com/haytarunkumar/ai-healthguard-research",
-  githubUrl: "https://github.com/haytarunkumar/ai-healthguard-research",
+  paperUrl: "https://github.com/heytarunkumar/ai-healthguard-research",
+  githubUrl: "https://github.com/heytarunkumar/ai-healthguard-research",
   visible: true,
 };
 
@@ -62,8 +62,8 @@ export const initialResearchProjects: ResearchProject[] = [
       "Integrated gradients and permutation importance metrics computed across high-dimensional sparse representations.",
     status: "Technical Working Paper",
     date: "JUL 2026",
-    paperUrl: "https://github.com/haytarunkumar",
-    githubUrl: "https://github.com/haytarunkumar",
+    paperUrl: "https://github.com/heytarunkumar",
+    githubUrl: "https://github.com/heytarunkumar",
     visible: true,
   },
 ];

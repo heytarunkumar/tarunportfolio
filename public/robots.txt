@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/*
 
-Sitemap: https://www.heytarunkumar.com/sitemap.xml
+Sitemap: https://www.tarunkumarai.vercel.app/sitemap.xml

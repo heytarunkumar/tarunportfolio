@@ -81,11 +81,11 @@ export const ContactSection: React.FC = () => {
   const submitButtonText = profile.contactSubmitButtonText || 'DISPATCH MESSAGE ↗';
 
   const linktreeUrl = profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar';
-  const instagramUrl = profile?.socials?.instagram || 'https://instagram.com/heytarunkumar';
-  const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar';
-  const githubUrl = profile?.socials?.github || 'https://github.com/haytarunkumar';
+  const instagramUrl = profile?.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/';
+  const linkedinUrl = profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/';
+  const githubUrl = profile?.socials?.github || 'https://github.com/heytarunkumar';
   const xUrl = profile?.socials?.x || 'https://x.com/heytarunkumarr';
-  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@haytarunkumar';
+  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@heytarunkumar';
 
   return (
     <section
