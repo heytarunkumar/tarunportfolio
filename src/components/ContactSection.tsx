@@ -270,7 +270,7 @@ export const ContactSection: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="contact-name" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-name" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C4A482] font-medium mb-2">
                       // SENDER NAME *
                     </label>
                     <input
@@ -280,12 +280,12 @@ export const ContactSection: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Vance"
-                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
+                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#A8988B]/60 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-email" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C4A482] font-medium mb-2">
                       // EMAIL ADDRESS *
                     </label>
                     <input
@@ -295,13 +295,13 @@ export const ContactSection: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. alex@company.com"
-                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
+                      className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#A8988B]/60 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="contact-subject" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-subject" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C4A482] font-medium mb-2">
                     // SUBJECT / TOPIC
                   </label>
                   <input
@@ -310,12 +310,12 @@ export const ContactSection: React.FC = () => {
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="AI Collaboration / Tech Talk / Project Inquiry"
-                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
+                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#A8988B]/60 px-4 py-3.5 outline-none rounded-xl transition-colors font-sans"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-message" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C4A482] font-medium mb-2">
                     // MESSAGE PAYLOAD *
                   </label>
                   <textarea
@@ -325,7 +325,7 @@ export const ContactSection: React.FC = () => {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe your project, community idea, or inquiry..."
-                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#8C6D4F]/50 p-4 outline-none rounded-xl transition-colors resize-none font-sans"
+                    className="w-full bg-[#0A0908] border border-[#26211B] focus:border-[#D4AF37] text-xs text-white placeholder-[#A8988B]/60 p-4 outline-none rounded-xl transition-colors resize-none font-sans"
                   />
                 </div>
 
