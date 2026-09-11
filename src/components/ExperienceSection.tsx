@@ -23,7 +23,7 @@ export const ExperienceSection: React.FC = () => {
     <section
       id="experience"
       ref={containerRef}
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden"
     >
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#D4AF37]/[0.03] rounded-full blur-[150px] pointer-events-none" />
@@ -38,10 +38,10 @@ export const ExperienceSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center space-x-4 mb-6"
         >
-          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
             06 / EXPERIENCE &amp; MILESTONES
           </span>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
         {/* Section Headline */}
@@ -50,9 +50,9 @@ export const ExperienceSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14"
+          className="mb-10 sm:mb-14"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
             Venture &amp; leadership <span className="italic text-[#D4AF37]">milestones.</span>
           </h2>
         </motion.div>
@@ -61,14 +61,14 @@ export const ExperienceSection: React.FC = () => {
         <div className="relative w-full">
           
           {/* Track Line */}
-          <div className="absolute left-[19px] md:left-[140px] top-4 bottom-8 w-[1px] bg-[#26211B]" />
+          <div className="absolute left-[14px] md:left-[140px] top-4 bottom-8 w-[1px] bg-[#26211B]" />
           
           <motion.div
             style={{ height: lineHeight }}
-            className="absolute left-[19px] md:left-[140px] top-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#C99E5D] to-[#8C6D4F]/20 origin-top"
+            className="absolute left-[14px] md:left-[140px] top-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#C99E5D] to-[#8C6D4F]/20 origin-top"
           />
 
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {experienceData.map((item, idx) => {
               const isExpanded = expandedId === item.id;
 
@@ -89,19 +89,19 @@ export const ExperienceSection: React.FC = () => {
                   </div>
 
                   {/* Timeline Node */}
-                  <div className="absolute left-[19px] md:left-[140px] top-1.5 -translate-x-1/2 flex items-center justify-center">
+                  <div className="absolute left-[14px] md:left-[140px] top-1.5 -translate-x-1/2 flex items-center justify-center">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#12100E] border border-[#8C6D4F] group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-colors duration-300" />
                   </div>
 
                   {/* Content */}
-                  <div className="ml-12 md:ml-10 pl-2 w-full">
+                  <div className="ml-9 md:ml-10 pl-1 sm:pl-2 w-full">
                     <div className="md:hidden mb-1.5">
                       <span className="text-[10px] font-mono tracking-[0.2em] text-[#D4AF37]">
                         {item.year}
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2.5 mb-1.5">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-1.5">
                       {item.logoUrl && (
                         <img
                           src={item.logoUrl}

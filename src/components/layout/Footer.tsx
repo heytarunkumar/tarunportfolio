@@ -30,12 +30,12 @@ export const Footer: React.FC = () => {
       ];
 
   return (
-    <footer className="w-full bg-[#070605] border-t border-[#26211B] text-[#E8DFD8] py-12 sm:py-14 px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
-      <div className="w-full max-w-[1760px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-10">
+    <footer className="w-full bg-[#070605] border-t border-[#26211B] text-[#E8DFD8] py-10 sm:py-14 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
+      <div className="w-full max-w-[1760px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-10">
         
         {/* Left Identity */}
-        <div className="text-center lg:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 shrink-0">
-          <div className="w-12 h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
+        <div className="text-center lg:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 shrink-0">
+          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
             <img
               src={profile.monogramUrl || "/images/brand/tarun-monogram.png"}
               alt={`${profile.name || 'Tarun Kumar'} Monogram`}
@@ -49,14 +49,14 @@ export const Footer: React.FC = () => {
             >
               {profile?.name || 'TARUN KUMAR'}
             </Link>
-            <span className="text-xs font-mono text-[#8C6D4F] block">
+            <span className="text-[11px] sm:text-xs font-mono text-[#8C6D4F] block">
               {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
             </span>
           </div>
         </div>
 
         {/* Center Quick Page Links */}
-        <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-8 gap-y-3 text-xs font-mono text-[#C4B5A5]">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-8 gap-y-2.5 text-[11px] sm:text-xs font-mono text-[#C4B5A5]">
           {activeNavItems.map((item) => (
             <Link 
               key={item.id} 
@@ -69,8 +69,8 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Right Social & Copyright */}
-        <div className="text-center lg:text-right text-xs font-mono text-[#8C6D4F] shrink-0">
-          <div className="flex flex-wrap justify-center lg:justify-end gap-x-5 sm:gap-x-6 gap-y-2 mb-2 text-[#C4B5A5]">
+        <div className="text-center lg:text-right text-[11px] sm:text-xs font-mono text-[#8C6D4F] shrink-0">
+          <div className="flex flex-wrap justify-center lg:justify-end gap-x-4 sm:gap-x-6 gap-y-2 mb-2 text-[#C4B5A5]">
             <a
               href={profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar'}
               target="_blank"
@@ -122,7 +122,7 @@ export const Footer: React.FC = () => {
           </div>
           <span 
             onClick={handleSecretTrigger} 
-            className="cursor-default select-none transition-colors duration-200 block"
+            className="cursor-default select-none transition-colors duration-200 block text-[10.5px] sm:text-xs"
             title=""
           >
             {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Tarun Kumar'}. All rights reserved.`}

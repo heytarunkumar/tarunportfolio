@@ -14,7 +14,7 @@ export const ResumeSection: React.FC = () => {
   return (
     <section
       id="resume"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 px-6 sm:px-10 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 px-4 sm:px-8 lg:px-16 overflow-hidden"
     >
       <div className="max-w-4xl mx-auto w-full relative z-10">
         <motion.div
@@ -22,20 +22,20 @@ export const ResumeSection: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="card-lift relative p-8 sm:p-12 rounded-2xl border border-[#26211B] bg-[#12100E] text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden"
+          className="card-lift relative p-6 sm:p-12 rounded-2xl border border-[#26211B] bg-[#12100E] text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden"
         >
           {/* Top Gold Edge */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
-          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37] block mb-3">
+          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37] block mb-3">
             {badge}
           </span>
 
-          <h2 className="text-3xl sm:text-4xl font-serif text-white mb-4">
+          <h2 className="text-2xl sm:text-4xl font-serif text-white mb-3 sm:mb-4 leading-snug">
             {headline}
           </h2>
 
-          <p className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-xl mx-auto mb-6 sm:mb-8 leading-relaxed">
             {description}
           </p>
 

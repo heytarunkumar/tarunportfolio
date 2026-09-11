@@ -31,7 +31,7 @@ export const EngineeringLabSection: React.FC = () => {
   return (
     <section
       id="lab"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden"
     >
       {/* Studio Ambient Glow */}
       <div className="absolute top-1/3 right-1/4 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
@@ -47,10 +47,10 @@ export const EngineeringLabSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center space-x-4 mb-6"
         >
-          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
             04 / CONTINUOUS GROWTH &amp; LABS
           </span>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
         {/* Section Headline */}
@@ -59,10 +59,10 @@ export const EngineeringLabSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5 sm:gap-6"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Engineering lab &amp; <span className="italic text-[#D4AF37]">active blueprints.</span>
             </h2>
           </div>
@@ -77,15 +77,15 @@ export const EngineeringLabSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] overflow-x-auto no-scrollbar"
+          className="mb-6 sm:mb-8 p-3 sm:p-4 rounded-2xl border border-[#26211B] bg-[#12100E] overflow-x-auto no-scrollbar"
         >
-          <div className="flex items-center space-x-3 min-w-max text-xs font-mono">
+          <div className="flex items-center space-x-2.5 sm:space-x-3 min-w-max text-[11px] sm:text-xs font-mono">
             <span className="text-[#D4AF37] font-bold uppercase tracking-wider">ROADMAP:</span>
             {tracks.map((item, idx) => (
               <React.Fragment key={item.id}>
                 <button
                   onClick={() => setActiveTrackState(item)}
-                  className={`px-3.5 py-1.5 rounded-full border transition-all cursor-pointer ${
+                  className={`px-3 sm:px-3.5 py-1.5 rounded-full border transition-all cursor-pointer ${
                     activeTrack.id === item.id
                       ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_12px_rgba(212,175,55,0.25)]'
                       : 'border-[#26211B] bg-[#0A0908] text-[#C4BCB3] hover:border-[#D4AF37]/50'
@@ -102,10 +102,10 @@ export const EngineeringLabSection: React.FC = () => {
         </motion.div>
 
         {/* Interactive Lab Content Details Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           
           {/* Left Column: Track Navigation List (5 Cols) */}
-          <div className="lg:col-span-5 space-y-3">
+          <div className="lg:col-span-5 space-y-2.5 sm:space-y-3">
             {tracks.map((track, idx) => {
               const isSelected = activeTrack.id === track.id;
               return (
@@ -119,11 +119,11 @@ export const EngineeringLabSection: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2 gap-2">
-                    <span className="text-[11px] font-mono font-medium tracking-wide text-[#D4AF37]">
+                    <span className="text-[10.5px] sm:text-[11px] font-mono font-medium tracking-wide text-[#D4AF37] truncate">
                       STEP {track.stepNumber || idx + 1} // {track.category}
                     </span>
                     <span
-                      className={`text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full border uppercase shrink-0 ${
+                      className={`text-[9.5px] sm:text-[10px] font-mono font-medium px-2 sm:px-2.5 py-0.5 rounded-full border uppercase shrink-0 ${
                         statusBadgeStyles[track.status] || statusBadgeStyles.Building
                       }`}
                     >
@@ -145,7 +145,7 @@ export const EngineeringLabSection: React.FC = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.35 }}
-              className="card-lift relative p-7 sm:p-8 rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl h-full flex flex-col justify-between"
+              className="card-lift relative p-5 sm:p-8 rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl h-full flex flex-col justify-between"
             >
               {/* Gold Top Light Horizon */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />

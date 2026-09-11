@@ -21,12 +21,12 @@ export const ResearchSection: React.FC = () => {
   return (
     <section
       id="research"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden"
     >
       {/* Studio Ambient Glow */}
       <div className="absolute top-1/2 left-1/3 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10 space-y-12">
+      <div className="max-w-7xl mx-auto w-full relative z-10 space-y-10 sm:space-y-12">
         
         {/* Eyebrow Header */}
         <div>
@@ -37,10 +37,10 @@ export const ResearchSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="flex items-center space-x-4 mb-6"
           >
-            <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+            <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
               05 / APPLIED RESEARCH &amp; MACHINE LEARNING
             </span>
-            <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+            <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
           </motion.div>
 
           {/* Section Headline */}
@@ -50,7 +50,7 @@ export const ResearchSection: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Explainable AI research &amp; <span className="italic text-[#D4AF37]">clinical predictive systems.</span>
             </h2>
           </motion.div>
@@ -61,34 +61,34 @@ export const ResearchSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-lift relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-7 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group overflow-hidden"
+          className="card-lift relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-5 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group overflow-hidden"
         >
           {/* Top Gold Horizon Edge */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start relative z-10">
             
             {/* Left Column (7 Cols) */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-5 sm:space-y-6">
               <div>
-                <div className="flex items-center space-x-3 mb-3">
+                <div className="flex items-center space-x-3 mb-2.5 sm:mb-3">
                   <span className="text-xs font-mono font-bold text-[#D4AF37]">
                     ACADEMIC RESEARCH //
                   </span>
-                  <span className="text-[10px] font-mono px-2.5 py-0.5 border border-amber-500/40 bg-amber-950/30 text-amber-300 rounded-full uppercase font-semibold">
+                  <span className="text-[9.5px] sm:text-[10px] font-mono px-2 sm:px-2.5 py-0.5 border border-amber-500/40 bg-amber-950/30 text-amber-300 rounded-full uppercase font-semibold">
                     {primaryResearch.status}
                   </span>
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white mb-2 leading-snug">
+                <h3 className="text-xl sm:text-3xl font-serif font-normal text-white mb-2 leading-snug">
                   {primaryResearch.title}: {primaryResearch.subtitle}
                 </h3>
 
-                <p className="text-xs font-mono text-[#D4AF37] mb-4">
+                <p className="text-[11px] sm:text-xs font-mono text-[#D4AF37] mb-3 sm:mb-4 break-words">
                   COLLABORATIVE AUTHORS: {(primaryResearch.authors || ['Sakshi Rajput', 'Prashant Prajapati', 'Tarun Kumar']).join(' · ')}
                 </p>
 
-                <p className="text-xs sm:text-[13.5px] text-[#C4BCB3] font-light leading-relaxed mb-6">
+                <p className="text-xs sm:text-[13.5px] text-[#C4BCB3] font-light leading-relaxed mb-4 sm:mb-6">
                   {primaryResearch.abstract}
                 </p>
               </div>

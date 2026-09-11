@@ -76,7 +76,7 @@ export const AboutSection: React.FC = () => {
   return (
     <section 
       id="about" 
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden flex items-center"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden flex items-center"
     >
       {/* Background Subtle Glows */}
       <div className="absolute top-1/4 left-1/6 w-[32rem] h-[32rem] bg-[#D4AF37]/5 rounded-full blur-[160px] pointer-events-none" />
@@ -90,12 +90,12 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center space-x-4 mb-8"
+          className="flex items-center space-x-4 mb-6 sm:mb-8"
         >
-          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
             {eyebrow}
           </span>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
         {/* Main Grid: Content + Tech Blueprint Card */}
@@ -110,8 +110,8 @@ export const AboutSection: React.FC = () => {
             className="lg:col-span-7 flex flex-col justify-center"
           >
             {/* Headline */}
-            <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+            <motion.div variants={fadeUpVariants} className="relative mb-5 sm:mb-6 select-none">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
                 {headline}
               </h2>
             </motion.div>
@@ -119,14 +119,14 @@ export const AboutSection: React.FC = () => {
             {/* Narrative Paragraph */}
             <motion.div
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.85] tracking-wide mb-8 max-w-xl space-y-4"
+              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.85] tracking-wide mb-6 sm:mb-8 max-w-xl space-y-4"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               {storyParagraphs.map((para, pIdx) => (
                 <p key={pIdx}>{para}</p>
               ))}
               {quote && (
-                <p className="text-[#D4AF37] italic border-l-2 border-[#D4AF37]/60 pl-4 bg-[#12100E]/70 py-2 rounded-r-xl">
+                <p className="text-[#D4AF37] italic border-l-2 border-[#D4AF37]/60 pl-4 bg-[#12100E]/70 py-2 rounded-r-xl text-xs sm:text-sm">
                   &ldquo;{quote}&rdquo;
                 </p>
               )}
@@ -190,12 +190,12 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Clean Footer Info Bar */}
-              <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex items-center justify-between">
+              <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
                 <div>
                   <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">{spotlight.name}</h3>
                   <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">{spotlight.role}</p>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right">
                   <span className="text-[9.5px] font-mono text-[#8C6D4F] block">LEADERSHIP</span>
                   <span className="text-[11px] font-mono text-[#C4BCB3]">{spotlight.leadership}</span>
                 </div>
@@ -208,11 +208,11 @@ export const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="card-lift relative p-6 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E] shadow-2xl overflow-hidden group"
+              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E] shadow-2xl overflow-hidden group"
             >
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
               
-              <div className="flex items-center space-x-4 mb-4">
+              <div className="flex items-center space-x-3.5 sm:space-x-4 mb-4">
                 <img
                   src={origo.logoUrl || "/images/origohost/origohost-icon.png"}
                   alt={origo.title}
@@ -220,17 +220,17 @@ export const AboutSection: React.FC = () => {
                   decoding="async"
                   width="48"
                   height="48"
-                  className="w-12 h-12 object-contain rounded-xl bg-[#0A0908] border border-[#26211B] p-1.5"
+                  className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl bg-[#0A0908] border border-[#26211B] p-1.5 shrink-0"
                 />
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase">{origo.tag}</span>
+                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase truncate">{origo.tag}</span>
                     <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-md">ACTIVE</span>
                   </div>
-                  <h3 className="text-lg font-serif font-normal text-white tracking-wide">
+                  <h3 className="text-base sm:text-lg font-serif font-normal text-white tracking-wide truncate">
                     {origo.title}
                   </h3>
-                  <p className="text-[10px] font-mono text-[#C99E5D]">{origo.tagline}</p>
+                  <p className="text-[10px] font-mono text-[#C99E5D] truncate">{origo.tagline}</p>
                 </div>
               </div>
 
@@ -238,7 +238,7 @@ export const AboutSection: React.FC = () => {
                 {origo.description}
               </p>
 
-              <div className="pt-3 border-t border-[#26211B] flex items-center justify-between text-[11px] font-mono text-[#8C6D4F]">
+              <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#8C6D4F]">
                 <span>{origo.role}</span>
                 <span className="text-[#D4AF37]">{origo.ecosystem}</span>
               </div>
@@ -250,10 +250,10 @@ export const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="card-lift relative p-6 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
+              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
             >
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#8C6D4F]">
-                <span className="text-[10px]">{log.logTitle}</span>
+                <span className="text-[10px] truncate max-w-[200px]">{log.logTitle}</span>
                 <span className="text-[#D4AF37]">{log.version}</span>
               </div>
 
@@ -263,7 +263,7 @@ export const AboutSection: React.FC = () => {
                   return (
                     <div
                       key={itmIdx}
-                      className={`p-2.5 rounded-xl border flex items-center justify-between ${
+                      className={`p-2.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 ${
                         isHighlight
                           ? 'border-[#D4AF37]/30 bg-[#16130F]'
                           : 'border-[#26211B] bg-[#0A0908]'
@@ -272,7 +272,7 @@ export const AboutSection: React.FC = () => {
                       <span className={isHighlight ? 'text-[#F7E7C4] font-sans' : 'text-white font-sans'}>
                         {item.title}
                       </span>
-                      <span className={isHighlight ? 'text-[#D4AF37] font-mono font-semibold' : 'text-emerald-400 font-mono font-semibold'}>
+                      <span className={isHighlight ? 'text-[#D4AF37] font-mono font-semibold shrink-0' : 'text-emerald-400 font-mono font-semibold shrink-0'}>
                         {item.status}
                       </span>
                     </div>

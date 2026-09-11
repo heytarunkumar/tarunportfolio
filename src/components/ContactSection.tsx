@@ -90,7 +90,7 @@ export const ContactSection: React.FC = () => {
   return (
     <section
       id="contact"
-      className="relative w-full bg-[#0A0908] text-[#E8DFD8] font-sans selection:bg-[#D4AF37]/30 selection:text-white pt-24 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#E8DFD8] font-sans selection:bg-[#D4AF37]/30 selection:text-white pt-16 sm:pt-24 pb-20 sm:pb-24 px-4 sm:px-8 lg:px-20 overflow-hidden"
     >
       {/* Background Subtle Gradient Glow */}
       <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[140px] pointer-events-none" />
@@ -98,10 +98,10 @@ export const ContactSection: React.FC = () => {
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
         {/* Split Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           
           {/* Left Column (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-8">
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div>
               {/* Eyebrow Header */}
               <motion.div
@@ -109,12 +109,12 @@ export const ContactSection: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="flex items-center space-x-4 mb-5"
+                className="flex items-center space-x-4 mb-4 sm:mb-5"
               >
-                <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+                <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
                   {eyebrow}
                 </span>
-                <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+                <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
               </motion.div>
 
               {/* Headline */}
@@ -123,20 +123,20 @@ export const ContactSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="mb-6"
+                className="mb-4 sm:mb-6"
               >
-                <h2 className="text-4xl sm:text-5xl font-serif text-white tracking-normal leading-[1.15] mb-2">
+                <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-normal leading-[1.15] mb-2">
                   {headline}
                 </h2>
               </motion.div>
 
-              <p className="text-sm font-sans font-light text-[#A8988B] leading-relaxed max-w-md mb-8">
+              <p className="text-xs sm:text-sm font-sans font-light text-[#A8988B] leading-relaxed max-w-md mb-6 sm:mb-8">
                 {description}
               </p>
             </div>
 
             {/* Founder Direct Line Badge */}
-            <div className="flex items-center space-x-4 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
+            <div className="flex items-center space-x-3.5 sm:space-x-4 p-3.5 sm:p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
               <div className="relative shrink-0">
                 <img
                   src={directBadge.photoUrl || "/images/tarun-about.jpg"}
@@ -145,21 +145,21 @@ export const ContactSection: React.FC = () => {
                   decoding="async"
                   width="56"
                   height="56"
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md"
+                  className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md"
                 />
                 <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#12100E] flex items-center justify-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                 </span>
               </div>
-              <div className="font-mono">
+              <div className="font-mono min-w-0 flex-1">
                 <div className="flex items-center space-x-2">
-                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37]">{directBadge.title}</span>
-                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.2 rounded font-mono">
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37] truncate">{directBadge.title}</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.2 rounded font-mono shrink-0">
                     {directBadge.status || 'AVAILABLE'}
                   </span>
                 </div>
-                <h4 className="text-white font-sans font-semibold text-sm sm:text-base">{directBadge.name}</h4>
-                <p className="text-[11px] text-[#8C6D4F]">{directBadge.note}</p>
+                <h4 className="text-white font-sans font-semibold text-sm sm:text-base truncate">{directBadge.name}</h4>
+                <p className="text-[10.5px] sm:text-[11px] text-[#8C6D4F] truncate">{directBadge.note}</p>
               </div>
             </div>
 
@@ -171,20 +171,20 @@ export const ContactSection: React.FC = () => {
               
               <a
                 href={`mailto:${contactEmail}`}
-                className="card-lift block p-4 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 transition-all group"
+                className="card-lift block p-3.5 sm:p-4 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 transition-all group"
               >
                 <div className="text-[10px] text-[#D4AF37] uppercase tracking-wider mb-1 font-mono">Primary Dispatch Email</div>
-                <div className="text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors">{contactEmail}</div>
+                <div className="text-xs sm:text-sm text-white font-sans group-hover:text-[#D4AF37] transition-colors truncate">{contactEmail}</div>
               </a>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                 <a
                   href={linktreeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Linktree ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">Linktree ↗</span>
                 </a>
                 <a
                   href={instagramUrl}
@@ -192,7 +192,7 @@ export const ContactSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Instagram ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">Instagram ↗</span>
                 </a>
                 <a
                   href={linkedinUrl}
@@ -200,7 +200,7 @@ export const ContactSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">LinkedIn ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">LinkedIn ↗</span>
                 </a>
                 <a
                   href={githubUrl}
@@ -208,7 +208,7 @@ export const ContactSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">GitHub ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">GitHub ↗</span>
                 </a>
                 <a
                   href={xUrl}
@@ -216,7 +216,7 @@ export const ContactSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">X ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">X ↗</span>
                 </a>
                 <a
                   href={mediumUrl}
@@ -224,7 +224,7 @@ export const ContactSection: React.FC = () => {
                   rel="noopener noreferrer"
                   className="card-lift p-2.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40 text-center transition-all group"
                 >
-                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono">Medium ↗</span>
+                  <span className="block text-[11px] text-[#E8DFD8] group-hover:text-[#D4AF37] font-mono truncate">Medium ↗</span>
                 </a>
               </div>
             </div>
@@ -236,7 +236,7 @@ export const ContactSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-7 relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-8 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden card-lift"
+            className="lg:col-span-7 relative w-full rounded-2xl border border-[#26211B] bg-[#12100E] p-5 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden card-lift"
           >
             {/* Top Gold Horizon Edge */}
             <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent" />

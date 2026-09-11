@@ -54,7 +54,7 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 overflow-hidden flex flex-col justify-center"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden flex flex-col justify-center"
     >
       {/* Ambient Glows */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
@@ -70,10 +70,10 @@ export const SkillsSection: React.FC = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center space-x-4 mb-6"
         >
-          <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
             02 / TECHNICAL ECOSYSTEM
           </span>
-          <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
 
         {/* Section Header & Filter Tabs */}
@@ -82,16 +82,16 @@ export const SkillsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+          className="mb-8 sm:mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6"
         >
           <div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
               Technical stack &amp; <span className="italic text-[#D4AF37]">learning roadmap.</span>
             </h2>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-2 font-mono text-[10.5px]">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-[9.5px] sm:text-[10.5px]">
             {(['all', 'core', 'building', 'applied'] as const).map((cat) => {
               const label =
                 cat === 'all'
@@ -107,7 +107,7 @@ export const SkillsSection: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3.5 py-1.5 uppercase tracking-wider transition-all duration-300 border rounded-full cursor-pointer ${
+                  className={`px-3 sm:px-3.5 py-1.5 uppercase tracking-wider transition-all duration-300 border rounded-full cursor-pointer ${
                     isActive
                       ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]'
                       : 'border-[#26211B] bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/50'
@@ -128,7 +128,7 @@ export const SkillsSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-6 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
+            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-5 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
           >
             {/* Header Status Bar */}
             <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#26211B]">

@@ -97,13 +97,13 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="w-full max-w-[1760px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 2xl:px-24 flex items-center justify-between">
+      <div className="w-full max-w-[1760px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 flex items-center justify-between">
         
         {/* Brand Identity */}
         <Link
           to="/"
           onClick={(e) => handleNavClick(e, '/')}
-          className={`group flex items-center space-x-3 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase transition-colors focus:outline-none ${
+          className={`group flex items-center space-x-2.5 sm:space-x-3 text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase transition-colors focus:outline-none min-w-0 ${
             theme === 'dark' ? 'text-[#F5F2EB] hover:text-[#D4AF37]' : 'text-[#171513] hover:text-[#9E7815]'
           }`}
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
@@ -115,9 +115,9 @@ export const Navbar: React.FC = () => {
               className="w-full h-full object-contain"
             />
           </div>
-          <div className="flex flex-col">
-            <span className="font-bold tracking-widest leading-none">{profile?.name || 'TARUN KUMAR'}</span>
-            <span className={`text-[9.5px] font-mono tracking-wider font-normal mt-0.5 ${
+          <div className="flex flex-col min-w-0">
+            <span className="font-bold tracking-widest leading-none truncate max-w-[140px] sm:max-w-none">{profile?.name || 'TARUN KUMAR'}</span>
+            <span className={`text-[9px] sm:text-[9.5px] font-mono tracking-wider font-normal mt-0.5 truncate max-w-[140px] sm:max-w-none ${
               theme === 'dark' ? 'text-[#8C6D4F]' : 'text-[#736250]'
             }`}>
               {profile.brandRole || 'FOUNDER · AI & TECH'}
