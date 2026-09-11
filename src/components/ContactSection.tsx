@@ -67,12 +67,12 @@ export const ContactSection: React.FC = () => {
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
-  const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
+  const contactEmail = contact?.email || profile?.email || 'tarunsinghchaudharyy@gmail.com';
   const eyebrow = profile.contactEyebrow || '08 / INITIATE CONTACT';
   const headline = profile.contactHeadline || "Let's build meaningful intelligence.";
   const description = profile.contactDescription || 'Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct messages are welcome.';
   const directBadge = profile.directBadge || {
-    photoUrl: '/images/tarun-about.jpg',
+    photoUrl: '/images/tarun-about.webp',
     title: 'DIRECT LINE //',
     name: profile.name || 'Tarun Kumar',
     note: 'Direct response for AI engineering & ventures',
@@ -81,11 +81,11 @@ export const ContactSection: React.FC = () => {
   const submitButtonText = profile.contactSubmitButtonText || 'DISPATCH MESSAGE ↗';
 
   const linktreeUrl = profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar';
-  const instagramUrl = profile?.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/';
+  const instagramUrl = profile?.socials?.instagram || 'https://www.instagram.com/heytarunkumar/';
   const linkedinUrl = profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/';
   const githubUrl = profile?.socials?.github || 'https://github.com/heytarunkumar';
   const xUrl = profile?.socials?.x || 'https://x.com/heytarunkumarr';
-  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@heytarunkumar';
+  const mediumUrl = profile?.socials?.medium || 'https://medium.com/@heytarunkumar/';
 
   return (
     <section

@@ -188,7 +188,7 @@ const initialDesign: DesignSettings = {
 };
 
 const initialContact: ContactSettings = {
-  email: 'imtarunchaudharyy@gmail.com',
+  email: 'tarunsinghchaudharyy@gmail.com',
   formEnabled: true,
   spamProtection: true,
   successMessage: 'Message transmitted successfully. Tarun will get back to you shortly.',

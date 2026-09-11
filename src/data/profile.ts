@@ -147,7 +147,7 @@ export const profileData: Profile = {
   bio:
     "My work sits at the intersection of Python engineering, Artificial Intelligence, Generative AI, machine learning research, and entrepreneurship. Beyond engineering software, I am an author of technical guides and founder of developer ecosystems. As the Founder & President of OrigoHOST Tech Community (origohost.in), I lead institutional engagements, technical bootcamps, and developer initiatives focused on applied AI and engineering education. I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.",
   location: "India · Global / Remote",
-  email: "imtarunchaudharyy@gmail.com",
+  email: "tarunsinghchaudharyy@gmail.com",
   socials: {
     github: "https://github.com/heytarunkumar",
     linkedin: "https://www.linkedin.com/in/heytarunkumar/",

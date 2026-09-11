@@ -42,7 +42,7 @@ export const faqItems: FaqItem[] = [
     category: 'COLLABORATION & CONTACT',
     question: 'How can teams or individuals collaborate with Tarun Kumar?',
     answer:
-      'You can initiate contact through the portfolio contact dispatch form, email directly at imtarunchaudharyy@gmail.com, or explore verified social profiles on the Official Links Hub (/links).',
+      'You can initiate contact through the portfolio contact dispatch form, email directly at tarunsinghchaudharyy@gmail.com, or explore verified social profiles on the Official Links Hub (/links).',
   },
 ];
 

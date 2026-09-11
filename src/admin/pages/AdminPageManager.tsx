@@ -130,17 +130,17 @@ export const AdminPageManager: React.FC = () => {
   const [directName, setDirectName] = useState(profile.directBadge?.name || profile.name || 'Tarun Kumar');
   const [directNote, setDirectNote] = useState(profile.directBadge?.note || 'Direct response for AI engineering & ventures');
   const [directStatus, setDirectStatus] = useState(profile.directBadge?.status || 'AVAILABLE');
-  const [contactEmail, setContactEmail] = useState(contact?.email || profile.email || 'imtarunchaudharyy@gmail.com');
+  const [contactEmail, setContactEmail] = useState(contact?.email || profile.email || 'tarunsinghchaudharyy@gmail.com');
   const [formSubmitUrl, setFormSubmitUrl] = useState(profile.contactFormSubmitUrl || 'https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com');
   const [submitButtonText, setSubmitButtonText] = useState(profile.contactSubmitButtonText || 'DISPATCH MESSAGE ↗');
   const [successMessage, setSuccessMessage] = useState(contact?.successMessage || 'Thank you. Your message payload has been dispatched. Tarun will review and respond shortly.');
 
   // Social Links
   const [linktree, setLinktree] = useState(profile.socials?.linktree || 'https://linktr.ee/heytarunkumar');
-  const [instagram, setInstagram] = useState(profile.socials?.instagram || 'https://www.instagram.com/heytarunchaudhary/');
+  const [instagram, setInstagram] = useState(profile.socials?.instagram || 'https://www.instagram.com/heytarunkumar/');
   const [github, setGithub] = useState(profile.socials?.github || 'https://github.com/heytarunkumar');
   const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/');
-  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar');
+  const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar/');
   const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumarr');
 
   // ==================== TAB 5: BRAND, NAVBAR & FOOTER STATE ====================
