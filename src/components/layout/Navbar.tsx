@@ -97,7 +97,7 @@ export const Navbar: React.FC = () => {
           : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 xl:px-16 2xl:px-20 flex items-center justify-between">
+      <div className="w-full max-w-[1760px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 2xl:px-24 flex items-center justify-between">
         
         {/* Brand Identity */}
         <Link
