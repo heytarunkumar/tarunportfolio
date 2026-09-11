@@ -30,6 +30,49 @@ const fadeUpVariants: Variants = {
 export const AboutSection: React.FC = () => {
   const { profile } = usePortfolio();
 
+  const eyebrow = profile.aboutEyebrow || '01 / MISSION & PHILOSOPHY';
+  const headline = profile.aboutHeadline || 'Engineering intelligence. Scaling ventures.';
+  const storyParagraphs = (profile.aboutStoryParagraphs && profile.aboutStoryParagraphs.length > 0)
+    ? profile.aboutStoryParagraphs
+    : [
+        `I am ${profile?.name || 'Tarun Kumar'}, a Founder, AI Engineer, and Technology Entrepreneur focused on building intelligent systems, AI-powered solutions, and technology-driven ventures.`,
+        'My work sits at the intersection of Artificial Intelligence, Generative AI, Python engineering, automation, data, and entrepreneurship. I enjoy turning complex problems into practical products and scalable solutions that create measurable value.',
+      ];
+  const quote = profile.aboutQuote || 'I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.';
+  const pillars = (profile.competencyPillars && profile.competencyPillars.length > 0)
+    ? profile.competencyPillars
+    : [
+        { number: '01', title: 'AI & GENAI', subtitle: 'LLMs, Intelligent Agents & Applied AI Systems' },
+        { number: '02', title: 'PYTHON & AUTOMATION', subtitle: 'Scalable Microservices, APIs & Workflows' },
+        { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST Founder, Developer Education & Growth' },
+      ];
+  const spotlight = profile.spotlightCard || {
+    photoUrl: '/images/tarun-headshot.jpg',
+    name: profile.name || 'Tarun Kumar',
+    role: profile.primaryRole || 'Founder & AI Systems Engineer',
+    leadership: 'President @ OrigoHOST',
+    verifiedStatus: 'VERIFIED',
+  };
+  const origo = profile.origohostCard || {
+    logoUrl: '/images/origohost/origohost-icon.png',
+    tag: 'VENTURE & COMMUNITY',
+    title: 'OrigoHOST Tech Community',
+    tagline: 'WHERE BUILDERS BECOME INNOVATORS',
+    description: 'As Founder & President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.',
+    role: 'ROLE: FOUNDER & PRESIDENT',
+    ecosystem: 'APPLIED AI ECOSYSTEM',
+  };
+  const log = profile.progressionLog || {
+    logTitle: 'VENTURE_&_TECH_STACK.LOG',
+    version: 'v2026.AI',
+    items: [
+      { title: 'Applied AI & GenAI Architectures', status: '✓ ACTIVE', statusType: 'active' },
+      { title: 'Python Systems & Automation', status: '✓ MASTERED', statusType: 'mastered' },
+      { title: 'Community & Builder Ecosystems', status: '✓ LEADING', statusType: 'leading' },
+      { title: 'Scalable AI Ventures & Products', status: '⚡ SCALING', statusType: 'scaling' },
+    ],
+  };
+
   return (
     <section 
       id="about" 
@@ -50,7 +93,7 @@ export const AboutSection: React.FC = () => {
           className="flex items-center space-x-4 mb-8"
         >
           <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
-            01 / MISSION &amp; PHILOSOPHY
+            {eyebrow}
           </span>
           <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
@@ -69,7 +112,7 @@ export const AboutSection: React.FC = () => {
             {/* Headline */}
             <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
-                Engineering intelligence. <span className="italic text-[#D4AF37]">Scaling ventures.</span>
+                {headline}
               </h2>
             </motion.div>
 
@@ -79,15 +122,14 @@ export const AboutSection: React.FC = () => {
               className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.85] tracking-wide mb-8 max-w-xl space-y-4"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              <p>
-                I am <span className="text-white font-medium">{profile?.name || 'Tarun Kumar'}</span>, a Founder, AI Engineer, and Technology Entrepreneur focused on building intelligent systems, AI-powered solutions, and technology-driven ventures.
-              </p>
-              <p>
-                My work sits at the intersection of <span className="text-white font-medium">Artificial Intelligence, Generative AI, Python engineering, automation, data, and entrepreneurship</span>. I enjoy turning complex problems into practical products and scalable solutions that create measurable value.
-              </p>
-              <p className="text-[#D4AF37] italic border-l-2 border-[#D4AF37]/60 pl-4 bg-[#12100E]/70 py-2 rounded-r-xl">
-                &ldquo;I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.&rdquo;
-              </p>
+              {storyParagraphs.map((para, pIdx) => (
+                <p key={pIdx}>{para}</p>
+              ))}
+              {quote && (
+                <p className="text-[#D4AF37] italic border-l-2 border-[#D4AF37]/60 pl-4 bg-[#12100E]/70 py-2 rounded-r-xl">
+                  &ldquo;{quote}&rdquo;
+                </p>
+              )}
             </motion.div>
 
             {/* Core Competency Pillars Grid */}
@@ -95,32 +137,16 @@ export const AboutSection: React.FC = () => {
               variants={fadeUpVariants}
               className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-[#26211B]"
             >
-              <div className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
-                <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  01 // AI &amp; GENAI
-                </span>
-                <p className="text-xs font-sans text-[#F5F2EB] font-medium">
-                  LLMs, Intelligent Agents &amp; Applied AI Systems
-                </p>
-              </div>
-
-              <div className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
-                <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  02 // PYTHON &amp; AUTOMATION
-                </span>
-                <p className="text-xs font-sans text-[#F5F2EB] font-medium">
-                  Scalable Microservices, APIs &amp; Workflows
-                </p>
-              </div>
-
-              <div className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
-                <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
-                  03 // VENTURES &amp; COMMUNITY
-                </span>
-                <p className="text-xs font-sans text-[#F5F2EB] font-medium">
-                  OrigoHOST Founder, Developer Education &amp; Growth
-                </p>
-              </div>
+              {pillars.map((pillar, pilIdx) => (
+                <div key={pilIdx} className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
+                  <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
+                    {pillar.number} // {pillar.title}
+                  </span>
+                  <p className="text-xs font-sans text-[#F5F2EB] font-medium">
+                    {pillar.subtitle}
+                  </p>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
 
@@ -145,15 +171,15 @@ export const AboutSection: React.FC = () => {
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
                 </div>
                 <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
-                  VERIFIED
+                  {spotlight.verifiedStatus || 'VERIFIED'}
                 </span>
               </div>
               
-              {/* Photo Area with optimal portrait aspect ratio & zero awkward cropping */}
+              {/* Photo Area */}
               <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[440px] overflow-hidden bg-[#0A0908]">
                 <img
-                  src="/images/tarun-headshot.jpg"
-                  alt="Tarun Kumar — Founder &amp; AI Systems Engineer (heytarunkumar)"
+                  src={spotlight.photoUrl || "/images/tarun-headshot.jpg"}
+                  alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
                   width="440"
@@ -166,12 +192,12 @@ export const AboutSection: React.FC = () => {
               {/* Clean Footer Info Bar */}
               <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex items-center justify-between">
                 <div>
-                  <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">Tarun Kumar</h3>
-                  <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">Founder &amp; AI Systems Engineer</p>
+                  <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">{spotlight.name}</h3>
+                  <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">{spotlight.role}</p>
                 </div>
                 <div className="text-right">
                   <span className="text-[9.5px] font-mono text-[#8C6D4F] block">LEADERSHIP</span>
-                  <span className="text-[11px] font-mono text-[#C4BCB3]">President @ OrigoHOST</span>
+                  <span className="text-[11px] font-mono text-[#C4BCB3]">{spotlight.leadership}</span>
                 </div>
               </div>
             </motion.div>
@@ -188,8 +214,8 @@ export const AboutSection: React.FC = () => {
               
               <div className="flex items-center space-x-4 mb-4">
                 <img
-                  src="/images/origohost/origohost-icon.png"
-                  alt="OrigoHOST Tech Community Founded by Tarun Kumar"
+                  src={origo.logoUrl || "/images/origohost/origohost-icon.png"}
+                  alt={origo.title}
                   loading="lazy"
                   decoding="async"
                   width="48"
@@ -198,23 +224,23 @@ export const AboutSection: React.FC = () => {
                 />
                 <div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase">VENTURE &amp; COMMUNITY</span>
+                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase">{origo.tag}</span>
                     <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-md">ACTIVE</span>
                   </div>
                   <h3 className="text-lg font-serif font-normal text-white tracking-wide">
-                    OrigoHOST Tech Community
+                    {origo.title}
                   </h3>
-                  <p className="text-[10px] font-mono text-[#C99E5D]">WHERE BUILDERS BECOME INNOVATORS</p>
+                  <p className="text-[10px] font-mono text-[#C99E5D]">{origo.tagline}</p>
                 </div>
               </div>
 
               <p className="text-xs font-light text-[#C4BCB3] leading-relaxed mb-4">
-                As Founder &amp; President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.
+                {origo.description}
               </p>
 
               <div className="pt-3 border-t border-[#26211B] flex items-center justify-between text-[11px] font-mono text-[#8C6D4F]">
-                <span>ROLE: FOUNDER &amp; PRESIDENT</span>
-                <span className="text-[#D4AF37]">APPLIED AI ECOSYSTEM</span>
+                <span>{origo.role}</span>
+                <span className="text-[#D4AF37]">{origo.ecosystem}</span>
               </div>
             </motion.div>
 
@@ -227,30 +253,31 @@ export const AboutSection: React.FC = () => {
               className="card-lift relative p-6 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
             >
               <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#8C6D4F]">
-                <span className="text-[10px]">VENTURE_&amp;_TECH_STACK.LOG</span>
-                <span className="text-[#D4AF37]">v2026.AI</span>
+                <span className="text-[10px]">{log.logTitle}</span>
+                <span className="text-[#D4AF37]">{log.version}</span>
               </div>
 
               <div className="space-y-2.5 text-[11px]">
-                <div className="p-2.5 rounded-xl border border-[#26211B] bg-[#0A0908] flex items-center justify-between">
-                  <span className="text-white font-sans">Applied AI &amp; GenAI Architectures</span>
-                  <span className="text-emerald-400 font-mono font-semibold">✓ ACTIVE</span>
-                </div>
-
-                <div className="p-2.5 rounded-xl border border-[#26211B] bg-[#0A0908] flex items-center justify-between">
-                  <span className="text-white font-sans">Python Systems &amp; Automation</span>
-                  <span className="text-emerald-400 font-mono font-semibold">✓ MASTERED</span>
-                </div>
-
-                <div className="p-2.5 rounded-xl border border-[#26211B] bg-[#0A0908] flex items-center justify-between">
-                  <span className="text-white font-sans">Community &amp; Builder Ecosystems</span>
-                  <span className="text-emerald-400 font-mono font-semibold">✓ LEADING</span>
-                </div>
-
-                <div className="p-2.5 rounded-xl border border-[#D4AF37]/30 bg-[#16130F] flex items-center justify-between">
-                  <span className="text-[#F7E7C4] font-sans">Scalable AI Ventures &amp; Products</span>
-                  <span className="text-[#D4AF37] font-mono font-semibold">⚡ SCALING</span>
-                </div>
+                {(log.items || []).map((item, itmIdx) => {
+                  const isHighlight = item.statusType === 'scaling' || itmIdx === log.items.length - 1;
+                  return (
+                    <div
+                      key={itmIdx}
+                      className={`p-2.5 rounded-xl border flex items-center justify-between ${
+                        isHighlight
+                          ? 'border-[#D4AF37]/30 bg-[#16130F]'
+                          : 'border-[#26211B] bg-[#0A0908]'
+                      }`}
+                    >
+                      <span className={isHighlight ? 'text-[#F7E7C4] font-sans' : 'text-white font-sans'}>
+                        {item.title}
+                      </span>
+                      <span className={isHighlight ? 'text-[#D4AF37] font-mono font-semibold' : 'text-emerald-400 font-mono font-semibold'}>
+                        {item.status}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
 

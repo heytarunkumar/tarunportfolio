@@ -4,7 +4,12 @@ import { usePortfolio } from '../../context/PortfolioContext';
 
 export const ResumeSection: React.FC = () => {
   const { profile } = usePortfolio();
-  const resumeUrl = profile?.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf';
+  const resumeUrl = profile.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf';
+  const badge = profile.resumeBadge || 'VERIFIED CREDENTIALS & CURRICULUM VITAE';
+  const headline = profile.resumeHeadline || 'Looking for the complete technical profile?';
+  const description = profile.resumeDescription || 'Download the official engineering resume to review production software architectures, machine learning research publications, OrigoHOST community metrics, and academic coursework.';
+  const viewCta = profile.resumeViewCta || 'VIEW RESUME';
+  const downloadCta = profile.resumeDownloadCta || 'DOWNLOAD ATS PDF';
 
   return (
     <section
@@ -23,15 +28,15 @@ export const ResumeSection: React.FC = () => {
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
 
           <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37] block mb-3">
-            VERIFIED CREDENTIALS &amp; CURRICULUM VITAE
+            {badge}
           </span>
 
           <h2 className="text-3xl sm:text-4xl font-serif text-white mb-4">
-            Looking for the complete technical profile?
+            {headline}
           </h2>
 
           <p className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-xl mx-auto mb-8 leading-relaxed">
-            Download the official engineering resume to review production software architectures, machine learning research publications, OrigoHOST community metrics, and academic coursework.
+            {description}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
@@ -42,7 +47,7 @@ export const ResumeSection: React.FC = () => {
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-7 py-3.5 rounded-xl border border-[#D4AF37] bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,55,0.35)] cursor-pointer"
             >
-              <span>VIEW RESUME</span>
+              <span>{viewCta}</span>
               <span className="text-xs">↗</span>
             </a>
 
@@ -52,7 +57,7 @@ export const ResumeSection: React.FC = () => {
               download
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-7 py-3.5 rounded-xl border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#0A0908] text-[#F5F2EB] hover:text-white text-xs font-medium tracking-[0.18em] uppercase transition-all duration-300 cursor-pointer"
             >
-              <span>DOWNLOAD ATS PDF</span>
+              <span>{downloadCta}</span>
               <span className="text-xs text-[#D4AF37]">↓</span>
             </a>
           </div>

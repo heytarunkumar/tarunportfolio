@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
         <div className="text-center md:text-left flex flex-col md:flex-row items-center md:items-start space-y-3 md:space-y-0 md:space-x-4">
           <div className="w-12 h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
             <img
-              src="/images/brand/tarun-monogram.png"
-              alt="Tarun Kumar Monogram"
+              src={profile.monogramUrl || "/images/brand/tarun-monogram.png"}
+              alt={`${profile.name || 'Tarun Kumar'} Monogram`}
               className="w-full h-full object-contain"
             />
           </div>
@@ -50,7 +50,7 @@ export const Footer: React.FC = () => {
               {profile?.name || 'TARUN KUMAR'}
             </Link>
             <span className="text-xs font-mono text-[#8C6D4F] block">
-              Founder | AI &amp; Technology • OrigoHOST Community
+              {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
             </span>
           </div>
         </div>
@@ -121,7 +121,7 @@ export const Footer: React.FC = () => {
             className="cursor-default select-none transition-colors duration-200"
             title=""
           >
-            © {new Date().getFullYear()} {profile?.name || 'Tarun Kumar'}. All rights reserved.
+            {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Tarun Kumar'}. All rights reserved.`}
           </span>
         </div>
 

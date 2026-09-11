@@ -33,6 +33,7 @@ export const ContactSection: React.FC = () => {
     setStatus('submitting');
 
     try {
+      const formUrl = profile.contactFormSubmitUrl || 'https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com';
       const params = new URLSearchParams();
       params.append('name', formData.name);
       params.append('email', formData.email);
@@ -43,7 +44,7 @@ export const ContactSection: React.FC = () => {
       params.append('_template', 'table');
       params.append('_captcha', 'false');
 
-      const response = await fetch('https://formsubmit.co/ajax/tarunsinghchaudharyy@gmail.com', {
+      const response = await fetch(formUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json' },
         body: params.toString(),
@@ -67,6 +68,18 @@ export const ContactSection: React.FC = () => {
   };
 
   const contactEmail = contact?.email || profile?.email || 'imtarunchaudharyy@gmail.com';
+  const eyebrow = profile.contactEyebrow || '08 / INITIATE CONTACT';
+  const headline = profile.contactHeadline || "Let's build meaningful intelligence.";
+  const description = profile.contactDescription || 'Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct messages are welcome.';
+  const directBadge = profile.directBadge || {
+    photoUrl: '/images/tarun-about.jpg',
+    title: 'DIRECT LINE //',
+    name: profile.name || 'Tarun Kumar',
+    note: 'Direct response for AI engineering & ventures',
+    status: 'AVAILABLE',
+  };
+  const submitButtonText = profile.contactSubmitButtonText || 'DISPATCH MESSAGE ↗';
+
   const linktreeUrl = profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar';
   const instagramUrl = profile?.socials?.instagram || 'https://instagram.com/heytarunkumar';
   const linkedinUrl = profile?.socials?.linkedin || 'https://linkedin.com/in/haytarunkumar';
@@ -99,7 +112,7 @@ export const ContactSection: React.FC = () => {
                 className="flex items-center space-x-4 mb-5"
               >
                 <span className="text-[11px] font-mono font-medium tracking-[0.3em] uppercase text-[#D4AF37]">
-                  08 / INITIATE CONTACT
+                  {eyebrow}
                 </span>
                 <div className="w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
               </motion.div>
@@ -113,12 +126,12 @@ export const ContactSection: React.FC = () => {
                 className="mb-6"
               >
                 <h2 className="text-4xl sm:text-5xl font-serif text-white tracking-normal leading-[1.15] mb-2">
-                  Let&apos;s build <span className="italic text-[#D4AF37]">meaningful</span> intelligence.
+                  {headline}
                 </h2>
               </motion.div>
 
               <p className="text-sm font-sans font-light text-[#A8988B] leading-relaxed max-w-md mb-8">
-                Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct messages are welcome.
+                {description}
               </p>
             </div>
 
@@ -126,8 +139,8 @@ export const ContactSection: React.FC = () => {
             <div className="flex items-center space-x-4 p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
               <div className="relative shrink-0">
                 <img
-                  src="/images/tarun-about.jpg"
-                  alt="Tarun Kumar (heytarunkumar)"
+                  src={directBadge.photoUrl || "/images/tarun-about.jpg"}
+                  alt={`${directBadge.name} Direct Badge`}
                   loading="lazy"
                   decoding="async"
                   width="56"
@@ -140,11 +153,13 @@ export const ContactSection: React.FC = () => {
               </div>
               <div className="font-mono">
                 <div className="flex items-center space-x-2">
-                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37]">DIRECT LINE //</span>
-                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.2 rounded font-mono">AVAILABLE</span>
+                  <span className="text-[10px] uppercase tracking-wider text-[#D4AF37]">{directBadge.title}</span>
+                  <span className="text-[9px] text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-1.5 py-0.2 rounded font-mono">
+                    {directBadge.status || 'AVAILABLE'}
+                  </span>
                 </div>
-                <h4 className="text-white font-sans font-semibold text-sm sm:text-base">Tarun Kumar</h4>
-                <p className="text-[11px] text-[#8C6D4F]">Direct response for AI engineering &amp; ventures</p>
+                <h4 className="text-white font-sans font-semibold text-sm sm:text-base">{directBadge.name}</h4>
+                <p className="text-[11px] text-[#8C6D4F]">{directBadge.note}</p>
               </div>
             </div>
 
@@ -319,7 +334,7 @@ export const ContactSection: React.FC = () => {
                   disabled={status === 'submitting'}
                   className="w-full py-4 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] text-xs font-semibold tracking-[0.2em] uppercase transition-all duration-300 disabled:opacity-50 cursor-pointer font-mono"
                 >
-                  {status === 'submitting' ? 'DISPATCHING PAYLOAD...' : 'DISPATCH MESSAGE ↗'}
+                  {status === 'submitting' ? 'DISPATCHING PAYLOAD...' : submitButtonText}
                 </button>
 
               </form>

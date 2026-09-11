@@ -110,8 +110,8 @@ export const Navbar: React.FC = () => {
         >
           <div className="w-8 h-8 rounded-lg overflow-hidden bg-white p-0.5 border border-[#D4AF37]/50 shadow-[0_0_12px_rgba(212,175,55,0.25)] shrink-0 group-hover:scale-105 transition-transform">
             <img
-              src="/images/brand/tarun-monogram.png"
-              alt="Tarun Kumar Logo"
+              src={profile.monogramUrl || "/images/brand/tarun-monogram.png"}
+              alt={`${profile.name || 'Tarun Kumar'} Logo`}
               className="w-full h-full object-contain"
             />
           </div>
@@ -120,7 +120,7 @@ export const Navbar: React.FC = () => {
             <span className={`text-[9.5px] font-mono tracking-wider font-normal mt-0.5 ${
               theme === 'dark' ? 'text-[#8C6D4F]' : 'text-[#736250]'
             }`}>
-              FOUNDER · AI &amp; TECH
+              {profile.brandRole || 'FOUNDER · AI & TECH'}
             </span>
           </div>
         </Link>
@@ -166,8 +166,8 @@ export const Navbar: React.FC = () => {
           
           {/* Connect Button */}
           <Link
-            to="/contact"
-            onClick={(e) => handleNavClick(e, '/contact')}
+            to={profile.connectCtaLink || "/contact"}
+            onClick={(e) => handleNavClick(e, profile.connectCtaLink || '/contact')}
             className={`hidden sm:inline-flex items-center space-x-2 text-[10.5px] tracking-[0.18em] font-semibold uppercase py-2.5 px-5 rounded-full border transition-all duration-300 backdrop-blur-sm focus:outline-none cursor-pointer ${
               theme === 'dark'
                 ? 'border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white shadow-[0_0_15px_rgba(212,175,55,0.06)] hover:shadow-[0_0_20px_rgba(212,175,55,0.2)]'
@@ -175,7 +175,7 @@ export const Navbar: React.FC = () => {
             }`}
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
           >
-            <span>LET&apos;S CONNECT</span>
+            <span>{profile.connectCtaText || "LET'S CONNECT"}</span>
             <span className={`text-xs ${theme === 'dark' ? 'text-[#D4AF37]' : 'text-[#9E7815]'}`}>↗</span>
           </Link>
 
