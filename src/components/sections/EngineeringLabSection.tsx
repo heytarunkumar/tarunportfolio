@@ -112,25 +112,25 @@ export const EngineeringLabSection: React.FC = () => {
                 <div
                   key={track.id || idx}
                   onClick={() => setActiveTrackState(track)}
-                  className={`card-lift p-4.5 rounded-2xl border cursor-pointer transition-all duration-300 ${
+                  className={`card-lift p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
                     isSelected
                       ? 'border-[#D4AF37] bg-[#1A1714] shadow-[0_0_20px_rgba(212,175,55,0.15)]'
                       : 'border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className="text-[10px] font-mono text-[#D4AF37]">
+                  <div className="flex items-center justify-between mb-2 gap-2">
+                    <span className="text-[11px] font-mono font-medium tracking-wide text-[#D4AF37]">
                       STEP {track.stepNumber || idx + 1} // {track.category}
                     </span>
                     <span
-                      className={`text-[9.5px] font-mono px-2.5 py-0.5 rounded-full border uppercase ${
+                      className={`text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full border uppercase shrink-0 ${
                         statusBadgeStyles[track.status] || statusBadgeStyles.Building
                       }`}
                     >
                       {track.status}
                     </span>
                   </div>
-                  <h3 className="text-[15px] font-sans font-semibold text-white group-hover:text-[#F7E7C4] transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-[15px] font-sans font-semibold text-white group-hover:text-[#F7E7C4] transition-colors leading-snug">
                     {track.title}
                   </h3>
                 </div>

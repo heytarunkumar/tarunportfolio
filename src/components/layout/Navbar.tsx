@@ -343,7 +343,7 @@ export const Navbar: React.FC = () => {
                   <motion.div
                     layout
                     transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                    className={`w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-sm ${
+                    className={`w-5 h-5 rounded-full flex items-center justify-center shadow-sm ${
                       theme === 'dark'
                         ? 'bg-[#241F1A] border border-[#D4AF37]/60 text-[#F5C542]'
                         : 'bg-white border border-[#D5CEBF] text-[#9E7815]'
