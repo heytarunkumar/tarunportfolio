@@ -134,8 +134,8 @@ export const HeroSection: React.FC = () => {
             <motion.div variants={fadeUpVariants} className="mb-5 sm:mb-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
               <div className="inline-flex items-center space-x-2 sm:space-x-2.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
                 <img
-                  src={terminal.avatarUrl || "/images/tarun-executive.jpg"}
-                  alt={`${profile.name} Executive Portrait`}
+                  src={terminal.avatarUrl || "/images/tarun-executive.webp"}
+                  alt="Tarun Kumar — Python Developer and AI Engineer"
                   width="20"
                   height="20"
                   decoding="async"
@@ -181,7 +181,10 @@ export const HeroSection: React.FC = () => {
                   )}
                 </div>
 
-                <span className="text-base sm:text-xl md:text-2xl lg:text-[28px] font-sans font-light text-[#C4BCB3] tracking-normal block mt-2 leading-relaxed">
+                <p className="text-base sm:text-xl md:text-2xl font-sans font-light text-[#C4BCB3] tracking-normal block mt-2 leading-relaxed">
+                  Python Developer | AI Engineer | Researcher | Author | Founder
+                </p>
+                <span className="text-xs sm:text-sm font-sans font-light text-[#8C6D4F] block mt-1">
                   {heroSubtitle}
                 </span>
               </div>
@@ -267,8 +270,8 @@ export const HeroSection: React.FC = () => {
               {/* Founder Identity Card */}
               <div className="flex items-center space-x-3 sm:space-x-3.5 p-3 rounded-xl bg-[#0A0908] border border-[#26211B] mb-4">
                 <img
-                  src={terminal.avatarUrl || "/images/tarun-executive.jpg"}
-                  alt={`${profile.name} — Founder & AI Systems Engineer`}
+                  src={terminal.avatarUrl || "/images/tarun-executive.webp"}
+                  alt="Tarun Kumar — Python Developer and AI Engineer"
                   width="48"
                   height="48"
                   decoding="async"

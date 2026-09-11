@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { AboutSection } from '../components/AboutSection';
 import { SkillsSection } from '../components/SkillsSection';
+import { FaqSection } from '../components/FaqSection';
 
 export const AboutPage: React.FC = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ export const AboutPage: React.FC = () => {
     <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] pt-16">
       <AboutSection />
       <SkillsSection />
+      <FaqSection />
     </div>
   );
 };

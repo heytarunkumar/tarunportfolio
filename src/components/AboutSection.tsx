@@ -178,7 +178,7 @@ export const AboutSection: React.FC = () => {
               {/* Photo Area */}
               <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[440px] overflow-hidden bg-[#0A0908]">
                 <img
-                  src={spotlight.photoUrl || "/images/tarun-headshot.jpg"}
+                  src={spotlight.photoUrl || "/images/tarun-headshot.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
@@ -214,7 +214,7 @@ export const AboutSection: React.FC = () => {
               
               <div className="flex items-center space-x-3.5 sm:space-x-4 mb-4">
                 <img
-                  src={origo.logoUrl || "/images/origohost/origohost-icon.png"}
+                  src={origo.logoUrl || "/images/origohost/origohost-icon.webp"}
                   alt={origo.title}
                   loading="lazy"
                   decoding="async"

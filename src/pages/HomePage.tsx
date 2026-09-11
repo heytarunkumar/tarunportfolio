@@ -7,6 +7,7 @@ import { ProjectsSection } from '../components/ProjectsSection';
 import { EngineeringLabSection } from '../components/sections/EngineeringLabSection';
 import { ResearchSection } from '../components/sections/ResearchSection';
 import { ExperienceSection } from '../components/ExperienceSection';
+import { FaqSection } from '../components/FaqSection';
 import { ContactSection } from '../components/ContactSection';
 
 export const HomePage: React.FC = () => {
@@ -27,6 +28,7 @@ export const HomePage: React.FC = () => {
       {isPageVisible('/lab') && <EngineeringLabSection />}
       {isPageVisible('/research') && <ResearchSection />}
       {isPageVisible('/experience') && <ExperienceSection />}
+      <FaqSection />
       {isPageVisible('/contact') && <ContactSection />}
     </div>
   );

@@ -139,8 +139,8 @@ export const ContactSection: React.FC = () => {
             <div className="flex items-center space-x-3.5 sm:space-x-4 p-3.5 sm:p-4 rounded-2xl border border-[#26211B] bg-[#12100E] mb-4 card-lift">
               <div className="relative shrink-0">
                 <img
-                  src={directBadge.photoUrl || "/images/tarun-about.jpg"}
-                  alt={`${directBadge.name} Direct Badge`}
+                  src={directBadge.photoUrl || "/images/tarun-about.webp"}
+                  alt="Tarun Kumar — Direct Communications Line"
                   loading="lazy"
                   decoding="async"
                   width="56"

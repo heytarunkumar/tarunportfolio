@@ -153,8 +153,12 @@ export const LinksPage: React.FC = () => {
       >
         <div className="relative inline-block mb-4">
           <img
-            src="/images/tarun-headshot.jpg"
-            alt="Tarun Kumar — Python Developer & AI Engineer"
+            src="/images/tarun-headshot.webp"
+            alt="Tarun Kumar — Python Developer and AI Engineer"
+            width="112"
+            height="112"
+            loading="lazy"
+            decoding="async"
             className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover object-top border-2 border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.25)] mx-auto"
           />
           <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#0A0908] flex items-center justify-center">

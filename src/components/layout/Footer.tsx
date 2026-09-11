@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
         <div className="text-center lg:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 shrink-0">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
             <img
-              src={profile.monogramUrl || "/images/brand/tarun-monogram.png"}
+              src={profile.monogramUrl || "/images/brand/tarun-monogram.webp"}
               alt={`${profile.name || 'Tarun Kumar'} Monogram`}
               className="w-full h-full object-contain"
             />

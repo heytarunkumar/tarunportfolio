@@ -22,7 +22,7 @@ export const experienceData: ExperienceItem[] = [
     organization: "OrigoHOST Tech Community",
     location: "India",
     tagline: "WHERE BUILDERS BECOME INNOVATORS",
-    logoUrl: "/images/origohost/origohost-icon.png",
+    logoUrl: "/images/origohost/origohost-icon.webp",
     description:
       "Leading institutional engagements, technical initiatives, and developer community growth focused on applied AI, intelligent systems, and modern software engineering education.",
     responsibilities: [

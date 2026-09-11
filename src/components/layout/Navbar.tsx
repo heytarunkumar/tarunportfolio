@@ -92,7 +92,7 @@ export const Navbar: React.FC = () => {
         >
           <div className="w-8 h-8 rounded-lg overflow-hidden bg-white p-0.5 border border-[#D4AF37]/50 shadow-[0_0_12px_rgba(212,175,55,0.25)] shrink-0 group-hover:scale-105 transition-transform">
             <img
-              src={profile.monogramUrl || "/images/brand/tarun-monogram.png"}
+              src={profile.monogramUrl || "/images/brand/tarun-monogram.webp"}
               alt={`${profile.name || 'Tarun Kumar'} Logo`}
               className="w-full h-full object-contain"
             />

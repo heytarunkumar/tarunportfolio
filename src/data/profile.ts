@@ -190,7 +190,7 @@ export const profileData: Profile = {
       "research-track [ML Benchmarks / Tabular Risk Scoring]",
       "authorship [Technical Guides / Open Source / Community]",
     ],
-    avatarUrl: "/images/tarun-executive.jpg",
+    avatarUrl: "/images/tarun-executive.webp",
   },
 
   // About Defaults
@@ -219,14 +219,14 @@ export const profileData: Profile = {
     },
   ],
   spotlightCard: {
-    photoUrl: "/images/tarun-headshot.jpg",
+    photoUrl: "/images/tarun-headshot.webp",
     name: "Tarun Kumar",
     role: "Python Developer & AI Engineer",
     leadership: "President @ OrigoHOST",
     verifiedStatus: "VERIFIED",
   },
   origohostCard: {
-    logoUrl: "/images/origohost/origohost-icon.png",
+    logoUrl: "/images/origohost/origohost-icon.webp",
     tag: "VENTURE & COMMUNITY",
     title: "OrigoHOST Tech Community",
     tagline: "WHERE BUILDERS BECOME INNOVATORS",
@@ -257,7 +257,7 @@ export const profileData: Profile = {
   contactHeadline: "Let's build meaningful intelligence.",
   contactDescription: "Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct messages are welcome.",
   directBadge: {
-    photoUrl: "/images/tarun-about.jpg",
+    photoUrl: "/images/tarun-about.webp",
     title: "DIRECT LINE //",
     name: "Tarun Kumar",
     note: "Direct response for AI engineering & ventures",
@@ -268,7 +268,7 @@ export const profileData: Profile = {
 
   // Brand, Header & Footer Defaults
   brandRole: "FOUNDER · AI & TECH",
-  monogramUrl: "/images/brand/tarun-monogram.png",
+  monogramUrl: "/images/brand/tarun-monogram.webp",
   connectCtaText: "LET'S CONNECT",
   connectCtaLink: "/contact",
   footerSubtitle: "Founder | AI & Technology • OrigoHOST Community",
