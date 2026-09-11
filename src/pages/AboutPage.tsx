@@ -18,10 +18,9 @@ export const AboutPage: React.FC = () => {
       script.text = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ProfilePage',
-        '@id': SITE_CONFIG.profilePageId,
+        '@id': `${SITE_CONFIG.url}/about#profilepage`,
         'url': `${SITE_CONFIG.url}/about`,
-        'name': `${SITE_CONFIG.name} (@${SITE_CONFIG.handle}) Official Personal Entity Profile`,
-        'description': `Dedicated profile page for ${SITE_CONFIG.name} (${SITE_CONFIG.handle}) — ${SITE_CONFIG.tagline}.`,
+        'name': 'About Tarun Kumar | Python Developer, AI Engineer, Researcher, Author & Founder',
         'mainEntity': {
           '@id': SITE_CONFIG.personId,
         },

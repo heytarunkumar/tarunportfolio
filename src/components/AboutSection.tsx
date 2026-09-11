@@ -34,8 +34,8 @@ export const AboutSection: React.FC = () => {
   const storyParagraphs = (profile.aboutStoryParagraphs && profile.aboutStoryParagraphs.length > 0)
     ? profile.aboutStoryParagraphs
     : [
-        `I am ${profile?.name || 'Tarun Kumar'}, a Founder, AI Engineer, and Technology Entrepreneur focused on building intelligent systems, AI-powered solutions, and technology-driven ventures.`,
-        'My work sits at the intersection of Artificial Intelligence, Generative AI, Python engineering, automation, data, and entrepreneurship. I enjoy turning complex problems into practical products and scalable solutions that create measurable value.',
+        `I am ${profile?.name || 'Tarun Kumar'} (also known online as @heytarunkumar) — a Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures.`,
+        'My work sits at the intersection of Artificial Intelligence, Generative AI, Python systems engineering, automated workflows, and empirical research. As the Founder & President of OrigoHOST Tech Community (https://origohost.in), I lead technical initiatives, builder hackathons, and community growth focused on applied AI and developer education.',
       ];
   const quote = profile.aboutQuote || 'I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.';
   const pillars = (profile.competencyPillars && profile.competencyPillars.length > 0)

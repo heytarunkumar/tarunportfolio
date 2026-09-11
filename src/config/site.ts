@@ -19,7 +19,7 @@ export const SITE_CONFIG = {
   canonicalUrl: CANONICAL_SITE_URL,
   personId: `${SITE_URL}/#person`,
   websiteId: `${SITE_URL}/#website`,
-  profilePageId: `${SITE_URL}/#profilepage`,
+  profilePageId: `${SITE_URL}/about#profilepage`,
   faqId: `${SITE_URL}/#faq`,
   organizationId: 'https://origohost.in/#organization',
   defaultOgImage: `${SITE_URL}/images/tarun-executive.webp`,

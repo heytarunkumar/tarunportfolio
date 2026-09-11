@@ -119,9 +119,9 @@ export const AdminSeoManager: React.FC = () => {
     sameAs: [
       'https://www.linkedin.com/in/heytarunkumar/',
       'https://github.com/heytarunkumar',
-      'https://medium.com/@heytarunkumar',
+      'https://medium.com/@heytarunkumar/',
+      'https://www.instagram.com/heytarunkumar/',
       'https://x.com/heytarunkumarr',
-      'https://www.instagram.com/heytarunchaudhary/',
       'https://linktr.ee/heytarunkumar',
     ],
     worksFor: {
