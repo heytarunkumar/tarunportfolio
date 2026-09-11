@@ -50,4 +50,3 @@ export const ResearchPage: React.FC = () => {
 };
 
 export default ResearchPage;
-

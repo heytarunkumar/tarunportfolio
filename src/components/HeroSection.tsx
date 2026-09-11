@@ -24,12 +24,13 @@ const containerVariants: Variants = {
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 16, filter: 'blur(4px)' },
   visible: {
     opacity: 1,
     y: 0,
+    filter: 'blur(0px)',
     transition: {
-      duration: 0.75,
+      duration: 0.85,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -104,8 +105,6 @@ export const HeroSection: React.FC = () => {
           muted
           loop
           playsInline
-          preload="metadata"
-          poster="/images/tarun-executive.webp"
           className="h-screen w-auto max-w-none object-contain origin-right opacity-20 scale-95 md:scale-100"
         >
           <source src={profile.heroVideoUrl || "/videos/hero.mp4"} type="video/mp4" />
@@ -143,7 +142,7 @@ export const HeroSection: React.FC = () => {
                   className="w-5 h-5 rounded-full object-cover border border-[#D4AF37]/60 shrink-0"
                 />
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9.5px] sm:text-[10px] font-mono tracking-widest text-[#E2C054] font-medium uppercase">
+                <span className="text-[9.5px] sm:text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase">
                   {heroBadgeText}
                 </span>
               </div>
@@ -161,7 +160,7 @@ export const HeroSection: React.FC = () => {
                 <h1 className="font-normal tracking-normal text-white">{heroTitle}</h1>
                 
                 {/* Hero Role Morphing Surface */}
-                <div className="min-h-[1.35em] overflow-hidden relative my-1.5 sm:my-2 text-[#E2C054] italic font-normal tracking-normal text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
+                <div className="min-h-[1.35em] overflow-hidden relative my-1.5 sm:my-2 text-[#D4AF37] italic font-normal tracking-normal text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
                   {prefersReducedMotion ? (
                     <span className="block">
                       {activeHeroRoles[0] || 'Founder & AI Engineer'}
@@ -185,7 +184,7 @@ export const HeroSection: React.FC = () => {
                 <p className="text-base sm:text-xl md:text-2xl font-sans font-light text-[#C4BCB3] tracking-normal block mt-2 leading-relaxed">
                   Python Developer | AI Engineer | Researcher | Author | Founder
                 </p>
-                <span className="text-xs sm:text-sm font-sans font-light text-[#A8988B] block mt-1">
+                <span className="text-xs sm:text-sm font-sans font-light text-[#8C6D4F] block mt-1">
                   {heroSubtitle}
                 </span>
               </div>
@@ -193,7 +192,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Subtitle Technologies Line */}
             <motion.div variants={fadeUpVariants} className="mb-5 sm:mb-6">
-              <p className="text-[10px] sm:text-xs font-mono tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#E2C054] leading-relaxed">
+              <p className="text-[10px] sm:text-xs font-mono tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#D4AF37] leading-relaxed">
                 {heroTagline}
               </p>
             </motion.div>
@@ -229,7 +228,7 @@ export const HeroSection: React.FC = () => {
                 className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 sm:px-6 py-3.5 rounded-xl border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 <span>{secondaryCtaText}</span>
-                <span className="text-xs text-[#E2C054]">↓</span>
+                <span className="text-xs text-[#D4AF37]">↓</span>
               </a>
 
               {/* Morphing Copy Email Button */}
@@ -239,7 +238,7 @@ export const HeroSection: React.FC = () => {
                 className={`w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-4 sm:px-5 py-3.5 rounded-xl border text-xs font-mono tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer ${
                   copiedEmail
                     ? 'border-emerald-500/60 bg-emerald-950/40 text-emerald-300'
-                    : 'border-[#26211B] hover:border-[#D4AF37]/50 bg-[#12100E] text-[#E2C054] font-medium'
+                    : 'border-[#26211B] hover:border-[#D4AF37]/50 bg-[#12100E] text-[#D4AF37]'
                 }`}
               >
                 <span>{copiedEmail ? 'COPIED ✓' : 'COPY EMAIL'}</span>
