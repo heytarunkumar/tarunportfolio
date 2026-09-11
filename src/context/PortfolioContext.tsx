@@ -146,14 +146,14 @@ const initialNav: NavItemSetting[] = [
 ];
 
 const initialSeo: SeoSettings = {
-  siteTitle: 'Tarun Kumar — Python Developer | Cloud & DevOps Engineer',
+  siteTitle: 'Tarun Kumar — Founder | AI & Technology',
   metaDescription:
-    'Portfolio of Tarun Kumar. Python Developer building backend services, REST APIs, automation workflows, and cloud solutions.',
-  keywords: 'Tarun Kumar, Python Developer, Backend Developer, Cloud Engineer, DevOps Engineer, REST API, Docker, AWS',
-  canonicalUrl: 'https://heytarunkumar.vercel.app',
-  ogTitle: 'Tarun Kumar — Python Developer | Cloud & DevOps Engineer',
-  ogDescription: 'Python-focused developer building backend services, APIs, automation workflows, and cloud solutions.',
-  ogImage: '/images/tarun-executive.jpg',
+    'Portfolio of Tarun Kumar — Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, AI-powered solutions, and technology-driven ventures. Founder & President of OrigoHOST Tech Community.',
+  keywords: 'Tarun Kumar, Founder, AI Engineer, Technology Entrepreneur, OrigoHOST, Python Developer, Artificial Intelligence, Generative AI, Machine Learning, Automation, REST APIs',
+  canonicalUrl: 'https://www.heytarunkumar.com',
+  ogTitle: 'Tarun Kumar — Founder | AI & Technology',
+  ogDescription: 'Founder, AI Engineer, and Technology Entrepreneur building intelligent systems, AI-powered solutions, and developer communities.',
+  ogImage: 'https://www.heytarunkumar.com/images/tarun-executive.jpg',
   ogType: 'website',
   twitterCard: 'summary_large_image',
   twitterCreator: '@heytarunkumarr',

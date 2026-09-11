@@ -7,7 +7,7 @@ export const AdminSettingsPage: React.FC = () => {
   const [passwordMessage, setPasswordMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const [siteName, setSiteName] = useState('Tarun Kumar Portfolio');
-  const [siteUrl, setSiteUrl] = useState('https://tarunkumar.dev');
+  const [siteUrl, setSiteUrl] = useState('https://www.heytarunkumar.com');
   const [timezone, setTimezone] = useState('Asia/Kolkata (UTC+5:30)');
   const [defaultStatus, setDefaultStatus] = useState('Published');
 

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/*
 
-Sitemap: https://tarunkumar.dev/sitemap.xml
+Sitemap: https://www.heytarunkumar.com/sitemap.xml
