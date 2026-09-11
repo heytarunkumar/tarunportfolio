@@ -263,20 +263,22 @@ export const ContactSection: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 
                 {status === 'error' && (
-                  <div className="p-3.5 border border-red-500/40 bg-red-950/20 text-red-300 text-xs font-mono rounded-xl">
+                  <div role="alert" aria-live="polite" className="p-3.5 border border-red-500/40 bg-red-950/20 text-red-300 text-xs font-mono rounded-xl">
                     ⚠️ {errorMessage}
                   </div>
                 )}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="contact-name" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-name" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C99E5D] font-medium mb-2">
                       // SENDER NAME *
                     </label>
                     <input
                       id="contact-name"
+                      name="name"
                       type="text"
                       required
+                      autoComplete="name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Vance"
@@ -285,13 +287,15 @@ export const ContactSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                    <label htmlFor="contact-email" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C99E5D] font-medium mb-2">
                       // EMAIL ADDRESS *
                     </label>
                     <input
                       id="contact-email"
+                      name="email"
                       type="email"
                       required
+                      autoComplete="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. alex@company.com"
@@ -301,12 +305,14 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-subject" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-subject" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C99E5D] font-medium mb-2">
                     // SUBJECT / TOPIC
                   </label>
                   <input
                     id="contact-subject"
+                    name="subject"
                     type="text"
+                    autoComplete="off"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="AI Collaboration / Tech Talk / Project Inquiry"
@@ -315,7 +321,7 @@ export const ContactSection: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#8C6D4F] mb-2">
+                  <label htmlFor="contact-message" className="block text-[10px] font-mono tracking-[0.2em] uppercase text-[#C99E5D] font-medium mb-2">
                     // MESSAGE PAYLOAD *
                   </label>
                   <textarea
