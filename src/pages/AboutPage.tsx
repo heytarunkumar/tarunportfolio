@@ -20,9 +20,25 @@ export const AboutPage: React.FC = () => {
         '@type': 'ProfilePage',
         '@id': `${SITE_CONFIG.url}/about#profilepage`,
         'url': `${SITE_CONFIG.url}/about`,
-        'name': 'About Tarun Kumar | Python Developer, AI Engineer, Researcher, Author & Founder',
+        'name': 'About Tarun Kumar (@heytarunkumar) | Profile & Background',
+        'description': SITE_CONFIG.description,
         'mainEntity': {
+          '@type': 'Person',
           '@id': SITE_CONFIG.personId,
+          'name': 'Tarun Kumar',
+          'alternateName': 'heytarunkumar',
+          'jobTitle': 'Python Developer | AI Engineer | Researcher | Author | Founder',
+          'description': SITE_CONFIG.description,
+          'url': SITE_CONFIG.canonicalUrl,
+          'image': SITE_CONFIG.defaultOgImage,
+          'sameAs': [
+            SITE_CONFIG.socials.linkedin,
+            SITE_CONFIG.socials.github,
+            SITE_CONFIG.socials.medium,
+            SITE_CONFIG.socials.instagram,
+            SITE_CONFIG.socials.x,
+            SITE_CONFIG.socials.linktree
+          ]
         },
       });
       document.head.appendChild(script);
