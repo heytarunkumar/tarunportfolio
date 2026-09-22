@@ -227,7 +227,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative rounded-[4px] overflow-hidden border border-[#CFC3B3] bg-[#FAF8F3] p-2.5 sm:p-3.5 shadow-xl">
                 
                 {/* Image Container with Elegant Subtle Zoom on Hover */}
-                <div className="relative overflow-hidden rounded-[2px] bg-[#DDD2C2]/40 aspect-[4/5] w-full group">
+                <div className="relative overflow-hidden rounded-[2px] bg-[#FAF8F3] aspect-[4/5] w-full group">
                   <img
                     src="/images/tarun-light-portrait.webp"
                     alt="Mr. Tarun Kumar — Founder & AI Systems Engineer"
@@ -235,7 +235,7 @@ export const HeroSection: React.FC = () => {
                     height="750"
                     decoding="async"
                     fetchPriority="high"
-                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                   />
                   
                   {/* Subtle Vignette & Frame Lighting */}

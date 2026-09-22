@@ -172,7 +172,7 @@ export const AboutSection: React.FC = () => {
               </div>
               
               {/* Photo */}
-              <div className="relative w-full aspect-[4/5] max-h-[400px] overflow-hidden bg-[#DDD2C2]">
+              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#FAF8F3]">
                 <img
                   src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
@@ -180,7 +180,7 @@ export const AboutSection: React.FC = () => {
                   decoding="async"
                   width="440"
                   height="550"
-                  className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/40 via-transparent to-transparent pointer-events-none" />
               </div>
