@@ -150,7 +150,7 @@ export const AboutSection: React.FC = () => {
           {/* RIGHT: Magazine Spotlight Cards (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
 
-            {/* Founder Profile Feature Card (Compact Executive Spotlight) */}
+            {/* Founder Profile Feature Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -159,41 +159,41 @@ export const AboutSection: React.FC = () => {
               className="editorial-card rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md overflow-hidden"
             >
               {/* Card Header Bar */}
-              <div className="px-4 py-2.5 sm:px-5 sm:py-2.5 flex items-center justify-between border-b border-[#DDD2C2] bg-[#F4EEE4]">
+              <div className="px-5 py-3 flex items-center justify-between border-b border-[#DDD2C2] bg-[#F4EEE4]">
                 <div className="flex items-center space-x-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#78000F] animate-pulse" />
-                  <span className="text-[9.5px] sm:text-[10px] font-mono uppercase tracking-[0.2em] text-[#78000F] font-bold">
+                  <span className="w-2 h-2 rounded-full bg-[#78000F] animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#78000F] font-bold">
                     EXECUTIVE SPOTLIGHT
                   </span>
                 </div>
-                <span className="px-1.5 py-0.2 text-[8.5px] font-mono bg-[#E8F5EE] border border-[#B5DFCA] text-[#0F6848] rounded-[2px] font-semibold">
+                <span className="px-2 py-0.5 text-[9px] font-mono bg-[#E8F5EE] border border-[#B5DFCA] text-[#0F6848] rounded-[2px] font-semibold">
                   {spotlight.verifiedStatus || 'VERIFIED'}
                 </span>
               </div>
 
-              {/* Photo - Compact 4:5 Sizing */}
-              <div className="relative w-full aspect-[4/5] max-h-[400px] sm:max-h-[440px] overflow-hidden bg-[#FAF8F3]">
+              {/* Photo */}
+              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#FAF8F3]">
                 <img
                   src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
-                  width="300"
-                  height="350"
+                  width="600"
+                  height="750"
                   className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/30 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Info Bar */}
-              <div className="px-4 py-3 sm:px-5 sm:py-3.5 bg-[#FAF8F3] border-t border-[#DDD2C2] flex items-center justify-between">
+              <div className="px-5 py-4 bg-[#FAF8F3] border-t border-[#DDD2C2] flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm sm:text-base font-serif font-bold text-[#111111]">{spotlight.name}</h3>
-                  <p className="text-[10.5px] font-mono text-[#78000F] mt-0.5 font-medium">{spotlight.role}</p>
+                  <h3 className="text-base sm:text-lg font-serif font-bold text-[#111111]">{spotlight.name}</h3>
+                  <p className="text-[11px] font-mono text-[#78000F] mt-0.5 font-medium">{spotlight.role}</p>
                 </div>
                 <div className="text-right">
-                  <span className="text-[8.5px] font-mono text-[#8C8275] block uppercase tracking-wider">LEADERSHIP</span>
-                  <span className="text-[10.5px] font-mono text-[#202020] font-semibold">{spotlight.leadership}</span>
+                  <span className="text-[9px] font-mono text-[#8C8275] block uppercase tracking-wider">LEADERSHIP</span>
+                  <span className="text-[11px] font-mono text-[#202020] font-semibold">{spotlight.leadership}</span>
                 </div>
               </div>
             </motion.div>

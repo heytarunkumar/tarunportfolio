@@ -12,12 +12,12 @@ async function generate() {
     fs.mkdirSync(outDir, { recursive: true });
   }
 
-  // Soft warm studio backdrop
+  // Soft warm studio backdrop gradient
   function getStudioBg(w, h) {
     return Buffer.from(`
       <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="light" cx="50%" cy="28%" r="65%" fx="50%" fy="24%">
+          <radialGradient id="light" cx="50%" cy="36%" r="65%" fx="50%" fy="30%">
             <stop offset="0%" stop-color="#FFFFFF"/>
             <stop offset="45%" stop-color="#FAF8F3"/>
             <stop offset="85%" stop-color="#F0E8DC"/>
@@ -31,52 +31,67 @@ async function generate() {
 
   // =========================================================================
   // 1. EXECUTIVE SPOTLIGHT: tarun-executive.webp (800x1000 - 4:5 vertical)
-  // Scaled down with natural headroom and full armchair / posture presence
-  // Black shirt, dark blazer, armchair, watch, hand on chin.
-  // Extract width 660, height 555 from (x=215, y=0)
+  // Full subject fit with generous headroom and zero cutoff
   // =========================================================================
-  const spotCropped = await sharp(srcBlack)
-    .extract({ left: 215, top: 0, width: 660, height: 555 })
-    .resize(800, 1000, { fit: 'cover', position: 'center' })
-    .toBuffer();
+  const blackTrimmed = await sharp(srcBlack).trim().toBuffer({ resolveWithObject: true });
+  
+  // Scale black subject to fit width of ~760 inside 800 canvas (height becomes ~502)
+  const blackScaled = await sharp(blackTrimmed.data)
+    .resize({ width: 760, height: null, fit: 'inside' })
+    .toBuffer({ resolveWithObject: true });
 
   const spotBg = await sharp(getStudioBg(800, 1000)).png().toBuffer();
+  const spotTop = Math.round(1000 - blackScaled.info.height - 40); // 40px padding from bottom, ~458px top headroom
+  const spotLeft = Math.round((800 - blackScaled.info.width) / 2);
+
+  // Also create a 4:5 balanced crop variant where head is at ~10% from top and entire subject is framed
+  // The subject trimmed is 840w x 555h.
+  // Extract with full hair: y=0, height=575, width=720, left=160
+  const spotCropBalanced = await sharp(srcBlack)
+    .extract({ left: 160, top: 0, width: 720, height: 575 })
+    .resize(800, 1000, {
+      fit: 'contain',
+      background: { r: 250, g: 248, b: 243, alpha: 1 }
+    })
+    .toBuffer();
 
   await sharp(spotBg)
-    .composite([{ input: spotCropped, blend: 'over' }])
+    .composite([{ input: spotCropBalanced, blend: 'over' }])
     .webp({ quality: 95, effort: 6 })
     .toFile(path.join(outDir, 'tarun-executive.webp'));
 
   await sharp(spotBg)
-    .composite([{ input: spotCropped, blend: 'over' }])
+    .composite([{ input: spotCropBalanced, blend: 'over' }])
     .jpeg({ quality: 95 })
     .toFile(path.join(outDir, 'tarun-executive.jpg'));
 
-  console.log('✓ Executive Spotlight 4:5 (Proportionally Sized) generated');
+  console.log('✓ Executive Spotlight 4:5 (Full Head, Hair & Suit Framed) generated');
 
   // =========================================================================
   // 2. HERO PORTRAIT: tarun-light-portrait.webp (800x1000 - 4:5 vertical)
-  // White shirt, dark blazer, sunglasses.
-  // Extract width 620, height 560 from (x=205, y=0)
+  // White shirt, dark blazer, sunglasses with full hair and headroom
   // =========================================================================
-  const heroCropped = await sharp(srcWhite)
-    .extract({ left: 205, top: 0, width: 620, height: 560 })
-    .resize(800, 1000, { fit: 'cover', position: 'center' })
+  const heroCropBalanced = await sharp(srcWhite)
+    .extract({ left: 140, top: 0, width: 720, height: 576 })
+    .resize(800, 1000, {
+      fit: 'contain',
+      background: { r: 250, g: 248, b: 243, alpha: 1 }
+    })
     .toBuffer();
 
   const heroBg = await sharp(getStudioBg(800, 1000)).png().toBuffer();
 
   await sharp(heroBg)
-    .composite([{ input: heroCropped, blend: 'over' }])
+    .composite([{ input: heroCropBalanced, blend: 'over' }])
     .webp({ quality: 95, effort: 6 })
     .toFile(path.join(outDir, 'tarun-light-portrait.webp'));
 
   await sharp(heroBg)
-    .composite([{ input: heroCropped, blend: 'over' }])
+    .composite([{ input: heroCropBalanced, blend: 'over' }])
     .jpeg({ quality: 95 })
     .toFile(path.join(outDir, 'tarun-light-hero.jpg'));
 
-  console.log('✓ Hero Portrait 4:5 (Proportionally Sized) generated');
+  console.log('✓ Hero Portrait 4:5 (Full Head & Torso Framed) generated');
 
   // =========================================================================
   // 3. HEADSHOT / AVATAR: tarun-headshot.webp (600x600 - 1:1)
