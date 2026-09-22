@@ -172,7 +172,7 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Photo - Compact 4:5 Sizing */}
-              <div className="relative w-full aspect-[4/5] max-h-[300px] sm:max-h-[340px] overflow-hidden bg-[#FAF8F3]">
+              <div className="relative w-full aspect-[4/5] max-h-[400px] sm:max-h-[440px] overflow-hidden bg-[#FAF8F3]">
                 <img
                   src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
