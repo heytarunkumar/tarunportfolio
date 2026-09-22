@@ -17,7 +17,7 @@ async function generate() {
     return Buffer.from(`
       <svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="light" cx="50%" cy="32%" r="65%" fx="50%" fy="28%">
+          <radialGradient id="light" cx="50%" cy="28%" r="65%" fx="50%" fy="24%">
             <stop offset="0%" stop-color="#FFFFFF"/>
             <stop offset="45%" stop-color="#FAF8F3"/>
             <stop offset="85%" stop-color="#F0E8DC"/>
@@ -30,38 +30,13 @@ async function generate() {
   }
 
   // =========================================================================
-  // 1. HERO PORTRAIT: tarun-light-portrait.webp (800x1000 - 4:5 vertical)
-  // White shirt, dark blazer, sunglasses.
-  // Head is centered around x=520, y=30.
-  // Extract width 450, height 562 from (x=295, y=0)
-  // =========================================================================
-  const heroCropped = await sharp(srcWhite)
-    .extract({ left: 295, top: 0, width: 450, height: 562 })
-    .resize(800, 1000, { fit: 'cover', position: 'center' })
-    .toBuffer();
-
-  const heroBg = await sharp(getStudioBg(800, 1000)).png().toBuffer();
-
-  await sharp(heroBg)
-    .composite([{ input: heroCropped, blend: 'over' }])
-    .webp({ quality: 95, effort: 6 })
-    .toFile(path.join(outDir, 'tarun-light-portrait.webp'));
-
-  await sharp(heroBg)
-    .composite([{ input: heroCropped, blend: 'over' }])
-    .jpeg({ quality: 95 })
-    .toFile(path.join(outDir, 'tarun-light-hero.jpg'));
-
-  console.log('✓ Hero Portrait 4:5 generated (800x1000)');
-
-  // =========================================================================
-  // 2. EXECUTIVE SPOTLIGHT: tarun-executive.webp (800x1000 - 4:5 vertical)
+  // 1. EXECUTIVE SPOTLIGHT: tarun-executive.webp (800x1000 - 4:5 vertical)
+  // Scaled down with natural headroom and full armchair / posture presence
   // Black shirt, dark blazer, armchair, watch, hand on chin.
-  // Head is centered around x=555, y=20.
-  // Extract width 450, height 562 from (x=330, y=0)
+  // Extract width 660, height 555 from (x=215, y=0)
   // =========================================================================
   const spotCropped = await sharp(srcBlack)
-    .extract({ left: 330, top: 0, width: 450, height: 562 })
+    .extract({ left: 215, top: 0, width: 660, height: 555 })
     .resize(800, 1000, { fit: 'cover', position: 'center' })
     .toBuffer();
 
@@ -77,14 +52,37 @@ async function generate() {
     .jpeg({ quality: 95 })
     .toFile(path.join(outDir, 'tarun-executive.jpg'));
 
-  console.log('✓ Executive Spotlight 4:5 generated (800x1000)');
+  console.log('✓ Executive Spotlight 4:5 (Proportionally Sized) generated');
+
+  // =========================================================================
+  // 2. HERO PORTRAIT: tarun-light-portrait.webp (800x1000 - 4:5 vertical)
+  // White shirt, dark blazer, sunglasses.
+  // Extract width 620, height 560 from (x=205, y=0)
+  // =========================================================================
+  const heroCropped = await sharp(srcWhite)
+    .extract({ left: 205, top: 0, width: 620, height: 560 })
+    .resize(800, 1000, { fit: 'cover', position: 'center' })
+    .toBuffer();
+
+  const heroBg = await sharp(getStudioBg(800, 1000)).png().toBuffer();
+
+  await sharp(heroBg)
+    .composite([{ input: heroCropped, blend: 'over' }])
+    .webp({ quality: 95, effort: 6 })
+    .toFile(path.join(outDir, 'tarun-light-portrait.webp'));
+
+  await sharp(heroBg)
+    .composite([{ input: heroCropped, blend: 'over' }])
+    .jpeg({ quality: 95 })
+    .toFile(path.join(outDir, 'tarun-light-hero.jpg'));
+
+  console.log('✓ Hero Portrait 4:5 (Proportionally Sized) generated');
 
   // =========================================================================
   // 3. HEADSHOT / AVATAR: tarun-headshot.webp (600x600 - 1:1)
-  // Close-up on face, sunglasses, beard, shirt collar
   // =========================================================================
   const headCropped = await sharp(srcWhite)
-    .extract({ left: 330, top: 0, width: 380, height: 380 })
+    .extract({ left: 290, top: 0, width: 470, height: 470 })
     .resize(600, 600, { fit: 'cover', position: 'center' })
     .toBuffer();
 
@@ -100,14 +98,13 @@ async function generate() {
     .jpeg({ quality: 95 })
     .toFile(path.join(outDir, 'tarun-headshot.jpg'));
 
-  console.log('✓ Headshot Avatar 1:1 generated (600x600)');
+  console.log('✓ Headshot Avatar 1:1 generated');
 
   // =========================================================================
   // 4. DIRECT BADGE: tarun-about.webp (600x600 - 1:1)
-  // Close-up on armchair executive pose (face + hand on chin)
   // =========================================================================
   const aboutCropped = await sharp(srcBlack)
-    .extract({ left: 365, top: 0, width: 380, height: 380 })
+    .extract({ left: 310, top: 0, width: 470, height: 470 })
     .resize(600, 600, { fit: 'cover', position: 'center' })
     .toBuffer();
 
@@ -121,7 +118,7 @@ async function generate() {
     .jpeg({ quality: 95 })
     .toFile(path.join(outDir, 'tarun-about.jpg'));
 
-  console.log('✓ Direct Badge 1:1 generated (600x600)');
+  console.log('✓ Direct Badge 1:1 generated');
 }
 
 generate().catch(err => {
