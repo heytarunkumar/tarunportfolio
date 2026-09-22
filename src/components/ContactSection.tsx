@@ -72,7 +72,7 @@ export const ContactSection: React.FC = () => {
   const headline = profile.contactHeadline || "Let's Build Meaningful Intelligence.";
   const description = profile.contactDescription || 'Whether you want to collaborate on AI-driven systems, Python engineering architectures, OrigoHOST community initiatives, or discuss startup ventures — direct inquiries are welcome.';
   const directBadge = profile.directBadge || {
-    photoUrl: '/images/tarun-light-portrait.webp',
+    photoUrl: '/images/tarun-about.webp',
     title: 'EXECUTIVE LINE //',
     name: profile.name || 'Mr. Tarun Kumar',
     note: 'Direct response for AI engineering & ventures',
@@ -136,7 +136,7 @@ export const ContactSection: React.FC = () => {
             <div className="editorial-card flex items-center space-x-3.5 sm:space-x-4 p-4 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-sm">
               <div className="relative shrink-0">
                 <img
-                  src={directBadge.photoUrl || "/images/tarun-light-portrait.webp"}
+                  src={directBadge.photoUrl || "/images/tarun-about.webp"}
                   alt="Mr. Tarun Kumar — Direct Communications Line"
                   loading="lazy"
                   decoding="async"

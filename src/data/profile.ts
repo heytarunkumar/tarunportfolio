@@ -219,7 +219,7 @@ export const profileData: Profile = {
     },
   ],
   spotlightCard: {
-    photoUrl: "/images/tarun-headshot.webp",
+    photoUrl: "/images/tarun-executive.webp",
     name: "Tarun Kumar",
     role: "Python Developer & AI Engineer",
     leadership: "President @ OrigoHOST",

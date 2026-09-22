@@ -46,7 +46,7 @@ export const AboutSection: React.FC = () => {
         { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST President, Builder Hackathons & Developer Education' },
       ];
   const spotlight = profile.spotlightCard || {
-    photoUrl: '/images/tarun-light-portrait.webp',
+    photoUrl: '/images/tarun-executive.webp',
     name: profile.name || 'Mr. Tarun Kumar',
     role: profile.primaryRole || 'Founder & AI Systems Engineer',
     leadership: 'President @ OrigoHOST',
@@ -174,7 +174,7 @@ export const AboutSection: React.FC = () => {
               {/* Photo */}
               <div className="relative w-full aspect-[4/5] max-h-[400px] overflow-hidden bg-[#DDD2C2]">
                 <img
-                  src={spotlight.photoUrl || "/images/tarun-light-portrait.webp"}
+                  src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
