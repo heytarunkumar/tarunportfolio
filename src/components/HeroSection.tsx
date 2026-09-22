@@ -4,12 +4,11 @@ import type { Variants } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
 
 const heroRoles = [
-  'FOUNDER & AI ENGINEER',
-  'TECHNOLOGY ENTREPRENEUR',
-  'INTELLIGENT SYSTEMS ARCHITECT',
-  'FOUNDER @ ORIGOHOST',
-  'GENERATIVE AI & AUTOMATION',
+  'FOUNDER & AI SYSTEMS ENGINEER',
   'PYTHON SYSTEMS ARCHITECT',
+  'INTELLIGENT SYSTEMS RESEARCHER',
+  'PRESIDENT @ ORIGOHOST COMMUNITY',
+  'GENERATIVE AI & AGENTIC ARCHITECT',
 ];
 
 const containerVariants: Variants = {
@@ -18,19 +17,19 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.12,
-      delayChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 18 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.75,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.22, 0.61, 0.36, 1],
     },
   },
 };
@@ -53,7 +52,7 @@ export const HeroSection: React.FC = () => {
       if (!mediaQuery.matches && activeHeroRoles.length > 0) {
         const interval = setInterval(() => {
           setRoleIndex((prev) => (prev + 1) % activeHeroRoles.length);
-        }, 3200);
+        }, 3600);
         return () => clearInterval(interval);
       }
     }
@@ -70,155 +69,123 @@ export const HeroSection: React.FC = () => {
   };
 
   const resumeUrl = profile.heroSecondaryCtaLink || profile.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf';
-  const heroTitle = profile.heroTitle || profile.name || 'Tarun Kumar';
   const heroSubtitle = profile.heroSubtitle || 'Building practical intelligence & scalable systems.';
-  const heroTagline = profile.heroTagline || 'APPLIED AI · GENAI · PYTHON · AUTOMATION · VENTURES · ORIGOHOST';
   const heroBadgeText = profile.heroBadgeText || 'FOUNDER & AI SYSTEMS ENGINEER';
   const heroVentureBadge = profile.heroVentureBadge || 'PRESIDENT @ ORIGOHOST';
   const primaryCtaText = profile.heroPrimaryCtaText || 'EXPLORE WORK';
   const primaryCtaLink = profile.heroPrimaryCtaLink || '#projects';
   const secondaryCtaText = profile.heroSecondaryCtaText || 'DOWNLOAD RESUME';
+  
   const terminal = profile.heroTerminal || {
-    title: 'tarun@ai-venture ~ bash',
-    whoami: 'tarun-kumar [Founder & AI Engineer]',
-    venture: 'OrigoHOST Tech Community',
+    title: 'tarun@editorial-executive ~ zsh',
+    whoami: 'Tarun Kumar [Founder & AI Systems Engineer]',
+    venture: 'OrigoHOST Tech Community (origohost.in)',
     ventureQuote: 'WHERE BUILDERS BECOME INNOVATORS',
-    status: 'ACTIVE · BUILDING VENTURES',
+    status: 'ACTIVE · SCALING APPLIED AI VENTURES',
     mission: '[TURNING_PROBLEMS_INTO_SCALABLE_PRODUCTS]',
     stack: [
       'applied-ai [LLMs / Intelligent Agents / XAI]',
-      'python-engineering [FastAPI / Microservices]',
+      'python-engineering [FastAPI / Microservices / AsyncIO]',
       'data-systems [ML Pipelines / Tabular Risk Scoring]',
-      'devops-track [LEARNING & EXPLORING]',
+      'cloud-devops [AWS / Docker / Kubernetes / CI/CD]',
     ],
-    avatarUrl: '/images/tarun-executive.webp',
+    avatarUrl: '/images/tarun-light-portrait.webp',
   };
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white flex items-center">
+    <section className="relative w-full min-h-screen bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] flex items-center pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
       
-      {/* Ambient Technical Background Layer */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none flex items-center justify-end">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/images/tarun-executive.webp"
-          className="h-screen w-auto max-w-none object-contain origin-right opacity-20 scale-95 md:scale-100"
-        >
-          <source src={profile.heroVideoUrl || "/videos/hero.mp4"} type="video/mp4" />
-        </video>
-
-        {/* Ambient Subtle Gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0908] via-[#0A0908]/90 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0908]/80 via-transparent to-[#0A0908] pointer-events-none" />
-        
-        {/* Soft Radial Ambient Lights */}
-        <div className="absolute top-1/4 left-1/4 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/5 rounded-full blur-[160px] pointer-events-none" />
+      {/* Background Subtle Paper Texture & Lighting */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-0 right-0 w-[60vw] h-[60vh] bg-gradient-to-bl from-[#DDD2C2]/40 via-[#F4EEE4]/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vh] bg-gradient-to-tr from-[#FAF8F3]/70 via-[#DDD2C2]/20 to-transparent rounded-full blur-2xl" />
       </div>
 
-      {/* Main Content Layer */}
-      <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 pt-28 pb-16 sm:pt-36 sm:pb-24">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-[1760px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16 items-center">
           
-          {/* LEFT: Technical Positioning & Headline (7 Cols) */}
+          {/* LEFT: Oversized Editorial Identity & Positioning (7 Cols) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="lg:col-span-7 z-20"
+            className="lg:col-span-7 flex flex-col justify-center"
           >
-            {/* Status & Venture Badges */}
-            <motion.div variants={fadeUpVariants} className="mb-5 sm:mb-6 flex flex-wrap items-center gap-2.5 sm:gap-3">
-              <div className="inline-flex items-center space-x-2 sm:space-x-2.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/30 bg-[#12100E]/80 backdrop-blur-md">
-                <img
-                  src={terminal.avatarUrl || "/images/tarun-executive.webp"}
-                  alt="Tarun Kumar — Python Developer and AI Engineer"
-                  width="20"
-                  height="20"
-                  decoding="async"
-                  className="w-5 h-5 rounded-full object-cover border border-[#D4AF37]/60 shrink-0"
-                />
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9.5px] sm:text-[10px] font-mono tracking-widest text-[#E6C665] font-medium uppercase">
-                  {heroBadgeText}
-                </span>
-              </div>
+            {/* Top Badges / Architectural Markers */}
+            <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
+              <span className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-[3px] bg-[#FAF8F3] border border-[#CFC3B3] text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-[#78000F] font-semibold uppercase shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#78000F] animate-pulse" />
+                <span>{heroBadgeText}</span>
+              </span>
+              <span className="inline-flex items-center px-3 py-1.5 rounded-[3px] bg-[#FAF8F3]/60 border border-[#DDD2C2] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-[#555047] uppercase">
+                {heroVentureBadge}
+              </span>
+            </motion.div>
 
-              <div className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full border border-[#8C6D4F]/25 bg-[#141210]/60 backdrop-blur-md">
-                <span className="text-[9.5px] sm:text-[10px] font-mono text-[#C4BCB3]">
-                  {heroVentureBadge}
-                </span>
+            {/* Oversized Signature Display Typography */}
+            <motion.div variants={fadeUpVariants} className="mb-4 sm:mb-6 select-none">
+              <div className="flex flex-col">
+                <h1 className="font-serif font-bold text-[#78000F] leading-[0.84] tracking-[-0.05em] text-[4.5rem] sm:text-[6.5rem] md:text-[8rem] lg:text-[7rem] xl:text-[8.5rem] 2xl:text-[10rem]">
+                  <span className="block italic font-normal text-[0.85em] tracking-[-0.04em] text-[#78000F]">Mr.</span>
+                  <span className="block text-[#78000F]">Tarun</span>
+                  <span className="block text-[#78000F]">Kumar</span>
+                </h1>
               </div>
             </motion.div>
 
-            {/* Editorial Display Title with Dynamic Role Morphing */}
-            <motion.div variants={fadeUpVariants} className="relative mb-5 sm:mb-6 select-none">
-              <div className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif text-white leading-[1.12] tracking-normal">
-                <h1 className="font-normal tracking-normal text-white">{heroTitle}</h1>
-                
-                {/* Hero Role Morphing Surface */}
-                <div className="min-h-[1.35em] overflow-hidden relative my-1.5 sm:my-2 text-[#E6C665] italic font-normal tracking-normal text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight">
-                  {prefersReducedMotion ? (
-                    <span className="block">
-                      {activeHeroRoles[0] || 'Founder & AI Engineer'}
-                    </span>
-                  ) : (
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={activeHeroRoles[roleIndex % activeHeroRoles.length] || 'role'}
-                        initial={{ opacity: 0, y: 14 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -14 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                        className="block"
-                      >
-                        {activeHeroRoles[roleIndex % activeHeroRoles.length]}
-                      </motion.span>
-                    </AnimatePresence>
-                  )}
-                </div>
-
-                <p className="text-base sm:text-xl md:text-2xl font-sans font-light text-[#C4BCB3] tracking-normal block mt-2 leading-relaxed">
-                  Python Developer | AI Engineer | Researcher | Author | Founder
-                </p>
-                <span className="text-xs sm:text-sm font-sans font-light text-[#B5987A] block mt-1">
-                  {heroSubtitle}
+            {/* Dynamic Role Subtitle */}
+            <motion.div variants={fadeUpVariants} className="mb-4 sm:mb-5">
+              <div className="min-h-[1.4em] flex items-center">
+                <span className="text-xs sm:text-sm font-mono tracking-[0.22em] uppercase text-[#78000F] font-bold mr-2">
+                  FOCUS:
                 </span>
+                {prefersReducedMotion ? (
+                  <span className="text-xs sm:text-sm font-mono tracking-[0.16em] uppercase text-[#202020] font-medium">
+                    {activeHeroRoles[0] || 'FOUNDER & AI SYSTEMS ENGINEER'}
+                  </span>
+                ) : (
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={activeHeroRoles[roleIndex % activeHeroRoles.length] || 'role'}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -8 }}
+                      transition={{ duration: 0.35, ease: [0.22, 0.61, 0.36, 1] }}
+                      className="text-xs sm:text-sm font-mono tracking-[0.16em] uppercase text-[#202020] font-semibold"
+                    >
+                      {activeHeroRoles[roleIndex % activeHeroRoles.length]}
+                    </motion.span>
+                  </AnimatePresence>
+                )}
               </div>
-            </motion.div>
-
-            {/* Subtitle Technologies Line */}
-            <motion.div variants={fadeUpVariants} className="mb-5 sm:mb-6">
-              <p className="text-[10px] sm:text-xs font-mono tracking-[0.16em] sm:tracking-[0.2em] uppercase text-[#E6C665] leading-relaxed">
-                {heroTagline}
+              <p className="text-sm sm:text-base font-serif italic text-[#4A4640] mt-1.5 font-normal">
+                Python Developer · AI Engineer · Researcher · Author · Founder
+              </p>
+              <p className="text-xs font-sans text-[#736B60] mt-0.5">
+                {heroSubtitle}
               </p>
             </motion.div>
 
-            {/* Supporting Description */}
+            {/* Narrative Excerpt */}
             <motion.p
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.8] max-w-xl mb-6 sm:mb-8"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              className="text-xs sm:text-sm md:text-[14.5px] font-normal text-[#38342E] leading-[1.8] max-w-xl mb-7 sm:mb-9"
             >
               {profile.narrative}
             </motion.p>
 
-            {/* CTA Action Buttons */}
+            {/* Executive Action CTAs */}
             <motion.div
               variants={fadeUpVariants}
-              className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 pt-1"
+              className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
             >
               {/* Primary CTA */}
               <a
                 href={primaryCtaLink}
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 sm:px-7 py-3.5 rounded-xl border border-[#D4AF37] bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_4px_28px_rgba(212,175,55,0.45)] hover:scale-[1.02] cursor-pointer"
+                className="btn-executive-primary inline-flex items-center justify-center space-x-2 px-6 sm:px-8 py-3.5 text-xs font-mono tracking-[0.18em] uppercase cursor-pointer"
               >
                 <span>{primaryCtaText}</span>
-                <span className="text-xs">↗</span>
+                <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
 
               {/* Secondary CTA */}
@@ -226,20 +193,20 @@ export const HeroSection: React.FC = () => {
                 href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-5 sm:px-6 py-3.5 rounded-xl border border-[#26211B] hover:border-[#D4AF37]/60 bg-[#12100E] text-[#F5F2EB] hover:text-white text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                className="btn-executive-secondary inline-flex items-center justify-center space-x-2 px-5 sm:px-6 py-3.5 text-xs font-mono tracking-[0.18em] uppercase cursor-pointer"
               >
                 <span>{secondaryCtaText}</span>
-                <span className="text-xs text-[#E6C665]">↓</span>
+                <span className="text-xs text-[#78000F]">↓</span>
               </a>
 
-              {/* Morphing Copy Email Button */}
+              {/* Copy Email Action */}
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className={`w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-4 sm:px-5 py-3.5 rounded-xl border text-xs font-mono tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer ${
+                className={`inline-flex items-center justify-center space-x-2 px-4 sm:px-5 py-3.5 rounded-[4px] border text-xs font-mono tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer ${
                   copiedEmail
-                    ? 'border-emerald-500/60 bg-emerald-950/40 text-emerald-300'
-                    : 'border-[#26211B] hover:border-[#D4AF37]/50 bg-[#12100E] text-[#E6C665] font-medium'
+                    ? 'border-[#0F6848] bg-[#E8F5EE] text-[#0F6848] font-semibold'
+                    : 'border-[#CFC3B3] hover:border-[#78000F] bg-[#FAF8F3] text-[#202020] hover:text-[#78000F]'
                 }`}
               >
                 <span>{copiedEmail ? 'COPIED ✓' : 'COPY EMAIL'}</span>
@@ -247,73 +214,63 @@ export const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT: Technical CLI Terminal Visualizer (5 Cols) */}
+          {/* RIGHT: Executive Portrait Photography & Architectural Spec (5 Cols) */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 z-20 w-full"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+            className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center w-full"
           >
-            <div className="card-lift rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-5 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md">
-              {/* Top Window Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-
-              {/* Window Header */}
-              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#26211B] text-[#8C6D4F]">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                </div>
-                <span className="text-[10px] text-[#8C6D4F] truncate max-w-[200px]">{terminal.title || 'tarun@ai-venture ~ bash'}</span>
-              </div>
-
-              {/* Founder Identity Card */}
-              <div className="flex items-center space-x-3 sm:space-x-3.5 p-3 rounded-xl bg-[#0A0908] border border-[#26211B] mb-4">
-                <img
-                  src={terminal.avatarUrl || "/images/tarun-executive.webp"}
-                  alt="Tarun Kumar — Python Developer and AI Engineer"
-                  width="48"
-                  height="48"
-                  decoding="async"
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border border-[#D4AF37]/50 shadow-md shrink-0"
-                />
-                <div className="font-mono min-w-0 flex-1">
-                  <div className="text-[#F5F2EB] font-sans font-semibold text-xs sm:text-[13px] truncate">{profile.name}</div>
-                  <div className="text-[#D4AF37] text-[10px] sm:text-[10.5px] truncate">{profile.primaryRole || 'Founder & AI Systems Engineer'}</div>
-                  <div className="text-[9px] sm:text-[9.5px] text-emerald-400 flex items-center space-x-1 mt-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="truncate">{terminal.status || 'ACTIVE · BUILDING VENTURES'}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Terminal Commands & Insights */}
-              <div className="space-y-3.5 sm:space-y-4 text-xs break-words">
-                <div>
-                  <span className="text-[#D4AF37]">$</span> whoami
-                  <p className="text-[#E8E3D8] pl-3.5 mt-0.5 font-medium break-words">{terminal.whoami}</p>
-                </div>
-
-                <div>
-                  <span className="text-[#D4AF37]">$</span> ventures --active
-                  <p className="text-[#F7E7C4] pl-3.5 mt-0.5 break-words">› {terminal.venture}</p>
-                  <p className="text-[#8C827A] pl-3.5 text-[10.5px] break-words">  &quot;{terminal.ventureQuote}&quot;</p>
-                </div>
-
-                <div>
-                  <span className="text-[#D4AF37]">$</span> core-stack --status
-                  <div className="pl-3.5 mt-0.5 text-[11px] text-[#C4BCB3] space-y-1">
-                    {(terminal.stack || []).map((st, sIdx) => (
-                      <p key={sIdx} className="break-words">› {st}</p>
-                    ))}
+            <div className="w-full max-w-lg relative">
+              
+              {/* Architectural Frame & Corner Marks */}
+              <div className="relative rounded-[4px] overflow-hidden border border-[#CFC3B3] bg-[#FAF8F3] p-2.5 sm:p-3.5 shadow-xl">
+                
+                {/* Image Container with Elegant Subtle Zoom on Hover */}
+                <div className="relative overflow-hidden rounded-[2px] bg-[#DDD2C2]/40 aspect-[4/5] w-full group">
+                  <img
+                    src="/images/tarun-light-portrait.webp"
+                    alt="Mr. Tarun Kumar — Founder & AI Systems Engineer"
+                    width="600"
+                    height="750"
+                    decoding="async"
+                    fetchPriority="high"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                  
+                  {/* Subtle Vignette & Frame Lighting */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/60 via-transparent to-transparent pointer-events-none" />
+                  
+                  {/* Badge Over Portrait */}
+                  <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-[#F4EEE4] font-mono text-[10px] sm:text-[11px] tracking-[0.16em]">
+                    <div className="flex items-center space-x-1.5 bg-[#111111]/85 backdrop-blur-md px-2.5 py-1 rounded-[2px] border border-white/10">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="font-medium uppercase">FOUNDER IDENTITY</span>
+                    </div>
+                    <span className="bg-[#78000F]/90 backdrop-blur-md px-2 py-1 rounded-[2px] font-semibold text-white">
+                      AUTONOMOUS SYSTEMS
+                    </span>
                   </div>
                 </div>
 
-                <div>
-                  <span className="text-[#D4AF37]">$</span> current-mission
-                  <p className="text-emerald-400 pl-3.5 mt-0.5 font-semibold break-words">{terminal.mission}</p>
+                {/* Minimal Architectural Spec Below Portrait */}
+                <div className="mt-3 pt-3 border-t border-[#DDD2C2] grid grid-cols-2 gap-2 text-left font-mono text-[10.5px]">
+                  <div>
+                    <span className="text-[#8C8275] block text-[9px] uppercase tracking-wider">VENTURE ROLE</span>
+                    <span className="text-[#202020] font-medium font-sans text-xs truncate block">{terminal.ventureQuote}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-[#8C8275] block text-[9px] uppercase tracking-wider">STATUS</span>
+                    <span className="text-[#78000F] font-bold truncate block">{terminal.status}</span>
+                  </div>
                 </div>
+
+              </div>
+
+              {/* Decorative Architectural Accent Line */}
+              <div className="mt-3 flex items-center justify-between text-[10px] font-mono text-[#8C8275] px-1">
+                <span>EST. 2026 // IDENTITY SYSTEM</span>
+                <span className="text-[#78000F] font-semibold">OXBLOOD × IVORY</span>
               </div>
 
             </div>

@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 const statusBadgeStyles: Record<string, string> = {
-  Completed: 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300',
-  Applied: 'border-amber-500/40 bg-amber-950/30 text-amber-300',
-  Building: 'border-amber-500/40 bg-amber-950/30 text-amber-300',
-  Learning: 'border-amber-500/40 bg-amber-950/30 text-amber-300',
+  Completed: 'border-[#B5DFCA] bg-[#E8F5EE] text-[#0F6848]',
+  Applied: 'border-[#DDD2C2] bg-[#F4EEE4] text-[#78000F]',
+  Building: 'border-[#DDD2C2] bg-[#F4EEE4] text-[#78000F]',
+  Learning: 'border-[#DDD2C2] bg-[#F4EEE4] text-[#78000F]',
 };
 
 export const EngineeringLabSection: React.FC = () => {
@@ -31,26 +31,22 @@ export const EngineeringLabSection: React.FC = () => {
   return (
     <section
       id="lab"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
-      {/* Studio Ambient Glow */}
-      <div className="absolute top-1/3 right-1/4 w-[36rem] h-[36rem] bg-[#D4AF37]/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-[30rem] h-[30rem] bg-[#8C6D4F]/5 rounded-full blur-[170px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1760px] mx-auto w-full relative z-10">
         
         {/* Eyebrow Header */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center space-x-4 mb-6"
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          className="flex items-center space-x-4 mb-6 sm:mb-8"
         >
-          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
-            04 / CONTINUOUS GROWTH &amp; LABS
+          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
+            04 / ENGINEERING LAB &amp; BLUEPRINTS
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
         </motion.div>
 
         {/* Section Headline */}
@@ -58,17 +54,20 @@ export const EngineeringLabSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5 sm:gap-6"
+          transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
         >
           <div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
-              Engineering lab &amp; <span className="italic text-[#D4AF37]">active blueprints.</span>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em]">
+              Engineering Lab &amp; <span className="text-[#78000F] italic">Blueprints.</span>
             </h2>
+            <p className="text-xs sm:text-sm font-mono text-[#736B60] mt-2 uppercase tracking-[0.16em]">
+              LINUX · DOCKER · KUBERNETES · CI/CD AUTOMATION · AWS CLOUD
+            </p>
           </div>
 
-          <p className="text-xs sm:text-sm font-light text-[#C4BCB3] max-w-md leading-relaxed">
-            A practical roadmap demonstrating progression from Python backend engineering into Linux sysadmin, Docker containerization, CI/CD automation, and cloud systems.
+          <p className="text-xs sm:text-sm font-normal text-[#38342E] max-w-md leading-relaxed">
+            Practical progression tracks demonstrating real systems development, containerization pipelines, and cloud deployments.
           </p>
         </motion.div>
 
@@ -77,24 +76,24 @@ export const EngineeringLabSection: React.FC = () => {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-6 sm:mb-8 p-3 sm:p-4 rounded-2xl border border-[#26211B] bg-[#12100E] overflow-x-auto no-scrollbar"
+          className="mb-8 p-3 sm:p-4 rounded-[4px] border border-[#CFC3B3] bg-[#FAF8F3] overflow-x-auto no-scrollbar shadow-sm"
         >
-          <div className="flex items-center space-x-2.5 sm:space-x-3 min-w-max text-[11px] sm:text-xs font-mono">
-            <span className="text-[#D4AF37] font-bold uppercase tracking-wider">ROADMAP:</span>
+          <div className="flex items-center space-x-3 min-w-max text-[11px] sm:text-xs font-mono">
+            <span className="text-[#78000F] font-bold uppercase tracking-wider">ROADMAP:</span>
             {tracks.map((item, idx) => (
               <React.Fragment key={item.id}>
                 <button
                   onClick={() => setActiveTrackState(item)}
-                  className={`px-3 sm:px-3.5 py-1.5 rounded-full border transition-all cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-[3px] border transition-all cursor-pointer font-medium ${
                     activeTrack.id === item.id
-                      ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_12px_rgba(212,175,55,0.25)]'
-                      : 'border-[#26211B] bg-[#0A0908] text-[#C4BCB3] hover:border-[#D4AF37]/50'
+                      ? 'border-[#78000F] bg-[#78000F] text-white font-bold shadow-sm'
+                      : 'border-[#DDD2C2] bg-[#F4EEE4] text-[#38342E] hover:border-[#78000F] hover:text-[#78000F]'
                   }`}
                 >
                   {item.stepNumber || idx + 1}. {(item.category || '').split(' ')[0]}
                 </button>
                 {idx < tracks.length - 1 && (
-                  <span className="text-[#8C6D4F]">→</span>
+                  <span className="text-[#CFC3B3]">→</span>
                 )}
               </React.Fragment>
             ))}
@@ -102,35 +101,35 @@ export const EngineeringLabSection: React.FC = () => {
         </motion.div>
 
         {/* Interactive Lab Content Details Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Track Navigation List (5 Cols) */}
-          <div className="lg:col-span-5 space-y-2.5 sm:space-y-3">
+          <div className="lg:col-span-5 space-y-3">
             {tracks.map((track, idx) => {
               const isSelected = activeTrack.id === track.id;
               return (
                 <div
                   key={track.id || idx}
                   onClick={() => setActiveTrackState(track)}
-                  className={`card-lift p-4 sm:p-5 rounded-2xl border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
+                  className={`editorial-card p-4 sm:p-5 rounded-[4px] border cursor-pointer transition-all duration-300 flex flex-col justify-between ${
                     isSelected
-                      ? 'border-[#D4AF37] bg-[#1A1714] shadow-[0_0_20px_rgba(212,175,55,0.15)]'
-                      : 'border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/40'
+                      ? 'border-[#78000F] bg-[#FAF8F3] shadow-md'
+                      : 'border-[#CFC3B3] bg-[#FAF8F3] hover:border-[#78000F]'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2 gap-2">
-                    <span className="text-[10.5px] sm:text-[11px] font-mono font-medium tracking-wide text-[#D4AF37] truncate">
+                    <span className="text-[11px] font-mono font-bold tracking-wide text-[#78000F] truncate">
                       STEP {track.stepNumber || idx + 1} // {track.category}
                     </span>
                     <span
-                      className={`text-[9.5px] sm:text-[10px] font-mono font-medium px-2 sm:px-2.5 py-0.5 rounded-full border uppercase shrink-0 ${
+                      className={`text-[9.5px] font-mono font-semibold px-2 py-0.5 rounded-[2px] border uppercase shrink-0 ${
                         statusBadgeStyles[track.status] || statusBadgeStyles.Building
                       }`}
                     >
                       {track.status}
                     </span>
                   </div>
-                  <h3 className="text-sm sm:text-[15px] font-sans font-semibold text-white group-hover:text-[#F7E7C4] transition-colors leading-snug">
+                  <h3 className="text-sm sm:text-[15px] font-serif font-bold text-[#111111] leading-snug">
                     {track.title}
                   </h3>
                 </div>
@@ -145,23 +144,22 @@ export const EngineeringLabSection: React.FC = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.35 }}
-              className="card-lift relative p-5 sm:p-8 rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl h-full flex flex-col justify-between"
+              className="editorial-card relative p-6 sm:p-8 rounded-[4px] border border-[#CFC3B3] bg-[#FAF8F3] shadow-md h-full flex flex-col justify-between"
             >
-              {/* Gold Top Light Horizon */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/70 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#78000F] via-[#CFC3B3] to-transparent" />
 
               <div>
-                <div className="flex items-center justify-between mb-4 border-b border-[#26211B] pb-4">
+                <div className="flex items-center justify-between mb-5 border-b border-[#DDD2C2] pb-4">
                   <div>
-                    <span className="text-xs font-mono text-[#D4AF37] block mb-1">
+                    <span className="text-xs font-mono font-bold text-[#78000F] block mb-1">
                       PROGRESSION TRACK #{activeTrack.stepNumber || '01'}
                     </span>
-                    <h3 className="text-2xl sm:text-3xl font-serif font-normal text-white tracking-tight leading-snug">
+                    <h3 className="text-2xl sm:text-3xl font-serif font-bold text-[#111111] tracking-tight leading-snug">
                       {activeTrack.title}
                     </h3>
                   </div>
                   <span
-                    className={`text-xs font-mono px-3 py-1 rounded-full border uppercase ${
+                    className={`text-xs font-mono font-semibold px-3 py-1 rounded-[2px] border uppercase ${
                       statusBadgeStyles[activeTrack.status] || statusBadgeStyles.Building
                     }`}
                   >
@@ -171,33 +169,33 @@ export const EngineeringLabSection: React.FC = () => {
 
                 {/* Objective */}
                 <div className="mb-5">
-                  <span className="text-[10px] font-mono tracking-widest text-[#A8988B] uppercase block mb-1.5">
+                  <span className="text-[10px] font-mono tracking-widest text-[#78000F] uppercase font-bold block mb-1.5">
                     // OBJECTIVE &amp; SCOPE
                   </span>
-                  <p className="text-xs sm:text-[13.5px] text-[#C4BCB3] font-light leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#38342E] font-normal leading-relaxed">
                     {activeTrack.objective}
                   </p>
                 </div>
 
                 {/* Architecture Blueprint */}
-                <div className="mb-5 p-4 rounded-xl border border-[#26211B] bg-[#0A0908]">
-                  <span className="text-[10px] font-mono tracking-widest text-[#D4AF37] uppercase block mb-1">
+                <div className="mb-5 p-4 rounded-[3px] border border-[#DDD2C2] bg-[#F4EEE4]">
+                  <span className="text-[10px] font-mono tracking-widest text-[#78000F] uppercase font-bold block mb-1">
                     // SYSTEM ARCHITECTURE / WORKFLOW
                   </span>
-                  <code className="text-xs font-mono text-[#F5F2EB] block">
+                  <code className="text-xs font-mono text-[#111111] font-semibold block">
                     {activeTrack.architecture}
                   </code>
                 </div>
 
                 {/* Key Learnings */}
                 <div className="mb-5">
-                  <span className="text-[10px] font-mono tracking-widest text-[#A8988B] uppercase block mb-2">
+                  <span className="text-[10px] font-mono tracking-widest text-[#78000F] uppercase font-bold block mb-2">
                     // WHAT I AM LEARNING &amp; BUILDING
                   </span>
                   <ul className="space-y-1.5">
                     {(activeTrack.keyLearnings || []).map((learning: string, idx: number) => (
-                      <li key={idx} className="flex items-start space-x-2 text-xs text-[#C4BCB3]">
-                        <span className="text-[#D4AF37] font-bold">›</span>
+                      <li key={idx} className="flex items-start space-x-2 text-xs text-[#38342E]">
+                        <span className="text-[#78000F] font-bold">›</span>
                         <span>{learning}</span>
                       </li>
                     ))}
@@ -206,12 +204,12 @@ export const EngineeringLabSection: React.FC = () => {
               </div>
 
               {/* Technologies */}
-              <div className="pt-5 border-t border-[#26211B] flex flex-wrap items-center justify-between gap-4">
+              <div className="pt-5 border-t border-[#DDD2C2] flex flex-wrap items-center justify-between gap-4">
                 <div className="flex flex-wrap gap-2">
                   {(activeTrack.technologies || []).map((tech: string) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 text-[10.5px] font-mono rounded-lg border border-[#26211B] bg-[#0A0908] text-[#F5F2EB]"
+                      className="px-2.5 py-1 text-[10.5px] font-mono rounded-[2px] border border-[#DDD2C2] bg-[#F4EEE4] text-[#202020] font-medium"
                     >
                       {tech}
                     </span>
@@ -223,7 +221,7 @@ export const EngineeringLabSection: React.FC = () => {
                     href={activeTrack.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-mono text-[#D4AF37] hover:underline flex items-center space-x-1"
+                    className="text-xs font-mono font-bold text-[#78000F] hover:underline flex items-center space-x-1"
                   >
                     <span>GITHUB REPO</span>
                     <span>↗</span>

@@ -10,7 +10,7 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
@@ -22,7 +22,7 @@ const cardVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.22, 0.61, 0.36, 1],
     },
   },
 };
@@ -53,44 +53,43 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden flex flex-col justify-center"
+      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
-      {/* Ambient Glows */}
-      <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[28rem] h-[28rem] bg-[#8C6D4F]/5 rounded-full blur-[160px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1760px] mx-auto w-full relative z-10">
         
         {/* Eyebrow Header */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center space-x-4 mb-6"
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          className="flex items-center space-x-4 mb-6 sm:mb-8"
         >
-          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
-            02 / TECHNICAL ECOSYSTEM
+          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
+            02 / TECHNOLOGIES I WORK WITH
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
         </motion.div>
 
-        {/* Section Header & Filter Tabs */}
+        {/* Section Title & Filter Tabs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 sm:mb-10 flex flex-col lg:flex-row lg:items-end justify-between gap-5 sm:gap-6"
+          transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
+          className="mb-10 sm:mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
         >
           <div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
-              Technical stack &amp; <span className="italic text-[#D4AF37]">learning roadmap.</span>
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em]">
+              Technologies I Work With.
             </h2>
+            <p className="text-xs sm:text-sm font-mono text-[#736B60] mt-2 uppercase tracking-[0.16em]">
+              CORE ARCHITECTURES · PRODUCTION STACKS · EXPERIMENTAL LABS
+            </p>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 font-mono text-[9.5px] sm:text-[10.5px]">
+          <div className="flex flex-wrap items-center gap-2 font-mono text-[10px] sm:text-[11px]">
             {(['all', 'core', 'building', 'applied'] as const).map((cat) => {
               const label =
                 cat === 'all'
@@ -98,7 +97,7 @@ export const SkillsSection: React.FC = () => {
                   : cat === 'core'
                   ? 'CORE PRODUCTION'
                   : cat === 'building'
-                  ? 'CURRENTLY EXPLORING'
+                  ? 'CURRENTLY BUILDING'
                   : 'APPLIED & RESEARCH';
               const isActive = activeCategory === cat;
 
@@ -106,10 +105,10 @@ export const SkillsSection: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 sm:px-3.5 py-1.5 uppercase tracking-wider transition-all duration-300 border rounded-full cursor-pointer ${
+                  className={`px-3.5 py-1.5 uppercase tracking-wider transition-all duration-300 border rounded-[3px] cursor-pointer ${
                     isActive
-                      ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.25)]'
-                      : 'border-[#26211B] bg-[#12100E] text-[#C4BCB3] hover:text-white hover:border-[#D4AF37]/50'
+                      ? 'border-[#78000F] bg-[#78000F] text-white font-bold shadow-sm'
+                      : 'border-[#CFC3B3] bg-[#FAF8F3] text-[#38342E] hover:text-[#78000F] hover:border-[#78000F]'
                   }`}
                 >
                   {label}
@@ -120,24 +119,24 @@ export const SkillsSection: React.FC = () => {
         </motion.div>
 
         {/* Main Grid: Interactive Detail Panel (Left 4 cols) + Tech Groups (Right 8 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
           
-          {/* LEFT: Interactive Skill Detail Inspector Panel */}
+          {/* LEFT: Skill Detail Inspector Panel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="card-lift lg:col-span-4 lg:sticky lg:top-28 rounded-2xl border border-[#26211B] bg-[#12100E]/95 p-5 sm:p-7 shadow-2xl font-mono text-xs text-[#F5F2EB] relative overflow-hidden backdrop-blur-md"
+            className="editorial-card lg:col-span-4 lg:sticky lg:top-28 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] p-6 shadow-md font-mono text-xs text-[#202020] relative overflow-hidden"
           >
-            {/* Header Status Bar */}
-            <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#26211B]">
+            {/* Header Bar */}
+            <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-[#DDD2C2]">
               <div className="flex items-center space-x-2">
-                <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                <span className="text-[10px] tracking-widest text-[#D4AF37] uppercase">
+                <span className="w-2 h-2 rounded-full bg-[#78000F] animate-pulse" />
+                <span className="text-[10px] font-bold tracking-widest text-[#78000F] uppercase">
                   SKILL INSPECTOR
                 </span>
               </div>
-              <span className="text-[9.5px] text-[#A8988B] uppercase">
+              <span className="text-[9.5px] text-[#8C8275] uppercase font-semibold">
                 {activeSkill.category}
               </span>
             </div>
@@ -146,32 +145,32 @@ export const SkillsSection: React.FC = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSkill.id}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
+                exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.22 }}
                 className="space-y-4"
               >
                 <div>
-                  <span className="text-xl sm:text-2xl font-serif font-normal text-white block mb-1.5">
+                  <span className="text-2xl font-serif font-bold text-[#111111] block mb-1.5">
                     {activeSkill.name}
                   </span>
-                  <div className={`inline-block px-2.5 py-0.5 border text-[10px] uppercase rounded-full ${
+                  <div className={`inline-block px-2.5 py-0.5 border text-[9.5px] uppercase rounded-[2px] font-semibold ${
                     activeSkill.category === 'building'
-                      ? 'border-amber-500/40 bg-amber-950/30 text-amber-300'
-                      : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300'
+                      ? 'border-[#CFC3B3] bg-[#F4EEE4] text-[#78000F]'
+                      : 'border-[#B5DFCA] bg-[#E8F5EE] text-[#0F6848]'
                   }`}>
                     STATUS: {activeSkill.status}
                   </div>
                 </div>
 
-                <p className="text-[#C4BCB3] text-[13px] font-sans font-light leading-relaxed">
+                <p className="text-[#38342E] text-[13px] font-sans font-normal leading-relaxed">
                   {activeSkill.description}
                 </p>
 
                 {/* Related Projects Linkage */}
-                <div className="pt-3.5 border-t border-[#26211B]">
-                  <span className="text-[10px] text-[#A8988B] tracking-widest uppercase block mb-2.5">
+                <div className="pt-3.5 border-t border-[#DDD2C2]">
+                  <span className="text-[9.5px] text-[#8C8275] tracking-widest uppercase font-bold block mb-2">
                     DEMONSTRATED IN PROJECTS ({activeSkill.relatedProjects.length})
                   </span>
                   {activeSkill.relatedProjects.length > 0 ? (
@@ -183,15 +182,15 @@ export const SkillsSection: React.FC = () => {
                           <a
                             key={slug}
                             href="#projects"
-                            className="block p-3 rounded-xl border border-[#26211B] bg-[#0A0908] hover:border-[#D4AF37]/50 hover:bg-[#16130F] transition-all group"
+                            className="block p-3 rounded-[3px] border border-[#DDD2C2] bg-[#FAF8F3] hover:border-[#78000F] hover:bg-[#F4EEE4] transition-all group"
                           >
                             <div className="flex items-center justify-between">
-                              <span className="text-[12px] text-[#F5F2EB] group-hover:text-[#D4AF37] font-sans font-medium">
+                              <span className="text-[12px] text-[#111111] group-hover:text-[#78000F] font-sans font-semibold">
                                 {proj.title}
                               </span>
-                              <span className="text-[10px] text-[#A8988B] group-hover:text-[#D4AF37]">↗</span>
+                              <span className="text-[10px] text-[#78000F]">↗</span>
                             </div>
-                            <span className="text-[10px] text-[#A8988B] block mt-0.5">
+                            <span className="text-[10px] text-[#736B60] block mt-0.5">
                               {proj.category} · {proj.status}
                             </span>
                           </a>
@@ -199,7 +198,7 @@ export const SkillsSection: React.FC = () => {
                       })}
                     </div>
                   ) : (
-                    <p className="text-[11px] text-[#A8988B] italic">
+                    <p className="text-[11px] text-[#736B60] italic">
                       Active hands-on progression in Engineering Lab track.
                     </p>
                   )}
@@ -208,51 +207,55 @@ export const SkillsSection: React.FC = () => {
             </AnimatePresence>
           </motion.div>
 
-          {/* RIGHT: Bento Grid Skill Blocks */}
+          {/* RIGHT: Editorial Catalog Cards */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            className="lg:col-span-8 grid grid-cols-1 md:grid-cols-12 gap-6"
+            className="lg:col-span-8 grid grid-cols-1 gap-6"
           >
-            {filteredGroups.map((block) => {
+            {filteredGroups.map((block, bIdx) => {
               const isLearningTrack = block.category === 'building';
 
               return (
                 <motion.div
                   key={block.id}
                   variants={cardVariants}
-                  className="card-lift md:col-span-12 relative p-6 sm:p-7 rounded-2xl border border-[#26211B] bg-[#12100E] backdrop-blur-xl overflow-hidden group"
+                  className={`editorial-card p-6 sm:p-7 rounded-[4px] border ${
+                    isLearningTrack 
+                      ? 'border-[#78000F]/40 bg-[#FAF8F3] shadow-md' 
+                      : 'border-[#CFC3B3] bg-[#FAF8F3] shadow-sm'
+                  }`}
                 >
-                  {/* Top Subtle Flare */}
-                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
-
                   {/* Header Badge & Status */}
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#D4AF37]">
-                      {block.badge}
-                    </span>
-                    <span className={`text-[10px] font-mono px-2.5 py-0.5 border rounded-full uppercase ${
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs font-mono font-bold text-[#78000F]">0{bIdx + 1}</span>
+                      <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[#78000F] font-semibold">
+                        {block.badge}
+                      </span>
+                    </div>
+                    <span className={`text-[9.5px] font-mono px-2 py-0.5 border rounded-[2px] uppercase font-semibold ${
                       isLearningTrack
-                        ? 'border-amber-500/40 bg-amber-950/30 text-amber-300 font-medium'
-                        : 'border-emerald-500/40 bg-emerald-950/30 text-emerald-300 font-medium'
+                        ? 'border-[#78000F]/30 bg-[#F4EEE4] text-[#78000F]'
+                        : 'border-[#B5DFCA] bg-[#E8F5EE] text-[#0F6848]'
                     }`}>
                       {block.statusText}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-serif font-normal text-white mb-2">
+                  <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#111111] mb-2">
                     {block.title}
                   </h3>
 
-                  <p className="text-xs text-[#C4BCB3] font-light leading-relaxed mb-5">
+                  <p className="text-xs text-[#38342E] font-normal leading-relaxed mb-4 max-w-2xl">
                     {block.description}
                   </p>
 
-                  {/* Interactive Skill Badges */}
-                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[#26211B]">
+                  {/* Skill Badges */}
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[#DDD2C2]">
                     {block.skills.map((tech) => {
                       const isSelected = activeSkill.id === tech.id;
                       const isBuilding = tech.category === 'building';
@@ -263,12 +266,12 @@ export const SkillsSection: React.FC = () => {
                           onClick={() => setSelectedSkill(tech)}
                           onMouseEnter={() => setSelectedSkill(tech)}
                           onFocus={() => setSelectedSkill(tech)}
-                          className={`px-3.5 py-2 text-[11px] font-medium tracking-wide rounded-xl border text-left transition-all duration-200 cursor-pointer focus:outline-none focus:ring-1 focus:ring-[#D4AF37] ${
+                          className={`px-3 py-1.5 text-[11px] font-mono font-medium tracking-wide rounded-[3px] border text-left transition-all duration-200 cursor-pointer ${
                             isSelected
-                              ? 'border-[#D4AF37] bg-[#D4AF37] text-black font-semibold shadow-[0_0_15px_rgba(212,175,55,0.3)]'
+                              ? 'border-[#78000F] bg-[#78000F] text-white font-bold shadow-sm'
                               : isBuilding
-                              ? 'border-amber-500/30 bg-amber-950/20 text-amber-200 hover:border-amber-400 hover:bg-amber-950/40'
-                              : 'border-[#26211B] bg-[#0A0908] text-[#F5F2EB] hover:border-[#D4AF37]/50 hover:bg-[#16130F]'
+                              ? 'border-[#DDD2C2] bg-[#F4EEE4] text-[#78000F] hover:border-[#78000F]'
+                              : 'border-[#CFC3B3] bg-[#FAF8F3] text-[#202020] hover:border-[#78000F] hover:text-[#78000F]'
                           }`}
                         >
                           <span>{tech.name}</span>

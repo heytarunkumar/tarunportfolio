@@ -8,7 +8,6 @@ export const AboutPage: React.FC = () => {
   useEffect(() => {
     document.title = 'About Tarun Kumar | Python Developer, AI Engineer & Founder (@heytarunkumar)';
 
-    // Inject ProfilePage JSON-LD schema specifically for the profile page
     const scriptId = 'about-profile-page-schema';
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!script) {
@@ -51,7 +50,7 @@ export const AboutPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] pt-16">
+    <div className="min-h-screen bg-[#F4EEE4] text-[#202020] pt-16">
       <AboutSection />
       <SkillsSection />
       <FaqSection />

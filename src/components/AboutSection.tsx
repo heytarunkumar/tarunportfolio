@@ -21,7 +21,7 @@ const fadeUpVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.22, 0.61, 0.36, 1],
     },
   },
 };
@@ -29,32 +29,32 @@ const fadeUpVariants: Variants = {
 export const AboutSection: React.FC = () => {
   const { profile } = usePortfolio();
 
-  const eyebrow = profile.aboutEyebrow || '01 / MISSION & PHILOSOPHY';
-  const headline = profile.aboutHeadline || 'Engineering intelligence. Scaling ventures.';
+  const eyebrow = profile.aboutEyebrow || '01 / EXECUTIVE PROFILE & PHILOSOPHY';
+  const headline = profile.aboutHeadline || 'Turning Ideas Into Intelligent, Production Systems.';
   const storyParagraphs = (profile.aboutStoryParagraphs && profile.aboutStoryParagraphs.length > 0)
     ? profile.aboutStoryParagraphs
     : [
-        `I am ${profile?.name || 'Tarun Kumar'} (also known online as @heytarunkumar) — a Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures.`,
-        'My work sits at the intersection of Artificial Intelligence, Generative AI, Python systems engineering, automated workflows, and empirical research. As the Founder & President of OrigoHOST Tech Community (https://origohost.in), I lead technical initiatives, builder hackathons, and community growth focused on applied AI and developer education.',
+        `I am ${profile?.name || 'Tarun Kumar'} (known across engineering platforms as @heytarunkumar) — a Python Developer, AI Systems Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable ventures.`,
+        'My work sits at the intersection of applied machine learning, autonomous agents, high-performance Python microservices, and empirical software research. As Founder & President of OrigoHOST Tech Community (origohost.in), I spearhead national developer hackathons, technical bootcamps, and builder ecosystems.',
       ];
   const quote = profile.aboutQuote || 'I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.';
   const pillars = (profile.competencyPillars && profile.competencyPillars.length > 0)
     ? profile.competencyPillars
     : [
-        { number: '01', title: 'AI & GENAI', subtitle: 'LLMs, Intelligent Agents & Applied AI Systems' },
-        { number: '02', title: 'PYTHON & AUTOMATION', subtitle: 'Scalable Microservices, APIs & Workflows' },
-        { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST Founder, Developer Education & Growth' },
+        { number: '01', title: 'APPLIED AI & AGENTS', subtitle: 'LLMs, Tool-Use Architectures & Explainable Systems' },
+        { number: '02', title: 'PYTHON & BACKEND', subtitle: 'Scalable Microservices, Asynchronous APIs & Data Workflows' },
+        { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST President, Builder Hackathons & Developer Education' },
       ];
   const spotlight = profile.spotlightCard || {
-    photoUrl: '/images/tarun-headshot.jpg',
-    name: profile.name || 'Tarun Kumar',
+    photoUrl: '/images/tarun-light-portrait.webp',
+    name: profile.name || 'Mr. Tarun Kumar',
     role: profile.primaryRole || 'Founder & AI Systems Engineer',
     leadership: 'President @ OrigoHOST',
     verifiedStatus: 'VERIFIED',
   };
   const origo = profile.origohostCard || {
-    logoUrl: '/images/origohost/origohost-icon.png',
-    tag: 'VENTURE & COMMUNITY',
+    logoUrl: '/images/origohost/origohost-icon-64.webp',
+    tag: 'VENTURE & ECOSYSTEM',
     title: 'OrigoHOST Tech Community',
     tagline: 'WHERE BUILDERS BECOME INNOVATORS',
     description: 'As Founder & President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.',
@@ -62,86 +62,84 @@ export const AboutSection: React.FC = () => {
     ecosystem: 'APPLIED AI ECOSYSTEM',
   };
   const log = profile.progressionLog || {
-    logTitle: 'VENTURE_&_TECH_STACK.LOG',
+    logTitle: 'EXECUTIVE_CAPABILITIES.LOG',
     version: 'v2026.AI',
     items: [
       { title: 'Applied AI & GenAI Architectures', status: '✓ ACTIVE', statusType: 'active' },
       { title: 'Python Systems & Automation', status: '✓ MASTERED', statusType: 'mastered' },
       { title: 'Community & Builder Ecosystems', status: '✓ LEADING', statusType: 'leading' },
-      { title: 'Scalable AI Ventures & Products', status: '⚡ SCALING', statusType: 'scaling' },
+      { title: 'Cloud & Scalable AI Ventures', status: '⚡ SCALING', statusType: 'scaling' },
     ],
   };
 
   return (
     <section 
       id="about" 
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden flex items-center"
+      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
-      {/* Background Subtle Glows */}
-      <div className="absolute top-1/4 left-1/6 w-[32rem] h-[32rem] bg-[#D4AF37]/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-1/6 right-1/4 w-[28rem] h-[28rem] bg-[#8C6D4F]/5 rounded-full blur-[170px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1760px] mx-auto w-full relative z-10">
         
-        {/* Eyebrow Header */}
+        {/* Eyebrow Section Marker */}
         <motion.div 
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center space-x-4 mb-6 sm:mb-8"
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          className="flex items-center space-x-4 mb-8 sm:mb-12"
         >
-          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
             {eyebrow}
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
         </motion.div>
 
-        {/* Main Grid: Content + Tech Blueprint Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        {/* Main Grid: Editorial Story (7 Cols) + Magazine Feature Cards (5 Cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* LEFT CONTENT (7 COLS) */}
+          {/* LEFT: Magazine Article / Story (7 Cols) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            className="lg:col-span-7 flex flex-col justify-center"
+            viewport={{ once: true, margin: "-60px" }}
+            className="lg:col-span-7 flex flex-col"
           >
-            {/* Headline */}
-            <motion.div variants={fadeUpVariants} className="relative mb-5 sm:mb-6 select-none">
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
+            {/* Display Headline */}
+            <motion.div variants={fadeUpVariants} className="mb-6 sm:mb-8 select-none">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em]">
                 {headline}
               </h2>
             </motion.div>
 
-            {/* Narrative Paragraph */}
+            {/* Narrative Body */}
             <motion.div
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#C4BCB3] leading-[1.85] tracking-wide mb-6 sm:mb-8 max-w-xl space-y-4"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              className="text-sm sm:text-base font-normal text-[#38342E] leading-[1.85] mb-8 space-y-4 max-w-2xl"
             >
               {storyParagraphs.map((para, pIdx) => (
                 <p key={pIdx}>{para}</p>
               ))}
+              
               {quote && (
-                <p className="text-[#D4AF37] italic border-l-2 border-[#D4AF37]/60 pl-4 bg-[#12100E]/70 py-2 rounded-r-xl text-xs sm:text-sm">
-                  &ldquo;{quote}&rdquo;
-                </p>
+                <div className="my-6 border-l-2 border-[#78000F] pl-5 py-3 bg-[#FAF8F3] rounded-r-[4px] border-t border-r border-b border-[#DDD2C2]">
+                  <p className="font-serif italic text-base sm:text-lg text-[#78000F] leading-relaxed">
+                    &ldquo;{quote}&rdquo;
+                  </p>
+                </div>
               )}
             </motion.div>
 
-            {/* Core Competency Pillars Grid */}
+            {/* Competency Pillars - Clean Editorial Grid */}
             <motion.div 
               variants={fadeUpVariants}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-6 border-t border-[#26211B]"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#DDD2C2]"
             >
               {pillars.map((pillar, pilIdx) => (
-                <div key={pilIdx} className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
-                  <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
+                <div key={pilIdx} className="editorial-card p-4 sm:p-5 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3]">
+                  <span className="text-[10px] font-mono font-bold text-[#78000F] block mb-1 tracking-widest">
                     {pillar.number} // {pillar.title}
                   </span>
-                  <p className="text-xs font-sans text-[#F5F2EB] font-medium">
+                  <p className="text-xs font-sans text-[#202020] font-medium leading-snug">
                     {pillar.subtitle}
                   </p>
                 </div>
@@ -149,137 +147,134 @@ export const AboutSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT ARCHITECTURE BLUEPRINT & COMMUNITY CARD (5 COLS) */}
-          <div className="lg:col-span-5 flex flex-col space-y-5 relative">
+          {/* RIGHT: Magazine Spotlight Cards (5 Cols) */}
+          <div className="lg:col-span-5 flex flex-col space-y-6">
             
-            {/* Founder Portrait Spotlight Card */}
+            {/* Founder Profile Feature Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="card-lift relative rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl overflow-hidden group"
+              transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
+              className="editorial-card rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md overflow-hidden"
             >
-              {/* Top Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent z-10" />
-
-              {/* Card Header Tag */}
-              <div className="px-4 sm:px-5 py-3.5 flex items-center justify-between border-b border-[#26211B] bg-[#141210]">
+              {/* Card Header Bar */}
+              <div className="px-5 py-3 flex items-center justify-between border-b border-[#DDD2C2] bg-[#F4EEE4]">
                 <div className="flex items-center space-x-2">
-                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
+                  <span className="w-2 h-2 rounded-full bg-[#78000F] animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#78000F] font-bold">
+                    EXECUTIVE SPOTLIGHT
+                  </span>
                 </div>
-                <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
+                <span className="px-2 py-0.5 text-[9px] font-mono bg-[#E8F5EE] border border-[#B5DFCA] text-[#0F6848] rounded-[2px] font-semibold">
                   {spotlight.verifiedStatus || 'VERIFIED'}
                 </span>
               </div>
               
-              {/* Photo Area */}
-              <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[440px] overflow-hidden bg-[#0A0908]">
+              {/* Photo */}
+              <div className="relative w-full aspect-[4/5] max-h-[400px] overflow-hidden bg-[#DDD2C2]">
                 <img
-                  src={spotlight.photoUrl || "/images/tarun-headshot.webp"}
+                  src={spotlight.photoUrl || "/images/tarun-light-portrait.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
                   width="440"
                   height="550"
-                  className="w-full h-full object-cover object-top sm:object-[center_10%] transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-black/10 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Clean Footer Info Bar */}
-              <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+              {/* Info Bar */}
+              <div className="px-5 py-4 bg-[#FAF8F3] border-t border-[#DDD2C2] flex items-center justify-between">
                 <div>
-                  <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">{spotlight.name}</h3>
-                  <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">{spotlight.role}</p>
+                  <h3 className="text-base sm:text-lg font-serif font-bold text-[#111111]">{spotlight.name}</h3>
+                  <p className="text-[11px] font-mono text-[#78000F] mt-0.5 font-medium">{spotlight.role}</p>
                 </div>
-                <div className="text-left sm:text-right">
-                  <span className="text-[9.5px] font-mono text-[#A8988B] block">LEADERSHIP</span>
-                  <span className="text-[11px] font-mono text-[#C4BCB3]">{spotlight.leadership}</span>
+                <div className="text-right">
+                  <span className="text-[9px] font-mono text-[#8C8275] block uppercase tracking-wider">LEADERSHIP</span>
+                  <span className="text-[11px] font-mono text-[#202020] font-semibold">{spotlight.leadership}</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* OrigoHOST Highlight Card */}
+            {/* OrigoHOST Highlight Feature */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E] shadow-2xl overflow-hidden group"
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
+              className="editorial-card p-5 sm:p-6 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md"
             >
-              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
-              
-              <div className="flex items-center space-x-3.5 sm:space-x-4 mb-4">
+              <div className="flex items-center space-x-3.5 mb-4">
                 <img
                   src={origo.logoUrl || "/images/origohost/origohost-icon-64.webp"}
                   alt={origo.title}
                   loading="lazy"
                   decoding="async"
-                  width="48"
-                  height="48"
-                  className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl bg-[#0A0908] border border-[#26211B] p-1.5 shrink-0"
+                  width="44"
+                  height="44"
+                  className="w-10 h-10 object-contain rounded-[4px] bg-[#F4EEE4] border border-[#DDD2C2] p-1 shrink-0"
                 />
                 <div className="min-w-0">
                   <div className="flex items-center space-x-2">
-                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase truncate">{origo.tag}</span>
-                    <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-md">ACTIVE</span>
+                    <span className="text-[9.5px] font-mono text-[#78000F] tracking-widest uppercase font-bold">{origo.tag}</span>
+                    <span className="px-1.5 py-0.2 text-[8.5px] font-mono bg-[#E8F5EE] text-[#0F6848] rounded-[2px] font-semibold">ACTIVE</span>
                   </div>
-                  <h3 className="text-base sm:text-lg font-serif font-normal text-white tracking-wide truncate">
+                  <h3 className="text-base font-serif font-bold text-[#111111] truncate">
                     {origo.title}
                   </h3>
-                  <p className="text-[10px] font-mono text-[#C99E5D] truncate">{origo.tagline}</p>
+                  <p className="text-[10px] font-mono text-[#736B60] truncate">{origo.tagline}</p>
                 </div>
               </div>
 
-              <p className="text-xs font-light text-[#C4BCB3] leading-relaxed mb-4">
+              <p className="text-xs font-normal text-[#38342E] leading-relaxed mb-4">
                 {origo.description}
               </p>
 
-              <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#A8988B]">
-                <span>{origo.role}</span>
+              <div className="pt-3 border-t border-[#DDD2C2] flex items-center justify-between text-[11px] font-mono text-[#555047]">
+                <span className="font-semibold">{origo.role}</span>
                 <a
                   href="https://origohost.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#D4AF37] hover:underline inline-flex items-center space-x-1"
+                  className="text-[#78000F] font-bold hover:underline inline-flex items-center space-x-1"
                 >
                   <span>{origo.ecosystem}</span>
-                  <span className="text-[10px]">↗</span>
+                  <span>↗</span>
                 </a>
               </div>
             </motion.div>
 
-            {/* Career Progression Roadmap */}
+            {/* Progression & Capability Log */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+              className="editorial-card p-5 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md font-mono text-xs"
             >
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#A8988B]">
-                <span className="text-[10px] truncate max-w-[200px]">{log.logTitle}</span>
-                <span className="text-[#D4AF37]">{log.version}</span>
+              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#DDD2C2] text-[#8C8275] text-[10px]">
+                <span className="truncate font-semibold">{log.logTitle}</span>
+                <span className="text-[#78000F] font-bold">{log.version}</span>
               </div>
 
-              <div className="space-y-2.5 text-[11px]">
+              <div className="space-y-2 text-[11px]">
                 {(log.items || []).map((item, itmIdx) => {
                   const isHighlight = item.statusType === 'scaling' || itmIdx === log.items.length - 1;
                   return (
                     <div
                       key={itmIdx}
-                      className={`p-2.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 ${
+                      className={`p-2 rounded-[3px] border flex items-center justify-between ${
                         isHighlight
-                          ? 'border-[#D4AF37]/30 bg-[#16130F]'
-                          : 'border-[#26211B] bg-[#0A0908]'
+                          ? 'border-[#78000F]/30 bg-[#F4EEE4]'
+                          : 'border-[#DDD2C2] bg-[#FAF8F3]'
                       }`}
                     >
-                      <span className={isHighlight ? 'text-[#F7E7C4] font-sans' : 'text-white font-sans'}>
+                      <span className="text-[#202020] font-sans font-medium">
                         {item.title}
                       </span>
-                      <span className={isHighlight ? 'text-[#D4AF37] font-mono font-semibold shrink-0' : 'text-emerald-400 font-mono font-semibold shrink-0'}>
+                      <span className={isHighlight ? 'text-[#78000F] font-mono font-bold' : 'text-[#0F6848] font-mono font-bold'}>
                         {item.status}
                       </span>
                     </div>

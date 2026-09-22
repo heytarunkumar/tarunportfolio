@@ -20,7 +20,7 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB]">
+    <div className="min-h-screen bg-[#F4EEE4] text-[#202020]">
       <HeroSection />
       {isPageVisible('/about') && <AboutSection />}
       {isPageVisible('/about') && <SkillsSection />}

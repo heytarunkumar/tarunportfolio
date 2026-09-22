@@ -1,12 +1,11 @@
-import React, { useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
 
 export const ExperienceSection: React.FC = () => {
   const { experience: contextExperience } = usePortfolio();
   const experienceData = (contextExperience || []).filter((item) => item.visible !== false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [expandedId, setExpandedId] = useState<string | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -15,33 +14,26 @@ export const ExperienceSection: React.FC = () => {
 
   const lineHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
 
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
-
   return (
     <section
       id="experience"
       ref={containerRef}
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-16 sm:py-24 lg:py-28 px-4 sm:px-8 lg:px-16 overflow-hidden"
+      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#D4AF37]/[0.03] rounded-full blur-[150px] pointer-events-none" />
-
       <div className="max-w-4xl mx-auto w-full relative z-10">
         
         {/* Eyebrow Header */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center space-x-4 mb-6"
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
+          className="flex items-center space-x-4 mb-6 sm:mb-8"
         >
-          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
-            06 / EXPERIENCE &amp; MILESTONES
+          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
+            04 / EXPERIENCE &amp; LEADERSHIP
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
         </motion.div>
 
         {/* Section Headline */}
@@ -49,11 +41,11 @@ export const ExperienceSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10 sm:mb-14"
+          transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
+          className="mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-white tracking-normal leading-[1.15]">
-            Venture &amp; leadership <span className="italic text-[#D4AF37]">milestones.</span>
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em]">
+            Venture &amp; Leadership <span className="text-[#78000F] italic">Milestones.</span>
           </h2>
         </motion.div>
 
@@ -61,127 +53,91 @@ export const ExperienceSection: React.FC = () => {
         <div className="relative w-full">
           
           {/* Track Line */}
-          <div className="absolute left-[14px] md:left-[140px] top-4 bottom-8 w-[1px] bg-[#26211B]" />
+          <div className="absolute left-[14px] md:left-[140px] top-4 bottom-8 w-[1px] bg-[#CFC3B3]" />
           
           <motion.div
             style={{ height: lineHeight }}
-            className="absolute left-[14px] md:left-[140px] top-4 w-[2px] bg-gradient-to-b from-[#D4AF37] via-[#C99E5D] to-[#8C6D4F]/20 origin-top"
+            className="absolute left-[14px] md:left-[140px] top-4 w-[2px] bg-gradient-to-b from-[#78000F] via-[#78000F]/80 to-[#78000F]/20 origin-top"
           />
 
           <div className="space-y-10 sm:space-y-12">
             {experienceData.map((item, idx) => {
-              const isExpanded = expandedId === item.id;
-
               return (
                 <motion.div
                   key={item.id || idx}
                   initial={{ opacity: 0, x: -15 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
+                  transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 0.61, 0.36, 1] }}
                   className="relative flex flex-col md:flex-row items-start group"
                 >
                   {/* Year Label */}
                   <div className="hidden md:block w-[140px] shrink-0 pr-8 pt-0.5 text-right">
-                    <span className="text-[11px] font-mono tracking-[0.2em] text-[#A8988B] group-hover:text-[#D4AF37] transition-colors">
+                    <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-[#78000F] group-hover:text-[#111111] transition-colors">
                       {item.year}
                     </span>
                   </div>
 
                   {/* Timeline Node */}
                   <div className="absolute left-[14px] md:left-[140px] top-1.5 -translate-x-1/2 flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#12100E] border border-[#8C6D4F] group-hover:bg-[#D4AF37] group-hover:border-[#D4AF37] transition-colors duration-300" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FAF8F3] border-2 border-[#78000F] group-hover:bg-[#78000F] transition-colors duration-300 shadow-sm" />
                   </div>
 
-                  {/* Content */}
+                  {/* Content Card */}
                   <div className="ml-9 md:ml-10 pl-1 sm:pl-2 w-full">
                     <div className="md:hidden mb-1.5">
-                      <span className="text-[10px] font-mono tracking-[0.2em] text-[#D4AF37]">
+                      <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-[#78000F]">
                         {item.year}
                       </span>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-1.5">
-                      {item.logoUrl && (
-                        <img
-                          src={item.logoUrl}
-                          alt={item.organization}
-                          className="w-7 h-7 object-contain rounded-lg bg-[#0A0908] border border-[#26211B] p-0.5"
-                        />
-                      )}
-                      <h3 className="text-xl sm:text-2xl font-serif font-normal text-white group-hover:text-[#F7E7C4] transition-colors leading-tight">
-                        {item.role}
-                      </h3>
-                      {!item.isVerified && (
-                        <span className="text-[9.5px] font-mono text-amber-400 bg-amber-950/40 px-2 py-0.5 border border-amber-500/30 rounded-md">
-                          VERIFY
+                    <div className="editorial-card p-5 sm:p-7 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-sm">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                        <h3 className="text-lg sm:text-xl font-serif font-bold text-[#111111]">
+                          {item.role}
+                        </h3>
+                        <span className="text-xs font-mono text-[#78000F] font-semibold">
+                          {item.organization}
                         </span>
-                      )}
-                    </div>
-                    
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className="text-[11px] font-mono tracking-[0.18em] uppercase text-[#D4AF37]">
-                        {item.organization}
-                      </span>
-                      {item.tagline && (
-                        <span className="text-[9.5px] font-mono text-[#A8988B] border border-[#26211B] px-2 py-0.5 rounded-md bg-[#12100E]">
-                          &quot;{item.tagline}&quot;
-                        </span>
-                      )}
-                    </div>
-                    
-                    <p className="text-xs sm:text-[13.5px] font-light text-[#C4BCB3] leading-[1.7] max-w-xl mb-3">
-                      {item.description}
-                    </p>
+                      </div>
 
-                    {/* Morphing Toggle for Responsibilities */}
-                    <button
-                      type="button"
-                      onClick={() => toggleExpand(item.id)}
-                      className="inline-flex items-center space-x-1.5 text-[10.5px] font-mono text-[#D4AF37] hover:underline uppercase mb-3 focus:outline-none cursor-pointer"
-                    >
-                      <span>{isExpanded ? '[- HIDE DETAILS]' : '[+ VIEW KEY CONTRIBUTIONS]'}</span>
-                    </button>
+                      <p className="text-xs sm:text-sm font-normal text-[#38342E] leading-relaxed mb-4">
+                        {item.description}
+                      </p>
 
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                          className="mb-4 pl-3.5 border-l-2 border-[#D4AF37]/50 space-y-1.5 overflow-hidden"
-                        >
-                          <span className="text-[10px] font-mono text-[#A8988B] uppercase block mb-1">
-                            KEY SCOPE &amp; CONTRIBUTIONS:
-                          </span>
-                          {(item.responsibilities || []).map((resp, i) => (
-                            <p key={i} className="text-xs text-[#E8E3D8] font-light flex items-start space-x-2">
-                              <span className="text-[#D4AF37]">›</span>
-                              <span>{resp}</span>
-                            </p>
+                      {item.responsibilities && item.responsibilities.length > 0 && (
+                        <div className="mb-4">
+                          <ul className="space-y-1.5 text-xs text-[#555047] list-disc list-inside">
+                            {item.responsibilities.map((resp, rIdx) => (
+                              <li key={rIdx}>{resp}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Tech Tags */}
+                      {item.technologies && item.technologies.length > 0 && (
+                        <div className="flex flex-wrap gap-1.5 pt-3 border-t border-[#DDD2C2]">
+                          {item.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className="px-2 py-0.5 rounded-[2px] text-[9.5px] font-mono bg-[#F4EEE4] border border-[#DDD2C2] text-[#202020] font-medium"
+                            >
+                              {tech}
+                            </span>
                           ))}
-                        </motion.div>
+                        </div>
                       )}
-                    </AnimatePresence>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {(item.technologies || []).map((t) => (
-                        <span
-                          key={t}
-                          className="px-2.5 py-0.5 text-[10px] font-mono rounded-lg border border-[#26211B] bg-[#12100E] text-[#C4BCB3]"
-                        >
-                          {t}
-                        </span>
-                      ))}
                     </div>
                   </div>
+
                 </motion.div>
               );
             })}
           </div>
 
         </div>
+
       </div>
     </section>
   );

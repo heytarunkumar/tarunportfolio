@@ -30,86 +30,75 @@ export const Footer: React.FC = () => {
       ];
 
   return (
-    <footer className="w-full bg-[#070605] border-t border-[#26211B] text-[#E8DFD8] py-10 sm:py-14 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
-      <div className="w-full max-w-[1760px] mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 lg:gap-10">
+    <footer className="w-full bg-[#111111] border-t border-[#26211B] text-[#F4EEE4] py-14 sm:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
+      <div className="w-full max-w-[1760px] mx-auto">
         
-        {/* Left Identity */}
-        <div className="text-center lg:text-left flex flex-col sm:flex-row items-center sm:items-start space-y-2.5 sm:space-y-0 sm:space-x-4 shrink-0">
-          <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-white p-1 border border-[#D4AF37]/50 shadow-md shrink-0">
-            <img
-              src={profile.monogramUrl || "/images/brand/tarun-monogram-64.webp"}
-              alt={`${profile.name || 'Tarun Kumar'} Monogram`}
-              width="48"
-              height="48"
-              className="w-full h-full object-contain"
-            />
+        {/* Top Editorial Identity & Grid */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-10 border-b border-white/10">
+          
+          {/* Left Monogram & Large Name Stamp */}
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 rounded-[4px] overflow-hidden bg-[#FAF8F3] p-1 border border-[#CFC3B3] shrink-0">
+              <img
+                src={profile.monogramUrl || "/images/brand/tarun-monogram-64.webp"}
+                alt={`${profile.name || 'Tarun Kumar'} Monogram`}
+                width="48"
+                height="48"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div>
+              <Link
+                to="/"
+                className="text-xl sm:text-2xl font-serif font-bold text-[#F4EEE4] hover:text-[#C51E31] transition-colors block leading-tight"
+              >
+                {profile?.name || 'Mr. Tarun Kumar'}
+              </Link>
+              <span className="text-[11px] font-mono tracking-wider text-[#A8988B] block mt-0.5 uppercase">
+                {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
+              </span>
+            </div>
           </div>
-          <div>
-            <Link
-              to="/"
-              className="text-base font-serif font-normal text-white block mb-0.5 hover:text-[#D4AF37] transition-colors"
-            >
-              {profile?.name || 'TARUN KUMAR'}
-            </Link>
-            <span className="text-[11px] sm:text-xs font-mono text-[#A8988B] block">
-              {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
-            </span>
+
+          {/* Quick Page Links */}
+          <div className="flex flex-wrap items-center gap-x-6 sm:gap-x-8 gap-y-2 text-[11px] font-mono tracking-[0.16em] uppercase text-[#C4BCB3]">
+            {activeNavItems.map((item) => (
+              <Link 
+                key={item.id} 
+                to={item.path} 
+                className="hover:text-white transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
+
         </div>
 
-        {/* Center Quick Page Links */}
-        <div className="flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-8 gap-y-2.5 text-[11px] sm:text-xs font-mono text-[#C4B5A5]">
-          {activeNavItems.map((item) => (
-            <Link 
-              key={item.id} 
-              to={item.path} 
-              className="hover:text-[#D4AF37] transition-colors uppercase whitespace-nowrap"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </div>
-
-        {/* Right Social & Copyright */}
-        <div className="text-center lg:text-right text-[11px] sm:text-xs font-mono text-[#A8988B] shrink-0">
-          <div className="flex flex-wrap justify-center lg:justify-end gap-x-4 sm:gap-x-6 gap-y-2 mb-2 text-[#C4B5A5]">
+        {/* Bottom Socials & Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#8C8275]">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[#C4BCB3]">
             <a
-              href={profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar'}
+              href={profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
+              className="hover:text-white transition-colors"
             >
-              LINKTREE ↗
-            </a>
-            <a
-              href={profile?.socials?.instagram || 'https://www.instagram.com/heytarunkumar/'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
-            >
-              INSTAGRAM ↗
+              LINKEDIN ↗
             </a>
             <a
               href={profile?.socials?.github || 'https://github.com/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
+              className="hover:text-white transition-colors"
             >
               GITHUB ↗
-            </a>
-            <a
-              href={profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
-            >
-              LINKEDIN ↗
             </a>
             <a
               href={profile?.socials?.x || 'https://x.com/heytarunkumarr'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
+              className="hover:text-white transition-colors"
             >
               X ↗
             </a>
@@ -117,17 +106,26 @@ export const Footer: React.FC = () => {
               href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#D4AF37] transition-colors whitespace-nowrap"
+              className="hover:text-white transition-colors"
             >
               MEDIUM ↗
             </a>
+            <a
+              href={profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors"
+            >
+              LINKTREE ↗
+            </a>
           </div>
+
           <span 
             onClick={handleSecretTrigger} 
             className="cursor-default select-none transition-colors duration-200 block text-[10.5px] sm:text-xs"
             title=""
           >
-            {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Tarun Kumar'}. All rights reserved.`}
+            {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Mr. Tarun Kumar'}. All rights reserved.`}
           </span>
         </div>
 
