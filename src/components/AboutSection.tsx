@@ -171,15 +171,15 @@ export const AboutSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Photo */}
-              <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#FAF8F3]">
+              {/* Photo - 4:3 Editorial Ratio Matching Natural Image Framing */}
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#FAF8F3]">
                 <img
                   src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
                   loading="lazy"
                   decoding="async"
-                  width="600"
-                  height="750"
+                  width="800"
+                  height="600"
                   className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/30 via-transparent to-transparent pointer-events-none" />
