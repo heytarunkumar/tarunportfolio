@@ -30,8 +30,36 @@ async function generate() {
   }
 
   // =========================================================================
-  // 1. EXECUTIVE SPOTLIGHT: tarun-executive.webp (4:3 ratio - 800x600)
-  // Perfectly matches the natural proportions of the armchair executive portrait
+  // 1. HERO PORTRAIT: tarun-light-portrait.webp (4:3 ratio - 800x600)
+  // Matching Spotlight Card 4:3 size perfectly
+  // White shirt, dark blazer, sunglasses.
+  // =========================================================================
+  const heroW = 800;
+  const heroH = 600;
+  const heroCrop = await sharp(srcWhite)
+    .extract({ left: 112, top: 0, width: 800, height: 576 })
+    .resize(heroW, heroH, {
+      fit: 'contain',
+      background: { r: 250, g: 248, b: 243, alpha: 1 }
+    })
+    .toBuffer();
+
+  const heroBg = await sharp(getStudioBg(heroW, heroH)).png().toBuffer();
+
+  await sharp(heroBg)
+    .composite([{ input: heroCrop, blend: 'over' }])
+    .webp({ quality: 95, effort: 6 })
+    .toFile(path.join(outDir, 'tarun-light-portrait.webp'));
+
+  await sharp(heroBg)
+    .composite([{ input: heroCrop, blend: 'over' }])
+    .jpeg({ quality: 95 })
+    .toFile(path.join(outDir, 'tarun-light-hero.jpg'));
+
+  console.log('✓ Hero Portrait 4:3 (800x600) generated');
+
+  // =========================================================================
+  // 2. EXECUTIVE SPOTLIGHT: tarun-executive.webp (4:3 ratio - 800x600)
   // =========================================================================
   const spotW = 800;
   const spotH = 600;
@@ -56,31 +84,6 @@ async function generate() {
     .toFile(path.join(outDir, 'tarun-executive.jpg'));
 
   console.log('✓ Executive Spotlight 4:3 (800x600) generated');
-
-  // =========================================================================
-  // 2. HERO PORTRAIT: tarun-light-portrait.webp (800x1000 - 4:5 vertical)
-  // =========================================================================
-  const heroCropBalanced = await sharp(srcWhite)
-    .extract({ left: 140, top: 0, width: 720, height: 576 })
-    .resize(800, 1000, {
-      fit: 'contain',
-      background: { r: 250, g: 248, b: 243, alpha: 1 }
-    })
-    .toBuffer();
-
-  const heroBg = await sharp(getStudioBg(800, 1000)).png().toBuffer();
-
-  await sharp(heroBg)
-    .composite([{ input: heroCropBalanced, blend: 'over' }])
-    .webp({ quality: 95, effort: 6 })
-    .toFile(path.join(outDir, 'tarun-light-portrait.webp'));
-
-  await sharp(heroBg)
-    .composite([{ input: heroCropBalanced, blend: 'over' }])
-    .jpeg({ quality: 95 })
-    .toFile(path.join(outDir, 'tarun-light-hero.jpg'));
-
-  console.log('✓ Hero Portrait 4:5 generated');
 
   // =========================================================================
   // 3. HEADSHOT / AVATAR: tarun-headshot.webp (600x600 - 1:1)
