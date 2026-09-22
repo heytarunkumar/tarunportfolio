@@ -266,8 +266,8 @@ export const AboutSection: React.FC = () => {
                     <div
                       key={itmIdx}
                       className={`p-2 rounded-[3px] border flex items-center justify-between ${isHighlight
-                          ? 'border-[#78000F]/30 bg-[#F4EEE4]'
-                          : 'border-[#DDD2C2] bg-[#FAF8F3]'
+                        ? 'border-[#78000F]/30 bg-[#F4EEE4]'
+                        : 'border-[#DDD2C2] bg-[#FAF8F3]'
                         }`}
                     >
                       <span className="text-[#202020] font-sans font-medium">
