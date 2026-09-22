@@ -34,17 +34,17 @@ export const AboutSection: React.FC = () => {
   const storyParagraphs = (profile.aboutStoryParagraphs && profile.aboutStoryParagraphs.length > 0)
     ? profile.aboutStoryParagraphs
     : [
-        `I am ${profile?.name || 'Tarun Kumar'} (known across engineering platforms as @heytarunkumar) — a Python Developer, AI Systems Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable ventures.`,
-        'My work sits at the intersection of applied machine learning, autonomous agents, high-performance Python microservices, and empirical software research. As Founder & President of OrigoHOST Tech Community (origohost.in), I spearhead national developer hackathons, technical bootcamps, and builder ecosystems.',
-      ];
+      `I am ${profile?.name || 'Tarun Kumar'} (known across engineering platforms as @heytarunkumar) — a Python Developer, AI Systems Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable ventures.`,
+      'My work sits at the intersection of applied machine learning, autonomous agents, high-performance Python microservices, and empirical software research. As Founder & President of OrigoHOST Tech Community (origohost.in), I spearhead national developer hackathons, technical bootcamps, and builder ecosystems.',
+    ];
   const quote = profile.aboutQuote || 'I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.';
   const pillars = (profile.competencyPillars && profile.competencyPillars.length > 0)
     ? profile.competencyPillars
     : [
-        { number: '01', title: 'APPLIED AI & AGENTS', subtitle: 'LLMs, Tool-Use Architectures & Explainable Systems' },
-        { number: '02', title: 'PYTHON & BACKEND', subtitle: 'Scalable Microservices, Asynchronous APIs & Data Workflows' },
-        { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST President, Builder Hackathons & Developer Education' },
-      ];
+      { number: '01', title: 'APPLIED AI & AGENTS', subtitle: 'LLMs, Tool-Use Architectures & Explainable Systems' },
+      { number: '02', title: 'PYTHON & BACKEND', subtitle: 'Scalable Microservices, Asynchronous APIs & Data Workflows' },
+      { number: '03', title: 'VENTURES & COMMUNITY', subtitle: 'OrigoHOST President, Builder Hackathons & Developer Education' },
+    ];
   const spotlight = profile.spotlightCard || {
     photoUrl: '/images/tarun-executive.webp',
     name: profile.name || 'Mr. Tarun Kumar',
@@ -73,14 +73,14 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
       <div className="max-w-[1760px] mx-auto w-full relative z-10">
-        
+
         {/* Eyebrow Section Marker */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -95,7 +95,7 @@ export const AboutSection: React.FC = () => {
 
         {/* Main Grid: Editorial Story (7 Cols) + Magazine Feature Cards (5 Cols) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* LEFT: Magazine Article / Story (7 Cols) */}
           <motion.div
             variants={containerVariants}
@@ -119,7 +119,7 @@ export const AboutSection: React.FC = () => {
               {storyParagraphs.map((para, pIdx) => (
                 <p key={pIdx}>{para}</p>
               ))}
-              
+
               {quote && (
                 <div className="my-6 border-l-2 border-[#78000F] pl-5 py-3 bg-[#FAF8F3] rounded-r-[4px] border-t border-r border-b border-[#DDD2C2]">
                   <p className="font-serif italic text-base sm:text-lg text-[#78000F] leading-relaxed">
@@ -130,7 +130,7 @@ export const AboutSection: React.FC = () => {
             </motion.div>
 
             {/* Competency Pillars - Clean Editorial Grid */}
-            <motion.div 
+            <motion.div
               variants={fadeUpVariants}
               className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#DDD2C2]"
             >
@@ -149,7 +149,7 @@ export const AboutSection: React.FC = () => {
 
           {/* RIGHT: Magazine Spotlight Cards (5 Cols) */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
-            
+
             {/* Founder Profile Feature Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -170,7 +170,7 @@ export const AboutSection: React.FC = () => {
                   {spotlight.verifiedStatus || 'VERIFIED'}
                 </span>
               </div>
-              
+
               {/* Photo */}
               <div className="relative w-full aspect-[4/5] overflow-hidden bg-[#FAF8F3]">
                 <img
@@ -265,11 +265,10 @@ export const AboutSection: React.FC = () => {
                   return (
                     <div
                       key={itmIdx}
-                      className={`p-2 rounded-[3px] border flex items-center justify-between ${
-                        isHighlight
+                      className={`p-2 rounded-[3px] border flex items-center justify-between ${isHighlight
                           ? 'border-[#78000F]/30 bg-[#F4EEE4]'
                           : 'border-[#DDD2C2] bg-[#FAF8F3]'
-                      }`}
+                        }`}
                     >
                       <span className="text-[#202020] font-sans font-medium">
                         {item.title}
