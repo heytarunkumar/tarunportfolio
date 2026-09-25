@@ -24,6 +24,7 @@ export const LinksPage: React.FC = () => {
   const { profile } = usePortfolio();
 
   useEffect(() => {
+    document.title = 'Tarun Kumar | Official Links & Verified Profiles (@heytarunkumar)';
     window.scrollTo(0, 0);
   }, []);
 
@@ -59,20 +60,20 @@ export const LinksPage: React.FC = () => {
       ],
     },
     {
-      category: 'PROFESSIONAL & CODE REPOSITORIES',
-      description: 'Open source projects, microservices & professional network',
+      category: 'PROFESSIONAL NETWORKS & CODE',
+      description: 'Code repositories, engineering contributions & career network',
       links: [
         {
-          title: 'LinkedIn Network',
-          subtitle: 'Professional updates, venture milestones & tech commentary',
+          title: 'LinkedIn Profile',
+          subtitle: 'Professional network, career updates & leadership posts',
           url: profile.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/',
           isExternal: true,
-          tag: 'CAREER',
+          tag: 'NETWORK',
           iconText: '💼',
         },
         {
           title: 'GitHub Repositories',
-          subtitle: 'Source code for FastAPI backends, Docker containers & AI models',
+          subtitle: 'Open-source Python tools, AI architectures & research code',
           url: profile.socials?.github || 'https://github.com/heytarunkumar',
           isExternal: true,
           tag: 'CODE',
@@ -101,22 +102,22 @@ export const LinksPage: React.FC = () => {
           iconText: '🔬',
         },
         {
-          title: 'Systems Engineering Lab',
-          subtitle: 'Progressive tracks spanning Python, Docker, CI/CD & Cloud',
+          title: 'Engineering Lab Blueprints',
+          subtitle: 'Continuous growth tracks: Linux, Docker, CI/CD & AWS Cloud',
           url: '/lab',
           isExternal: false,
           tag: 'LAB',
-          iconText: '⚙️',
+          iconText: '🧪',
         },
       ],
     },
     {
-      category: 'SOCIAL & COMMUNITY CHANNELS',
-      description: 'Direct commentary, thoughts on AI & multimedia updates',
+      category: 'COMMUNITY & SOCIAL PRESENCE',
+      description: 'Verified public profiles across developer & social networks',
       links: [
         {
-          title: 'X (Twitter)',
-          subtitle: 'Thoughts on AI agents, Python systems & venture building',
+          title: 'X (Formerly Twitter)',
+          subtitle: 'Real-time engineering observations, tech analysis & ecosystem news',
           url: profile.socials?.x || 'https://x.com/heytarunkumarr',
           isExternal: true,
           tag: '@heytarunkumarr',
@@ -143,10 +144,10 @@ export const LinksPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white pt-24 sm:pt-28 pb-20 px-4 sm:px-8 max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] pt-24 sm:pt-28 pb-20 px-4 sm:px-8 max-w-4xl mx-auto">
       <SEO
-        title="Official Links &amp; Verified Profiles"
-        description="Unified hub for verified digital profiles, code repositories, publications, and official initiatives of Tarun Kumar (@heytarunkumar)."
+        title="Official Links &amp; Verified Directory"
+        description="Verified online profiles, GitHub repositories, research portals, and social links for Tarun Kumar (@heytarunkumar)."
         path="/links"
       />
       
@@ -154,39 +155,39 @@ export const LinksPage: React.FC = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
         className="text-center mb-12 sm:mb-16"
       >
         <div className="relative inline-block mb-4">
           <img
             src="/images/tarun-headshot.webp"
-            alt="Tarun Kumar — Python Developer and AI Engineer"
+            alt="Mr. Tarun Kumar — Founder & AI Systems Engineer"
             width="112"
             height="112"
             loading="lazy"
             decoding="async"
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover object-top border-2 border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.25)] mx-auto"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover object-center border-2 border-[#78000F] shadow-md mx-auto"
           />
-          <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#0A0908] flex items-center justify-center">
+          <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-[#FAF8F3] flex items-center justify-center">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           </span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl font-serif text-white tracking-normal mb-2">
-          Tarun Kumar
+        <h1 className="text-3xl sm:text-5xl font-serif font-bold text-[#111111] tracking-normal mb-2">
+          Mr. Tarun Kumar
         </h1>
 
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-[#8C6D4F]/40 bg-[#12100E] mb-3">
-          <span className="text-[11px] font-mono text-[#D4AF37] tracking-wider uppercase">
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-[3px] border border-[#CFC3B3] bg-[#FAF8F3] mb-3">
+          <span className="text-[11px] font-mono text-[#78000F] font-bold tracking-wider uppercase">
             @heytarunkumar
           </span>
         </div>
 
-        <p className="text-xs sm:text-sm font-mono text-[#C4BCB3] max-w-lg mx-auto leading-relaxed">
-          Python Developer | AI Engineer | Researcher | Author | Founder
+        <p className="text-xs sm:text-sm font-sans text-[#38342E] max-w-lg mx-auto leading-relaxed">
+          Python Developer | AI Systems Engineer | Researcher | Author | Founder
         </p>
-        <p className="text-[11px] font-mono text-[#8C6D4F] mt-1">
-          Founder &amp; President @ <a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#D4AF37] hover:underline">OrigoHOST Tech Community</a>
+        <p className="text-[11px] font-mono text-[#736B60] mt-1">
+          Founder &amp; President @ <a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] font-bold hover:underline">OrigoHOST Tech Community</a>
         </p>
       </motion.div>
 
@@ -197,15 +198,15 @@ export const LinksPage: React.FC = () => {
             key={cat.category}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: cIdx * 0.1 }}
+            transition={{ duration: 0.6, delay: cIdx * 0.1, ease: [0.22, 0.61, 0.36, 1] }}
             className="space-y-3"
           >
             {/* Category Header */}
-            <div className="border-b border-[#26211B] pb-2 mb-3">
-              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-[#D4AF37] font-semibold">
+            <div className="border-b border-[#DDD2C2] pb-2 mb-3">
+              <span className="text-[10px] sm:text-[11px] font-mono tracking-[0.25em] uppercase text-[#78000F] font-bold">
                 // {cat.category}
               </span>
-              <p className="text-[11px] text-[#8C6D4F] font-sans font-light mt-0.5">
+              <p className="text-[11px] text-[#736B60] font-sans font-normal mt-0.5">
                 {cat.description}
               </p>
             </div>
@@ -214,29 +215,29 @@ export const LinksPage: React.FC = () => {
             <div className="space-y-2.5">
               {cat.links.map((item) => {
                 const CardContent = (
-                  <div className="p-4 sm:p-4.5 rounded-xl border border-[#26211B] bg-[#12100E] hover:border-[#D4AF37]/60 hover:bg-[#161310] transition-all duration-300 flex items-center justify-between group shadow-md card-lift">
+                  <div className="editorial-card p-4 sm:p-4.5 rounded-[4px] border border-[#CFC3B3] bg-[#FAF8F3] hover:border-[#78000F] transition-all duration-300 flex items-center justify-between group shadow-sm">
                     <div className="flex items-center space-x-3.5 sm:space-x-4 min-w-0 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#1D1814] border border-[#26211B] flex items-center justify-center text-base sm:text-lg shrink-0 group-hover:scale-105 transition-transform">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[3px] bg-[#F4EEE4] border border-[#DDD2C2] flex items-center justify-center text-base sm:text-lg shrink-0 group-hover:scale-105 transition-transform">
                         {item.iconText}
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
-                          <h3 className="text-xs sm:text-sm font-medium text-white group-hover:text-[#D4AF37] transition-colors truncate">
+                          <h3 className="text-xs sm:text-sm font-serif font-bold text-[#111111] group-hover:text-[#78000F] transition-colors truncate">
                             {item.title}
                           </h3>
                           {item.tag && (
-                            <span className="px-1.5 py-0.2 text-[9px] font-mono bg-[#1D1814] border border-[#8C6D4F]/40 text-[#D4AF37] rounded">
+                            <span className="px-1.5 py-0.2 text-[9px] font-mono bg-[#F4EEE4] border border-[#DDD2C2] text-[#78000F] rounded-[2px] font-bold">
                               {item.tag}
                             </span>
                           )}
                         </div>
-                        <p className="text-[11px] text-[#A8988B] font-light truncate mt-0.5">
+                        <p className="text-[11px] text-[#736B60] font-normal truncate mt-0.5">
                           {item.subtitle}
                         </p>
                       </div>
                     </div>
 
-                    <div className="text-xs text-[#8C6D4F] group-hover:text-[#D4AF37] group-hover:translate-x-0.5 transition-all ml-3 shrink-0">
+                    <div className="text-xs text-[#78000F] font-bold group-hover:translate-x-0.5 transition-all ml-3 shrink-0">
                       {item.isExternal ? '↗' : '→'}
                     </div>
                   </div>
@@ -264,12 +265,12 @@ export const LinksPage: React.FC = () => {
       </div>
 
       {/* Reciprocal Verification Note */}
-      <div className="mt-14 pt-8 border-t border-[#26211B] text-center text-xs font-mono text-[#8C6D4F]">
+      <div className="mt-14 pt-8 border-t border-[#DDD2C2] text-center text-xs font-mono text-[#736B60]">
         <p>
-          Canonical Entity: <span className="text-[#F5F2EB]">Tarun Kumar</span> (<span className="text-[#D4AF37]">@heytarunkumar</span>)
+          Canonical Entity: <span className="text-[#111111] font-bold">Mr. Tarun Kumar</span> (<span className="text-[#78000F] font-bold">@heytarunkumar</span>)
         </p>
-        <p className="text-[11px] text-[#8C6D4F] mt-1">
-          Official Domain: <a href={SITE_URL} className="text-[#D4AF37] hover:underline">{SITE_URL}</a>
+        <p className="text-[11px] text-[#8C8275] mt-1">
+          Official Domain: <a href={SITE_URL} className="text-[#78000F] font-bold hover:underline">{SITE_URL}</a>
         </p>
       </div>
 

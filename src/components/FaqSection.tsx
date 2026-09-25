@@ -9,10 +9,10 @@ export interface FaqItem {
 
 export const faqItems: FaqItem[] = [
   {
-    category: 'IDENTITY & POSITIONING',
-    question: 'Who is Tarun Kumar?',
+    category: 'IDENTITY & EXECUTIVE PROFILE',
+    question: 'Who is Mr. Tarun Kumar?',
     answer:
-      'Tarun Kumar is a Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. He is the Founder & President of OrigoHOST Tech Community.',
+      'Tarun Kumar is a Python Developer, AI Systems Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. He is the Founder & President of OrigoHOST Tech Community.',
   },
   {
     category: 'DIGITAL HANDLE',
@@ -36,7 +36,7 @@ export const faqItems: FaqItem[] = [
     category: 'RESEARCH & AUTHORSHIP',
     question: 'What research and publications has Tarun Kumar authored?',
     answer:
-      'Tarun is the lead co-author on the AI-HealthGuard research project exploring Explainable AI (XAI / SHAP) for clinical risk stratification on tabular health datasets, alongside technical dispatches published on Medium covering modular Python architectures and Docker optimization.',
+      'Tarun is the lead author on the AI-HealthGuard research project exploring Explainable AI (XAI / SHAP) for clinical risk stratification on tabular health datasets, alongside technical dispatches published on Medium covering modular Python architectures and Docker optimization.',
   },
   {
     category: 'COLLABORATION & CONTACT',
@@ -56,11 +56,8 @@ export const FaqSection: React.FC = () => {
   return (
     <section
       id="faq"
-      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
+      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 left-1/4 w-[32rem] h-[32rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
-
       <div className="max-w-4xl mx-auto w-full relative z-10">
         
         {/* Eyebrow Header */}
@@ -68,13 +65,13 @@ export const FaqSection: React.FC = () => {
           initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
           className="flex items-center space-x-4 mb-4 sm:mb-6"
         >
-          <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
+          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
             05 / FREQUENTLY ASKED QUESTIONS
           </span>
-          <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
         </motion.div>
 
         {/* Section Headline */}
@@ -82,13 +79,13 @@ export const FaqSection: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
           className="mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl sm:text-5xl font-serif text-white tracking-tight leading-[1.12] mb-3">
-            Entity &amp; technical <span className="italic text-[#D4AF37]">inquiries.</span>
+          <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em] mb-3">
+            Executive &amp; Technical <span className="text-[#78000F] italic">Inquiries.</span>
           </h2>
-          <p className="text-xs sm:text-sm font-sans font-light text-[#A8988B] max-w-xl">
+          <p className="text-xs sm:text-sm font-sans font-normal text-[#38342E] max-w-xl">
             Verified answers about Tarun Kumar (@heytarunkumar), technical focus areas, OrigoHOST leadership, and research initiatives.
           </p>
         </motion.div>
@@ -100,54 +97,43 @@ export const FaqSection: React.FC = () => {
 
             return (
               <motion.div
-                key={item.question}
-                initial={{ opacity: 0, y: 15 }}
+                key={idx}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.06 }}
-                className={`card-lift rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'border-[#D4AF37]/50 bg-[#141210] shadow-[0_4px_25px_rgba(0,0,0,0.6)]'
-                    : 'border-[#26211B] bg-[#12100E] hover:border-[#8C6D4F]/40'
-                }`}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                className="editorial-card rounded-[4px] border border-[#CFC3B3] bg-[#FAF8F3] overflow-hidden transition-all duration-300"
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
-                  aria-expanded={isOpen}
+                  className="w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between text-left focus:outline-none cursor-pointer"
                 >
-                  <div>
-                    <span className="text-[9.5px] font-mono tracking-widest text-[#D4AF37] uppercase block mb-1">
+                  <div className="pr-4">
+                    <span className="text-[9.5px] font-mono text-[#78000F] uppercase tracking-wider font-bold block mb-1">
                       {item.category}
                     </span>
-                    <h3 className="text-sm sm:text-base font-medium text-white group-hover:text-[#D4AF37] transition-colors">
+                    <h3 className="text-base sm:text-lg font-serif font-bold text-[#111111]">
                       {item.question}
                     </h3>
                   </div>
-
-                  <span
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#26211B] flex items-center justify-center text-xs font-mono text-[#D4AF37] shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-[#1D1814] border-[#D4AF37]/40' : 'bg-[#0E0C0A]'
-                    }`}
-                  >
-                    ↓
+                  <span className={`w-6 h-6 rounded-[2px] border border-[#CFC3B3] bg-[#F4EEE4] flex items-center justify-center text-xs font-mono transition-transform duration-300 shrink-0 text-[#78000F] font-bold ${
+                    isOpen ? 'rotate-45' : ''
+                  }`}>
+                    +
                   </span>
                 </button>
 
-                <AnimatePresence initial={false}>
+                <AnimatePresence>
                   {isOpen && (
                     <motion.div
-                      key="content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
+                      transition={{ duration: 0.3 }}
+                      className="px-5 sm:px-6 pb-5 pt-1 border-t border-[#DDD2C2] text-xs sm:text-sm font-sans font-normal text-[#38342E] leading-relaxed"
                     >
-                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-1 border-t border-[#26211B]/60 text-xs sm:text-sm font-light text-[#C4BCB3] leading-relaxed font-sans">
-                        <p>{item.answer}</p>
-                      </div>
+                      {item.answer}
                     </motion.div>
                   )}
                 </AnimatePresence>

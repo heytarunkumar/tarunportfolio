@@ -226,8 +226,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const root = document.documentElement;
-    const isAdmin = window.location.pathname.startsWith('/admin');
-    if (isAdmin && theme === 'light') {
+    if (theme === 'light') {
       root.classList.add('light');
       root.setAttribute('data-theme', 'light');
     } else {

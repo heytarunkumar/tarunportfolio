@@ -51,7 +51,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   return (
-    <div className="admin-layout min-h-screen bg-[#0A0908] text-[#F5F2EB] font-sans flex flex-col md:flex-row selection:bg-[#D4AF37]/30 selection:text-white">
+    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] font-sans flex flex-col md:flex-row selection:bg-[#D4AF37]/30 selection:text-white">
       
       {/* Left Sidebar */}
       <aside className="w-full md:w-64 bg-[#0E0C0A] border-b md:border-b-0 md:border-r border-[#26211B] p-5 flex flex-col justify-between shrink-0">
