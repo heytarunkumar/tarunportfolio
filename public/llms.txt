@@ -21,6 +21,13 @@
 - [Official Links Hub](https://heytarunkumar.vercel.app/links)
 - [Contact Dispatch](https://heytarunkumar.vercel.app/contact)
 
+## Legal & Compliance Policies
+
+- [Privacy Policy & DPDP Act Compliance](https://heytarunkumar.vercel.app/privacy)
+- [Terms & Conditions of Use](https://heytarunkumar.vercel.app/terms)
+- [Cookie & Tracking Policy](https://heytarunkumar.vercel.app/cookies)
+- [Refund & Cancellation Policy](https://heytarunkumar.vercel.app/refund-policy)
+
 ## Core Competencies & Domains
 
 - Python Systems Engineering & Backend Microservices (FastAPI, Flask, PyTest)
@@ -40,4 +47,3 @@
 ## Organizations & Ventures
 
 - [OrigoHOST Tech Community (Founder & President)](https://origohost.in)
-
