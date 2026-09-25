@@ -10,6 +10,7 @@ import { Footer } from './components/layout/Footer';
 
 // Core Homepage (Immediate render for fastest First Contentful Paint / LCP)
 import { HomePage } from './pages/HomePage';
+import { CookieConsentBanner } from './components/common/CookieConsentBanner';
 
 // Public Pages (Lazy Loaded)
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -19,6 +20,12 @@ const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ de
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage').then((m) => ({ default: m.ExperiencePage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
 const LinksPage = lazy(() => import('./pages/LinksPage').then((m) => ({ default: m.LinksPage })));
+
+// Legal & Compliance Pages (Lazy Loaded)
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
+const TermsPage = lazy(() => import('./pages/TermsPage').then((m) => ({ default: m.TermsPage })));
+const CookiesPolicyPage = lazy(() => import('./pages/CookiesPolicyPage').then((m) => ({ default: m.CookiesPolicyPage })));
+const RefundPolicyPage = lazy(() => import('./pages/RefundPolicyPage').then((m) => ({ default: m.RefundPolicyPage })));
 
 // Admin CMS Views (Code-Split to isolate private code from public visitors)
 const AdminLayout = lazy(() => import('./admin/components/AdminLayout').then((m) => ({ default: m.AdminLayout })));
@@ -91,6 +98,7 @@ function App() {
         <Router>
           <ScrollToTop />
           <SecretAdminListener />
+          <CookieConsentBanner />
           <Suspense fallback={<PageFallback />}>
             <Routes>
               {/* Public Portfolio Routes with Dynamic Page Visibility Guards */}
@@ -102,6 +110,12 @@ function App() {
               <Route path="/experience" element={<PageVisibilityGuard path="/experience"><PublicLayout><ExperiencePage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/contact" element={<PageVisibilityGuard path="/contact"><PublicLayout><ContactPage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/links" element={<PublicLayout><LinksPage /></PublicLayout>} />
+
+              {/* Public Legal & Compliance Routes */}
+              <Route path="/privacy" element={<PublicLayout><PrivacyPolicyPage /></PublicLayout>} />
+              <Route path="/terms" element={<PublicLayout><TermsPage /></PublicLayout>} />
+              <Route path="/cookies" element={<PublicLayout><CookiesPolicyPage /></PublicLayout>} />
+              <Route path="/refund-policy" element={<PublicLayout><RefundPolicyPage /></PublicLayout>} />
 
               {/* Admin CMS Authentication Route */}
               <Route path="/admin/login" element={<AdminLoginPage />} />

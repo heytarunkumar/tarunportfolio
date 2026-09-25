@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { usePortfolio } from '../context/PortfolioContext';
 
 export const ContactSection: React.FC = () => {
@@ -10,6 +11,7 @@ export const ContactSection: React.FC = () => {
     subject: '',
     message: '',
   });
+  const [consentGiven, setConsentGiven] = useState(false);
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -17,7 +19,7 @@ export const ContactSection: React.FC = () => {
     e.preventDefault();
     setErrorMessage('');
 
-    // Client-side validation
+    // Client-side validation & consent check
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       setStatus('error');
       setErrorMessage('Please complete all required fields.');
@@ -30,6 +32,12 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
+    if (!consentGiven) {
+      setStatus('error');
+      setErrorMessage('Please accept the Privacy Policy and processing consent to transmit your message.');
+      return;
+    }
+
     setStatus('submitting');
 
     try {
@@ -39,6 +47,7 @@ export const ContactSection: React.FC = () => {
       params.append('email', formData.email);
       params.append('subject', formData.subject || 'Portfolio Inquiry');
       params.append('message', formData.message);
+      params.append('consent_dpdp', 'Explicit Opt-In via Portfolio Contact Form');
       params.append('_subject', formData.subject ? `[Portfolio Contact] ${formData.subject}` : `[Portfolio Contact] Message from ${formData.name}`);
       params.append('_replyto', formData.email);
       params.append('_template', 'table');
@@ -65,6 +74,7 @@ export const ContactSection: React.FC = () => {
 
     setStatus('success');
     setFormData({ name: '', email: '', subject: '', message: '' });
+    setConsentGiven(false);
   };
 
   const contactEmail = contact?.email || profile?.email || 'tarunsinghchaudharyy@gmail.com';
@@ -234,7 +244,7 @@ export const ContactSection: React.FC = () => {
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#78000F] via-[#CFC3B3] to-transparent" />
             
             {status === 'success' ? (
-              <div className="py-16 text-center space-y-4">
+              <div className="py-16 text-center space-y-4" role="status" aria-live="polite">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border border-[#78000F] text-[#78000F] text-lg font-bold">
                   ✓
                 </div>
@@ -245,17 +255,22 @@ export const ContactSection: React.FC = () => {
                   {contact?.successMessage || 'Thank you. Your message has been received. Tarun will review and respond promptly.'}
                 </p>
                 <button
+                  type="button"
                   onClick={() => setStatus('idle')}
-                  className="mt-4 px-6 py-2 rounded-[3px] border border-[#CFC3B3] text-xs font-mono text-[#78000F] font-bold hover:border-[#78000F] transition-colors"
+                  className="mt-4 px-6 py-2.5 rounded-[3px] border border-[#CFC3B3] text-xs font-mono text-[#78000F] font-bold hover:border-[#78000F] transition-colors focus:ring-2 focus:ring-[#78000F] focus:outline-none"
                 >
                   SEND ANOTHER DISPATCH
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 
                 {status === 'error' && (
-                  <div className="p-3.5 border border-red-300 bg-red-50 text-red-700 text-xs font-mono rounded-[3px]">
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    className="p-3.5 border border-red-300 bg-red-50 text-red-700 text-xs font-mono rounded-[3px]"
+                  >
                     ⚠️ {errorMessage}
                   </div>
                 )}
@@ -267,12 +282,14 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input
                       id="contact-name"
+                      name="name"
                       type="text"
                       required
+                      aria-required="true"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Alex Vance"
-                      className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-colors font-sans"
+                      className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] focus:ring-2 focus:ring-[#78000F]/20 text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-all font-sans"
                     />
                   </div>
 
@@ -282,12 +299,14 @@ export const ContactSection: React.FC = () => {
                     </label>
                     <input
                       id="contact-email"
+                      name="email"
                       type="email"
                       required
+                      aria-required="true"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.g. alex@company.com"
-                      className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-colors font-sans"
+                      className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] focus:ring-2 focus:ring-[#78000F]/20 text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-all font-sans"
                     />
                   </div>
                 </div>
@@ -298,11 +317,12 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <input
                     id="contact-subject"
+                    name="subject"
                     type="text"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                     placeholder="AI Collaboration / Tech Talk / Project Inquiry"
-                    className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-colors font-sans"
+                    className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] focus:ring-2 focus:ring-[#78000F]/20 text-xs text-[#202020] placeholder-[#8C8275] px-4 py-3.5 outline-none rounded-[3px] transition-all font-sans"
                   />
                 </div>
 
@@ -312,22 +332,52 @@ export const ContactSection: React.FC = () => {
                   </label>
                   <textarea
                     id="contact-message"
+                    name="message"
                     required
+                    aria-required="true"
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Describe your project, community idea, or inquiry..."
-                    className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] text-xs text-[#202020] placeholder-[#8C8275] p-4 outline-none rounded-[3px] transition-colors resize-none font-sans"
+                    className="w-full bg-[#FAF8F3] border border-[#CFC3B3] focus:border-[#78000F] focus:ring-2 focus:ring-[#78000F]/20 text-xs text-[#202020] placeholder-[#8C8275] p-4 outline-none rounded-[3px] transition-all resize-none font-sans"
                   />
+                </div>
+
+                {/* Explicit Consent Checkbox (DPDP Act 2023 & GDPR Compliant) */}
+                <div className="pt-1">
+                  <label className="flex items-start space-x-3 cursor-pointer select-none group">
+                    <input
+                      type="checkbox"
+                      id="contact-consent"
+                      required
+                      aria-required="true"
+                      checked={consentGiven}
+                      onChange={(e) => setConsentGiven(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 rounded border-[#CFC3B3] text-[#78000F] accent-[#78000F] focus:ring-2 focus:ring-[#78000F] cursor-pointer"
+                    />
+                    <span className="text-[11px] font-sans text-[#555047] group-hover:text-[#202020] leading-snug">
+                      I have read and agree to the{' '}
+                      <Link to="/privacy" target="_blank" className="text-[#78000F] underline font-semibold hover:text-[#C51E31]">
+                        Privacy Policy
+                      </Link>{' '}
+                      and give explicit consent to the processing of my contact information strictly to reply to this message under the <strong>DPDP Act 2023</strong>.
+                    </span>
+                  </label>
                 </div>
 
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="btn-executive-primary w-full py-4 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer disabled:opacity-50"
+                  className="btn-executive-primary w-full py-4 text-xs font-mono font-bold tracking-[0.2em] uppercase cursor-pointer disabled:opacity-50 focus:ring-2 focus:ring-[#78000F] focus:outline-none transition-all"
                 >
                   {status === 'submitting' ? 'DISPATCHING MESSAGE...' : submitButtonText}
                 </button>
+
+                {/* Data Minimization & DPDP Notice Stamp */}
+                <div className="flex items-center justify-between text-[10px] font-mono text-[#8C8275] pt-2 border-t border-[#DDD2C2]">
+                  <span>🔒 DATA FIDUCIARY: TARUN KUMAR</span>
+                  <span className="hidden sm:inline">ZERO SPAM • STRICT DATA MINIMIZATION</span>
+                </div>
 
               </form>
             )}

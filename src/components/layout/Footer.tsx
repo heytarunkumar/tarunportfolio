@@ -75,8 +75,40 @@ export const Footer: React.FC = () => {
 
         </div>
 
+        {/* Legal, Compliance & Cookie Preferences Row */}
+        <div className="py-6 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-mono tracking-wider text-[#A89E93]">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <span className="text-[#D4AF37] font-bold uppercase tracking-widest text-[10px]">LEGAL &amp; COMPLIANCE:</span>
+            <Link to="/privacy" className="hover:text-white transition-colors">
+              PRIVACY POLICY
+            </Link>
+            <Link to="/terms" className="hover:text-white transition-colors">
+              TERMS &amp; CONDITIONS
+            </Link>
+            <Link to="/cookies" className="hover:text-white transition-colors">
+              COOKIE POLICY
+            </Link>
+            <Link to="/refund-policy" className="hover:text-white transition-colors">
+              REFUND POLICY
+            </Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new CustomEvent('open_cookie_preferences'))}
+              className="text-[#D4AF37] hover:text-[#E8C55E] underline underline-offset-2 transition-colors cursor-pointer"
+            >
+              COOKIE SETTINGS ⚙
+            </button>
+          </div>
+
+          <div className="text-[10px] text-[#736B60] flex items-center space-x-2">
+            <span>LOCATION: NEW DELHI NCR, INDIA</span>
+            <span>•</span>
+            <span>DPDP ACT 2023 COMPLIANT</span>
+          </div>
+        </div>
+
         {/* Bottom Socials & Copyright */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#8C8275]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#8C8275]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[#C4BCB3]">
             <a
               href={profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
@@ -120,13 +152,18 @@ export const Footer: React.FC = () => {
             </a>
           </div>
 
-          <span 
-            onClick={handleSecretTrigger} 
-            className="cursor-default select-none transition-colors duration-200 block text-[10.5px] sm:text-xs"
-            title=""
-          >
-            {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Mr. Tarun Kumar'}. All rights reserved.`}
-          </span>
+          <div className="flex flex-col sm:flex-row items-center sm:items-end gap-1.5 text-center sm:text-right">
+            <span 
+              onClick={handleSecretTrigger} 
+              className="cursor-default select-none transition-colors duration-200 block text-[10.5px] sm:text-xs text-[#A8988B]"
+              title=""
+            >
+              {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Mr. Tarun Kumar'}. All rights reserved.`}
+            </span>
+            <span className="text-[9.5px] text-[#555047] block">
+              All photography, monograms, and architectural texts are copyright protected.
+            </span>
+          </div>
         </div>
 
       </div>
