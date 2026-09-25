@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4EEE4] text-[#202020]">
+    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB]">
       <SEO path="/" />
       <HeroSection />
       {isPageVisible('/about') && <AboutSection />}

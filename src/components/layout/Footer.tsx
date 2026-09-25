@@ -30,15 +30,15 @@ export const Footer: React.FC = () => {
       ];
 
   return (
-    <footer className="w-full bg-[#111111] border-t border-[#26211B] text-[#F4EEE4] py-14 sm:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
+    <footer className="w-full bg-[#0A0908] border-t border-[#26211B] text-[#F5F2EB] py-14 sm:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 font-sans">
       <div className="w-full max-w-[1760px] mx-auto">
         
-        {/* Top Editorial Identity & Grid */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-10 border-b border-white/10">
+        {/* Top Identity & Navigation Grid */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-10 border-b border-[#26211B]">
           
-          {/* Left Monogram & Large Name Stamp */}
+          {/* Left Monogram & Name Stamp */}
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 rounded-[4px] overflow-hidden bg-[#FAF8F3] p-1 border border-[#CFC3B3] shrink-0">
+            <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#12100E] p-1.5 border border-[#26211B] shrink-0">
               <img
                 src={profile.monogramUrl || "/images/brand/tarun-monogram-64.webp"}
                 alt={`${profile.name || 'Tarun Kumar'} Monogram`}
@@ -50,11 +50,11 @@ export const Footer: React.FC = () => {
             <div>
               <Link
                 to="/"
-                className="text-xl sm:text-2xl font-serif font-bold text-[#F4EEE4] hover:text-[#C51E31] transition-colors block leading-tight"
+                className="text-xl sm:text-2xl font-serif font-medium text-white hover:text-[#D4AF37] transition-colors block leading-tight"
               >
-                {profile?.name || 'Mr. Tarun Kumar'}
+                {profile?.name || 'Tarun Kumar'}
               </Link>
-              <span className="text-[11px] font-mono tracking-wider text-[#A8988B] block mt-0.5 uppercase">
+              <span className="text-[11px] font-mono tracking-wider text-[#8C6D4F] block mt-0.5 uppercase">
                 {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
               </span>
             </div>
@@ -66,7 +66,7 @@ export const Footer: React.FC = () => {
               <Link 
                 key={item.id} 
                 to={item.path} 
-                className="hover:text-white transition-colors"
+                className="hover:text-[#D4AF37] transition-colors"
               >
                 {item.name}
               </Link>
@@ -76,19 +76,19 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Legal, Compliance & Cookie Preferences Row */}
-        <div className="py-6 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-mono tracking-wider text-[#A89E93]">
+        <div className="py-6 border-b border-[#26211B] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-mono tracking-wider text-[#A8988B]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <span className="text-[#D4AF37] font-bold uppercase tracking-widest text-[10px]">LEGAL &amp; COMPLIANCE:</span>
-            <Link to="/privacy" className="hover:text-white transition-colors">
+            <Link to="/privacy" className="hover:text-[#D4AF37] transition-colors">
               PRIVACY POLICY
             </Link>
-            <Link to="/terms" className="hover:text-white transition-colors">
+            <Link to="/terms" className="hover:text-[#D4AF37] transition-colors">
               TERMS &amp; CONDITIONS
             </Link>
-            <Link to="/cookies" className="hover:text-white transition-colors">
+            <Link to="/cookies" className="hover:text-[#D4AF37] transition-colors">
               COOKIE POLICY
             </Link>
-            <Link to="/refund-policy" className="hover:text-white transition-colors">
+            <Link to="/refund-policy" className="hover:text-[#D4AF37] transition-colors">
               REFUND POLICY
             </Link>
             <button
@@ -100,7 +100,7 @@ export const Footer: React.FC = () => {
             </button>
           </div>
 
-          <div className="text-[10px] text-[#736B60] flex items-center space-x-2">
+          <div className="text-[10px] text-[#8C6D4F] flex items-center space-x-2">
             <span>LOCATION: NEW DELHI NCR, INDIA</span>
             <span>•</span>
             <span>DPDP ACT 2023 COMPLIANT</span>
@@ -108,13 +108,13 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Socials & Copyright */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#8C8275]">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#8C6D4F]">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[#C4BCB3]">
             <a
               href={profile?.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#D4AF37] transition-colors"
             >
               LINKEDIN ↗
             </a>
@@ -122,7 +122,7 @@ export const Footer: React.FC = () => {
               href={profile?.socials?.github || 'https://github.com/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#D4AF37] transition-colors"
             >
               GITHUB ↗
             </a>
@@ -130,7 +130,7 @@ export const Footer: React.FC = () => {
               href={profile?.socials?.x || 'https://x.com/heytarunkumarr'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#D4AF37] transition-colors"
             >
               X ↗
             </a>
@@ -138,7 +138,7 @@ export const Footer: React.FC = () => {
               href={profile?.socials?.medium || 'https://medium.com/@heytarunkumar/'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#D4AF37] transition-colors"
             >
               MEDIUM ↗
             </a>
@@ -146,7 +146,7 @@ export const Footer: React.FC = () => {
               href={profile?.socials?.linktree || 'https://linktr.ee/heytarunkumar'}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
+              className="hover:text-[#D4AF37] transition-colors"
             >
               LINKTREE ↗
             </a>
@@ -158,7 +158,7 @@ export const Footer: React.FC = () => {
               className="cursor-default select-none transition-colors duration-200 block text-[10.5px] sm:text-xs text-[#A8988B]"
               title=""
             >
-              {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Mr. Tarun Kumar'}. All rights reserved.`}
+              {profile.footerCopyright || `© ${new Date().getFullYear()} ${profile?.name || 'Tarun Kumar'}. All rights reserved.`}
             </span>
             <span className="text-[9.5px] text-[#555047] block">
               All photography, monograms, and architectural texts are copyright protected.

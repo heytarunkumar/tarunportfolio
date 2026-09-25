@@ -21,7 +21,7 @@ const fadeUpVariants: Variants = {
     y: 0,
     transition: {
       duration: 0.7,
-      ease: [0.22, 0.61, 0.36, 1],
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
@@ -47,7 +47,7 @@ export const AboutSection: React.FC = () => {
     ];
   const spotlight = profile.spotlightCard || {
     photoUrl: '/images/tarun-executive.webp',
-    name: profile.name || 'Mr. Tarun Kumar',
+    name: profile.name || 'Tarun Kumar',
     role: profile.primaryRole || 'Founder & AI Systems Engineer',
     leadership: 'President @ OrigoHOST',
     verifiedStatus: 'VERIFIED',
@@ -68,78 +68,72 @@ export const AboutSection: React.FC = () => {
       { title: 'Applied AI & GenAI Architectures', status: '✓ ACTIVE', statusType: 'active' },
       { title: 'Python Systems & Automation', status: '✓ MASTERED', statusType: 'mastered' },
       { title: 'Community & Builder Ecosystems', status: '✓ LEADING', statusType: 'leading' },
-      { title: 'Cloud & Scalable AI Ventures', status: '⚡ SCALING', statusType: 'scaling' },
+      { title: 'Explainable Machine Learning Research', status: '⟳ SCALING', statusType: 'scaling' },
     ],
   };
 
   return (
     <section
       id="about"
-      className="relative w-full bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
+      className="relative w-full bg-[#0A0908] text-[#F5F2EB] font-sans selection:bg-[#D4AF37]/30 selection:text-white py-20 sm:py-28 lg:py-32 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24 overflow-hidden"
     >
+      {/* Background Subtle Studio Flare */}
+      <div className="absolute top-1/4 -right-20 w-[35rem] h-[35rem] bg-[#D4AF37]/5 rounded-full blur-[160px] pointer-events-none" />
+
       <div className="max-w-[1760px] mx-auto w-full relative z-10">
-
-        {/* Eyebrow Section Marker */}
-        <motion.div
-          initial={{ opacity: 0, x: -16 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 0.61, 0.36, 1] }}
-          className="flex items-center space-x-4 mb-8 sm:mb-12"
-        >
-          <span className="text-[11px] sm:text-[12px] font-mono font-bold tracking-[0.25em] uppercase text-[#78000F]">
-            {eyebrow}
-          </span>
-          <div className="flex-1 h-[1px] bg-gradient-to-r from-[#78000F]/60 via-[#CFC3B3] to-transparent max-w-xs" />
-        </motion.div>
-
-        {/* Main Grid: Editorial Story (7 Cols) + Magazine Feature Cards (5 Cols) */}
+        
+        {/* Section Split Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-
-          {/* LEFT: Magazine Article / Story (7 Cols) */}
+          
+          {/* LEFT NARRATIVE & PILLARS (7 COLS) */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-            className="lg:col-span-7 flex flex-col"
+            viewport={{ once: true, margin: '-60px' }}
+            className="lg:col-span-7 flex flex-col justify-between space-y-8"
           >
-            {/* Display Headline */}
-            <motion.div variants={fadeUpVariants} className="mb-6 sm:mb-8 select-none">
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.08] tracking-[-0.03em]">
+            {/* Eyebrow Header */}
+            <div>
+              <motion.div variants={fadeUpVariants} className="flex items-center space-x-4 mb-4 sm:mb-6">
+                <span className="text-[10px] sm:text-[11px] font-mono font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase text-[#D4AF37]">
+                  {eyebrow}
+                </span>
+                <div className="w-12 sm:w-16 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
+              </motion.div>
+
+              {/* Editorial Headline */}
+              <motion.h2
+                variants={fadeUpVariants}
+                className="text-3xl sm:text-5xl lg:text-6xl font-serif text-white leading-[1.08] tracking-tight mb-6"
+              >
                 {headline}
-              </h2>
-            </motion.div>
+              </motion.h2>
+            </div>
 
-            {/* Narrative Body */}
-            <motion.div
-              variants={fadeUpVariants}
-              className="text-sm sm:text-base font-normal text-[#38342E] leading-[1.85] mb-8 space-y-4 max-w-2xl"
-            >
-              {storyParagraphs.map((para, pIdx) => (
-                <p key={pIdx}>{para}</p>
+            {/* In-depth Narrative Body */}
+            <motion.div variants={fadeUpVariants} className="space-y-4 text-xs sm:text-sm md:text-[14.5px] font-normal text-[#C4BCB3] leading-[1.85]">
+              {storyParagraphs.map((para: string, idx: number) => (
+                <p key={idx}>{para}</p>
               ))}
-
-              {quote && (
-                <div className="my-6 border-l-2 border-[#78000F] pl-5 py-3 bg-[#FAF8F3] rounded-r-[4px] border-t border-r border-b border-[#DDD2C2]">
-                  <p className="font-serif italic text-base sm:text-lg text-[#78000F] leading-relaxed">
-                    &ldquo;{quote}&rdquo;
-                  </p>
-                </div>
-              )}
             </motion.div>
 
-            {/* Competency Pillars - Clean Editorial Grid */}
-            <motion.div
+            {/* Blockquote */}
+            <motion.blockquote
               variants={fadeUpVariants}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-[#DDD2C2]"
+              className="p-5 sm:p-6 rounded-xl border-l-2 border-[#D4AF37] bg-[#12100E] text-xs sm:text-sm md:text-base font-serif italic text-[#F5F2EB] leading-relaxed shadow-sm"
             >
-              {pillars.map((pillar, pilIdx) => (
-                <div key={pilIdx} className="editorial-card p-4 sm:p-5 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3]">
-                  <span className="text-[10px] font-mono font-bold text-[#78000F] block mb-1 tracking-widest">
+              &quot;{quote}&quot;
+            </motion.blockquote>
+
+            {/* Core Competency Pillars */}
+            <motion.div variants={fadeUpVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+              {pillars.map((pillar: any, pilIdx: number) => (
+                <div key={pilIdx} className="card-lift p-4 rounded-xl border border-[#26211B] bg-[#12100E]">
+                  <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">
                     {pillar.number} // {pillar.title}
                   </span>
-                  <p className="text-xs font-sans text-[#202020] font-medium leading-snug">
+                  <p className="text-xs font-sans text-[#F5F2EB] font-medium">
                     {pillar.subtitle}
                   </p>
                 </div>
@@ -147,32 +141,33 @@ export const AboutSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT: Magazine Spotlight Cards (5 Cols) */}
-          <div className="lg:col-span-5 flex flex-col space-y-6">
-
-            {/* Founder Profile Feature Card */}
+          {/* RIGHT ARCHITECTURE BLUEPRINT & COMMUNITY CARD (5 COLS) */}
+          <div className="lg:col-span-5 flex flex-col space-y-5 relative">
+            
+            {/* Founder Portrait Spotlight Card - 4:3 Aspect Ratio matching natural image proportions */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
-              className="editorial-card rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md overflow-hidden"
+              transition={{ duration: 0.8 }}
+              className="card-lift relative rounded-2xl border border-[#26211B] bg-[#12100E] shadow-2xl overflow-hidden group"
             >
-              {/* Card Header Bar */}
-              <div className="px-5 py-3 flex items-center justify-between border-b border-[#DDD2C2] bg-[#F4EEE4]">
+              {/* Top Accent Line */}
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent z-10" />
+
+              {/* Card Header Tag */}
+              <div className="px-4 sm:px-5 py-3.5 flex items-center justify-between border-b border-[#26211B] bg-[#141210]">
                 <div className="flex items-center space-x-2">
-                  <span className="w-2 h-2 rounded-full bg-[#78000F] animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#78000F] font-bold">
-                    EXECUTIVE SPOTLIGHT
-                  </span>
+                  <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#D4AF37]">FOUNDER SPOTLIGHT</span>
                 </div>
-                <span className="px-2 py-0.5 text-[9px] font-mono bg-[#E8F5EE] border border-[#B5DFCA] text-[#0F6848] rounded-[2px] font-semibold">
+                <span className="px-2.5 py-0.5 text-[9.5px] font-mono bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 rounded-md font-medium">
                   {spotlight.verifiedStatus || 'VERIFIED'}
                 </span>
               </div>
-
-              {/* Photo - 4:3 Editorial Ratio Matching Natural Image Framing */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#FAF8F3]">
+              
+              {/* Photo Area with 4:3 ratio matching natural image proportions */}
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#0A0908]">
                 <img
                   src={spotlight.photoUrl || "/images/tarun-executive.webp"}
                   alt={`${spotlight.name} — ${spotlight.role}`}
@@ -180,100 +175,103 @@ export const AboutSection: React.FC = () => {
                   decoding="async"
                   width="800"
                   height="600"
-                  className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/30 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-black/10 pointer-events-none" />
               </div>
 
-              {/* Info Bar */}
-              <div className="px-5 py-4 bg-[#FAF8F3] border-t border-[#DDD2C2] flex items-center justify-between">
+              {/* Clean Footer Info Bar */}
+              <div className="px-4 sm:px-5 py-4 bg-[#12100E] border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
                 <div>
-                  <h3 className="text-base sm:text-lg font-serif font-bold text-[#111111]">{spotlight.name}</h3>
-                  <p className="text-[11px] font-mono text-[#78000F] mt-0.5 font-medium">{spotlight.role}</p>
+                  <h3 className="text-base sm:text-lg font-serif font-medium text-white tracking-wide">{spotlight.name}</h3>
+                  <p className="text-[11px] font-mono text-[#D4AF37] mt-0.5">{spotlight.role}</p>
                 </div>
-                <div className="text-right">
-                  <span className="text-[9px] font-mono text-[#8C8275] block uppercase tracking-wider">LEADERSHIP</span>
-                  <span className="text-[11px] font-mono text-[#202020] font-semibold">{spotlight.leadership}</span>
+                <div className="text-left sm:text-right">
+                  <span className="text-[9.5px] font-mono text-[#A8988B] block">LEADERSHIP</span>
+                  <span className="text-[11px] font-mono text-[#C4BCB3]">{spotlight.leadership}</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* OrigoHOST Highlight Feature */}
+            {/* OrigoHOST Highlight Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 0.61, 0.36, 1] }}
-              className="editorial-card p-5 sm:p-6 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md"
+              transition={{ duration: 0.8 }}
+              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E] shadow-2xl overflow-hidden group"
             >
-              <div className="flex items-center space-x-3.5 mb-4">
+              <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />
+              
+              <div className="flex items-center space-x-3.5 sm:space-x-4 mb-4">
                 <img
                   src={origo.logoUrl || "/images/origohost/origohost-icon-64.webp"}
                   alt={origo.title}
                   loading="lazy"
                   decoding="async"
-                  width="44"
-                  height="44"
-                  className="w-10 h-10 object-contain rounded-[4px] bg-[#F4EEE4] border border-[#DDD2C2] p-1 shrink-0"
+                  width="48"
+                  height="48"
+                  className="w-11 h-11 sm:w-12 sm:h-12 object-contain rounded-xl bg-[#0A0908] border border-[#26211B] p-1.5 shrink-0"
                 />
                 <div className="min-w-0">
                   <div className="flex items-center space-x-2">
-                    <span className="text-[9.5px] font-mono text-[#78000F] tracking-widest uppercase font-bold">{origo.tag}</span>
-                    <span className="px-1.5 py-0.2 text-[8.5px] font-mono bg-[#E8F5EE] text-[#0F6848] rounded-[2px] font-semibold">ACTIVE</span>
+                    <span className="text-[10px] font-mono text-[#D4AF37] tracking-widest uppercase truncate">{origo.tag}</span>
+                    <span className="px-1.5 py-0.2 text-[9px] font-mono bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 rounded-md">ACTIVE</span>
                   </div>
-                  <h3 className="text-base font-serif font-bold text-[#111111] truncate">
+                  <h3 className="text-base sm:text-lg font-serif font-normal text-white tracking-wide truncate">
                     {origo.title}
                   </h3>
-                  <p className="text-[10px] font-mono text-[#736B60] truncate">{origo.tagline}</p>
+                  <p className="text-[10px] font-mono text-[#E6C665] truncate">{origo.tagline}</p>
                 </div>
               </div>
 
-              <p className="text-xs font-normal text-[#38342E] leading-relaxed mb-4">
+              <p className="text-xs font-light text-[#C4BCB3] leading-relaxed mb-4">
                 {origo.description}
               </p>
 
-              <div className="pt-3 border-t border-[#DDD2C2] flex items-center justify-between text-[11px] font-mono text-[#555047]">
-                <span className="font-semibold">{origo.role}</span>
+              <div className="pt-3 border-t border-[#26211B] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[11px] font-mono text-[#A8988B]">
+                <span>{origo.role}</span>
                 <a
                   href="https://origohost.in"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#78000F] font-bold hover:underline inline-flex items-center space-x-1"
+                  className="text-[#D4AF37] hover:underline inline-flex items-center space-x-1"
                 >
                   <span>{origo.ecosystem}</span>
-                  <span>↗</span>
+                  <span className="text-[10px]">↗</span>
                 </a>
               </div>
             </motion.div>
 
-            {/* Progression & Capability Log */}
+            {/* Capabilities Log */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
-              className="editorial-card p-5 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-md font-mono text-xs"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="card-lift relative p-5 sm:p-7 border border-[#26211B] rounded-2xl bg-[#12100E]/90 shadow-2xl w-full font-mono text-xs overflow-hidden"
             >
-              <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#DDD2C2] text-[#8C8275] text-[10px]">
-                <span className="truncate font-semibold">{log.logTitle}</span>
-                <span className="text-[#78000F] font-bold">{log.version}</span>
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#26211B] text-[#A8988B]">
+                <span className="text-[10px] truncate max-w-[200px]">{log.logTitle}</span>
+                <span className="text-[#D4AF37]">{log.version}</span>
               </div>
 
-              <div className="space-y-2 text-[11px]">
-                {(log.items || []).map((item, itmIdx) => {
+              <div className="space-y-2.5 text-[11px]">
+                {(log.items || []).map((item: any, itmIdx: number) => {
                   const isHighlight = item.statusType === 'scaling' || itmIdx === log.items.length - 1;
                   return (
                     <div
                       key={itmIdx}
-                      className={`p-2 rounded-[3px] border flex items-center justify-between ${isHighlight
-                        ? 'border-[#78000F]/30 bg-[#F4EEE4]'
-                        : 'border-[#DDD2C2] bg-[#FAF8F3]'
-                        }`}
+                      className={`p-2.5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 ${
+                        isHighlight
+                          ? 'border-[#D4AF37]/30 bg-[#16130F]'
+                          : 'border-[#26211B] bg-[#0A0908]'
+                      }`}
                     >
-                      <span className="text-[#202020] font-sans font-medium">
+                      <span className={isHighlight ? 'text-[#F7E7C4] font-sans' : 'text-white font-sans'}>
                         {item.title}
                       </span>
-                      <span className={isHighlight ? 'text-[#78000F] font-mono font-bold' : 'text-[#0F6848] font-mono font-bold'}>
+                      <span className={isHighlight ? 'text-[#D4AF37] font-mono font-semibold shrink-0' : 'text-emerald-400 font-mono font-semibold shrink-0'}>
                         {item.status}
                       </span>
                     </div>

@@ -5,7 +5,7 @@ import { SITE_CONFIG } from '../config/site';
 
 export const ResearchPage: React.FC = () => {
   useEffect(() => {
-    const scriptId = 'research-article-schema';
+    const scriptId = 'research-scholarly-schema';
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!script) {
       script = document.createElement('script');
@@ -14,23 +14,16 @@ export const ResearchPage: React.FC = () => {
       script.text = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ScholarlyArticle',
-        '@id': `${SITE_CONFIG.url}/research#paper-healthguard`,
-        'name': 'AI-HealthGuard: Multi-Disease Risk Prediction Using Explainable AI (XAI / SHAP)',
-        'headline': 'AI-HealthGuard: Machine Learning Risk Stratification with SHAP Explainability on Tabular Health Data',
+        'headline': 'AI-HealthGuard: Explainable Clinical Risk Stratification for Cardiovascular Prediction',
         'author': {
+          '@type': 'Person',
           '@id': SITE_CONFIG.personId,
+          'name': 'Tarun Kumar',
+          'url': SITE_CONFIG.canonicalUrl,
         },
-        'publisher': {
-          '@id': SITE_CONFIG.personId,
-        },
-        'mainEntityOfPage': `${SITE_CONFIG.url}/research`,
-        'about': [
-          'Explainable AI',
-          'Machine Learning',
-          'SHAP',
-          'Tabular Health Data',
-          'Predictive Modeling',
-        ],
+        'description': 'Peer-reviewed machine learning architecture analyzing clinical tabular health datasets with SHAP-based feature importance explainability.',
+        'keywords': ['Explainable AI', 'XAI', 'SHAP', 'Cardiovascular Risk', 'Clinical Machine Learning', 'Tarun Kumar'],
+        'inLanguage': 'en',
       });
       document.head.appendChild(script);
     }
@@ -42,10 +35,10 @@ export const ResearchPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F4EEE4] text-[#202020] pt-16">
+    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] pt-16">
       <SEO
-        title="Explainable AI &amp; ML Research"
-        description="Empirical machine learning research, SHAP explainability benchmarks, and clinical tabular risk modeling by Tarun Kumar (@heytarunkumar)."
+        title="AI &amp; Machine Learning Research"
+        description="Read empirical machine learning manuscripts and Explainable AI (XAI) frameworks authored by Tarun Kumar (@heytarunkumar)."
         path="/research"
       />
       <ResearchSection />
