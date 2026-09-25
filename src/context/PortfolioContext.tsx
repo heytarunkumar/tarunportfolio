@@ -215,12 +215,12 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [design, setDesign] = useState<DesignSettings>(() => safeGetStorage('design', initialDesign));
   const [contact, setContact] = useState<ContactSettings>(() => safeGetStorage('contact', initialContact));
   const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window === 'undefined') return 'light';
+    if (typeof window === 'undefined') return 'dark';
     try {
       const saved = localStorage.getItem('tarun_portfolio_theme');
       if (saved === 'light' || saved === 'dark') return saved;
     } catch {}
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
