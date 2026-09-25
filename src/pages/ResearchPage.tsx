@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { ResearchSection } from '../components/sections/ResearchSection';
+import { SEO } from '../components/common/SEO';
 import { SITE_CONFIG } from '../config/site';
 
 export const ResearchPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Explainable AI & ML Research | Tarun Kumar (@heytarunkumar)';
-
     const scriptId = 'research-article-schema';
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!script) {
@@ -44,6 +43,11 @@ export const ResearchPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020] pt-16">
+      <SEO
+        title="Explainable AI &amp; ML Research"
+        description="Empirical machine learning research, SHAP explainability benchmarks, and clinical tabular risk modeling by Tarun Kumar (@heytarunkumar)."
+        path="/research"
+      />
       <ResearchSection />
     </div>
   );

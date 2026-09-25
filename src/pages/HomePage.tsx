@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePortfolio } from '../context/PortfolioContext';
+import { SEO } from '../components/common/SEO';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
 import { SkillsSection } from '../components/SkillsSection';
@@ -21,6 +22,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020]">
+      <SEO path="/" />
       <HeroSection />
       {isPageVisible('/about') && <AboutSection />}
       {isPageVisible('/about') && <SkillsSection />}

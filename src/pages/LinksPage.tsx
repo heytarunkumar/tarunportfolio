@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { usePortfolio } from '../context/PortfolioContext';
+import { SEO } from '../components/common/SEO';
 import { SITE_URL } from '../config/site';
 
 interface HubLink {
@@ -144,6 +145,11 @@ export const LinksPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] pt-24 sm:pt-28 pb-20 px-4 sm:px-8 max-w-4xl mx-auto">
+      <SEO
+        title="Official Links &amp; Verified Directory"
+        description="Verified online profiles, GitHub repositories, research portals, and social links for Tarun Kumar (@heytarunkumar)."
+        path="/links"
+      />
       
       {/* Header Profile Identity */}
       <motion.div

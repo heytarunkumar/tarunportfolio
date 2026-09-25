@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/common/SEO';
 import { SITE_CONFIG } from '../config/site';
 
 export const PrivacyPolicyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Privacy Policy & DPDP Act Compliance | Tarun Kumar (@heytarunkumar)';
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] pt-28 sm:pt-32 pb-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+      <SEO
+        title="Privacy Policy &amp; DPDP Act Compliance"
+        description="Official Privacy Policy and Data Protection Notice under the Digital Personal Data Protection (DPDP) Act 2023 for Tarun Kumar (@heytarunkumar)."
+        path="/privacy"
+      />
       <div className="max-w-4xl mx-auto">
         
         {/* Header Eyebrow & Title */}

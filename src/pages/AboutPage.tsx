@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { AboutSection } from '../components/AboutSection';
 import { SkillsSection } from '../components/SkillsSection';
 import { FaqSection } from '../components/FaqSection';
+import { SEO } from '../components/common/SEO';
 import { SITE_CONFIG } from '../config/site';
 
 export const AboutPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'About Tarun Kumar | Python Developer, AI Engineer & Founder (@heytarunkumar)';
-
     const scriptId = 'about-profile-page-schema';
     let script = document.getElementById(scriptId) as HTMLScriptElement | null;
     if (!script) {
@@ -51,6 +50,11 @@ export const AboutPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020] pt-16">
+      <SEO
+        title="About &amp; Biography"
+        description="Learn about Tarun Kumar (@heytarunkumar) — Python Developer, AI Engineer, ML Researcher, Author, and Founder of OrigoHOST Tech Community."
+        path="/about"
+      />
       <AboutSection />
       <SkillsSection />
       <FaqSection />

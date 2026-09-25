@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/common/SEO';
 import { SITE_CONFIG } from '../config/site';
 
 export const CookiesPolicyPage: React.FC = () => {
   useEffect(() => {
-    document.title = 'Cookies & Tracking Policy | Tarun Kumar (@heytarunkumar)';
     window.scrollTo(0, 0);
   }, []);
 
@@ -15,6 +15,11 @@ export const CookiesPolicyPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#F4EEE4] text-[#202020] font-sans selection:bg-[#78000F] selection:text-[#F4EEE4] pt-28 sm:pt-32 pb-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 2xl:px-24">
+      <SEO
+        title="Cookie &amp; Tracking Policy"
+        description="Comprehensive Cookie, Local Storage, and Telemetry Policy for Tarun Kumar's portfolio and affiliated developer platforms."
+        path="/cookies"
+      />
       <div className="max-w-4xl mx-auto">
         
         {/* Header Eyebrow & Title */}
