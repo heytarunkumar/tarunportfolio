@@ -113,11 +113,11 @@ export const HeroSection: React.FC = () => {
           >
             {/* Top Badges / Architectural Markers */}
             <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
-              <span className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-[3px] bg-[#FAF8F3] border border-[#CFC3B3] text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-[#78000F] font-semibold uppercase shadow-sm">
+              <span className="hero-primary-badge inline-flex items-center space-x-2 px-3 py-1.5 rounded-[3px] bg-[#FAF8F3] border border-[#CFC3B3] text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-[#78000F] font-semibold uppercase shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#78000F] animate-pulse" />
                 <span>{heroBadgeText}</span>
               </span>
-              <span className="inline-flex items-center px-3 py-1.5 rounded-[3px] bg-[#FAF8F3]/60 border border-[#DDD2C2] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-[#555047] uppercase">
+              <span className="hero-secondary-badge inline-flex items-center px-3 py-1.5 rounded-[3px] bg-[#FAF8F3]/60 border border-[#DDD2C2] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-[#555047] uppercase">
                 {heroVentureBadge}
               </span>
             </motion.div>

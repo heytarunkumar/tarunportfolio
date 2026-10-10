@@ -625,8 +625,13 @@ html[data-theme="dark"] section.bg-\[\#F4EEE4\] {
 /* Card & Container Surfaces in Dark Mode */
 html[data-theme="dark"] .bg-\[\#FAF8F3\],
 html[data-theme="dark"] .bg-\[\#FAF8F3\]\/90,
-html[data-theme="dark"] .bg-\[\#FAF8F3\]\/80 {
-  background-color: rgba(22, 20, 18, 0.75) !important;
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/80,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/70,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/60,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/50,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/40,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/30 {
+  background-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 html[data-theme="dark"] .bg-\[\#EFE7DA\],
@@ -636,6 +641,48 @@ html[data-theme="dark"] .bg-\[\#EFEAE1\] {
 
 html[data-theme="dark"] .bg-\[\#DDD2C2\] {
   background-color: #26211C !important;
+}
+
+/* Hero Architectural Badges */
+.hero-primary-badge {
+  background-color: rgba(250, 248, 243, 0.85);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid #CFC3B3;
+  color: #78000F;
+  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.9), 0 2px 6px -1px rgba(32, 32, 32, 0.04);
+}
+
+.hero-secondary-badge {
+  background-color: rgba(250, 248, 243, 0.6);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid #DDD2C2;
+  color: #555047;
+  box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.8);
+}
+
+html[data-theme="dark"] .hero-primary-badge {
+  background-color: rgba(224, 49, 75, 0.12) !important;
+  backdrop-filter: blur(16px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(190%) !important;
+  border: 1px solid rgba(224, 49, 75, 0.4) !important;
+  color: #FF4D6A !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 0 16px -2px rgba(224, 49, 75, 0.25) !important;
+}
+
+html[data-theme="dark"] .hero-primary-badge span.bg-\[\#78000F\] {
+  background-color: #FF4D6A !important;
+  box-shadow: 0 0 8px #FF4D6A !important;
+}
+
+html[data-theme="dark"] .hero-secondary-badge {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(16px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(190%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #E8E3D8 !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1), 0 2px 8px -2px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Typography & Headings in Dark Mode */
