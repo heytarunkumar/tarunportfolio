@@ -113,12 +113,13 @@ export const HeroSection: React.FC = () => {
           >
             {/* Top Badges / Architectural Markers */}
             <motion.div variants={fadeUpVariants} className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-6 sm:mb-8">
-              <span className="hero-primary-badge inline-flex items-center space-x-2 px-3 py-1.5 rounded-[3px] bg-[#FAF8F3] border border-[#CFC3B3] text-[10px] sm:text-[11px] font-mono tracking-[0.2em] text-[#78000F] font-semibold uppercase shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#78000F] animate-pulse" />
-                <span>{heroBadgeText}</span>
+              <span className="hero-primary-badge inline-flex items-center space-x-2 px-3.5 h-8 rounded-[4px] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] font-semibold uppercase shadow-sm select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#78000F] animate-pulse shrink-0 hero-dot" />
+                <span className="leading-none">{heroBadgeText}</span>
               </span>
-              <span className="hero-secondary-badge inline-flex items-center px-3 py-1.5 rounded-[3px] bg-[#FAF8F3]/60 border border-[#DDD2C2] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] text-[#555047] uppercase">
-                {heroVentureBadge}
+              <span className="hero-secondary-badge inline-flex items-center space-x-2 px-3.5 h-8 rounded-[4px] text-[10px] sm:text-[11px] font-mono tracking-[0.18em] font-semibold uppercase shadow-sm select-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 shrink-0 hero-venture-dot" />
+                <span className="leading-none">{heroVentureBadge}</span>
               </span>
             </motion.div>
 
@@ -182,7 +183,7 @@ export const HeroSection: React.FC = () => {
               {/* Primary CTA */}
               <a
                 href={primaryCtaLink}
-                className="btn-executive-primary inline-flex items-center justify-center space-x-2 px-6 sm:px-8 py-3.5 text-xs font-mono tracking-[0.18em] uppercase cursor-pointer"
+                className="btn-executive-primary inline-flex items-center justify-center space-x-2 px-6 sm:px-7 h-12 rounded-[4px] text-xs font-mono font-semibold tracking-[0.18em] uppercase cursor-pointer"
               >
                 <span>{primaryCtaText}</span>
                 <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -193,19 +194,19 @@ export const HeroSection: React.FC = () => {
                 href={resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-executive-secondary inline-flex items-center justify-center space-x-2 px-5 sm:px-6 py-3.5 text-xs font-mono tracking-[0.18em] uppercase cursor-pointer"
+                className="btn-executive-secondary inline-flex items-center justify-center space-x-2 px-6 sm:px-7 h-12 rounded-[4px] text-xs font-mono font-semibold tracking-[0.18em] uppercase cursor-pointer"
               >
                 <span>{secondaryCtaText}</span>
-                <span className="text-xs text-[#78000F]">↓</span>
+                <span className="text-xs text-[#78000F] dark:text-[#FF4D6A]">↓</span>
               </a>
 
               {/* Copy Email Action */}
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                className={`inline-flex items-center justify-center space-x-2 px-4 sm:px-5 py-3.5 rounded-[4px] border text-xs font-mono tracking-[0.16em] uppercase transition-all duration-300 cursor-pointer ${
+                className={`inline-flex items-center justify-center space-x-2 px-5 sm:px-6 h-12 rounded-[4px] border text-xs font-mono font-semibold tracking-[0.18em] uppercase transition-all duration-300 cursor-pointer ${
                   copiedEmail
-                    ? 'border-[#0F6848] bg-[#E8F5EE] text-[#0F6848] font-semibold'
+                    ? 'border-[#0F6848] bg-[#E8F5EE] text-[#0F6848]'
                     : 'border-[#CFC3B3] hover:border-[#78000F] bg-[#FAF8F3] text-[#202020] hover:text-[#78000F]'
                 }`}
               >
@@ -243,13 +244,14 @@ export const HeroSection: React.FC = () => {
                   
                   {/* Badge Over Portrait */}
                   <div className="absolute bottom-3.5 left-3.5 right-3.5 flex items-center justify-between text-[#F4EEE4] font-mono text-[10px] sm:text-[11px] tracking-[0.16em]">
-                    <div className="flex items-center space-x-1.5 bg-[#111111]/85 backdrop-blur-md px-2.5 py-1 rounded-[2px] border border-white/10">
+                    <div className="flex items-center space-x-1.5 bg-[#111111]/85 backdrop-blur-md px-2.5 py-1 rounded-[2px] border border-white/10 font-medium uppercase">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                      <span className="font-medium uppercase">FOUNDER IDENTITY</span>
+                      <span>FOUNDER IDENTITY</span>
                     </div>
-                    <span className="bg-[#78000F]/90 backdrop-blur-md px-2 py-1 rounded-[2px] font-semibold text-white">
-                      AUTONOMOUS SYSTEMS
-                    </span>
+                    <div className="flex items-center space-x-1.5 bg-[#78000F]/90 backdrop-blur-md px-2.5 py-1 rounded-[2px] border border-white/10 font-semibold uppercase text-white">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/80 animate-pulse" />
+                      <span>AUTONOMOUS SYSTEMS</span>
+                    </div>
                   </div>
                 </div>
 
