@@ -108,7 +108,7 @@ export const CookieConsentBanner: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.22, 0.61, 0.36, 1] }}
-            className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-xl z-50 bg-[#141210] border border-[#383229] text-[#F4EEE4] p-5 sm:p-6 rounded-[4px] shadow-2xl backdrop-blur-lg"
+            className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-xl z-50 apple-glass-banner text-[#F4EEE4] p-5 sm:p-6 rounded-[4px]"
           >
             <div className="flex items-start justify-between gap-3 mb-3">
               <div className="flex items-center space-x-2">
@@ -165,7 +165,7 @@ export const CookieConsentBanner: React.FC = () => {
       {/* Granular Cookie Preferences Modal */}
       <AnimatePresence>
         {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md overflow-y-auto">
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -174,7 +174,7 @@ export const CookieConsentBanner: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
-              className="relative w-full max-w-2xl bg-[#141210] border border-[#383229] rounded-[4px] p-6 sm:p-8 text-[#F4EEE4] shadow-2xl my-8 font-sans"
+              className="relative w-full max-w-2xl apple-glass-banner rounded-[4px] p-6 sm:p-8 text-[#F4EEE4] my-8 font-sans"
             >
               {/* Header */}
               <div className="flex items-start justify-between pb-5 border-b border-[#2B2620] mb-6">

@@ -18,6 +18,18 @@
   --radius-md: 8px;
   --container: 1400px;
   --ease-editorial: cubic-bezier(.22, .61, .36, 1);
+  --apple-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Apple Liquid Glass Core Tokens (Light Mode - Ivory Edition) */
+  --apple-glass-bg: rgba(250, 248, 243, 0.72);
+  --apple-glass-bg-hover: rgba(255, 253, 249, 0.85);
+  --apple-glass-blur: blur(24px) saturate(190%) contrast(100%);
+  --apple-glass-border: rgba(255, 255, 255, 0.7);
+  --apple-glass-border-hover: rgba(120, 0, 15, 0.45);
+  --apple-glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(207, 195, 179, 0.22);
+  --apple-glass-specular-hover: inset 0 1px 2px 0 rgba(255, 255, 255, 1), inset 0 0 0 1px rgba(120, 0, 15, 0.15);
+  --apple-glass-shadow: 0 4px 16px -2px rgba(32, 32, 32, 0.04), 0 12px 32px -8px rgba(32, 32, 32, 0.06);
+  --apple-glass-shadow-hover: 0 16px 36px -8px rgba(32, 32, 32, 0.09), 0 2px 14px -2px rgba(120, 0, 15, 0.08);
 }
 
 @layer base {
@@ -34,13 +46,15 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Subtle Warm Editorial Paper Texture Background */
+  /* Apple Ambient Lighting & Editorial Surface Background */
   body {
     background-color: #F4EEE4;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(250, 248, 243, 0.7) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(221, 210, 194, 0.45) 0px, transparent 50%),
-      radial-gradient(at 50% 50%, rgba(244, 238, 228, 0.6) 0px, transparent 100%);
+      radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 45%),
+      radial-gradient(circle at 85% 12%, rgba(120, 0, 15, 0.045) 0%, transparent 40%),
+      radial-gradient(circle at 92% 80%, rgba(212, 175, 55, 0.06) 0%, transparent 45%),
+      radial-gradient(circle at 10% 85%, rgba(221, 210, 194, 0.55) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(244, 238, 228, 0.75) 0%, transparent 100%);
     background-attachment: fixed;
   }
 
@@ -82,30 +96,124 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Editorial Card Component */
+  /* =========================================================================
+     APPLE LIQUID GLASS & GLASSMORPHISM SYSTEM (iOS / macOS / visionOS)
+     ========================================================================= */
+
+  /* Editorial Card Component — Apple Liquid Frosted Glass */
   .editorial-card {
-    background-color: #FAF8F3;
-    border: 1px solid #CFC3B3;
+    background-color: var(--apple-glass-bg);
+    backdrop-filter: var(--apple-glass-blur);
+    -webkit-backdrop-filter: var(--apple-glass-blur);
+    border: 1px solid var(--apple-glass-border);
     border-radius: var(--radius-sm);
-    transition: transform 0.45s var(--ease-editorial), border-color 0.35s ease, box-shadow 0.45s var(--ease-editorial);
+    box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow);
+    transition: transform 0.45s var(--apple-ease), border-color 0.35s ease, box-shadow 0.45s var(--apple-ease), background-color 0.35s ease;
   }
 
   .editorial-card:hover {
-    border-color: #78000F;
+    background-color: var(--apple-glass-bg-hover);
+    border-color: var(--apple-glass-border-hover);
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px -8px rgba(32, 32, 32, 0.08), 0 2px 8px -2px rgba(120, 0, 15, 0.06);
+    box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover);
   }
 
   /* Card Lift Compatibility Class */
   .card-lift {
     will-change: transform, box-shadow, border-color;
-    transition: transform 0.35s var(--ease-editorial), box-shadow 0.35s var(--ease-editorial), border-color 0.35s ease;
+    transition: transform 0.35s var(--apple-ease), box-shadow 0.35s var(--apple-ease), border-color 0.35s ease;
   }
 
   .card-lift:hover {
     transform: translateY(-3px);
-    border-color: #78000F;
-    box-shadow: 0 16px 36px -12px rgba(32, 32, 32, 0.09);
+    border-color: var(--apple-glass-border-hover);
+    box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover);
+  }
+
+  /* Generic Apple Frosted Glass Surface */
+  .apple-glass {
+    background-color: var(--apple-glass-bg);
+    backdrop-filter: var(--apple-glass-blur);
+    -webkit-backdrop-filter: var(--apple-glass-blur);
+    border: 1px solid var(--apple-glass-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow);
+  }
+
+  .apple-glass-interactive {
+    background-color: var(--apple-glass-bg);
+    backdrop-filter: var(--apple-glass-blur);
+    -webkit-backdrop-filter: var(--apple-glass-blur);
+    border: 1px solid var(--apple-glass-border);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow);
+    transition: all 0.35s var(--apple-ease);
+  }
+  .apple-glass-interactive:hover {
+    background-color: var(--apple-glass-bg-hover);
+    border-color: var(--apple-glass-border-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover);
+  }
+
+  /* Apple macOS Top Bar Navigation Frosted Glass */
+  .apple-glass-nav {
+    background-color: rgba(244, 238, 228, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(190%) contrast(100%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) contrast(100%) !important;
+    border-bottom: 1px solid rgba(207, 195, 179, 0.6) !important;
+    box-shadow: 
+      inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.7),
+      0 4px 20px -2px rgba(32, 32, 32, 0.04) !important;
+  }
+
+  /* Apple Sheet / Drawer Mobile Frosted Glass */
+  .apple-glass-drawer {
+    background-color: rgba(250, 248, 243, 0.92) !important;
+    backdrop-filter: blur(32px) saturate(190%) contrast(100%) !important;
+    -webkit-backdrop-filter: blur(32px) saturate(190%) contrast(100%) !important;
+    border-bottom: 1px solid rgba(207, 195, 179, 0.7) !important;
+    box-shadow: 
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.95),
+      0 20px 48px -10px rgba(32, 32, 32, 0.12) !important;
+  }
+
+  /* Apple Frosted Pill / Tag (iOS Control Center & VisionOS Tags) */
+  .apple-glass-pill {
+    background-color: rgba(250, 248, 243, 0.68) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.75) !important;
+    box-shadow: inset 0 1px 0.5px 0 rgba(255, 255, 255, 0.9), 0 2px 6px -1px rgba(32, 32, 32, 0.04);
+    transition: all 0.25s ease;
+  }
+  .apple-glass-pill:hover {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border-color: rgba(120, 0, 15, 0.4) !important;
+    box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 4px 12px -2px rgba(120, 0, 15, 0.08);
+  }
+
+  /* Apple VisionOS / macOS Floating Modal Sheet Glass */
+  .apple-glass-modal {
+    background: rgba(250, 248, 243, 0.9) !important;
+    backdrop-filter: blur(36px) saturate(190%) contrast(102%) !important;
+    -webkit-backdrop-filter: blur(36px) saturate(190%) contrast(102%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    box-shadow: 
+      inset 0 1px 1.5px 0 rgba(255, 255, 255, 1),
+      inset 0 0 0 1px rgba(207, 195, 179, 0.25),
+      0 24px 64px -12px rgba(32, 32, 32, 0.18) !important;
+  }
+
+  /* Apple System Banner Glass (Notification / Consent) */
+  .apple-glass-banner {
+    background: rgba(20, 18, 16, 0.88) !important;
+    backdrop-filter: blur(28px) saturate(190%) contrast(105%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(190%) contrast(105%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25),
+      0 24px 50px -12px rgba(0, 0, 0, 0.6) !important;
   }
 
   /* Editorial Thin Hairline Rules */
@@ -123,8 +231,11 @@
   }
 
   .glass-panel {
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    background-color: var(--apple-glass-bg);
+    backdrop-filter: var(--apple-glass-blur);
+    -webkit-backdrop-filter: var(--apple-glass-blur);
+    border: 1px solid var(--apple-glass-border);
+    box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow);
   }
 }
 
@@ -316,32 +427,39 @@ html[data-theme="light"] .group:hover .group-hover\:text-\[\#D4AF37\] {
 }
 
 /* Executive Black CTA Buttons */
+/* Executive Black CTA Buttons — Apple Specular Finish */
 .btn-executive-primary {
   background-color: #111111;
   color: #F4EEE4;
-  border: 1px solid #111111;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-sm);
-  transition: all 0.3s var(--ease-editorial);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25), 0 2px 8px -1px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s var(--apple-ease);
 }
 .btn-executive-primary:hover {
   background-color: #78000F;
   border-color: #78000F;
   color: #FFFFFF;
   transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.4), 0 6px 18px -2px rgba(120, 0, 15, 0.35);
 }
 
 .btn-executive-secondary {
-  background-color: transparent;
+  background-color: rgba(250, 248, 243, 0.65);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
   color: #202020;
-  border: 1px solid #CFC3B3;
+  border: 1px solid rgba(207, 195, 179, 0.7);
   border-radius: var(--radius-sm);
-  transition: all 0.3s var(--ease-editorial);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.85), 0 2px 6px -1px rgba(32, 32, 32, 0.04);
+  transition: all 0.3s var(--apple-ease);
 }
 .btn-executive-secondary:hover {
   border-color: #78000F;
   color: #78000F;
-  background-color: #FAF8F3;
+  background-color: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 6px 16px -2px rgba(120, 0, 15, 0.1);
 }
 
 /* Status Badges & Pills */
@@ -364,17 +482,21 @@ html[data-theme="light"] .bg-emerald-950\/60 {
   border-color: #B5DFCA !important;
 }
 
-/* Form Inputs */
+/* Form Inputs — Apple Frosted Glass Focus System */
 html.light input,
 html[data-theme="light"] input,
 html.light textarea,
 html[data-theme="light"] textarea,
 html.light select,
 html[data-theme="light"] select {
-  background-color: #FAF8F3 !important;
-  border-color: #CFC3B3 !important;
+  background-color: rgba(250, 248, 243, 0.75) !important;
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(207, 195, 179, 0.75) !important;
   color: #202020 !important;
   border-radius: var(--radius-sm) !important;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.03), inset 0 0 0 1px rgba(255, 255, 255, 0.4) !important;
+  transition: all 0.25s var(--apple-ease);
 }
 
 html.light input:focus,
@@ -383,8 +505,9 @@ html.light textarea:focus,
 html[data-theme="light"] textarea:focus,
 html.light select:focus,
 html[data-theme="light"] select:focus {
+  background-color: rgba(255, 255, 255, 0.95) !important;
   border-color: #78000F !important;
-  box-shadow: 0 0 0 1px #78000F !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 0 0 2px rgba(120, 0, 15, 0.2) !important;
 }
 
 html.light input::placeholder,
@@ -395,16 +518,53 @@ html[data-theme="light"] textarea::placeholder {
   opacity: 0.8 !important;
 }
 
-/* Card Elevation */
+/* Apple Glass Light Mode Overrides for Editorial Cards */
+html.light .editorial-card,
+html[data-theme="light"] .editorial-card,
+html.light .editorial-card.bg-\[\#FAF8F3\],
+html[data-theme="light"] .editorial-card.bg-\[\#FAF8F3\] {
+  background-color: var(--apple-glass-bg) !important;
+  backdrop-filter: var(--apple-glass-blur) !important;
+  -webkit-backdrop-filter: var(--apple-glass-blur) !important;
+  border: 1px solid var(--apple-glass-border) !important;
+  box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow) !important;
+}
+
+html.light .editorial-card:hover,
+html[data-theme="light"] .editorial-card:hover {
+  background-color: var(--apple-glass-bg-hover) !important;
+  border-color: var(--apple-glass-border-hover) !important;
+  box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover) !important;
+}
+
+/* Card Elevation Compatibility */
 html.light .card-lift,
 html[data-theme="light"] .card-lift {
-  box-shadow: 0 4px 16px -2px rgba(32, 32, 32, 0.05), 0 1px 2px 0 rgba(32, 32, 32, 0.03) !important;
+  box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow) !important;
 }
 
 html.light .card-lift:hover,
 html[data-theme="light"] .card-lift:hover {
-  border-color: #78000F !important;
-  box-shadow: 0 16px 36px -8px rgba(32, 32, 32, 0.09), 0 0 20px -6px rgba(120, 0, 15, 0.12) !important;
+  border-color: var(--apple-glass-border-hover) !important;
+  box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover) !important;
+}
+
+/* Inner Frosted Glass Sub-Cards & Badges */
+.editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\],
+.editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\],
+.editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\]\/90 {
+  background-color: rgba(250, 248, 243, 0.6) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-color: rgba(207, 195, 179, 0.5) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+}
+
+.editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\]:hover,
+.editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\]:hover {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(120, 0, 15, 0.35) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 1), 0 4px 12px -2px rgba(120, 0, 15, 0.06);
 }
 
 /* Scrollbars */
@@ -422,12 +582,64 @@ html[data-theme="light"] .card-lift:hover {
   background: #78000F;
 }
 
-/* Dark Mode Overrides */
+/* =========================================================================
+   APPLE DARK MODE FROSTED GLASS OVERRIDES (Obsidian Edition)
+   ========================================================================= */
+html[data-theme="dark"] {
+  --apple-glass-bg: rgba(20, 18, 16, 0.74);
+  --apple-glass-bg-hover: rgba(28, 25, 22, 0.84);
+  --apple-glass-blur: blur(24px) saturate(190%) contrast(105%);
+  --apple-glass-border: rgba(255, 255, 255, 0.14);
+  --apple-glass-border-hover: rgba(197, 30, 49, 0.55);
+  --apple-glass-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  --apple-glass-specular-hover: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(197, 30, 49, 0.25);
+  --apple-glass-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.45);
+  --apple-glass-shadow-hover: 0 20px 44px -8px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(197, 30, 49, 0.2);
+}
+
 html[data-theme="dark"] body {
   background-color: #0E0D0C !important;
-  background-image: none !important;
+  background-image: 
+    radial-gradient(circle at 20% 15%, rgba(120, 0, 15, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.09) 0%, transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(40, 35, 30, 0.4) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(14, 13, 12, 0.95) 0%, transparent 100%) !important;
+  background-attachment: fixed !important;
   color: #F4EEE4 !important;
 }
+
 html[data-theme="dark"] .editorial-title {
   color: #C51E31 !important;
+}
+
+html[data-theme="dark"] .editorial-card,
+html[data-theme="dark"] .editorial-card.bg-\[\#FAF8F3\] {
+  background-color: var(--apple-glass-bg) !important;
+  backdrop-filter: var(--apple-glass-blur) !important;
+  -webkit-backdrop-filter: var(--apple-glass-blur) !important;
+  border: 1px solid var(--apple-glass-border) !important;
+  box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow) !important;
+}
+
+html[data-theme="dark"] .editorial-card:hover {
+  background-color: var(--apple-glass-bg-hover) !important;
+  border-color: var(--apple-glass-border-hover) !important;
+  box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover) !important;
+}
+
+html[data-theme="dark"] .card-lift {
+  box-shadow: var(--apple-glass-specular), var(--apple-glass-shadow) !important;
+}
+
+html[data-theme="dark"] .card-lift:hover {
+  border-color: var(--apple-glass-border-hover) !important;
+  box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover) !important;
+}
+
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\],
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\] {
+  background-color: rgba(28, 25, 22, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }

@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#F4EEE4]/95 backdrop-blur-md border-b border-[#CFC3B3] py-3.5 shadow-sm'
+          ? 'apple-glass-nav py-3.5 shadow-sm'
           : 'bg-transparent py-5'
       }`}
     >
@@ -215,7 +215,7 @@ export const Navbar: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
-            className="lg:hidden fixed inset-x-0 top-[65px] bg-[#FAF8F3] border-b border-[#CFC3B3] shadow-2xl z-40 p-6 max-h-[85vh] overflow-y-auto"
+            className="lg:hidden fixed inset-x-0 top-[65px] apple-glass-drawer z-40 p-6 max-h-[85vh] overflow-y-auto"
           >
             <div className="flex flex-col space-y-4">
               {activeNavItems.map((item, idx) => (

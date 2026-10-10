@@ -224,7 +224,7 @@ export const HeroSection: React.FC = () => {
             <div className="w-full max-w-lg relative">
               
               {/* Architectural Frame & Corner Marks */}
-              <div className="relative rounded-[4px] overflow-hidden border border-[#CFC3B3] bg-[#FAF8F3] p-2.5 sm:p-3.5 shadow-xl">
+              <div className="editorial-card relative rounded-[4px] overflow-hidden p-2.5 sm:p-3.5 shadow-xl">
                 
                 {/* Image Container with Elegant Subtle Zoom on Hover - 4:3 Ratio matching Spotlight Card */}
                 <div className="relative overflow-hidden rounded-[2px] bg-[#FAF8F3] aspect-[4/3] w-full group">
