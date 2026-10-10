@@ -583,20 +583,21 @@ html[data-theme="light"] .card-lift:hover {
 }
 
 /* =========================================================================
-   APPLE DARK MODE FROSTED GLASS OVERRIDES (Obsidian Edition)
+   APPLE DARK MODE FROSTED GLASS & THEME SYSTEM (Obsidian Edition)
    ========================================================================= */
 html[data-theme="dark"] {
   --apple-glass-bg: rgba(20, 18, 16, 0.74);
   --apple-glass-bg-hover: rgba(28, 25, 22, 0.84);
   --apple-glass-blur: blur(24px) saturate(190%) contrast(105%);
   --apple-glass-border: rgba(255, 255, 255, 0.14);
-  --apple-glass-border-hover: rgba(197, 30, 49, 0.55);
+  --apple-glass-border-hover: rgba(224, 49, 75, 0.55);
   --apple-glass-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  --apple-glass-specular-hover: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(197, 30, 49, 0.25);
+  --apple-glass-specular-hover: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35), inset 0 0 0 1px rgba(224, 49, 75, 0.25);
   --apple-glass-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.45);
-  --apple-glass-shadow-hover: 0 20px 44px -8px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(197, 30, 49, 0.2);
+  --apple-glass-shadow-hover: 0 20px 44px -8px rgba(0, 0, 0, 0.65), 0 0 24px -4px rgba(224, 49, 75, 0.2);
 }
 
+html[data-theme="dark"],
 html[data-theme="dark"] body {
   background-color: #0E0D0C !important;
   background-image: 
@@ -609,10 +610,104 @@ html[data-theme="dark"] body {
   color: #F4EEE4 !important;
 }
 
-html[data-theme="dark"] .editorial-title {
-  color: #C51E31 !important;
+/* Page & Section Surfaces in Dark Mode */
+html[data-theme="dark"] .bg-\[\#F4EEE4\],
+html[data-theme="dark"] .bg-\[\#F4EEE4\]\/95,
+html[data-theme="dark"] .bg-\[\#F4EEE4\]\/90 {
+  background-color: transparent !important;
 }
 
+html[data-theme="dark"] div.bg-\[\#F4EEE4\],
+html[data-theme="dark"] section.bg-\[\#F4EEE4\] {
+  background-color: #0E0D0C !important;
+}
+
+/* Card & Container Surfaces in Dark Mode */
+html[data-theme="dark"] .bg-\[\#FAF8F3\],
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/90,
+html[data-theme="dark"] .bg-\[\#FAF8F3\]\/80 {
+  background-color: rgba(22, 20, 18, 0.75) !important;
+}
+
+html[data-theme="dark"] .bg-\[\#EFE7DA\],
+html[data-theme="dark"] .bg-\[\#EFEAE1\] {
+  background-color: #1A1714 !important;
+}
+
+html[data-theme="dark"] .bg-\[\#DDD2C2\] {
+  background-color: #26211C !important;
+}
+
+/* Typography & Headings in Dark Mode */
+html[data-theme="dark"] .text-\[\#111111\],
+html[data-theme="dark"] .text-black,
+html[data-theme="dark"] h1,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] h3,
+html[data-theme="dark"] h4 {
+  color: #F5F2EB !important;
+}
+
+html[data-theme="dark"] .text-\[\#202020\] {
+  color: #E8E3D8 !important;
+}
+
+html[data-theme="dark"] .text-\[\#38342E\],
+html[data-theme="dark"] .text-\[\#4A4640\] {
+  color: #C4BCB3 !important;
+}
+
+html[data-theme="dark"] .text-\[\#555047\],
+html[data-theme="dark"] .text-\[\#736B60\],
+html[data-theme="dark"] .text-\[\#8C8275\] {
+  color: #A8988B !important;
+}
+
+/* Vibrant Apple Crimson/Oxblood for Dark Mode */
+html[data-theme="dark"] .text-\[\#78000F\],
+html[data-theme="dark"] .editorial-title {
+  color: #E0314B !important;
+}
+
+html[data-theme="dark"] .hover\:text-\[\#78000F\]:hover,
+html[data-theme="dark"] .group:hover .group-hover\:text-\[\#78000F\] {
+  color: #E0314B !important;
+}
+
+/* Status Badges in Dark Mode */
+html[data-theme="dark"] .text-\[\#0F6848\] {
+  color: #34D399 !important;
+}
+
+html[data-theme="dark"] .bg-\[\#E8F5EE\] {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(52, 211, 153, 0.3) !important;
+  color: #34D399 !important;
+}
+
+/* Borders in Dark Mode */
+html[data-theme="dark"] .border-\[\#CFC3B3\] {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html[data-theme="dark"] .border-\[\#DDD2C2\] {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html[data-theme="dark"] .border-\[\#78000F\] {
+  border-color: rgba(224, 49, 75, 0.6) !important;
+}
+
+html[data-theme="dark"] .hover\:border-\[\#78000F\]:hover,
+html[data-theme="dark"] .group:hover .group-hover\:border-\[\#78000F\] {
+  border-color: #E0314B !important;
+}
+
+html[data-theme="dark"] .editorial-rule {
+  background: linear-gradient(90deg, #E0314B 0%, rgba(255, 255, 255, 0.15) 35%, rgba(255, 255, 255, 0.03) 100%) !important;
+}
+
+/* Cards & Glass Panels in Dark Mode */
 html[data-theme="dark"] .editorial-card,
 html[data-theme="dark"] .editorial-card.bg-\[\#FAF8F3\] {
   background-color: var(--apple-glass-bg) !important;
@@ -637,9 +732,187 @@ html[data-theme="dark"] .card-lift:hover {
   box-shadow: var(--apple-glass-specular-hover), var(--apple-glass-shadow-hover) !important;
 }
 
+/* Inner Frosted Glass Sub-Cards & Badges inside Editorial Cards */
 html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\],
-html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\] {
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\],
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\]\/90,
+html[data-theme="dark"] .editorial-card div.bg-\[\#F4EEE4\],
+html[data-theme="dark"] .editorial-card div.bg-\[\#FAF8F3\] {
   background-color: rgba(28, 25, 22, 0.6) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#FAF8F3\]:hover,
+html[data-theme="dark"] .editorial-card .border-\[\#DDD2C2\].bg-\[\#F4EEE4\]:hover,
+html[data-theme="dark"] .editorial-card a.bg-\[\#FAF8F3\]:hover {
+  background-color: rgba(40, 36, 32, 0.85) !important;
+  border-color: rgba(224, 49, 75, 0.45) !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px -2px rgba(224, 49, 75, 0.1) !important;
+}
+
+/* Buttons in Dark Mode */
+html[data-theme="dark"] .btn-executive-primary {
+  background-color: #C51E31 !important;
+  color: #FFFFFF !important;
+  border-color: #C51E31 !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.35), 0 4px 14px -2px rgba(197, 30, 49, 0.4) !important;
+}
+html[data-theme="dark"] .btn-executive-primary:hover {
+  background-color: #E0314B !important;
+  border-color: #E0314B !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.5), 0 6px 20px -2px rgba(224, 49, 75, 0.5) !important;
+}
+
+html[data-theme="dark"] .btn-executive-secondary {
+  background-color: rgba(28, 25, 22, 0.7) !important;
+  color: #F4EEE4 !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 2px 6px -1px rgba(0, 0, 0, 0.3) !important;
+}
+html[data-theme="dark"] .btn-executive-secondary:hover {
+  border-color: #E0314B !important;
+  color: #E0314B !important;
+  background-color: rgba(40, 35, 30, 0.85) !important;
+}
+
+html[data-theme="dark"] button.border-\[\#CFC3B3\].bg-\[\#FAF8F3\] {
+  background-color: rgba(28, 25, 22, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+  color: #D4CDC3 !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.4) !important;
+}
+html[data-theme="dark"] button.border-\[\#CFC3B3\].bg-\[\#FAF8F3\]:hover {
+  background-color: rgba(40, 35, 30, 0.9) !important;
+  border-color: #E0314B !important;
+  color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] button.border-\[\#78000F\].bg-\[\#78000F\] {
+  background-color: #C51E31 !important;
+  border-color: #C51E31 !important;
+  color: #FFFFFF !important;
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.35), 0 4px 14px -2px rgba(197, 30, 49, 0.4) !important;
+}
+
+html[data-theme="dark"] button.border-\[\#CFC3B3\] {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html[data-theme="dark"] button.border-\[\#CFC3B3\].bg-\[\#FAF8F3\] {
+  color: #E8E3D8 !important;
+}
+
+/* Form Inputs in Dark Mode */
+html[data-theme="dark"] input,
+html[data-theme="dark"] textarea,
+html[data-theme="dark"] select {
+  background-color: rgba(22, 20, 18, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #F4EEE4 !important;
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+}
+
+html[data-theme="dark"] input:focus,
+html[data-theme="dark"] textarea:focus,
+html[data-theme="dark"] select:focus {
+  background-color: rgba(28, 25, 22, 0.95) !important;
+  border-color: #E0314B !important;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2), 0 0 0 2px rgba(224, 49, 75, 0.25) !important;
+}
+
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #8C8275 !important;
+}
+
+/* Navigation Bar & Header in Dark Mode */
+html[data-theme="dark"] .apple-glass-nav {
+  background-color: rgba(14, 13, 12, 0.82) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 
+    inset 0 -0.5px 0 0 rgba(255, 255, 255, 0.1),
+    0 8px 30px -4px rgba(0, 0, 0, 0.5) !important;
+}
+
+html[data-theme="dark"] .apple-glass-drawer {
+  background-color: rgba(18, 16, 14, 0.94) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+    0 24px 60px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+html[data-theme="dark"] header a.text-\[\#202020\],
+html[data-theme="dark"] nav a.text-\[\#555047\] {
+  color: #C4BCB3 !important;
+}
+html[data-theme="dark"] nav a.text-\[\#78000F\] {
+  color: #E0314B !important;
+}
+html[data-theme="dark"] nav a:hover {
+  color: #E0314B !important;
+}
+html[data-theme="dark"] nav span.bg-\[\#78000F\] {
+  background-color: #E0314B !important;
+}
+
+html[data-theme="dark"] header div.bg-\[\#FAF8F3\] {
+  background-color: #1A1714 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html[data-theme="dark"] header button.bg-\[\#FAF8F3\] {
+  background-color: #1A1714 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  color: #F4EEE4 !important;
+}
+
+html[data-theme="dark"] header a.bg-\[\#111111\] {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(28, 25, 22, 0.9) !important;
+  color: #F4EEE4 !important;
+}
+html[data-theme="dark"] header a.bg-\[\#111111\]:hover {
+  background-color: #E0314B !important;
+  border-color: #E0314B !important;
+  color: #FFFFFF !important;
+}
+
+/* Project Cards Watermark Number in Dark Mode */
+html[data-theme="dark"] span.text-\[\#78000F\]\/\[0\.06\] {
+  color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Timeline Node & Track in Experience */
+html[data-theme="dark"] #experience .bg-\[\#CFC3B3\] {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+}
+html[data-theme="dark"] .bg-\[\#FAF8F3\].border-\[\#78000F\] {
+  background-color: #161412 !important;
+  border-color: #E0314B !important;
+}
+html[data-theme="dark"] .group:hover .group-hover\:bg-\[\#78000F\] {
+  background-color: #E0314B !important;
+}
+
+/* FAQ Expander Plus Button */
+html[data-theme="dark"] #faq span.bg-\[\#F4EEE4\] {
+  background-color: rgba(35, 30, 26, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #E0314B !important;
+}
+
+/* Scrollbars & Selection */
+html[data-theme="dark"] ::selection {
+  background-color: #C51E31 !important;
+  color: #FFFFFF !important;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: #141210 !important;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #383229 !important;
+}
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: #E0314B !important;
 }
