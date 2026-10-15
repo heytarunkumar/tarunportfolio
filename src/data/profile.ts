@@ -145,7 +145,7 @@ export const profileData: Profile = {
   narrative:
     "Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. Turning complex problems into production-grade systems and developer-centric products.",
   bio:
-    "My work sits at the intersection of Python engineering, Artificial Intelligence, Generative AI, machine learning research, and entrepreneurship. Beyond engineering software, I am an author of technical guides and founder of developer ecosystems. As the Founder & President of OrigoHOST Tech Community (origohost.in), I lead institutional engagements, technical bootcamps, and developer initiatives focused on applied AI and engineering education. I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.",
+    "My work sits at the intersection of Python engineering, Artificial Intelligence, Generative AI, machine learning research, and entrepreneurship. Beyond engineering software, I am an author of technical guides and founder of developer ecosystems. As the Founder & President of OrigoHOST - Developer Community & Cloud Platform (https://www.origohost.in/), I lead institutional engagements, technical bootcamps, and developer initiatives focused on applied AI and engineering education. I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.",
   location: "India · Global / Remote",
   email: "tarunsinghchaudharyy@gmail.com",
   socials: {
@@ -180,7 +180,7 @@ export const profileData: Profile = {
   heroTerminal: {
     title: "tarun@heytarunkumar ~ bash",
     whoami: "tarun-kumar [Python Dev · AI Engineer · Founder]",
-    venture: "OrigoHOST Tech Community (origohost.in)",
+    venture: "OrigoHOST - Developer Community & Cloud Platform (www.origohost.in)",
     ventureQuote: "WHERE BUILDERS BECOME INNOVATORS",
     status: "ACTIVE · BUILDING INTELLIGENT SYSTEMS",
     mission: "[TURNING_PROBLEMS_INTO_SCALABLE_PRODUCTS]",
@@ -198,7 +198,7 @@ export const profileData: Profile = {
   aboutHeadline: "Engineering intelligence. Scaling ventures.",
   aboutStoryParagraphs: [
     "I am Tarun Kumar (known across platforms as @heytarunkumar) — a Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures.",
-    "My work sits at the intersection of Artificial Intelligence, Generative AI, Python systems engineering, automated workflows, and empirical research. As the Founder & President of OrigoHOST Tech Community (https://origohost.in), I lead technical initiatives, builder hackathons, and community growth focused on applied AI and developer education.",
+    "My work sits at the intersection of Artificial Intelligence, Generative AI, Python systems engineering, automated workflows, and empirical research. As the Founder & President of OrigoHOST - Developer Community & Cloud Platform (https://www.origohost.in/), I lead technical initiatives, builder hackathons, and community growth focused on applied AI and developer education.",
   ],
   aboutQuote: "I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.",
   competencyPillars: [
@@ -228,7 +228,7 @@ export const profileData: Profile = {
   origohostCard: {
     logoUrl: "/images/origohost/origohost-icon.webp",
     tag: "VENTURE & COMMUNITY",
-    title: "OrigoHOST Tech Community",
+    title: "OrigoHOST - Developer Community & Cloud Platform",
     tagline: "WHERE BUILDERS BECOME INNOVATORS",
     description: "As Founder & President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.",
     role: "ROLE: FOUNDER & PRESIDENT",

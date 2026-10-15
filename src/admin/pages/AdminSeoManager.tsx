@@ -127,8 +127,8 @@ export const AdminSeoManager: React.FC = () => {
     worksFor: {
       '@type': 'Organization',
       '@id': 'https://origohost.in/#organization',
-      name: 'OrigoHOST Tech Community',
-      url: 'https://origohost.in',
+      name: 'OrigoHOST - Developer Community & Cloud Platform',
+      url: 'https://www.origohost.in/',
     },
     knowsAbout: [
       'Artificial Intelligence',
@@ -139,7 +139,7 @@ export const AdminSeoManager: React.FC = () => {
       'REST APIs',
       'Software Architecture',
       'Automation',
-      'OrigoHOST Tech Community',
+      'OrigoHOST - Developer Community & Cloud Platform',
     ],
   };
 

@@ -32,8 +32,8 @@ export const SITE_CONFIG = {
     linktree: 'https://linktr.ee/heytarunkumar',
   },
   origohost: {
-    name: 'OrigoHOST Tech Community',
-    url: 'https://origohost.in',
+    name: 'OrigoHOST - Developer Community & Cloud Platform',
+    url: 'https://www.origohost.in/',
     organizationId: 'https://origohost.in/#organization',
     logo: `${SITE_URL}/images/origohost/origohost-icon.webp`,
   },

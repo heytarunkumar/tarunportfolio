@@ -55,7 +55,21 @@ export const Footer: React.FC = () => {
                 {profile?.name || 'Mr. Tarun Kumar'}
               </Link>
               <span className="text-[11px] font-mono tracking-wider text-[#A8988B] block mt-0.5 uppercase">
-                {profile.footerSubtitle || 'Founder | AI & Technology • OrigoHOST Community'}
+                {profile.footerSubtitle ? (
+                  profile.footerSubtitle
+                ) : (
+                  <>
+                    Founder | AI &amp; Technology •{' '}
+                    <a
+                      href="https://www.origohost.in/"
+                      target="_blank"
+                      rel="noopener"
+                      className="hover:text-[#D4AF37] transition-colors underline underline-offset-2"
+                    >
+                      OrigoHOST - Developer Community &amp; Cloud Platform
+                    </a>
+                  </>
+                )}
               </span>
             </div>
           </div>
@@ -73,6 +87,26 @@ export const Footer: React.FC = () => {
             ))}
           </div>
 
+        </div>
+
+        {/* Venture & Developer Community Backlink Row */}
+        <div className="py-5 border-b border-white/10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-mono tracking-wider text-[#A89E93]">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="text-[#D4AF37] font-bold uppercase tracking-widest text-[10px]">VENTURE &amp; ECOSYSTEM:</span>
+            <a
+              href="https://www.origohost.in/"
+              target="_blank"
+              rel="noopener"
+              className="text-[#F4EEE4] hover:text-[#D4AF37] transition-colors font-semibold underline underline-offset-4 decoration-[#D4AF37]/60 hover:decoration-[#D4AF37]"
+            >
+              OrigoHOST - Developer Community &amp; Cloud Platform
+            </a>
+          </div>
+          <div className="text-[10px] text-[#736B60] flex items-center space-x-2">
+            <span>OFFICIAL CLOUD &amp; BUILDER PLATFORM</span>
+            <span>•</span>
+            <span className="text-[#0F6848] font-bold">ACTIVE ECOSYSTEM ↗</span>
+          </div>
         </div>
 
         {/* Legal, Compliance & Cookie Preferences Row */}

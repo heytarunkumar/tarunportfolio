@@ -51,7 +51,7 @@ export const TermsPage: React.FC = () => {
               1. Acceptance of Terms
             </h2>
             <p>
-              By accessing, browsing, or utilizing the web presence of <strong>Tarun Kumar</strong> (operating at <a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a> and associated domains), or engaging with associated developer platforms including the <strong>OrigoHOST Tech Community</strong> (<a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] underline">origohost.in</a>), you acknowledge that you have read, understood, and agree to be bound by these Terms &amp; Conditions and our <Link to="/privacy" className="text-[#78000F] underline">Privacy Policy</Link>.
+              By accessing, browsing, or utilizing the web presence of <strong>Tarun Kumar</strong> (operating at <a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a> and associated domains), or engaging with associated developer platforms including the <strong>OrigoHOST - Developer Community &amp; Cloud Platform</strong> (<a href="https://www.origohost.in/" target="_blank" rel="noopener" className="text-[#78000F] underline">www.origohost.in</a>), you acknowledge that you have read, understood, and agree to be bound by these Terms &amp; Conditions and our <Link to="/privacy" className="text-[#78000F] underline">Privacy Policy</Link>.
             </p>
             <p>
               If you do not agree to these Terms, you must immediately discontinue use of this website and its affiliated resources.
@@ -110,10 +110,10 @@ export const TermsPage: React.FC = () => {
           {/* Section 5: OrigoHOST Community & Conduct */}
           <section className="space-y-4">
             <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#111111] border-l-2 border-[#78000F] pl-4">
-              5. OrigoHOST Tech Community Ecosystem
+              5. OrigoHOST Developer Community &amp; Cloud Platform Ecosystem
             </h2>
             <p>
-              Participation in <strong>OrigoHOST Tech Community</strong> (<a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] underline">origohost.in</a>) bootcamps, workshops, hackathons, and developer forums requires adherence to community guidelines that promote inclusivity, academic integrity, respect, and constructive technical collaboration.
+              Participation in <strong>OrigoHOST - Developer Community &amp; Cloud Platform</strong> (<a href="https://www.origohost.in/" target="_blank" rel="noopener" className="text-[#78000F] underline">www.origohost.in</a>) bootcamps, workshops, hackathons, and developer forums requires adherence to community guidelines that promote inclusivity, academic integrity, respect, and constructive technical collaboration.
             </p>
           </section>
 

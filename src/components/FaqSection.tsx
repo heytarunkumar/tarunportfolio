@@ -28,9 +28,9 @@ export const faqItems: FaqItem[] = [
   },
   {
     category: 'COMMUNITY & VENTURE',
-    question: 'What is OrigoHOST Tech Community?',
+    question: 'What is OrigoHOST?',
     answer:
-      'OrigoHOST Tech Community (https://origohost.in) is an applied AI and developer education ecosystem founded and led by Tarun Kumar, focused on empowering emerging engineers with hands-on exposure to intelligent systems and production-grade architectures.',
+      'OrigoHOST - Developer Community & Cloud Platform (https://www.origohost.in/) is an applied AI, cloud, and developer ecosystem founded and led by Tarun Kumar, focused on empowering emerging engineers with hands-on exposure to intelligent systems, cloud platforms, and production-grade architectures.',
   },
   {
     category: 'RESEARCH & AUTHORSHIP',

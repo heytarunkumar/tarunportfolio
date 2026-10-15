@@ -42,9 +42,9 @@ export const LinksPage: React.FC = () => {
           iconText: '🌐',
         },
         {
-          title: 'OrigoHOST Tech Community',
-          subtitle: 'Where builders become innovators • Applied AI & tech ecosystem',
-          url: 'https://origohost.in',
+          title: 'OrigoHOST - Developer Community & Cloud Platform',
+          subtitle: 'Where builders become innovators • Applied AI & cloud platform',
+          url: 'https://www.origohost.in/',
           isExternal: true,
           tag: 'VENTURE',
           iconText: '⚡',
@@ -187,7 +187,7 @@ export const LinksPage: React.FC = () => {
           Python Developer | AI Systems Engineer | Researcher | Author | Founder
         </p>
         <p className="text-[11px] font-mono text-[#736B60] mt-1">
-          Founder &amp; President @ <a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] font-bold hover:underline">OrigoHOST Tech Community</a>
+          Founder &amp; President @ <a href="https://www.origohost.in/" target="_blank" rel="noopener" className="text-[#78000F] font-bold hover:underline">OrigoHOST - Developer Community &amp; Cloud Platform</a>
         </p>
       </motion.div>
 

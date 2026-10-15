@@ -51,7 +51,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               1. Introduction &amp; Data Fiduciary Details
             </h2>
             <p>
-              This Privacy Policy governs the processing of personal data across the portfolio website and digital presence of <strong>Tarun Kumar</strong> (operating online as <code>@heytarunkumar</code>, reachable at <a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a>) and affiliated initiatives including the <strong>OrigoHOST Tech Community</strong> (<a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] underline">origohost.in</a>).
+              This Privacy Policy governs the processing of personal data across the portfolio website and digital presence of <strong>Tarun Kumar</strong> (operating online as <code>@heytarunkumar</code>, reachable at <a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a>) and affiliated initiatives including the <strong>OrigoHOST - Developer Community &amp; Cloud Platform</strong> (<a href="https://www.origohost.in/" target="_blank" rel="noopener" className="text-[#78000F] underline">www.origohost.in</a>).
             </p>
             <p>
               Under the <strong>Digital Personal Data Protection Act, 2023 (India)</strong> ("DPDP Act") and applicable international frameworks (such as the General Data Protection Regulation - GDPR), <strong>Tarun Kumar</strong> acts as the <em>Data Fiduciary</em> (or Data Controller) regarding personal data collected through this website.

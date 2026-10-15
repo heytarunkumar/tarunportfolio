@@ -148,9 +148,9 @@ const initialNav: NavItemSetting[] = [
 const initialSeo: SeoSettings = {
   siteTitle: 'Tarun Kumar | Python Developer, AI Engineer, Researcher & Founder (@heytarunkumar)',
   metaDescription:
-    'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST Tech Community (origohost.in).',
+    'Official portfolio of Tarun Kumar (heytarunkumar) — Python Developer, AI Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable technology ventures. Founder & President of OrigoHOST - Developer Community & Cloud Platform (www.origohost.in).',
   keywords:
-    'heytarunkumar, Tarun Kumar, Tarun Kumar heytarunkumar, Tarun Kumar AI Engineer, Tarun Kumar Python Developer, Tarun Kumar Researcher, Tarun Kumar Author, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Tarun Kumar AI, Python Developer, AI Engineer, Generative AI Architect, Machine Learning, Explainable AI, REST APIs, OrigoHOST Tech Community, Mathura, AKTU Lucknow, India, Worldwide',
+    'heytarunkumar, Tarun Kumar, Tarun Kumar heytarunkumar, Tarun Kumar AI Engineer, Tarun Kumar Python Developer, Tarun Kumar Researcher, Tarun Kumar Author, Tarun Kumar Founder, Tarun Kumar OrigoHOST, Tarun Kumar AI, Python Developer, AI Engineer, Generative AI Architect, Machine Learning, Explainable AI, REST APIs, OrigoHOST - Developer Community & Cloud Platform, OrigoHOST, Mathura, AKTU Lucknow, India, Worldwide',
   canonicalUrl: 'https://heytarunkumar.vercel.app',
   ogTitle: 'Tarun Kumar | Python Developer, AI Engineer, Researcher & Founder (@heytarunkumar)',
   ogDescription:

@@ -35,7 +35,7 @@ export const AboutSection: React.FC = () => {
     ? profile.aboutStoryParagraphs
     : [
       `I am ${profile?.name || 'Tarun Kumar'} (known across engineering platforms as @heytarunkumar) — a Python Developer, AI Systems Engineer, Researcher, Author, and Founder building practical intelligence, Generative AI architectures, and scalable ventures.`,
-      'My work sits at the intersection of applied machine learning, autonomous agents, high-performance Python microservices, and empirical software research. As Founder & President of OrigoHOST Tech Community (origohost.in), I spearhead national developer hackathons, technical bootcamps, and builder ecosystems.',
+      'My work sits at the intersection of applied machine learning, autonomous agents, high-performance Python microservices, and empirical software research. As Founder & President of OrigoHOST - Developer Community & Cloud Platform (https://www.origohost.in/), I spearhead national developer hackathons, technical bootcamps, and builder ecosystems.',
     ];
   const quote = profile.aboutQuote || 'I believe technology is most powerful when it moves beyond experimentation and becomes something people can actually use, scale, and build upon.';
   const pillars = (profile.competencyPillars && profile.competencyPillars.length > 0)
@@ -55,7 +55,7 @@ export const AboutSection: React.FC = () => {
   const origo = profile.origohostCard || {
     logoUrl: '/images/origohost/origohost-icon-64.webp',
     tag: 'VENTURE & ECOSYSTEM',
-    title: 'OrigoHOST Tech Community',
+    title: 'OrigoHOST - Developer Community & Cloud Platform',
     tagline: 'WHERE BUILDERS BECOME INNOVATORS',
     description: 'As Founder & President, leading institutional engagements, technical initiatives, and community growth focused on applied AI and practical developer education.',
     role: 'ROLE: FOUNDER & PRESIDENT',
@@ -235,9 +235,9 @@ export const AboutSection: React.FC = () => {
               <div className="pt-3 border-t border-[#DDD2C2] flex items-center justify-between text-[11px] font-mono text-[#555047]">
                 <span className="font-semibold">{origo.role}</span>
                 <a
-                  href="https://origohost.in"
+                  href="https://www.origohost.in/"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener"
                   className="text-[#78000F] font-bold hover:underline inline-flex items-center space-x-1"
                 >
                   <span>{origo.ecosystem}</span>

@@ -79,7 +79,7 @@ export const HeroSection: React.FC = () => {
   const terminal = profile.heroTerminal || {
     title: 'tarun@editorial-executive ~ zsh',
     whoami: 'Tarun Kumar [Founder & AI Systems Engineer]',
-    venture: 'OrigoHOST Tech Community (origohost.in)',
+    venture: 'OrigoHOST - Developer Community & Cloud Platform (www.origohost.in)',
     ventureQuote: 'WHERE BUILDERS BECOME INNOVATORS',
     status: 'ACTIVE · SCALING APPLIED AI VENTURES',
     mission: '[TURNING_PROBLEMS_INTO_SCALABLE_PRODUCTS]',

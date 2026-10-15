@@ -19,7 +19,7 @@ export const experienceData: ExperienceItem[] = [
     id: "01",
     year: "2024 - PRESENT",
     role: "Founder & President",
-    organization: "OrigoHOST Tech Community",
+    organization: "OrigoHOST - Developer Community & Cloud Platform",
     location: "India",
     tagline: "WHERE BUILDERS BECOME INNOVATORS",
     logoUrl: "/images/origohost/origohost-icon.webp",

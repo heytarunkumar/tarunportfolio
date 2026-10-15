@@ -51,7 +51,7 @@ export const RefundPolicyPage: React.FC = () => {
               1. Overview &amp; Applicability
             </h2>
             <p>
-              This Refund &amp; Cancellation Policy defines the terms, timelines, and conditions governing monetary transactions, commercial engagements, and event registrations conducted through <strong>Tarun Kumar</strong> (<a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a>) and affiliated initiatives including the <strong>OrigoHOST Tech Community</strong> (<a href="https://origohost.in" target="_blank" rel="noopener noreferrer" className="text-[#78000F] underline">origohost.in</a>).
+              This Refund &amp; Cancellation Policy defines the terms, timelines, and conditions governing monetary transactions, commercial engagements, and event registrations conducted through <strong>Tarun Kumar</strong> (<a href={SITE_CONFIG.url} className="text-[#78000F] underline">{SITE_CONFIG.url}</a>) and affiliated initiatives including the <strong>OrigoHOST - Developer Community &amp; Cloud Platform</strong> (<a href="https://www.origohost.in/" target="_blank" rel="noopener" className="text-[#78000F] underline">www.origohost.in</a>).
             </p>
             <p>
               We maintain a transparent, fair, and professional approach to all engagements, ensuring clear cancellation terms prior to the commencement of technical work or community programs.
