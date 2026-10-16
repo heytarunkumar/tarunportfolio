@@ -71,6 +71,15 @@ export const ScheduleSection: React.FC = () => {
     setIframeKey((prev) => prev + 1);
   };
 
+  const handleOpenSchedulingPopup = () => {
+    const btn = document.querySelector('.qxCTlb') as HTMLButtonElement | null;
+    if (btn) {
+      btn.click();
+    } else {
+      window.open(calendarUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <section
       id="schedule"
@@ -143,14 +152,22 @@ export const ScheduleSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-1">
+            <div className="pt-1 flex flex-col sm:flex-row gap-2">
+              <button
+                type="button"
+                onClick={handleOpenSchedulingPopup}
+                className="btn-executive-primary flex-1 py-2.5 text-[10.5px] font-mono font-bold tracking-[0.16em] uppercase flex items-center justify-center space-x-2 rounded-[3px] text-center bg-[#039BE5] border-[#039BE5] hover:bg-[#0288D1] text-white cursor-pointer shadow-xs transition-colors"
+              >
+                <span>BOOK APPOINTMENT</span>
+                <span className="text-xs">↗</span>
+              </button>
               <a
                 href={calendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-executive-primary w-full py-2.5 text-[10.5px] font-mono font-bold tracking-[0.16em] uppercase flex items-center justify-center space-x-2 rounded-[3px] text-center"
+                className="px-3.5 py-2.5 text-[10.5px] font-mono font-bold tracking-[0.16em] uppercase flex items-center justify-center space-x-1.5 rounded-[3px] border border-[#CFC3B3] bg-[#FAF8F3] hover:border-[#78000F] text-[#38342E] hover:text-[#78000F] transition-all text-center cursor-pointer"
               >
-                <span>OPEN IN GOOGLE CALENDAR</span>
+                <span>FULLSCREEN</span>
                 <span className="text-xs">↗</span>
               </a>
             </div>
@@ -244,6 +261,16 @@ export const ScheduleSection: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-2">
+              <button
+                type="button"
+                onClick={handleOpenSchedulingPopup}
+                title="Launch Google Calendar Booking Popup"
+                className="px-3 py-1.5 rounded-[3px] border border-[#039BE5] bg-[#039BE5] hover:bg-[#0288D1] text-[11px] font-mono text-white font-bold transition-all flex items-center space-x-1.5 cursor-pointer shadow-xs"
+              >
+                <span>📅</span>
+                <span className="hidden sm:inline">POPUP MODAL</span>
+              </button>
+
               <button
                 type="button"
                 onClick={handleRefresh}

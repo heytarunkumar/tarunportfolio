@@ -991,3 +991,31 @@ html[data-theme="dark"] ::-webkit-scrollbar-thumb {
 html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
   background: #E0314B !important;
 }
+
+/* Google Calendar Appointment Scheduling Button */
+.qxCTlb {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 45 !important;
+  box-shadow: 0 4px 18px rgba(3, 155, 229, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.qxCTlb:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(3, 155, 229, 0.55), 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.qxCTlb:active {
+  transform: translateY(0) !important;
+}
+
+/* Hide floating scheduling button on admin routes */
+body:has(#admin-root) .qxCTlb,
+body.admin-mode .qxCTlb {
+  display: none !important;
+}
