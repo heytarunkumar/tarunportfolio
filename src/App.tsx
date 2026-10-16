@@ -19,6 +19,7 @@ const EngineeringLabPage = lazy(() => import('./pages/EngineeringLabPage').then(
 const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ default: m.ResearchPage })));
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage').then((m) => ({ default: m.ExperiencePage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
+const SchedulePage = lazy(() => import('./pages/SchedulePage').then((m) => ({ default: m.SchedulePage })));
 const LinksPage = lazy(() => import('./pages/LinksPage').then((m) => ({ default: m.LinksPage })));
 
 // Legal & Compliance Pages (Lazy Loaded)
@@ -109,6 +110,11 @@ function App() {
               <Route path="/research" element={<PageVisibilityGuard path="/research"><PublicLayout><ResearchPage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/experience" element={<PageVisibilityGuard path="/experience"><PublicLayout><ExperiencePage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/contact" element={<PageVisibilityGuard path="/contact"><PublicLayout><ContactPage /></PublicLayout></PageVisibilityGuard>} />
+              <Route path="/schedule" element={<PageVisibilityGuard path="/schedule"><PublicLayout><SchedulePage /></PublicLayout></PageVisibilityGuard>} />
+              <Route path="/meeting" element={<Navigate to="/schedule" replace />} />
+              <Route path="/meetings" element={<Navigate to="/schedule" replace />} />
+              <Route path="/book" element={<Navigate to="/schedule" replace />} />
+              <Route path="/schedule-meeting" element={<Navigate to="/schedule" replace />} />
               <Route path="/links" element={<PublicLayout><LinksPage /></PublicLayout>} />
 
               {/* Public Legal & Compliance Routes */}

@@ -170,6 +170,32 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
+            {/* Schedule 1:1 Meeting Direct Action Card */}
+            <Link
+              to="/schedule"
+              className="editorial-card flex items-center justify-between p-4 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-sm hover:border-[#78000F] transition-all group cursor-pointer"
+            >
+              <div className="flex items-center space-x-3.5 min-w-0">
+                <div className="w-10 h-10 rounded-[3px] bg-[#111111] group-hover:bg-[#78000F] text-[#F4EEE4] flex items-center justify-center font-mono text-base transition-colors shrink-0">
+                  📅
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[9.5px] font-mono uppercase tracking-wider text-[#78000F] font-bold truncate">
+                    DIRECT CALENDAR BOOKING //
+                  </div>
+                  <h4 className="text-[#111111] font-serif font-bold text-sm sm:text-base group-hover:text-[#78000F] transition-colors truncate">
+                    Schedule a 1:1 Meeting
+                  </h4>
+                  <p className="text-[10px] font-mono text-[#736B60] truncate">
+                    Live Google Calendar · Instant Google Meet link
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs font-mono font-bold text-[#78000F] shrink-0 group-hover:translate-x-1 transition-transform pl-2">
+                BOOK →
+              </span>
+            </Link>
+
             {/* Quick Contact & Socials */}
             <div className="space-y-3 font-mono text-xs">
               <a

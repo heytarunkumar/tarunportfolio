@@ -143,6 +143,7 @@ const initialNav: NavItemSetting[] = [
   { id: '5', name: 'RESEARCH', path: '/research', visible: true, order: 5 },
   { id: '6', name: 'EXPERIENCE', path: '/experience', visible: true, order: 6 },
   { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
+  { id: '8', name: 'SCHEDULE', path: '/schedule', visible: true, order: 8 },
 ];
 
 const initialSeo: SeoSettings = {
@@ -210,7 +211,20 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   });
   const [research, setResearch] = useState<ResearchProject>(() => researchList[0] || initialResearch);
   const [articles, setArticles] = useState<Article[]>(() => safeGetStorage('articles', initialArticles));
-  const [navigation, setNavigation] = useState<NavItemSetting[]>(() => safeGetStorage('navigation', initialNav));
+  const [navigation, setNavigation] = useState<NavItemSetting[]>(() => {
+    const saved = safeGetStorage<NavItemSetting[]>('navigation', initialNav);
+    if (Array.isArray(saved) && saved.length > 0) {
+      const hasSchedule = saved.some((item) => item.path === '/schedule' || item.name === 'SCHEDULE');
+      if (!hasSchedule) {
+        return [
+          ...saved,
+          { id: '8', name: 'SCHEDULE', path: '/schedule', visible: true, order: saved.length + 1 },
+        ];
+      }
+      return saved;
+    }
+    return initialNav;
+  });
   const [seo, setSeo] = useState<SeoSettings>(() => safeGetStorage('seo', initialSeo));
   const [design, setDesign] = useState<DesignSettings>(() => safeGetStorage('design', initialDesign));
   const [contact, setContact] = useState<ContactSettings>(() => safeGetStorage('contact', initialContact));

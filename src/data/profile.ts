@@ -126,6 +126,7 @@ export interface Profile {
   connectCtaLink?: string;
   footerSubtitle?: string;
   footerCopyright?: string;
+  meetingScheduleUrl?: string;
 }
 
 export const profileData: Profile = {
@@ -273,5 +274,6 @@ export const profileData: Profile = {
   connectCtaLink: "/contact",
   footerSubtitle: "Founder | AI & Technology • OrigoHOST Community",
   footerCopyright: `© ${new Date().getFullYear()} Tarun Kumar. All rights reserved.`,
+  meetingScheduleUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true",
 };
 

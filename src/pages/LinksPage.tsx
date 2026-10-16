@@ -57,6 +57,14 @@ export const LinksPage: React.FC = () => {
           tag: 'CV / PDF',
           iconText: '📄',
         },
+        {
+          title: 'Schedule a 1:1 Meeting',
+          subtitle: 'Book an executive or technical session via official Google Calendar',
+          url: '/schedule',
+          isExternal: false,
+          tag: 'CALENDAR',
+          iconText: '📅',
+        },
       ],
     },
     {
