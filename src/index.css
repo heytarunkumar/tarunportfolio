@@ -1019,3 +1019,75 @@ body:has(#admin-root) .qxCTlb,
 body.admin-mode .qxCTlb {
   display: none !important;
 }
+
+/* Google Calendar Appointment Scheduling Modal Overlay & Iframe Styling */
+.hur54b {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+  background-color: rgba(10, 9, 8, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  padding: 36px 48px !important;
+  z-index: 99999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Opaque White Background for the Appointment Schedule Modal Iframe */
+iframe.mmGMM,
+.mmGMM {
+  background-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  color-scheme: light !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  width: 100% !important;
+  max-width: 1080px !important;
+  height: 100% !important;
+  max-height: 840px !important;
+  display: block !important;
+}
+
+/* Close button on modal overlay */
+.Xfsokf {
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  align-self: flex-end !important;
+  margin-bottom: 12px !important;
+  padding: 8px 18px !important;
+  border-radius: 9999px !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+  font-family: var(--font-body), sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.Xfsokf:hover {
+  background: rgba(255, 255, 255, 0.32) !important;
+  border-color: #FFFFFF !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+@media (max-width: 640px) {
+  .hur54b {
+    padding: 16px 12px !important;
+  }
+  iframe.mmGMM,
+  .mmGMM {
+    max-height: 88vh !important;
+    border-radius: 8px !important;
+  }
+}
