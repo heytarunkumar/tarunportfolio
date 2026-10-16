@@ -28,12 +28,14 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   const location = useLocation();
 
   React.useEffect(() => {
+    document.body.classList.add('admin-mode');
     const meta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
     const previousContent = meta ? meta.getAttribute('content') : null;
     if (meta) {
       meta.setAttribute('content', 'noindex, nofollow');
     }
     return () => {
+      document.body.classList.remove('admin-mode');
       if (meta && previousContent) {
         meta.setAttribute('content', previousContent);
       }
@@ -51,7 +53,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] font-sans flex flex-col md:flex-row selection:bg-[#D4AF37]/30 selection:text-white">
+    <div id="admin-root" className="admin-mode min-h-screen bg-[#0A0908] text-[#F5F2EB] font-sans flex flex-col md:flex-row selection:bg-[#D4AF37]/30 selection:text-white">
       
       {/* Left Sidebar */}
       <aside className="w-full md:w-64 bg-[#0E0C0A] border-b md:border-b-0 md:border-r border-[#26211B] p-5 flex flex-col justify-between shrink-0">

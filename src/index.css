@@ -1023,10 +1023,14 @@ html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
   transform: translateY(0) !important;
 }
 
-/* Hide floating scheduling button on admin routes */
+/* Hide floating scheduling button and modal overlay strictly on admin routes */
 body:has(#admin-root) .qxCTlb,
-body.admin-mode .qxCTlb {
+body.admin-mode .qxCTlb,
+body:has(#admin-root) .hur54b,
+body.admin-mode .hur54b {
   display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 /* Google Calendar Appointment Scheduling Modal Overlay & Backdrop */

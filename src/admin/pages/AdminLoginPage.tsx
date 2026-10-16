@@ -11,12 +11,14 @@ export const AdminLoginPage: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
+    document.body.classList.add('admin-mode');
     const meta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
     const previousContent = meta ? meta.getAttribute('content') : null;
     if (meta) {
       meta.setAttribute('content', 'noindex, nofollow');
     }
     return () => {
+      document.body.classList.remove('admin-mode');
       if (meta && previousContent) {
         meta.setAttribute('content', previousContent);
       }
@@ -38,7 +40,7 @@ export const AdminLoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0908] text-[#F5F2EB] flex items-center justify-center p-6 font-sans selection:bg-[#D4AF37]/30 selection:text-white">
+    <div id="admin-root" className="admin-mode min-h-screen bg-[#0A0908] text-[#F5F2EB] flex items-center justify-center p-6 font-sans selection:bg-[#D4AF37]/30 selection:text-white">
       <div className="w-full max-w-md bg-[#12100E] border border-[#26211B] p-8 sm:p-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden card-lift">
         {/* Top Gold Flare */}
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />

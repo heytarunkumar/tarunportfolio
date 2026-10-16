@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 export const AdminSettingsPage: React.FC = () => {
   const { updateAdminPassword } = useAuth();
+  const { scheduler, updateScheduler } = usePortfolio();
   const [savedMessage, setSavedMessage] = useState('');
   const [passwordMessage, setPasswordMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
@@ -138,6 +141,89 @@ export const AdminSettingsPage: React.FC = () => {
           Save System Settings ↗
         </button>
       </form>
+
+      {/* Appointment Scheduler Floating Popup Widget Control */}
+      <div className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift font-sans text-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#26211B] gap-2">
+          <div>
+            <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider block">
+              // FLOATING CALENDAR WIDGET &amp; CODE CONTROL
+            </span>
+            <h3 className="text-base font-serif font-bold text-white mt-0.5">
+              Appointment Schedule Popup Manager
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono text-[#A8988B] bg-[#1A1714] px-3 py-1 rounded-full border border-[#26211B] shrink-0">
+            ADMIN EXCLUSION: STRICTLY HIDDEN HERE
+          </span>
+        </div>
+
+        <div className="p-4 rounded-xl border border-[#26211B] bg-[#0A0908] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className={`w-2.5 h-2.5 rounded-full ${scheduler.enabled ? 'bg-emerald-400 animate-pulse' : 'bg-zinc-600'}`} />
+              <strong className="text-white font-mono uppercase">
+                Widget State: {scheduler.enabled ? 'Enabled (Active on Public Website)' : 'Disabled (Hidden Everywhere)'}
+              </strong>
+            </div>
+            <p className="text-[11px] text-[#A8988B] font-mono">
+              The floating Google Calendar button is automatically excluded in this Admin Panel.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              updateScheduler({ enabled: !scheduler.enabled });
+              setSavedMessage(`Appointment scheduler popup ${!scheduler.enabled ? 'ENABLED' : 'DISABLED'}!`);
+              setTimeout(() => setSavedMessage(''), 3000);
+            }}
+            className={`px-4 py-2.5 rounded-xl border font-mono text-xs font-bold uppercase transition-all cursor-pointer ${
+              scheduler.enabled
+                ? 'border-emerald-500/50 bg-emerald-950/30 text-emerald-300 hover:bg-emerald-900/40'
+                : 'border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-white'
+            }`}
+          >
+            {scheduler.enabled ? '✓ ACTIVE — CLICK TO DISABLE' : 'DISABLED — CLICK TO ENABLE'}
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="p-3.5 rounded-xl border border-[#26211B] bg-[#0A0908]">
+            <span className="text-[10px] text-[#A8988B] font-mono uppercase block mb-1">BUTTON LABEL</span>
+            <div className="text-white font-mono font-bold text-xs truncate">{scheduler.label || 'Book an appointment'}</div>
+          </div>
+          <div className="p-3.5 rounded-xl border border-[#26211B] bg-[#0A0908]">
+            <span className="text-[10px] text-[#A8988B] font-mono uppercase block mb-1">BUTTON COLOR</span>
+            <div className="flex items-center gap-2 text-white font-mono text-xs">
+              <span className="w-3.5 h-3.5 rounded-full shrink-0" style={{ backgroundColor: scheduler.color || '#039BE5' }} />
+              <span>{scheduler.color || '#039BE5'}</span>
+            </div>
+          </div>
+          <div className="p-3.5 rounded-xl border border-[#26211B] bg-[#0A0908]">
+            <span className="text-[10px] text-[#A8988B] font-mono uppercase block mb-1">POPUP MODAL BG</span>
+            <div className="text-emerald-400 font-mono text-xs font-semibold">Opaque Solid White (#FFFFFF)</div>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-3 pt-1">
+          <Link
+            to="/admin/pages"
+            className="px-5 py-3 rounded-xl border border-[#D4AF37]/50 bg-[#1A1714] hover:bg-[#221E19] text-[#D4AF37] hover:text-white font-bold text-xs font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+          >
+            <span>Open Complete Scheduler &amp; Code Manager in Pages Tab 5 ↗</span>
+          </Link>
+          <a
+            href={scheduler.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-3 rounded-xl border border-[#26211B] bg-[#0A0908] hover:border-[#039BE5] text-[#A8988B] hover:text-white font-mono text-xs flex items-center justify-center gap-1.5 transition-colors"
+          >
+            <span>Test Live Calendar URL</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
 
       {/* Admin Security & Password Section */}
       <form onSubmit={handlePasswordUpdate} className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift font-sans text-xs">

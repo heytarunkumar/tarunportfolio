@@ -6,9 +6,9 @@ import type {
 } from '../../data/profile';
 
 export const AdminPageManager: React.FC = () => {
-  const { profile, updateProfile, contact, updateContact, navigation, updateNavigation } = usePortfolio();
+  const { profile, updateProfile, contact, updateContact, navigation, updateNavigation, scheduler, updateScheduler, resetSchedulerToDefault } = usePortfolio();
   const [savedMessage, setSavedMessage] = useState('');
-  const [activeTab, setActiveTab] = useState<'hero' | 'about' | 'resume' | 'contact' | 'brand' | 'visibility'>('hero');
+  const [activeTab, setActiveTab] = useState<'hero' | 'about' | 'resume' | 'contact' | 'scheduler' | 'brand' | 'visibility'>('hero');
 
   // ==================== TAB 1: HERO & TERMINAL STATE ====================
   const [heroTitle, setHeroTitle] = useState(profile.heroTitle || profile.name || 'Tarun Kumar');
@@ -143,7 +143,22 @@ export const AdminPageManager: React.FC = () => {
   const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar/');
   const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumarr');
 
-  // ==================== TAB 5: BRAND, NAVBAR & FOOTER STATE ====================
+  // ==================== APPOINTMENT SCHEDULER STATE ====================
+  const [schedulerEnabled, setSchedulerEnabled] = useState(scheduler?.enabled ?? true);
+  const [schedulerUrl, setSchedulerUrl] = useState(
+    scheduler?.url ||
+    'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true'
+  );
+  const [schedulerLabel, setSchedulerLabel] = useState(scheduler?.label || 'Book an appointment');
+  const [schedulerColor, setSchedulerColor] = useState(scheduler?.color || '#039BE5');
+  const [schedulerPosition, setSchedulerPosition] = useState<'bottom-right' | 'bottom-left'>(scheduler?.position || 'bottom-right');
+  const [schedulerMode, setSchedulerMode] = useState<'standard' | 'custom'>(scheduler?.mode || 'standard');
+  const [schedulerCustomCode, setSchedulerCustomCode] = useState(
+    scheduler?.customCode ||
+    `<!-- Google Calendar Appointment Scheduling begin -->\n<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">\n<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>\n<script>\n(function() {\n  var target = document.currentScript;\n  window.addEventListener('load', function() {\n    calendar.schedulingButton.load({\n      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true',\n      color: '#039BE5',\n      label: 'Book an appointment',\n      target,\n    });\n  });\n})();\n</script>\n<!-- end Google Calendar Appointment Scheduling -->`
+  );
+
+  // ==================== TAB 6: BRAND, NAVBAR & FOOTER STATE ====================
   const [brandName, setBrandName] = useState(profile.name || 'Tarun Kumar');
   const [brandRole, setBrandRole] = useState(profile.brandRole || 'FOUNDER · AI & TECH');
   const [monogramUrl, setMonogramUrl] = useState(profile.monogramUrl || '/images/brand/tarun-monogram.png');
@@ -273,6 +288,34 @@ export const AdminPageManager: React.FC = () => {
     setTimeout(() => setSavedMessage(''), 3000);
   };
 
+  const handleSaveScheduler = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateScheduler({
+      enabled: schedulerEnabled,
+      url: schedulerUrl,
+      label: schedulerLabel,
+      color: schedulerColor,
+      position: schedulerPosition,
+      mode: schedulerMode,
+      customCode: schedulerCustomCode,
+    });
+    setSavedMessage('Appointment Scheduler settings, appearance & code updated successfully!');
+    setTimeout(() => setSavedMessage(''), 3000);
+  };
+
+  const handleResetScheduler = () => {
+    resetSchedulerToDefault();
+    setSchedulerEnabled(true);
+    setSchedulerUrl('https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true');
+    setSchedulerLabel('Book an appointment');
+    setSchedulerColor('#039BE5');
+    setSchedulerPosition('bottom-right');
+    setSchedulerMode('standard');
+    setSchedulerCustomCode(`<!-- Google Calendar Appointment Scheduling begin -->\n<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">\n<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>\n<script>\n(function() {\n  var target = document.currentScript;\n  window.addEventListener('load', function() {\n    calendar.schedulingButton.load({\n      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true',\n      color: '#039BE5',\n      label: 'Book an appointment',\n      target,\n    });\n  });\n})();\n</script>\n<!-- end Google Calendar Appointment Scheduling -->`);
+    setSavedMessage('Reset appointment scheduler to default Google Calendar code!');
+    setTimeout(() => setSavedMessage(''), 3000);
+  };
+
   const handleSaveBrand = (e: React.FormEvent) => {
     e.preventDefault();
     updateProfile({
@@ -325,8 +368,9 @@ export const AdminPageManager: React.FC = () => {
           { id: 'about', label: '2. About & Story' },
           { id: 'resume', label: '3. Resume & CV' },
           { id: 'contact', label: '4. Contact & Socials' },
-          { id: 'brand', label: '5. Header & Footer' },
-          { id: 'visibility', label: '6. Page Visibility' },
+          { id: 'scheduler', label: '5. Appointment Scheduler' },
+          { id: 'brand', label: '6. Header & Footer' },
+          { id: 'visibility', label: '7. Page Visibility' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -1429,7 +1473,298 @@ export const AdminPageManager: React.FC = () => {
         </form>
       )}
 
-      {/* ==================== TAB 5: BRAND, NAVBAR & FOOTER ==================== */}
+      {/* ==================== TAB 5: APPOINTMENT SCHEDULER POPUP & CODE ==================== */}
+      {activeTab === 'scheduler' && (
+        <form onSubmit={handleSaveScheduler} className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift font-sans text-xs">
+          
+          {/* Section Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#26211B] gap-2">
+            <h2 className="text-sm font-mono text-[#D4AF37] tracking-wider uppercase flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]"></span>
+              Appointment Scheduler &amp; Floating Popup Manager
+            </h2>
+            <span className="text-[10px] font-mono text-[#A8988B] bg-[#1A1714] px-2.5 py-1 rounded-full border border-[#26211B]">
+              PUBLIC SITE ONLY · EXCLUDED FROM ADMIN PANEL
+            </span>
+          </div>
+
+          {/* Admin Exclusion & Safety Notice */}
+          <div className="p-4 rounded-xl border border-[#D4AF37]/30 bg-[#1A1714] flex items-start gap-3">
+            <span className="text-lg">🛡️</span>
+            <div className="space-y-1">
+              <h4 className="text-xs font-mono font-bold text-white uppercase">
+                Zero Interference in Admin Workspace
+              </h4>
+              <p className="text-[11px] text-[#A8988B] leading-relaxed">
+                The floating appointment booking button and modal are strictly isolated to public visitors. When you are inside this Admin Panel, the button is completely unmounted and suppressed so you can manage your site without overlay clutter.
+              </p>
+            </div>
+          </div>
+
+          {/* Master Live Toggle Card */}
+          <div className="p-5 rounded-xl border border-[#26211B] bg-[#0A0908] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`w-2.5 h-2.5 rounded-full ${schedulerEnabled ? 'bg-emerald-400 animate-pulse' : 'bg-zinc-600'}`} />
+                <h3 className="text-sm font-bold text-white font-mono uppercase tracking-wider">
+                  Floating Popup Button Status: {schedulerEnabled ? 'ACTIVE ON PUBLIC SITE' : 'DISABLED / HIDDEN'}
+                </h3>
+              </div>
+              <p className="text-[11px] text-[#A8988B] font-mono">
+                Toggle the floating appointment schedule popup button on or off across your public portfolio.
+              </p>
+            </div>
+
+            <label className="relative inline-flex items-center cursor-pointer select-none shrink-0">
+              <input
+                type="checkbox"
+                checked={schedulerEnabled}
+                onChange={(e) => setSchedulerEnabled(e.target.checked)}
+                className="sr-only peer"
+              />
+              <div className="w-14 h-7 bg-[#26211B] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-[#039BE5]"></div>
+            </label>
+          </div>
+
+          {/* White Background Guarantee Card */}
+          <div className="p-4 rounded-xl border border-emerald-500/30 bg-emerald-950/15 flex items-start gap-3">
+            <span className="text-base text-emerald-400">✓</span>
+            <div>
+              <h4 className="text-xs font-mono font-bold text-emerald-300 uppercase">
+                Opaque Solid White Background Locked &amp; Active
+              </h4>
+              <p className="text-[11px] text-emerald-200/80 leading-relaxed mt-0.5">
+                The modal iframe is enforced with <code className="text-white font-mono bg-black/40 px-1 py-0.5 rounded">background-color: #FFFFFF !important</code> and <code className="text-white font-mono bg-black/40 px-1 py-0.5 rounded">--gm3-sys-color-surface: #FFFFFF</code>, guaranteeing full visibility and contrast with zero background transparency bleed.
+              </p>
+            </div>
+          </div>
+
+          {/* Integration Mode Switcher */}
+          <div className="space-y-2">
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px]">
+              INTEGRATION ARCHITECTURE MODE
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setSchedulerMode('standard')}
+                className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
+                  schedulerMode === 'standard'
+                    ? 'border-[#039BE5] bg-[#039BE5]/10 text-white shadow-[0_0_15px_rgba(3,155,229,0.15)]'
+                    : 'border-[#26211B] bg-[#0A0908] text-[#A8988B] hover:text-white hover:border-[#383229]'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono font-bold text-xs uppercase text-[#039BE5]">Standard Google Widget</span>
+                  {schedulerMode === 'standard' && <span className="text-xs text-[#039BE5]">● ACTIVE</span>}
+                </div>
+                <p className="text-[11px] text-[#A8988B]">
+                  Direct official Google Calendar scheduling button with configured URL, label, and custom color.
+                </p>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setSchedulerMode('custom')}
+                className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
+                  schedulerMode === 'custom'
+                    ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-white shadow-[0_0_15px_rgba(212,175,55,0.15)]'
+                    : 'border-[#26211B] bg-[#0A0908] text-[#A8988B] hover:text-white hover:border-[#383229]'
+                }`}
+              >
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-mono font-bold text-xs uppercase text-[#D4AF37]">Custom Embed Script Code</span>
+                  {schedulerMode === 'custom' && <span className="text-xs text-[#D4AF37]">● ACTIVE</span>}
+                </div>
+                <p className="text-[11px] text-[#A8988B]">
+                  Directly manage and execute raw HTML/Script embed code (for future schedulers or custom triggers).
+                </p>
+              </button>
+            </div>
+          </div>
+
+          {/* Standard Mode Form Fields */}
+          {schedulerMode === 'standard' && (
+            <div className="space-y-4 p-5 rounded-xl border border-[#26211B] bg-[#0A0908]">
+              <span className="text-xs font-mono text-[#039BE5] uppercase font-bold block">
+                Google Calendar Appointment Parameters
+              </span>
+
+              {/* URL */}
+              <div>
+                <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+                  GOOGLE CALENDAR APPOINTMENT SCHEDULE URL *
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="url"
+                    required
+                    value={schedulerUrl}
+                    onChange={(e) => setSchedulerUrl(e.target.value)}
+                    placeholder="https://calendar.google.com/calendar/appointments/schedules/..."
+                    className="flex-1 bg-[#12100E] border border-[#26211B] focus:border-[#039BE5] text-white p-3.5 rounded-xl outline-none font-mono text-xs"
+                  />
+                  <a
+                    href={schedulerUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-3.5 bg-[#1A1714] border border-[#26211B] hover:border-[#039BE5] text-white font-mono text-xs rounded-xl flex items-center gap-1 shrink-0 transition-colors"
+                  >
+                    TEST ↗
+                  </a>
+                </div>
+              </div>
+
+              {/* Label & Position */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+                    BUTTON DISPLAY LABEL *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={schedulerLabel}
+                    onChange={(e) => setSchedulerLabel(e.target.value)}
+                    placeholder="Book an appointment"
+                    className="w-full bg-[#12100E] border border-[#26211B] focus:border-[#039BE5] text-white p-3.5 rounded-xl outline-none font-mono text-xs"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+                    SCREEN PLACEMENT
+                  </label>
+                  <select
+                    value={schedulerPosition}
+                    onChange={(e) => setSchedulerPosition(e.target.value as any)}
+                    className="w-full bg-[#12100E] border border-[#26211B] focus:border-[#039BE5] text-white p-3.5 rounded-xl outline-none font-mono text-xs"
+                  >
+                    <option value="bottom-right">Bottom Right Corner (Default)</option>
+                    <option value="bottom-left">Bottom Left Corner</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Color Selector */}
+              <div>
+                <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+                  BUTTON COLOR &amp; THEME
+                </label>
+                <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex items-center gap-2 bg-[#12100E] border border-[#26211B] p-2 rounded-xl">
+                    <input
+                      type="color"
+                      value={schedulerColor}
+                      onChange={(e) => setSchedulerColor(e.target.value)}
+                      className="w-8 h-8 rounded border-none cursor-pointer bg-transparent"
+                    />
+                    <input
+                      type="text"
+                      value={schedulerColor}
+                      onChange={(e) => setSchedulerColor(e.target.value)}
+                      className="w-24 bg-transparent text-white font-mono text-xs uppercase outline-none"
+                    />
+                  </div>
+
+                  {/* Preset Pills */}
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { name: 'Google Blue', hex: '#039BE5' },
+                      { name: 'Crimson', hex: '#78000F' },
+                      { name: 'Gold', hex: '#D4AF37' },
+                      { name: 'Emerald', hex: '#0F6848' },
+                      { name: 'Obsidian', hex: '#111111' },
+                    ].map((preset) => (
+                      <button
+                        key={preset.hex}
+                        type="button"
+                        onClick={() => setSchedulerColor(preset.hex)}
+                        className={`px-2.5 py-1.5 rounded-lg border text-[10px] font-mono flex items-center gap-1.5 transition-all cursor-pointer ${
+                          schedulerColor.toLowerCase() === preset.hex.toLowerCase()
+                            ? 'border-white text-white bg-white/10'
+                            : 'border-[#26211B] bg-[#12100E] text-[#A8988B] hover:text-white'
+                        }`}
+                      >
+                        <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: preset.hex }} />
+                        {preset.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Button Preview Card */}
+              <div className="pt-2">
+                <span className="block text-[#A8988B] uppercase font-mono text-[10px] mb-2">
+                  LIVE POPUP BUTTON PREVIEW:
+                </span>
+                <div className="p-4 rounded-xl border border-[#26211B] bg-[#141210] flex items-center justify-between">
+                  <span className="text-[11px] text-[#A8988B] font-mono">
+                    Position: <strong className="text-white">{schedulerPosition}</strong> · State: <strong className={schedulerEnabled ? 'text-emerald-400' : 'text-zinc-500'}>{schedulerEnabled ? 'Visible' : 'Hidden'}</strong>
+                  </span>
+                  <div
+                    style={{ backgroundColor: schedulerColor }}
+                    className="px-4 py-2 rounded text-white font-sans font-bold text-sm shadow-md flex items-center gap-2 select-none"
+                  >
+                    <span>📅</span>
+                    <span>{schedulerLabel || 'Book an appointment'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Raw Code Editor / Manager */}
+          <div className="p-5 rounded-xl border border-[#26211B] bg-[#0A0908] space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-xs font-mono text-[#D4AF37] uppercase font-bold block">
+                  Raw Embed / Script Code Manager
+                </span>
+                <span className="text-[10px] text-[#A8988B] font-mono">
+                  View and manage the exact HTML script snippet for Google Calendar scheduling or custom third-party schedulers.
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleResetScheduler}
+                className="text-[10px] font-mono text-[#D4AF37] hover:underline uppercase cursor-pointer"
+              >
+                Reset Default Code ↺
+              </button>
+            </div>
+
+            <textarea
+              rows={12}
+              value={schedulerCustomCode}
+              onChange={(e) => setSchedulerCustomCode(e.target.value)}
+              className="w-full bg-[#12100E] border border-[#26211B] focus:border-[#D4AF37] text-white p-4 rounded-xl outline-none font-mono text-[11px] leading-relaxed resize-y selection:bg-[#D4AF37]/40"
+              spellCheck={false}
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <button
+              type="submit"
+              className="px-6 py-3.5 rounded-xl border border-[#D4AF37]/50 bg-gradient-to-r from-[#D4AF37] to-[#C49B2C] text-[#0A0908] font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all cursor-pointer font-mono"
+            >
+              Save Scheduler Configuration ↗
+            </button>
+
+            <button
+              type="button"
+              onClick={handleResetScheduler}
+              className="px-5 py-3 rounded-xl border border-[#26211B] hover:border-red-500/50 bg-[#141210] text-[#A8988B] hover:text-red-400 text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer"
+            >
+              Restore Official Google Calendar Defaults ↺
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* ==================== TAB 6: BRAND, NAVBAR & FOOTER ==================== */}
       {activeTab === 'brand' && (
         <form onSubmit={handleSaveBrand} className="bg-[#12100E] border border-[#26211B] p-6 sm:p-8 rounded-2xl space-y-6 card-lift font-sans text-xs">
           <div>

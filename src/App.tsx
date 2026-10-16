@@ -11,6 +11,7 @@ import { Footer } from './components/layout/Footer';
 // Core Homepage (Immediate render for fastest First Contentful Paint / LCP)
 import { HomePage } from './pages/HomePage';
 import { CookieConsentBanner } from './components/common/CookieConsentBanner';
+import { AppointmentScheduler } from './components/common/AppointmentScheduler';
 
 // Public Pages (Lazy Loaded)
 const AboutPage = lazy(() => import('./pages/AboutPage'));
@@ -99,6 +100,7 @@ function App() {
           <ScrollToTop />
           <SecretAdminListener />
           <CookieConsentBanner />
+          <AppointmentScheduler />
           <Suspense fallback={<PageFallback />}>
             <Routes>
               {/* Public Portfolio Routes with Dynamic Page Visibility Guards */}

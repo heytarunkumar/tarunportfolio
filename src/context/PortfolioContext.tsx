@@ -57,6 +57,42 @@ export interface ContactSettings {
   }>;
 }
 
+export interface SchedulerSettings {
+  enabled: boolean;
+  url: string;
+  label: string;
+  color: string;
+  position: 'bottom-right' | 'bottom-left';
+  mode: 'standard' | 'custom';
+  customCode: string;
+}
+
+export const initialSchedulerSettings: SchedulerSettings = {
+  enabled: true,
+  url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true',
+  label: 'Book an appointment',
+  color: '#039BE5',
+  position: 'bottom-right',
+  mode: 'standard',
+  customCode: `<!-- Google Calendar Appointment Scheduling begin -->
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+<script>
+(function() {
+  var target = document.currentScript;
+  window.addEventListener('load', function() {
+    calendar.schedulingButton.load({
+      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true',
+      color: '#039BE5',
+      label: 'Book an appointment',
+      target,
+    });
+  });
+})();
+</script>
+<!-- end Google Calendar Appointment Scheduling -->`,
+};
+
 export interface NavItemSetting {
   id: string;
   name: string;
@@ -110,6 +146,10 @@ export interface PortfolioContextType {
   toggleMessageRead: (id: string) => void;
   deleteMessage: (id: string) => void;
   clearAllMessages: () => void;
+
+  scheduler: SchedulerSettings;
+  updateScheduler: (settings: Partial<SchedulerSettings>) => void;
+  resetSchedulerToDefault: () => void;
 }
 
 const STORAGE_PREFIX = 'tarun_portfolio_cms_';
@@ -231,6 +271,23 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     } catch {}
     return 'dark';
   });
+
+  const [scheduler, setScheduler] = useState<SchedulerSettings>(() =>
+    safeGetStorage('scheduler', initialSchedulerSettings)
+  );
+
+  const updateScheduler = (updated: Partial<SchedulerSettings>) => {
+    setScheduler((prev) => {
+      const next = { ...prev, ...updated };
+      safeSetStorage('scheduler', next);
+      return next;
+    });
+  };
+
+  const resetSchedulerToDefault = () => {
+    setScheduler(initialSchedulerSettings);
+    safeSetStorage('scheduler', initialSchedulerSettings);
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -467,6 +524,9 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         toggleMessageRead,
         deleteMessage,
         clearAllMessages,
+        scheduler,
+        updateScheduler,
+        resetSchedulerToDefault,
       }}
     >
       {children}
