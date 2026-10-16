@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { usePortfolio } from '../../context/PortfolioContext';
 import { SITE_CONFIG } from '../../config/site';
 
@@ -50,7 +49,6 @@ const CONSULTATION_PILLARS: ConsultationPillar[] = [
 
 export const ScheduleSection: React.FC = () => {
   const { profile } = usePortfolio();
-  const [isLoaded, setIsLoaded] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
   const [userTimezone, setUserTimezone] = useState<string>('UTC');
   const [activePillar, setActivePillar] = useState<string>('ai-architecture');
@@ -70,7 +68,6 @@ export const ScheduleSection: React.FC = () => {
   }, []);
 
   const handleRefresh = () => {
-    setIsLoaded(false);
     setIframeKey((prev) => prev + 1);
   };
 
@@ -102,9 +99,9 @@ export const ScheduleSection: React.FC = () => {
             transition={{ duration: 0.8, ease: [0.22, 0.61, 0.36, 1] }}
             className="lg:col-span-8"
           >
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.06] tracking-[-0.03em] mb-4 sm:mb-6">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#111111] leading-[1.06] tracking-[-0.03em] mb-4 sm:mb-6">
               Schedule a 1:1 Executive or Advisory Session.
-            </h1>
+            </h2>
             <p className="text-sm sm:text-base font-sans font-normal text-[#38342E] leading-relaxed max-w-3xl">
               Reserve dedicated calendar time with {profile.name || 'Tarun Kumar'} for technical deep dives in AI and Python architectures, OrigoHOST ecosystem collaborations, keynote engagements, or venture advisory. Confirmed appointments automatically generate a Google Meet video conference and synchronize across your calendar.
             </p>
@@ -270,42 +267,20 @@ export const ScheduleSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Iframe Frame Box with Skeleton Loading Overlay */}
-          <div className="relative w-full min-h-[600px] sm:min-h-[700px] bg-white">
-            {/* Loading Skeleton */}
-            {!isLoaded && (
-              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center p-8 bg-[#FAF8F3]/95 backdrop-blur-sm transition-opacity duration-300">
-                <div className="w-10 h-10 border-2 border-[#78000F]/20 border-t-[#78000F] rounded-full animate-spin mb-4" />
-                <h4 className="text-sm font-serif font-bold text-[#111111] mb-1">
-                  Initializing Google Calendar Appointment Scheduler
-                </h4>
-                <p className="text-xs font-mono text-[#736B60] max-w-sm text-center">
-                  Loading verified available slots and matching to your detected timezone: {userTimezone}...
-                </p>
-                <div className="mt-6 flex items-center space-x-3 text-[10px] font-mono text-[#8C8275]">
-                  <span>🔒 SECURE IFRAME</span>
-                  <span>•</span>
-                  <span>GOOGLE VERIFIED</span>
-                </div>
-              </div>
-            )}
-
-            {/* Google Calendar Appointment Scheduling begin */}
+          {/* Google Calendar Appointment Scheduling begin */}
+          <div className="w-full bg-white relative">
             <iframe
               key={iframeKey}
               src={calendarUrl}
               style={{ border: 0 }}
               width="100%"
-              height="700"
+              height="600"
               frameBorder="0"
               title="Google Calendar Appointment Scheduling"
-              className={`w-full h-[650px] sm:h-[720px] transition-opacity duration-500 ${
-                isLoaded ? 'opacity-100' : 'opacity-0'
-              }`}
-              onLoad={() => setIsLoaded(true)}
+              className="w-full h-[600px] border-0 rounded-b-[4px] bg-white block"
             />
-            {/* end Google Calendar Appointment Scheduling */}
           </div>
+          {/* end Google Calendar Appointment Scheduling */}
 
           {/* Footer Ribbon inside the Widget Box */}
           <div className="px-4 sm:px-6 py-3 bg-[#FAF8F3] border-t border-[#CFC3B3] flex flex-col sm:flex-row items-center justify-between gap-2 text-[10px] font-mono text-[#736B60]">
@@ -387,12 +362,20 @@ export const ScheduleSection: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link
-              to="/contact"
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('contact');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                  window.history.replaceState(null, '', '#contact');
+                }
+              }}
               className="btn-executive-primary px-5 py-3 text-xs font-mono font-bold tracking-[0.18em] uppercase rounded-[3px] text-center"
             >
-              CONTACT FORM →
-            </Link>
+              CONTACT FORM ↑
+            </a>
             <a
               href={profile.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/'}
               target="_blank"

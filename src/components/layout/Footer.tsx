@@ -27,7 +27,6 @@ export const Footer: React.FC = () => {
         { id: '5', name: 'RESEARCH', path: '/research', visible: true, order: 5 },
         { id: '6', name: 'EXPERIENCE', path: '/experience', visible: true, order: 6 },
         { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
-        { id: '8', name: 'SCHEDULE', path: '/schedule', visible: true, order: 8 },
       ];
 
   return (

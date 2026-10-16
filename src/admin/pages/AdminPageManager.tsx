@@ -142,6 +142,10 @@ export const AdminPageManager: React.FC = () => {
   const [linkedin, setLinkedin] = useState(profile.socials?.linkedin || 'https://www.linkedin.com/in/heytarunkumar/');
   const [medium, setMedium] = useState(profile.socials?.medium || 'https://medium.com/@heytarunkumar/');
   const [xSocial, setXSocial] = useState(profile.socials?.x || 'https://x.com/heytarunkumarr');
+  const [meetingScheduleUrl, setMeetingScheduleUrl] = useState(
+    profile.meetingScheduleUrl ||
+    'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true'
+  );
 
   // ==================== TAB 5: BRAND, NAVBAR & FOOTER STATE ====================
   const [brandName, setBrandName] = useState(profile.name || 'Tarun Kumar');
@@ -254,6 +258,7 @@ export const AdminPageManager: React.FC = () => {
       },
       contactFormSubmitUrl: formSubmitUrl,
       contactSubmitButtonText: submitButtonText,
+      meetingScheduleUrl,
       socials: {
         github,
         linkedin,
@@ -1332,6 +1337,22 @@ export const AdminPageManager: React.FC = () => {
               onChange={(e) => setSuccessMessage(e.target.value)}
               className="w-full bg-[#0A0908] border border-[#26211B] text-white p-3.5 rounded-xl outline-none resize-none font-sans"
             />
+          </div>
+
+          <div>
+            <label className="block text-[#A8988B] uppercase font-mono text-[11px] mb-1.5">
+              GOOGLE CALENDAR APPOINTMENT SCHEDULING EMBED URL
+            </label>
+            <input
+              type="url"
+              value={meetingScheduleUrl}
+              onChange={(e) => setMeetingScheduleUrl(e.target.value)}
+              placeholder="https://calendar.google.com/calendar/appointments/schedules/..."
+              className="w-full bg-[#0A0908] border border-[#26211B] text-white p-3.5 rounded-xl outline-none font-mono"
+            />
+            <span className="text-[10px] text-[#8C6D4F] font-mono mt-1 block">
+              Google Calendar Appointment URL embedded across your website on /contact and homepage.
+            </span>
           </div>
 
           {/* Social Handles (All 6 platforms) */}

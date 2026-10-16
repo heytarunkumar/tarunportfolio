@@ -60,7 +60,7 @@ export const LinksPage: React.FC = () => {
         {
           title: 'Schedule a 1:1 Meeting',
           subtitle: 'Book an executive or technical session via official Google Calendar',
-          url: '/schedule',
+          url: '/contact#schedule',
           isExternal: false,
           tag: 'CALENDAR',
           iconText: '📅',

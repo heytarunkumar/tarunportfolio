@@ -171,8 +171,16 @@ export const ContactSection: React.FC = () => {
             </div>
 
             {/* Schedule 1:1 Meeting Direct Action Card */}
-            <Link
-              to="/schedule"
+            <a
+              href="#schedule"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('schedule');
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                  window.history.replaceState(null, '', '#schedule');
+                }
+              }}
               className="editorial-card flex items-center justify-between p-4 rounded-[4px] bg-[#FAF8F3] border border-[#CFC3B3] shadow-sm hover:border-[#78000F] transition-all group cursor-pointer"
             >
               <div className="flex items-center space-x-3.5 min-w-0">
@@ -191,10 +199,10 @@ export const ContactSection: React.FC = () => {
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-mono font-bold text-[#78000F] shrink-0 group-hover:translate-x-1 transition-transform pl-2">
-                BOOK →
+              <span className="text-xs font-mono font-bold text-[#78000F] shrink-0 group-hover:translate-y-0.5 transition-transform pl-2">
+                BOOK ↓
               </span>
-            </Link>
+            </a>
 
             {/* Quick Contact & Socials */}
             <div className="space-y-3 font-mono text-xs">

@@ -143,7 +143,6 @@ const initialNav: NavItemSetting[] = [
   { id: '5', name: 'RESEARCH', path: '/research', visible: true, order: 5 },
   { id: '6', name: 'EXPERIENCE', path: '/experience', visible: true, order: 6 },
   { id: '7', name: 'CONTACT', path: '/contact', visible: true, order: 7 },
-  { id: '8', name: 'SCHEDULE', path: '/schedule', visible: true, order: 8 },
 ];
 
 const initialSeo: SeoSettings = {
@@ -214,14 +213,10 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [navigation, setNavigation] = useState<NavItemSetting[]>(() => {
     const saved = safeGetStorage<NavItemSetting[]>('navigation', initialNav);
     if (Array.isArray(saved) && saved.length > 0) {
-      const hasSchedule = saved.some((item) => item.path === '/schedule' || item.name === 'SCHEDULE');
-      if (!hasSchedule) {
-        return [
-          ...saved,
-          { id: '8', name: 'SCHEDULE', path: '/schedule', visible: true, order: saved.length + 1 },
-        ];
-      }
-      return saved;
+      const cleaned = saved
+        .filter((item) => item.path !== '/schedule' && item.name !== 'SCHEDULE')
+        .map((item, idx) => ({ ...item, order: idx + 1 }));
+      return cleaned.length > 0 ? cleaned : initialNav;
     }
     return initialNav;
   });
