@@ -109,11 +109,11 @@ function App() {
               <Route path="/research" element={<PageVisibilityGuard path="/research"><PublicLayout><ResearchPage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/experience" element={<PageVisibilityGuard path="/experience"><PublicLayout><ExperiencePage /></PublicLayout></PageVisibilityGuard>} />
               <Route path="/contact" element={<PageVisibilityGuard path="/contact"><PublicLayout><ContactPage /></PublicLayout></PageVisibilityGuard>} />
-              <Route path="/schedule" element={<Navigate to="/contact#schedule" replace />} />
-              <Route path="/meeting" element={<Navigate to="/contact#schedule" replace />} />
-              <Route path="/meetings" element={<Navigate to="/contact#schedule" replace />} />
-              <Route path="/book" element={<Navigate to="/contact#schedule" replace />} />
-              <Route path="/schedule-meeting" element={<Navigate to="/contact#schedule" replace />} />
+              <Route path="/schedule" element={<Navigate to="/contact" replace />} />
+              <Route path="/meeting" element={<Navigate to="/contact" replace />} />
+              <Route path="/meetings" element={<Navigate to="/contact" replace />} />
+              <Route path="/book" element={<Navigate to="/contact" replace />} />
+              <Route path="/schedule-meeting" element={<Navigate to="/contact" replace />} />
               <Route path="/links" element={<PublicLayout><LinksPage /></PublicLayout>} />
 
               {/* Public Legal & Compliance Routes */}

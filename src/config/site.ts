@@ -37,6 +37,4 @@ export const SITE_CONFIG = {
     organizationId: 'https://origohost.in/#organization',
     logo: `${SITE_URL}/images/origohost/origohost-icon.webp`,
   },
-  scheduleUrl:
-    'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1StHsObzZFYVjRIHgjJtQ0A5Oj4Rw6eUZS0QyLHFGp7EClv7zauUKgiDIylHhj5r0x8W8GpFRM?gv=true',
 } as const;

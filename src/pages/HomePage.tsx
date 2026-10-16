@@ -9,7 +9,6 @@ import { EngineeringLabSection } from '../components/sections/EngineeringLabSect
 import { ResearchSection } from '../components/sections/ResearchSection';
 import { ExperienceSection } from '../components/ExperienceSection';
 import { FaqSection } from '../components/FaqSection';
-import { ScheduleSection } from '../components/sections/ScheduleSection';
 import { ContactSection } from '../components/ContactSection';
 
 export const HomePage: React.FC = () => {
@@ -32,12 +31,7 @@ export const HomePage: React.FC = () => {
       {isPageVisible('/research') && <ResearchSection />}
       {isPageVisible('/experience') && <ExperienceSection />}
       <FaqSection />
-      {isPageVisible('/contact') && (
-        <>
-          <ContactSection />
-          <ScheduleSection />
-        </>
-      )}
+      {isPageVisible('/contact') && <ContactSection />}
     </div>
   );
 };
