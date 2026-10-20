@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { usePortfolio } from '../context/PortfolioContext';
 
@@ -126,6 +127,31 @@ export const ExperienceSection: React.FC = () => {
                               {tech}
                             </span>
                           ))}
+                        </div>
+                      )}
+
+                      {/* Optional Link to Event or Document */}
+                      {item.link && (
+                        <div className="mt-3.5 pt-3 border-t border-[#DDD2C2] flex items-center justify-between">
+                          {item.link.startsWith('http') ? (
+                            <a
+                              href={item.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[11px] font-mono tracking-wider uppercase font-bold text-[#78000F] hover:text-[#5D000B] inline-flex items-center space-x-1"
+                            >
+                              <span>VIEW DOCUMENTED ENGAGEMENT</span>
+                              <span aria-hidden="true">↗</span>
+                            </a>
+                          ) : (
+                            <Link
+                              to={item.link}
+                              className="text-[11px] font-mono tracking-wider uppercase font-bold text-[#78000F] hover:text-[#5D000B] inline-flex items-center space-x-1"
+                            >
+                              <span>VIEW DOCUMENTED ENGAGEMENT</span>
+                              <span aria-hidden="true">→</span>
+                            </Link>
+                          )}
                         </div>
                       )}
                     </div>

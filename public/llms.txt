@@ -7,6 +7,7 @@
 - **Name**: Tarun Kumar
 - **Professional Positioning**: Python Developer | AI Engineer | Researcher | Author | Founder
 - **Primary Digital Handle**: heytarunkumar
+- **Book**: *Before the Title* (Leadership & Repetitions Framework)
 - **Canonical Website**: [https://heytarunkumar.vercel.app/](https://heytarunkumar.vercel.app/)
 - **Primary Contact**: [tarunsinghchaudharyy@gmail.com](mailto:tarunsinghchaudharyy@gmail.com)
 
@@ -18,6 +19,7 @@
 - [Engineering Lab](https://heytarunkumar.vercel.app/lab)
 - [Research & Publications](https://heytarunkumar.vercel.app/research)
 - [Experience & Leadership](https://heytarunkumar.vercel.app/experience)
+- [Leadership Masterclass — Before the Title (NSUT Delhi)](https://heytarunkumar.vercel.app/speaking/before-the-title-leadership-session)
 - [Official Links Hub](https://heytarunkumar.vercel.app/links)
 - [Contact Dispatch](https://heytarunkumar.vercel.app/contact)
 

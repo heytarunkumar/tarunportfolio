@@ -50,6 +50,14 @@ export const LinksPage: React.FC = () => {
           iconText: '⚡',
         },
         {
+          title: "Leadership Masterclass — 'Before the Title' (NSUT)",
+          subtitle: "Session documentation, presentation slides & Letter of Appreciation (17 Oct 2026)",
+          url: '/speaking/before-the-title-leadership-session',
+          isExternal: false,
+          tag: 'KEYNOTE',
+          iconText: '🎙️',
+        },
+        {
           title: 'Curriculum Vitae (ATS Resume)',
           subtitle: 'Verified engineering credentials, publications & skill metrics',
           url: profile.resumeUrl || '/resume/Tarun_Kumar_Resume_ATS_OnePage.pdf',

@@ -21,6 +21,7 @@ const ResearchPage = lazy(() => import('./pages/ResearchPage').then((m) => ({ de
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage').then((m) => ({ default: m.ExperiencePage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
 const LinksPage = lazy(() => import('./pages/LinksPage').then((m) => ({ default: m.LinksPage })));
+const SpeakingEventPage = lazy(() => import('./pages/SpeakingEventPage').then((m) => ({ default: m.SpeakingEventPage })));
 
 // Legal & Compliance Pages (Lazy Loaded)
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
@@ -117,6 +118,8 @@ function App() {
               <Route path="/book" element={<Navigate to="/contact" replace />} />
               <Route path="/schedule-meeting" element={<Navigate to="/contact" replace />} />
               <Route path="/links" element={<PublicLayout><LinksPage /></PublicLayout>} />
+              <Route path="/speaking/before-the-title-leadership-session" element={<PublicLayout><SpeakingEventPage /></PublicLayout>} />
+              <Route path="/speaking" element={<Navigate to="/speaking/before-the-title-leadership-session" replace />} />
 
               {/* Public Legal & Compliance Routes */}
               <Route path="/privacy" element={<PublicLayout><PrivacyPolicyPage /></PublicLayout>} />

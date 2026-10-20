@@ -26,13 +26,15 @@ export const experienceData: ExperienceItem[] = [
     description:
       "Leading institutional engagements, technical initiatives, and developer community growth focused on applied AI, intelligent systems, and modern software engineering education.",
     responsibilities: [
+      "Conducted the 'Before the Title' Leadership Masterclass at Netaji Subhas University of Technology (NSUT) with GDG NSUT on 17 October 2026, receiving an official Letter of Appreciation.",
       "Leading institutional engagements, technical bootcamps, and developer initiatives on applied AI and modern engineering stacks.",
       "Enabling students and emerging engineers to gain practical hands-on exposure to intelligent systems and production-grade technologies.",
       "Spearheading open-source initiatives, hackathons, and collaborative engineering projects for student builders.",
       "Cultivating an ecosystem where builders transition into impactful innovators and entrepreneurs.",
     ],
-    technologies: ["Applied AI", "Generative AI", "Community Leadership", "Python", "Technical Mentorship", "System Architecture"],
+    technologies: ["Applied AI", "Generative AI", "Leadership Development", "Community Leadership", "Python", "Technical Mentorship", "System Architecture"],
     isVerified: true,
+    link: "/speaking/before-the-title-leadership-session",
   },
   {
     id: "02",

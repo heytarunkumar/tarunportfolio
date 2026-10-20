@@ -33,9 +33,15 @@
   </url>
   <url>
     <loc>https://heytarunkumar.vercel.app/experience</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://heytarunkumar.vercel.app/speaking/before-the-title-leadership-session</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://heytarunkumar.vercel.app/links</loc>
